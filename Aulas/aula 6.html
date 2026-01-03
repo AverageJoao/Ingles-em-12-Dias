@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 06 - English Class</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary-color: #ec4899;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #818cf8;
+            --primary-hover: #6366f1;
+            --secondary-color: #f472b6;
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header & Nav */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .definition {
+            background-color: rgba(99, 102, 241, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            min-width: 500px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--primary-color);
+        }
+
+        /* Exercises */
+        .exercise-box {
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.02);
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .inline-input {
+            display: inline-block;
+            width: 120px !important;
+            margin: 0 5px;
+            padding: 0.4rem !important;
+        }
+
+        /* Multiple Choice / Select */
+        .options-grid {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .option-btn.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Feedback Styles */
+        .correct-answer {
+            border-color: var(--success) !important;
+            background-color: rgba(16, 185, 129, 0.1) !important;
+        }
+
+        .wrong-answer {
+            border-color: var(--error) !important;
+            background-color: rgba(239, 68, 68, 0.1) !important;
+        }
+
+        .feedback-text {
+            display: block;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .text-success { color: var(--success); }
+        .text-error { color: var(--error); }
+
+        /* Action Bar */
+        .action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 1rem;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .check-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+            transform: translateY(0);
+        }
+
+        .check-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* Footer spacer */
+        .footer-space {
+            height: 80px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .inline-input { width: 100px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        <h1>Day 06</h1>
+        <div class="subtitle">Requests, Offers, Modals & Possessives</div>
+    </header>
+
+    <div class="container">
+
+        <section class="card">
+            <h2>📢 Requests</h2>
+            <div class="definition">
+                <strong>What is a request?</strong><br>
+                Ask for something to be given or done, especially as a favor or courtesy; solicitation.
+            </div>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Requesting</th>
+                            <th>Answers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>May I have ketchup and mustard, please?</td>
+                            <td>Certainly. One moment, please.</td>
+                        </tr>
+                        <tr>
+                            <td>I would like two Cokes, please.</td>
+                            <td>Okay. I'll get it for you.</td>
+                        </tr>
+                        <tr>
+                            <td>I would like to drink some water, please.</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Could you do me a favor, please?</td>
+                            <td>Of course. What can I do for you?</td>
+                        </tr>
+                        <tr>
+                            <td>Can you open the bar, please?</td>
+                            <td>Sure thing. I'll be happy to help.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🎁 Offers</h2>
+            <div class="definition">
+                <strong>What is an offer?</strong><br>
+                To present something for someone to accept or reject.
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Offering</th>
+                            <th>Answers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Would you like ketchup and mustard?</td>
+                            <td>Yes, please.</td>
+                        </tr>
+                        <tr>
+                            <td>Would you like a hot dog and a burger?</td>
+                            <td rowspan="2" style="vertical-align: middle;">No, thank you.</td>
+                        </tr>
+                        <tr>
+                            <td>Would you like to eat a hot dog and a burger?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>✏️ Exercise I</h2>
+            <p>Complete the conversation. Use the words in the box.</p>
+            <div class="exercise-box">
+                [ boss • job • can • work • experience ]
+            </div>
+
+            <div class="conversation">
+                <p><strong>Tell me about your job.</strong></p>
+                
+                <p><strong>Sara:</strong> Hey Emily! How is your new <input type="text" class="inline-input" data-answer="job"> going?</p>
+                
+                <p><strong>Emily:</strong> It's great; I'm getting a lot of <input type="text" class="inline-input" data-answer="experience">?</p>
+                
+                <p><strong>Sara:</strong> And what do you think of your <input type="text" class="inline-input" data-answer="boss">?</p>
+                
+                <p><strong>Emily:</strong> She's very nice, but she makes us <input type="text" class="inline-input" data-answer="work"> hard!</p>
+                
+                <p><strong>Sara:</strong> I understand. <input type="text" class="inline-input" data-answer="can"> I come visit you there some time?</p>
+                
+                <p><strong>Emily:</strong> Of course! You can come any time.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🤔 Exercise II</h2>
+            <p>Complete the sentences with the appropriate modal (can, could, may, would).</p>
+
+            <div class="question">
+                <label>a) <input type="text" class="inline-input" data-answer="would"> you like a drink?</label>
+            </div>
+            <div class="question">
+                <label>b) Dad, <input type="text" class="inline-input" data-answer="can|could"> we go to the theme park?</label>
+            </div>
+            <div class="question">
+                <label>c) <input type="text" class="inline-input" data-answer="may|can|could"> I take your jacket, sir?</label>
+            </div>
+            <div class="question">
+                <label>d) <input type="text" class="inline-input" data-answer="could|can"> you please help me with my work?</label>
+            </div>
+            <div class="question">
+                <label>e) <input type="text" class="inline-input" data-answer="may|can"> I help you?</label>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🏠 Exercise III</h2>
+            <p>Complete the conversations below with the appropriate possessives.</p>
+
+            <div class="question">
+                <label>a) Where is <input type="text" class="inline-input" data-answer="your"> house? My house is in Orlando.</label>
+            </div>
+            <div class="question">
+                <label>b) Do you like <input type="text" class="inline-input" data-answer="my"> hair? Yes, your hair looks lovely.</label>
+            </div>
+            <div class="question">
+                <label>c) Did you go to <input type="text" class="inline-input" data-answer="their"> dinner party? No, but I heard their party was great.</label>
+            </div>
+            <div class="question">
+                <label>d) Is this <input type="text" class="inline-input" data-answer="our"> table? Yes, this one is ours.</label>
+            </div>
+            <div class="question">
+                <label>e) What is <input type="text" class="inline-input" data-answer="your"> boss's name? My boss's name is Anne.</label>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>❌ Exercise IV</h2>
+            <p><strong>Select the CORRECT option</strong> (The wrong option is crossed out in spirit!).</p>
+
+            <div class="question" id="q4a">
+                <p>a) Here is ____________ order.</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption('q4a', 'yours')">yours</button>
+                    <button class="option-btn" onclick="selectOption('q4a', 'your')">your</button>
+                </div>
+                <input type="hidden" data-answer="your" id="input-q4a">
+            </div>
+
+            <div class="question" id="q4b">
+                <p>b) That dog is ____________.</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption('q4b', 'theirs')">theirs</button>
+                    <button class="option-btn" onclick="selectOption('q4b', 'their')">their</button>
+                </div>
+                <input type="hidden" data-answer="theirs" id="input-q4b">
+            </div>
+
+            <div class="question" id="q4c">
+                <p>c) ____________ boss is very cool.</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption('q4c', 'Mine')">Mine</button>
+                    <button class="option-btn" onclick="selectOption('q4c', 'My')">My</button>
+                </div>
+                <input type="hidden" data-answer="my" id="input-q4c">
+            </div>
+
+            <div class="question" id="q4d">
+                <p>d) This is ____________ table.</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption('q4d', 'ours')">ours</button>
+                    <button class="option-btn" onclick="selectOption('q4d', 'our')">our</button>
+                </div>
+                <input type="hidden" data-answer="our" id="input-q4d">
+            </div>
+
+            <div class="question" id="q4e">
+                <p>e) That jacket is ____________.</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption('q4e', 'your')">your</button>
+                    <button class="option-btn" onclick="selectOption('q4e', 'yours')">yours</button>
+                </div>
+                <input type="hidden" data-answer="yours" id="input-q4e">
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🔀 Exercise V</h2>
+            <p>Unscramble the sentences. (Type the full correct sentence).</p>
+
+            <div class="question">
+                <label>a) is / What / name / boss's / your / ?</label>
+                <input type="text" data-answer="What is your boss's name?|What is your boss name?">
+            </div>
+
+            <div class="question">
+                <label>b) works / snack bar / He / a / at / .</label>
+                <input type="text" data-answer="He works at a snack bar.">
+            </div>
+
+            <div class="question">
+                <label>c) They / jobs / good / are / their / at / .</label>
+                <input type="text" data-answer="They are good at their jobs.">
+            </div>
+
+            <div class="question">
+                <label>d) my / food / Where / is / ?</label>
+                <input type="text" data-answer="Where is my food?">
+            </div>
+
+            <div class="question">
+                <label>e) those / think / I / ours / are / .</label>
+                <input type="text" data-answer="I think those are ours.|I think those are ours.">
+            </div>
+        </section>
+
+        <div class="footer-space"></div>
+    </div>
+
+    <div class="action-bar">
+        <button class="check-btn" onclick="checkAllAnswers()">✅ Check Answers</button>
+    </div>
+
+    <script>
+        // Theme Logic
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-toggle');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '🌙 Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ Light Mode';
+            }
+        }
+
+        // Selection Logic for Exercise IV
+        function selectOption(groupId, value) {
+            // Remove selected class from buttons in this group
+            const group = document.getElementById(groupId);
+            const buttons = group.querySelectorAll('.option-btn');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Add selected class to clicked button
+            event.target.classList.add('selected');
+            
+            // Update hidden input
+            const hiddenInput = document.getElementById('input-' + groupId);
+            hiddenInput.value = value;
+        }
+
+        // Check Logic
+        function checkAllAnswers() {
+            let correctCount = 0;
+            let totalCount = 0;
+
+            // 1. Check Text Inputs
+            const inputs = document.querySelectorAll('input[type="text"]:not([readonly])');
+            inputs.forEach(input => {
+                totalCount++;
+                const userAnswer = input.value.trim();
+                const possibleAnswers = input.getAttribute('data-answer').split('|');
+                
+                // Reset styles
+                input.classList.remove('correct-answer', 'wrong-answer');
+                
+                // Remove existing feedback message
+                let nextElem = input.nextElementSibling;
+                if(nextElem && nextElem.classList.contains('feedback-text')) {
+                    nextElem.remove();
+                }
+
+                // Check (case insensitive)
+                let isCorrect = false;
+                possibleAnswers.forEach(ans => {
+                    // Remove punctuation for easier matching if user forgets a period
+                    const cleanUser = userAnswer.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+                    const cleanAns = ans.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+                    if (cleanUser === cleanAns) isCorrect = true;
+                });
+
+                if (isCorrect && userAnswer !== "") {
+                    input.classList.add('correct-answer');
+                    correctCount++;
+                } else {
+                    input.classList.add('wrong-answer');
+                    // Show correct answer hint
+                    /* Optional: Uncomment to show answers immediately
+                    const feedback = document.createElement('span');
+                    feedback.className = 'feedback-text text-error';
+                    feedback.innerText = `Expected: ${possibleAnswers[0]}`;
+                    input.parentNode.insertBefore(feedback, input.nextSibling); 
+                    */
+                }
+            });
+
+            // 2. Check Hidden Inputs (Exercise IV)
+            const hiddenInputs = document.querySelectorAll('input[type="hidden"]');
+            hiddenInputs.forEach(input => {
+                totalCount++;
+                const userAnswer = input.value.toLowerCase();
+                const correctAnswer = input.getAttribute('data-answer').toLowerCase();
+                const container = input.parentElement;
+                
+                // Reset border on container
+                container.style.border = "none";
+                container.style.borderRadius = "8px";
+
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    container.style.border = "2px solid var(--success)";
+                } else {
+                    container.style.border = "2px solid var(--error)";
+                }
+            });
+
+            // Alert Score
+            alert(`You got ${correctCount} out of ${totalCount} correct! Check the red fields to try again.`);
+        }
+    </script>
+</body>
+</html>

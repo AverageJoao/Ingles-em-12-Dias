@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 03 - There is / There are</title>
+    <style>
+        :root {
+            /* Variáveis de Cores - Tema Claro (Padrão) */
+            --primary-color: #4a90e2;
+            --secondary-color: #50e3c2;
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #e1e1e1;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --header-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            /* Variáveis de Cores - Tema Escuro */
+            --primary-color: #64b5f6;
+            --secondary-color: #26a69a;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.5);
+            --header-bg: #1e1e1e;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header e Navegação */
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 { margin: 0; font-size: 1.5rem; color: var(--primary-color); }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Layout Principal */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 { color: var(--primary-color); margin-top: 1.5rem; }
+
+        /* Elementos Didáticos */
+        .grammar-box {
+            background-color: rgba(74, 144, 226, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-list li { margin-bottom: 0.5rem; }
+        .highlight { font-weight: bold; color: var(--primary-color); }
+
+        /* Estilos dos Exercícios */
+        .exercise-section { margin-top: 3rem; }
+        
+        .question-block {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        label { display: block; margin-bottom: 0.5rem; }
+
+        select, input[type="text"] {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 0.5rem;
+        }
+
+        .inline-input {
+            display: inline-block;
+            width: auto;
+            min-width: 80px;
+            margin: 0 5px;
+        }
+
+        .word-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 1rem;
+            background-color: var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .word-tag {
+            background-color: var(--card-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Botões de Ação */
+        .action-bar {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .btn-check {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-check:hover { transform: translateY(-2px); }
+
+        /* Feedback Visual */
+        .correct {
+            border: 2px solid var(--success-color) !important;
+            background-color: rgba(46, 204, 113, 0.1) !important;
+        }
+
+        .incorrect {
+            border: 2px solid var(--error-color) !important;
+            background-color: rgba(231, 76, 60, 0.1) !important;
+        }
+
+        .feedback-msg { font-size: 0.9rem; margin-top: 5px; font-weight: bold; }
+        .feedback-correct { color: var(--success-color); }
+        .feedback-incorrect { color: var(--error-color); }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .card { padding: 1.5rem; }
+            header { flex-direction: column; gap: 10px; }
+            select, input[type="text"] { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📘 English Class: Day 03</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Alternar Tema</button>
+</header>
+
+<div class="container">
+
+    <section class="card">
+        <h2>Grammar: There is / There are</h2>
+        <p>We use <strong>there is</strong> and <strong>there are</strong> to say that something exists.</p>
+        
+        <div class="grammar-box">
+            <p>🔵 <strong>There is</strong>: singular (one thing)</p>
+            <p>🔵 <strong>There are</strong>: plural (more than one thing)</p>
+        </div>
+
+        <h3>A) Affirmative form</h3>
+        <ul class="example-list">
+            <li><span class="highlight">There is</span> a round table in the kitchen.</li>
+            <li><span class="highlight">There are</span> two armchairs beside the dining table.</li>
+            <li><span class="highlight">There is</span> a frog in the bathroom!</li>
+            <li><span class="highlight">There are</span> many toys on the dining room floor.</li>
+        </ul>
+        <p><strong>Contracted forms:</strong><br>
+        There is = <strong>There's</strong> (e.g., There's a delicious chocolate cake).<br>
+        <em>*You cannot contract 'there are'.</em></p>
+
+        <hr>
+
+        <h3>B) Negative form</h3>
+        <p>It is formed by adding <strong>not</strong> after is or are.</p>
+        <ul class="example-list">
+            <li>There is <span class="highlight">not</span> any furniture in Mike's living room.</li>
+            <li>There are <span class="highlight">not</span> sofas in Mike's living room.</li>
+        </ul>
+        <p><strong>Contracted forms:</strong><br>
+        There is not = <strong>There isn't</strong><br>
+        There are not = <strong>There aren't</strong></p>
+
+        <hr>
+
+        <h3>C) Interrogative forms</h3>
+        <p>To form a question we place <strong>is/are</strong> in front of <strong>there</strong>.</p>
+        <ul class="example-list">
+            <li><span class="highlight">Is there</span> any furniture in Mike's living room?</li>
+            <li><span class="highlight">Are there</span> sofas in his room?</li>
+        </ul>
+
+        <hr>
+
+        <h3>D) Short answers</h3>
+        <p>We also use there is/are in short answers.</p>
+        <ul class="example-list">
+            <li>Is there a dog in your house? <strong>No, there isn't.</strong></li>
+            <li>Are there sofas in Mike's living room? <strong>No, there aren't.</strong></li>
+        </ul>
+    </section>
+
+    <div class="exercise-section">
+        <h2 style="text-align: center; color: var(--primary-color);">📝 Practice Exercises</h2>
+
+        <section class="card">
+            <h3>I - Circle the correct options to complete the conversations.</h3>
+            
+            <div class="question-block">
+                <p>1. A - Hello, Mandy. How 
+                    <select class="inline-input" data-ans="are">
+                        <option value="">...</option>
+                        <option value="am">am</option>
+                        <option value="is">is</option>
+                        <option value="are">are</option>
+                    </select> 
+                    you today?<br>
+                    B - I 
+                    <select class="inline-input" data-ans="am">
+                        <option value="">...</option>
+                        <option value="am">am</option>
+                        <option value="is">is</option>
+                        <option value="are">are</option>
+                    </select>
+                    fine, thanks!
+                </p>
+            </div>
+
+            <div class="question-block">
+                <p>2. A - So, 
+                    <select class="inline-input" data-ans="is">
+                        <option value="">...</option>
+                        <option value="is">is</option>
+                        <option value="are">are</option>
+                        <option value="am">am</option>
+                    </select>
+                    this your new house, Mike?<br>
+                    B - Yeah, It's a huge house, 
+                    <select class="inline-input" data-ans="isn't">
+                        <option value="">...</option>
+                        <option value="isn't">isn't</option>
+                        <option value="aren't">aren't</option>
+                    </select>
+                    it?
+                </p>
+            </div>
+
+            <div class="question-block">
+                <p>3. A - How many rooms 
+                    <select class="inline-input" data-ans="are there">
+                        <option value="">...</option>
+                        <option value="is there">is there</option>
+                        <option value="are there">are there</option>
+                    </select>
+                    in your house?<br>
+                    B - Not so many! My house is very small. 
+                    <select class="inline-input" data-ans="There is">
+                        <option value="">...</option>
+                        <option value="There is">There is</option>
+                        <option value="there are">there are</option>
+                    </select>
+                    only one bedroom, a kitchen and a tiny bathroom.
+                </p>
+            </div>
+
+            <div class="question-block">
+                <p>4. A - I live in a beautiful large house. 
+                    <select class="inline-input" data-ans="There are">
+                        <option value="">...</option>
+                        <option value="There are">There are</option>
+                        <option value="there is">there is</option>
+                    </select>
+                    many glass doors at the front and there's also a wonderful swimming pool in the back garden!
+                    <select class="inline-input" data-ans="Is there">
+                        <option value="">...</option>
+                        <option value="Is there">Is there</option>
+                        <option value="are there">are there</option>
+                    </select>
+                    a pool in your garden?<br>
+                    B - No, 
+                    <select class="inline-input" data-ans="there isn't">
+                        <option value="">...</option>
+                        <option value="there isn't">there isn't</option>
+                        <option value="there aren't">there aren't</option>
+                    </select>
+                    one in my garden.
+                </p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>II - Match the sentences.</h3>
+            <p><em>Select the number that best completes the sentence.</em></p>
+
+            <div class="question-block">
+                <label>A. His house has this huge rectangular shaped pool...</label>
+                <select class="inline-input" data-ans="2">
+                    <option value="">Select match...</option>
+                    <option value="1">1. but my house is between two gardens.</option>
+                    <option value="2">2. surrounded by comfortable sun loungers.</option>
+                    <option value="3">3. exotic! Who lives there?</option>
+                    <option value="4">4. home sweet home!</option>
+                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
+                </select>
+            </div>
+
+            <div class="question-block">
+                <label>B. The house next to yours is so...</label>
+                <select class="inline-input" data-ans="3">
+                    <option value="">Select match...</option>
+                    <option value="1">1. but my house is between two gardens.</option>
+                    <option value="2">2. surrounded by comfortable sun loungers.</option>
+                    <option value="3">3. exotic! Who lives there?</option>
+                    <option value="4">4. home sweet home!</option>
+                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
+                </select>
+            </div>
+
+            <div class="question-block">
+                <label>C. There aren't many trees on my street...</label>
+                <select class="inline-input" data-ans="1">
+                    <option value="">Select match...</option>
+                    <option value="1">1. but my house is between two gardens.</option>
+                    <option value="2">2. surrounded by comfortable sun loungers.</option>
+                    <option value="3">3. exotic! Who lives there?</option>
+                    <option value="4">4. home sweet home!</option>
+                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
+                </select>
+            </div>
+
+            <div class="question-block">
+                <label>D. Is there a garden at your house?</label>
+                <select class="inline-input" data-ans="5">
+                    <option value="">Select match...</option>
+                    <option value="1">1. but my house is between two gardens.</option>
+                    <option value="2">2. surrounded by comfortable sun loungers.</option>
+                    <option value="3">3. exotic! Who lives there?</option>
+                    <option value="4">4. home sweet home!</option>
+                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
+                </select>
+            </div>
+
+            <div class="question-block">
+                <label>E. There isn't a better place than our...</label>
+                <select class="inline-input" data-ans="4">
+                    <option value="">Select match...</option>
+                    <option value="1">1. but my house is between two gardens.</option>
+                    <option value="2">2. surrounded by comfortable sun loungers.</option>
+                    <option value="3">3. exotic! Who lives there?</option>
+                    <option value="4">4. home sweet home!</option>
+                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>III - Complete the questions appropriately. Use the correct forms of there is/are.</h3>
+            <p><strong>Context: John's messy bedroom</strong></p>
+
+            <div class="question-block">
+                <p>a) <input type="text" class="inline-input" data-ans="Are there"> dirty socks under your bed, John?</p>
+                <p>b) <input type="text" class="inline-input" data-ans="Is there"> a wet towel on his bed, too?</p>
+                <p>c) <input type="text" class="inline-input" data-ans="Are there"> books all over the floor, John?</p>
+                <p>d) <input type="text" class="inline-input" data-ans="Is there"> a pair of smelly jeans, John? <em>(Of course, there is!)</em></p>
+                <p>e) Oh, John, <input type="text" class="inline-input" data-ans="is there"> anything in order in that room? You're a very messy, messy boy!</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>IV - Complete the conversation. Use the words in the box.</h3>
+            
+            <div class="word-box">
+                <span class="word-tag">How many</span>
+                <span class="word-tag">in</span>
+                <span class="word-tag">on</span>
+                <span class="word-tag">comfortable</span>
+                <span class="word-tag">where</span>
+                <span class="word-tag">an</span>
+                <span class="word-tag">How</span>
+                <span class="word-tag">favorite</span>
+                <span class="word-tag">a</span>
+                <span class="word-tag">bright</span>
+            </div>
+
+            <div class="question-block">
+                <p><strong>Sarah:</strong> Ok, then. Next, the living room. It's basically a place to relax and receive friends. So it's essential to have big <input type="text" class="inline-input" data-ans="comfortable"> chairs or sofas. We also need a coffee table <input type="text" class="inline-input" data-ans="where"> you can keep some magazines for you to read.</p>
+                
+                <p><strong>Sarah:</strong> <input type="text" class="inline-input" data-ans="How"> big is your family? Is it <input type="text" class="inline-input" data-ans="a"> large or small family, Mr. Johnson?</p>
+
+                <p><strong>Mr. Johnson:</strong> Actually, it's just me, my wife and my son Jeff. Oh and of course, Pit-the dog!</p>
+
+                <p><strong>Sarah:</strong> Nice! So, tell me. What's your favorite color?</p>
+
+                <p><strong>Mr. Johnson:</strong> That is <input type="text" class="inline-input" data-ans="an"> easy question! White is my <input type="text" class="inline-input" data-ans="favorite"> color, Sarah.</p>
+
+                <p><strong>Sarah:</strong> Great! We also need to get a fluffy rug to put <input type="text" class="inline-input" data-ans="on"> the floor and beautiful <input type="text" class="inline-input" data-ans="bright"> curtains for the windows. <input type="text" class="inline-input" data-ans="How many"> windows are there <input type="text" class="inline-input" data-ans="in"> your living room, Mr. Johnson?</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>V - Complete the dialogues with the appropriate forms of there is/are.</h3>
+
+            <div class="question-block">
+                <p>a) <input type="text" class="inline-input" data-ans="Is there"> a pink house beside yours? Yes, there is!</p>
+            </div>
+            
+            <div class="question-block">
+                <p>b) I don't know why but <input type="text" class="inline-input" data-ans="there isn't"> any food in the refrigerator. That's because we had 10 visitors over yesterday!</p>
+            </div>
+
+            <div class="question-block">
+                <p>c) <input type="text" class="inline-input" data-ans="Are there"> apples in the green basket on the kitchen table? Yes, <input type="text" class="inline-input" data-ans="there are"> four ugly apples in the green basket.</p>
+            </div>
+
+            <div class="question-block">
+                <p>d) Mom, <input type="text" class="inline-input" data-ans="there is"> nothing to eat in this house! How come? <input type="text" class="inline-input" data-ans="Are there"> fruits and vegetables in the fridge?</p>
+            </div>
+        </section>
+
+        <div class="action-bar">
+            <button class="btn-check" onclick="checkAnswers()">✔️ Verificar Respostas</button>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; color: var(--text-muted); padding: 2rem;">
+        <p>Day 03 - English Practice Material</p>
+    </footer>
+
+</div>
+
+<script>
+    // Theme Toggle Functionality
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const themeBtn = document.querySelector('.theme-toggle');
+        
+        if (currentTheme === 'dark') {
+            body.setAttribute('data-theme', 'light');
+            themeBtn.textContent = '🌙 Alternar Tema';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeBtn.textContent = '☀️ Alternar Tema';
+        }
+    }
+
+    // Answer Checking Logic
+    function checkAnswers() {
+        const inputs = document.querySelectorAll('input[type="text"], select');
+        
+        inputs.forEach(input => {
+            // Remove previous feedback
+            input.classList.remove('correct', 'incorrect');
+            const parent = input.parentElement;
+            
+            // Get user value and expected answer
+            let userVal = input.value.trim().toLowerCase();
+            let correctAns = input.getAttribute('data-ans').toLowerCase();
+
+            // Ignore capitalization for validation
+            if (userVal === correctAns) {
+                input.classList.add('correct');
+            } else {
+                if (userVal !== "") { // Only mark incorrect if user tried
+                    input.classList.add('incorrect');
+                }
+            }
+        });
+
+        alert("Correção finalizada! Verifique os campos coloridos.\nVerde = Correto\nVermelho = Incorreto");
+    }
+</script>
+
+</body>
+</html>

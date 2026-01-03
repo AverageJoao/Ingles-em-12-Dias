@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Class: Present Perfect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #a855f7;
+            --accent-color: #ec4899;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --heading-color: #1e293b;
+            --border-color: #e2e8f0;
+            --success-color: #22c55e;
+            --error-color: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #cbd5e1;
+            --heading-color: #f1f5f9;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header & Toggle */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--heading-color);
+            font-size: 2rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Content Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--heading-color);
+            margin-top: 25px;
+        }
+
+        .highlight {
+            background-color: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .example-box {
+            background-color: rgba(168, 85, 247, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .example-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .example-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Tables */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Exercises Section */
+        .exercises-area {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+            border: 2px dashed var(--primary-color);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        input[type="text"], select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin-left: 10px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .btn-check {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .btn-check:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .correct { color: var(--success-color); }
+        .incorrect { color: var(--error-color); }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            input[type="text"], select { width: 100%; margin-left: 0; margin-top: 5px; }
+            .comparison-table th, .comparison-table td { display: block; width: 100%; }
+            .comparison-table tr { margin-bottom: 15px; display: block; border-bottom: 2px solid var(--border-color); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🇬🇧 English Grammar Guide</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    </header>
+
+    <div class="card">
+        <h2>1) Present Perfect</h2>
+        <p><strong>A) Usage:</strong> We use the present perfect for <span class="highlight">finished actions at an unspecific time</span> in the past with consequences in the present.</p>
+        
+        <p><strong>Form:</strong> Auxiliary verb <code>have/has</code> + Past Participle (verb +ED for regular verbs; irregular verbs).</p>
+
+        <div class="example-box">
+            <h3>📝 Examples:</h3>
+            <ul>
+                <li>I <strong>have eaten</strong> a lot. I think I need some tea.</li>
+                <li>Where's Emily? She <strong>has just gone</strong> out for lunch.</li>
+                <li>I've bought a new car. You must see it! It's incredible!</li>
+                <li>I've just arrived in Rio and I'm in love with this place.</li>
+                <li>She hasn't finished her homework yet, so she can't go out now.</li>
+                <li>Have you been to the new restaurant!? I've heard it's really good!</li>
+                <li>Has she drunk all the beer? Why?</li>
+            </ul>
+        </div>
+
+        <h3>B) Yes/No Questions</h3>
+        <div class="example-box">
+            <p>❓ <strong>Have</strong> you watched Tom Cruise's new movie?<br>
+            <em>Yes, I have. / No, I haven't.</em></p>
+            
+            <p>❓ <strong>Has</strong> she been to that new night club?<br>
+            <em>Yes, she has. / No, she hasn't.</em></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>2) Already / Yet / Just</h2>
+        <p><strong>A) Already & Yet:</strong> Used to give emphasis to actions before the moment of speaking. The action is finished before expected (already) or not finished at this moment (yet).</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Sentence Type</th>
+                    <th>Meaning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="highlight">Already</span></td>
+                    <td>Affirmative</td>
+                    <td>Finished before expected.</td>
+                </tr>
+                <tr>
+                    <td><span class="highlight">Yet</span></td>
+                    <td>Negative / Question</td>
+                    <td>Not finished / Ask if finished.</td>
+                </tr>
+                <tr>
+                    <td><span class="highlight">Just</span></td>
+                    <td>Affirmative</td>
+                    <td>Recently finished (short time ago).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example-box">
+            <h3>📝 Examples:</h3>
+            <ul>
+                <li><strong>Already:</strong> I've already finished my homework, so I have a lot of time to spare!</li>
+                <li><strong>Already:</strong> She's only 16, but she has already entered university!</li>
+                <li><strong>Yet (Neg):</strong> I haven't finished my homework yet, so I can't go out now.</li>
+                <li><strong>Yet (Quest):</strong> Have you finished your homework yet? I'm waiting for you.</li>
+            </ul>
+        </div>
+
+        <h3>B) Using "Just"</h3>
+        <p>We use <strong>just</strong> with actions that finished recently.</p>
+        <div class="example-box">
+            <p>🗣️ "Is the bakery open?"<br>
+            🗣️ "No, I <strong>have just passed</strong> by and it's closed!"</p>
+            <p>• Tom <strong>has just finished</strong> eating, but Lucio hasn't finished eating yet.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>3) Simple Past vs. Present Perfect</h2>
+        
+        <h3>📅 Simple Past</h3>
+        <p><strong>Focus:</strong> When it happened.</p>
+        <div class="example-box">
+            <p>"I <strong>saw</strong> the pyramids when I went to Egypt."</p>
+            <p><strong>Expressions to use:</strong></p>
+            <ul>
+                <li>Yesterday</li>
+                <li>Last week</li>
+                <li>That day</li>
+                <li>One day</li>
+                <li>When I was a child</li>
+            </ul>
+        </div>
+
+        <h3>✨ Present Perfect</h3>
+        <p><strong>Focus:</strong> Experience had by the speaker (Time is not specific).</p>
+        <div class="example-box">
+            <p>"I <strong>have seen</strong> the pyramids."</p>
+            <p><strong>Expressions to use:</strong></p>
+            <ul>
+                <li>Ever / Never</li>
+                <li>Once / Twice</li>
+                <li>A few times / Many times</li>
+                <li>So far / Yet</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card exercises-area">
+        <h2>✍️ Practice Exercises</h2>
+        <p>Test your knowledge based on the lesson above.</p>
+
+        <form id="quizForm">
+            <div class="question">
+                <p><strong>1. Complete the sentence (Present Perfect):</strong></p>
+                <label>I <input type="text" id="q1" placeholder="have eaten"> (eat) a lot. I need tea.</label>
+                <div id="fb1" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>2. Choose the correct word:</strong></p>
+                <label>She hasn't finished her homework <select id="q2">
+                    <option value="">Select...</option>
+                    <option value="already">already</option>
+                    <option value="just">just</option>
+                    <option value="yet">yet</option>
+                </select>, so she can't go out.</label>
+                <div id="fb2" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>3. Simple Past or Present Perfect?</strong></p>
+                <label>Focus of the sentence: "When it happened" refers to the <select id="q3">
+                    <option value="">Select...</option>
+                    <option value="simple past">Simple Past</option>
+                    <option value="present perfect">Present Perfect</option>
+                </select>.</label>
+                <div id="fb3" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>4. Complete with Just/Already/Yet:</strong></p>
+                <label>Is the bakery open? No, I have <input type="text" id="q4" placeholder="..."> passed by and it's closed!</label>
+                <div id="fb4" class="feedback"></div>
+            </div>
+
+            <button type="button" class="btn-check" onclick="checkAnswers()">Check Answers</button>
+        </form>
+    </div>
+
+    <footer style="text-align: center; margin-top: 40px; color: var(--text-color); opacity: 0.7;">
+        <p>Content derived from provided educational material.</p>
+    </footer>
+</div>
+
+<script>
+    // Theme Toggle Logic
+    function toggleTheme() {
+        const body = document.body;
+        const button = document.querySelector('.theme-toggle');
+        
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            button.innerText = '☀️ Light Mode';
+        } else {
+            button.innerText = '🌙 Dark Mode';
+        }
+    }
+
+    // Exercise Logic
+    function checkAnswers() {
+        let score = 0;
+        
+        // Q1 Logic: "have eaten" or "I have eaten"
+        const q1 = document.getElementById('q1').value.trim().toLowerCase();
+        const fb1 = document.getElementById('fb1');
+        if (q1 === 'have eaten' || q1 === "'ve eaten") {
+            fb1.innerHTML = "✅ Correct!";
+            fb1.className = "feedback correct";
+            fb1.style.display = "block";
+            score++;
+        } else {
+            fb1.innerHTML = "❌ Incorrect. Hint: have + eaten";
+            fb1.className = "feedback incorrect";
+            fb1.style.display = "block";
+        }
+
+        // Q2 Logic: "yet"
+        const q2 = document.getElementById('q2').value;
+        const fb2 = document.getElementById('fb2');
+        if (q2 === 'yet') {
+            fb2.innerHTML = "✅ Correct! Used in negative sentences.";
+            fb2.className = "feedback correct";
+            fb2.style.display = "block";
+            score++;
+        } else {
+            fb2.innerHTML = "❌ Incorrect. We use 'yet' for unfinished actions in negative sentences.";
+            fb2.className = "feedback incorrect";
+            fb2.style.display = "block";
+        }
+
+        // Q3 Logic: "simple past"
+        const q3 = document.getElementById('q3').value;
+        const fb3 = document.getElementById('fb3');
+        if (q3 === 'simple past') {
+            fb3.innerHTML = "✅ Correct! Simple Past focuses on WHEN.";
+            fb3.className = "feedback correct";
+            fb3.style.display = "block";
+            score++;
+        } else {
+            fb3.innerHTML = "❌ Incorrect. Look at the table in Section 3.";
+            fb3.className = "feedback incorrect";
+            fb3.style.display = "block";
+        }
+
+        // Q4 Logic: "just"
+        const q4 = document.getElementById('q4').value.trim().toLowerCase();
+        const fb4 = document.getElementById('fb4');
+        if (q4 === 'just') {
+            fb4.innerHTML = "✅ Correct! It happened a short time ago.";
+            fb4.className = "feedback correct";
+            fb4.style.display = "block";
+            score++;
+        } else {
+            fb4.innerHTML = "❌ Incorrect. The bakery example uses 'just'.";
+            fb4.className = "feedback incorrect";
+            fb4.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

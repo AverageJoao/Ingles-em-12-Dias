@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 01: English Basics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cores Base (Light Mode) */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
+            --card-bg: #ffffff;
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
+        }
+
+        /* Configurações do Dark Mode */
+        [data-theme="dark"] {
+            --primary: #6366f1; /* Um pouco mais claro para contraste */
+            --primary-light: #312e81; /* Fundo de tabela escuro */
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;      /* Fundo da página bem escuro */
+            --card-bg: #1F2937; /* Fundo dos cards cinza escuro */
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Botão de Tema */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff; /* Força branco no header mesmo no dark mode */
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Cards & Sections */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--text); /* Alterado para adaptar ao tema */
+            opacity: 0.8;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text);
+        }
+        
+        /* Ajuste específico para texto dentro de tabelas no dark mode se necessário */
+        [data-theme="dark"] td {
+             color: #E5E7EB;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Grammar Highlights */
+        .grammar-box {
+            background: rgba(16, 185, 129, 0.1); /* Transparente para funcionar nos dois temas */
+            border-left: 5px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
+        }
+
+        .note {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        /* Dialogues */
+        .dialogue {
+            background: var(--dialogue-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px dashed var(--dialogue-border);
+            margin-top: 1rem;
+        }
+        .speaker {
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* EXERCISES SECTION */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
+            transition: background-color 0.3s;
+        }
+
+        .exercise-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--input-border);
+        }
+
+        .question-row {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Inputs */
+        input[type="text"], select {
+            padding: 0.5rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        input[type="radio"] {
+            transform: scale(1.2);
+            margin-right: 5px;
+        }
+
+        .correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important; /* Transparente para Dark Mode */
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important; /* Transparente para Dark Mode */
+            color: var(--danger);
+        }
+
+        /* Button */
+        .btn-check {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
+            color: white; /* Sempre branco */
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+
+        .btn-check:hover {
+            background: #d97706;
+        }
+
+        .feedback-msg {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
+
+<header>
+    <h1>Day 01</h1>
+    <p>English Masterclass: Pronouns, To Be, & Basic Questions</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>1) Subject Pronouns</h2>
+        <p>Pronouns are used to indicate who is involved in a conversation.</p>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Singular</th>
+                        <th>Plural</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>I</strong> am John.</td>
+                        <td><strong>We</strong> are Josh and Gabriela.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>You</strong> are a student.</td>
+                        <td><strong>You</strong> are students.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>He</strong> is Josh.</td>
+                        <td><strong>They</strong> are boys and girls.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>She</strong> is Emma.</td>
+                        <td><strong>They</strong> are dogs, aren't they?</td>
+                    </tr>
+                    <tr>
+                        <td><strong>It</strong> is a dog / It is a radio.</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>2) Verb "To Be" (Am/Is/Are)</h2>
+        <p class="grammar-box">The verb "to be" is usually used to express permanent characteristics or temporary statuses of people, animals, or objects.</p>
+
+        <h3>A) Affirmative Form</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Singular (Full & Contraction)</th>
+                        <th>Plural (Full & Contraction)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>I am Emma = <strong>I'm</strong></td>
+                        <td>We are happy = <strong>We're</strong></td>
+                    </tr>
+                    <tr>
+                        <td>You are from Florida = <strong>You're</strong></td>
+                        <td>You are students = <strong>You're</strong></td>
+                    </tr>
+                    <tr>
+                        <td>He is an engineer = <strong>He's</strong></td>
+                        <td>They are students = <strong>They're</strong></td>
+                    </tr>
+                    <tr>
+                        <td>She is a teacher = <strong>She's</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>It is a company = <strong>It's</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>B) Negative Form</h3>
+        <div class="grammar-box">
+            Add <strong>NOT</strong> after the verb.
+        </div>
+        <ul>
+            <li>I am <strong>not</strong> Emma! (I'm not)</li>
+            <li>You are <strong>not</strong> from Florida! (You aren't)</li>
+            <li>He is <strong>not</strong> a kung fu teacher! (He isn't)</li>
+            <li>She <strong>isn't</strong> a very beautiful teacher. (She isn't)</li>
+            <li>It <strong>is not</strong> a problem! (It's not / It isn't)</li>
+            <li>We <strong>are not</strong> friends. (We aren't)</li>
+            <li>They <strong>are not</strong> happy. (They aren't)</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>3) Questions (Interrogative)</h2>
+        <p>The interrogative form is the opposite construction of the affirmative. The verb comes <strong>before</strong> the subject.</p>
+        
+        <div class="dialogue">
+            <p><span class="speaker">Stuart:</span> Madam, <strong>is this</strong> the bathroom?</p>
+            <p><span class="speaker">Attendant:</span> No, <strong>this isn't</strong>. This is the cockpit.</p>
+            <hr style="margin: 10px 0; border: 0; border-top: 1px solid var(--dialogue-border);">
+            <p><span class="speaker">John:</span> <strong>Where are</strong> you from, Megan?</p>
+            <p><span class="speaker">Megan:</span> I am...</p>
+            <p><span class="speaker">John:</span> You are from Sydney, I remember.</p>
+        </div>
+
+        <h3>D) YES/NO Questions & Short Answers</h3>
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <td>Are you...?</td>
+                    <td>Yes, I am. / No, I'm not.</td>
+                </tr>
+                <tr>
+                    <td>Is he...?</td>
+                    <td>Yes, he is. / No, he isn't.</td>
+                </tr>
+                <tr>
+                    <td>Is she...?</td>
+                    <td>Yes, she is. / No, she isn't.</td>
+                </tr>
+                <tr>
+                    <td>Are they...?</td>
+                    <td>Yes, they are. / No, they're not.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>4) Articles: A / An / The</h2>
+        
+        <div class="grammar-box">
+            <p><strong style="color:var(--secondary)">A</strong> is used almost every time (before consonants).</p>
+            <p><strong style="color:var(--secondary)">AN</strong> is used when the next word starts with a vowel sound (A, E, I, O, U).</p>
+            <p><strong style="color:var(--secondary)">THE</strong> is specific. Used in Singular and Plural.</p>
+        </div>
+
+        <ul>
+            <li>Bill Gates is <strong>a</strong> billionaire and <strong>an</strong> American citizen.</li>
+            <li>Bill Gates is <strong>the</strong> founder of Microsoft.</li>
+            <li>Michael Schumacher and Ayrton Senna are formula 1 drivers.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>5) Who / What / Where</h2>
+        <ul>
+            <li><strong>Who</strong> - questions about <em>people</em>.</li>
+            <li><strong>Where</strong> - questions about <em>places, locations</em>.</li>
+            <li><strong>What</strong> - questions about <em>objects, ideas, and actions</em>.</li>
+        </ul>
+        <div class="dialogue">
+            <p>— <strong>Where</strong> are you from?</p>
+            <p>— I'm from Porto Alegre, Brazil!</p>
+            <br>
+            <p>— <strong>What</strong> is your profession?</p>
+            <p>— I'm a University Professor.</p>
+            <br>
+            <p>— <strong>Who</strong> is that beautiful girl?</p>
+            <p>— That girl is my sister!</p>
+        </div>
+    </div>
+
+    <div class="exercise-section" id="homework">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Homework</h2>
+        <p style="text-align:center; margin-bottom:2rem;">Teste seu conhecimento abaixo.</p>
+
+        <div class="exercise-item">
+            <h3>1. Circle the correct option</h3>
+            
+            <div class="question-row">
+                <span>1)</span>
+                <select id="ex1_1">
+                    <option value="">Select...</option>
+                    <option value="where">Where</option>
+                    <option value="what">What</option>
+                </select>
+                <span>is your name? -> My name is Megan.</span>
+            </div>
+
+            <div class="question-row">
+                <span>2)</span>
+                <select id="ex1_2">
+                    <option value="">Select...</option>
+                    <option value="who">Who</option>
+                    <option value="where">Where</option>
+                </select>
+                <span>is she? -> She is Emma.</span>
+            </div>
+
+            <div class="question-row">
+                <span>3)</span>
+                <select id="ex1_3">
+                    <option value="">Select...</option>
+                    <option value="what">What</option>
+                    <option value="who">Who</option>
+                </select>
+                <span>is your occupation? -> I am a lawyer.</span>
+            </div>
+
+            <div class="question-row">
+                <span>4)</span>
+                <select id="ex1_4">
+                    <option value="">Select...</option>
+                    <option value="where">Where</option>
+                    <option value="who">Who</option>
+                </select>
+                <span>are you from? -> I'm from Brazil.</span>
+            </div>
+            
+            <div class="question-row">
+                <span>5)</span>
+                <select id="ex1_5">
+                    <option value="">Select...</option>
+                    <option value="what">What</option>
+                    <option value="who">Who</option>
+                </select>
+                <span>is he? -> He is my husband.</span>
+            </div>
+
+            <div class="question-row">
+                <span>6)</span>
+                <select id="ex1_6">
+                    <option value="">Select...</option>
+                    <option value="where">Where</option>
+                    <option value="who">Who</option>
+                </select>
+                <span>do you live? -> I live in São Paulo.</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>2. Match the sentences</h3>
+            <p>Match the questions on the left with the answers on the right.</p>
+            
+            <div class="question-row">
+                <label>1) Where is Megan from?</label>
+                <select class="match-select" data-correct="d">
+                    <option value="">Choose answer...</option>
+                    <option value="a">a) No, that is my husband</option>
+                    <option value="b">b) I'm a kung fu instructor.</option>
+                    <option value="c">c) This is my classmate Stewart.</option>
+                    <option value="d">d) She is from Australia.</option>
+                    <option value="e">e) They are the new Biology professors.</option>
+                </select>
+            </div>
+            
+            <div class="question-row">
+                <label>2) Who is this?</label>
+                <select class="match-select" data-correct="c">
+                    <option value="">Choose answer...</option>
+                    <option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option>
+                </select>
+            </div>
+
+            <div class="question-row">
+                <label>3) Who are those people?</label>
+                <select class="match-select" data-correct="e">
+                    <option value="">Choose answer...</option>
+                    <option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option>
+                </select>
+            </div>
+
+            <div class="question-row">
+                <label>4) Is that your friend?</label>
+                <select class="match-select" data-correct="a">
+                    <option value="">Choose answer...</option>
+                    <option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option>
+                </select>
+            </div>
+
+            <div class="question-row">
+                <label>5) What's your occupation?</label>
+                <select class="match-select" data-correct="b">
+                    <option value="">Choose answer...</option>
+                    <option value="a">a</option><option value="b">b</option><option value="c">c</option><option value="d">d</option><option value="e">e</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>3. Complete using [ the | a | an ]</h3>
+            <p><strong>Chris:</strong> Well, I have two brothers. One of them is married; his wife is from Brazil and he is <input type="text" class="fill-in" data-correct="an" size="4"> engineer. My other brother is single and he is <input type="text" class="fill-in" data-correct="a" size="4"> student.</p>
+            <p><strong>Kate:</strong> What about your dad? What's his occupation?</p>
+            <p><strong>Chris:</strong> He's <input type="text" class="fill-in" data-correct="an" size="4"> electrician and my mum is <input type="text" class="fill-in" data-correct="a" size="4"> teacher.</p>
+        </div>
+
+        <div class="exercise-item">
+            <h3>4. Complete the conversation</h3>
+            <p><em>Use: a, Are, is, an, am</em></p>
+            <div class="dialogue">
+                <p><strong>Marilyn:</strong> Hello, <input type="text" class="fill-in" data-correct="is" size="4"> this the bus to Oxford University?</p>
+                <p><strong>Julian:</strong> Yes, it is.</p>
+                <p><strong>Marilyn:</strong> Thank you.</p>
+                <p><strong>Julian:</strong> <input type="text" class="fill-in" data-correct="are" size="4"> you <input type="text" class="fill-in" data-correct="a" size="4"> new student?</p>
+                <p><strong>Marilyn:</strong> Yes, I <input type="text" class="fill-in" data-correct="am" size="4">. This is my first term here. I am <input type="text" class="fill-in" data-correct="an" size="4"> Economics student. And you?</p>
+                <p><strong>Julian:</strong> I am <input type="text" class="fill-in" data-correct="a" size="4"> Computer Sciences student.</p>
+                <p><strong>Marilyn:</strong> I'm sorry, what is your name?</p>
+                <p><strong>Julian:</strong> My name <input type="text" class="fill-in" data-correct="is" size="4"> Julian.</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>5. Complete with verb To Be</h3>
+            <p><strong>Gill:</strong> Who is your best friend?</p>
+            <p><strong>Martin:</strong> Her name <input type="text" class="fill-in" data-correct="is" size="5"> (to be) Emily. She <input type="text" class="fill-in" data-correct="is" size="5"> (to be) very intelligent and beautiful, but she <input type="text" class="fill-in" data-correct="is not|isn't" size="8"> (not to be) very organized.</p>
+            <p><strong>Gill:</strong> My best friend <input type="text" class="fill-in" data-correct="is" size="5"> (to be) my husband. He <input type="text" class="fill-in" data-correct="is" size="5"> (to be) very honest and generous.</p>
+            <p><strong>Martin:</strong> We <input type="text" class="fill-in" data-correct="are" size="5"> (to be) very happy together. I <input type="text" class="fill-in" data-correct="am" size="5"> (to be) very lucky to have him.</p>
+            <p><strong>Gill:</strong> What about you Kate?</p>
+            <p><strong>Kate:</strong> I have two best friends: my sisters. They <input type="text" class="fill-in" data-correct="are" size="5"> (to be) funny and loving, but they <input type="text" class="fill-in" data-correct="are not|aren't" size="8"> (not/to be) very responsible.</p>
+        </div>
+
+        <div class="exercise-item">
+            <h3>6. Choose the right expression</h3>
+            
+            <div style="margin-bottom: 1rem;">
+                <p><strong>A:</strong> Hello, my name is John.</p>
+                <p><strong>B:</strong> Hi John, my name is Megan.</p>
+                <label><input type="radio" name="ex6_1" value="a"> a) I'm fine, thanks</label><br>
+                <label><input type="radio" name="ex6_1" value="b" class="radio-correct"> b) Nice to meet you</label><br>
+                <label><input type="radio" name="ex6_1" value="c"> c) See you later</label>
+            </div>
+
+            <div>
+                <p><strong>A:</strong> My favourite subject is Biology.</p>
+                <p><strong>B:</strong> Really?! Mine too. I love Biology.</p>
+                <label><input type="radio" name="ex6_2" value="a"> a) My husband.</label><br>
+                <label><input type="radio" name="ex6_2" value="b"> b) Who?</label><br>
+                <label><input type="radio" name="ex6_2" value="c" class="radio-correct"> c) What a coincidence!</label>
+            </div>
+        </div>
+
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>Created for English Learning • Based on Day 01 Material</p>
+</footer>
+
+<script>
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
+    }
+
+    function toggleTheme() {
+        const currentTheme = root.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
+        } else {
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
+        }
+    }
+
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
+    function checkAnswers() {
+        let score = 0;
+        let total = 0;
+
+        // Reset Styles
+        document.querySelectorAll('input, select').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+
+        // 1. Check Selects (Ex 1)
+        const ex1Config = [
+            {id: 'ex1_1', ans: 'what'},
+            {id: 'ex1_2', ans: 'who'},
+            {id: 'ex1_3', ans: 'what'},
+            {id: 'ex1_4', ans: 'where'},
+            {id: 'ex1_5', ans: 'who'},
+            {id: 'ex1_6', ans: 'where'}
+        ];
+        
+        ex1Config.forEach(item => {
+            total++;
+            const el = document.getElementById(item.id);
+            if(el.value === item.ans) {
+                el.classList.add('correct-answer');
+                score++;
+            } else {
+                el.classList.add('wrong-answer');
+            }
+        });
+
+        // 2. Check Matching (Ex 2)
+        document.querySelectorAll('.match-select').forEach(el => {
+            total++;
+            if(el.value === el.dataset.correct) {
+                el.classList.add('correct-answer');
+                score++;
+            } else {
+                el.classList.add('wrong-answer');
+            }
+        });
+
+        // 3. Check Fill-ins (Ex 3, 4, 5)
+        document.querySelectorAll('.fill-in').forEach(el => {
+            total++;
+            const userVal = el.value.trim().toLowerCase();
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
+            
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
+                score++;
+            } else {
+                el.classList.add('wrong-answer');
+            }
+        });
+
+        // 4. Check Radios (Ex 6)
+        // Group 1
+        total++;
+        const r1 = document.querySelector('input[name="ex6_1"]:checked');
+        if(r1 && r1.classList.contains('radio-correct')) {
+            // No estilo inline, cuidado com dark mode, melhor usar classes
+            // Mas manteremos compatibilidade simples aqui
+            r1.parentElement.style.color = "var(--accent)"; 
+            r1.parentElement.style.fontWeight = "bold";
+            score++;
+        } else if (r1) {
+            r1.parentElement.style.color = "var(--danger)";
+        }
+
+        // Group 2
+        total++;
+        const r2 = document.querySelector('input[name="ex6_2"]:checked');
+        if(r2 && r2.classList.contains('radio-correct')) {
+            r2.parentElement.style.color = "var(--accent)";
+            r2.parentElement.style.fontWeight = "bold";
+            score++;
+        } else if (r2) {
+            r2.parentElement.style.color = "var(--danger)";
+        }
+
+        // Feedback
+        const feedback = document.getElementById('feedback');
+        const percentage = Math.round((score / total) * 100);
+        
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect!";
+        else if(percentage > 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
+
+        feedback.textContent = msg;
+        feedback.style.color = percentage > 70 ? 'var(--accent)' : 'var(--danger)';
+    }
+</script>
+
+</body>
+</html>

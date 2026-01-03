@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inglês em 12 Aulas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --primary: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Cores de borda superior baseadas na imagem */
+        .card.day-1 { border-top: 5px solid #a855f7; }
+        .card.day-2 { border-top: 5px solid #0ea5e9; }
+        .card.day-3 { border-top: 5px solid #10b981; }
+        .card.day-4 { border-top: 5px solid #f59e0b; }
+        .card.day-5 { border-top: 5px solid #8b5cf6; }
+        .card.day-6 { border-top: 5px solid #ef4444; }
+        .card.day-7 { border-top: 5px solid #0d9488; }
+        .card.day-8 { border-top: 5px solid #3b82f6; }
+        .card.day-9 { border-top: 5px solid #d946ef; }
+        .card.day-10 { border-top: 5px solid #f97316; }
+        .card.day-11 { border-top: 5px solid #0891b2; }
+        .card.day-12 { border-top: 5px solid #334155; }
+
+        .card-content {
+            padding: 24px;
+            flex-grow: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #6b7280;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            min-height: 40px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+
+        .card-footer {
+            border-top: 1px solid var(--border-color);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .card-footer svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover .card-footer svg {
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.75rem; }
+            body { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Inglês em 12 Aulas</h1>
+        <p>Explore 12 lições fundamentais criadas para levar você do básico ao avançado.</p>
+    </header>
+
+    <div class="lesson-grid">
+        <div onclick="window.location.href='Aulas/aula 1.html';" class="card day-1">
+            <div class="card-content">
+                <span class="badge">Day 01</span>
+                <h2>Day 01</h2>
+                <p>Pronouns, To Be, Basic Questions</p>
+                <div class="tags">
+                    <span class="tag">#BASICS</span>
+                    <span class="tag">#TO BE</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 2.html';" class="card day-2">
+            <div class="card-content">
+                <span class="badge">Day 02</span>
+                <h2>Day 02</h2>
+                <p>When, Why, Adjectives</p>
+                <div class="tags">
+                    <span class="tag">#WH-QUESTIONS</span>
+                    <span class="tag">#VOCABULARY</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 3.html';" class="card day-3">
+            <div class="card-content">
+                <span class="badge">Day 03</span>
+                <h2>Day 03</h2>
+                <p>There is / There are</p>
+                <div class="tags">
+                    <span class="tag">#EXISTENCE</span>
+                    <span class="tag">#GRAMMAR</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 4.html';" class="card day-4">
+            <div class="card-content">
+                <span class="badge">Day 04</span>
+                <h2>Day 04</h2>
+                <p>Simple Present</p>
+                <div class="tags">
+                    <span class="tag">#HABITS</span>
+                    <span class="tag">#ROUTINES</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 5.html';" class="card day-5">
+            <div class="card-content">
+                <span class="badge">Day 05</span>
+                <h2>Day 05</h2>
+                <p>Present Continuous</p>
+                <div class="tags">
+                    <span class="tag">#NOW</span>
+                    <span class="tag">#ACTIONS</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 6.html';" class="card day-6">
+            <div class="card-content">
+                <span class="badge">Day 06</span>
+                <h2>Day 06</h2>
+                <p>Requests & Offers</p>
+                <div class="tags">
+                    <span class="tag">#MODALS</span>
+                    <span class="tag">#POLITENESS</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 7.html';" class="card day-7">
+            <div class="card-content">
+                <span class="badge">Day 07</span>
+                <h2>Day 07</h2>
+                <p>Simple Future (Will)</p>
+                <div class="tags">
+                    <span class="tag">#FUTURE</span>
+                    <span class="tag">#PREDICTIONS</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 8.html';" class="card day-8">
+            <div class="card-content">
+                <span class="badge">Day 08</span>
+                <h2>Day 08</h2>
+                <p>Future (Going to) & Quantifiers</p>
+                <div class="tags">
+                    <span class="tag">#FUTURE</span>
+                    <span class="tag">#COUNTABLE</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 9.html';" class="card day-9">
+            <div class="card-content">
+                <span class="badge">Day 09</span>
+                <h2>Day 09</h2>
+                <p>Simple Past</p>
+                <div class="tags">
+                    <span class="tag">#PAST</span>
+                    <span class="tag">#HISTORY</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 10.html';" class="card day-10">
+            <div class="card-content">
+                <span class="badge">Day 10</span>
+                <h2>Day 10</h2>
+                <p>Comparatives & Superlatives</p>
+                <div class="tags">
+                    <span class="tag">#ADJECTIVES</span>
+                    <span class="tag">#COMPARISON</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 11.html';" class="card day-11">
+            <div class="card-content">
+                <span class="badge">Present Perf</span>
+                <h2>Present Perfect</h2>
+                <p>Have/Has + Participle</p>
+                <div class="tags">
+                    <span class="tag">#ADVANCED</span>
+                    <span class="tag">#TENSES</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+        <div onclick="window.location.href='Aulas/aula 12.html';" class="card day-12">
+            <div class="card-content">
+                <span class="badge">Past Perf</span>
+                <h2>Past Perfect</h2>
+                <p>Had + Participle</p>
+                <div class="tags">
+                    <span class="tag">#ADVANCED</span>
+                    <span class="tag">#TENSES</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                Start Lesson
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

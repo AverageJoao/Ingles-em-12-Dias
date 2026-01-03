@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 08: Future & Quantifiers</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #4a90e2;
+            --accent-color: #50c878;
+            --error-color: #e74c3c;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --input-bg: #f9f9f9;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+            --primary-color: #64b5f6;
+            --border-color: #444;
+            --input-bg: #3d3d3d;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        h1 { margin: 0; color: var(--primary-color); }
+        h2 { color: var(--primary-color); margin-top: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;}
+        h3 { color: var(--accent-color); margin-bottom: 10px; }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .highlight {
+            background-color: rgba(74, 144, 226, 0.1);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Grammar Boxes */
+        .grammar-box {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 15px 0;
+            background: rgba(80, 200, 120, 0.05);
+            padding: 10px;
+        }
+
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 8px; }
+
+        /* Tables for layout */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .comparison-table td, .comparison-table th {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Interactive Elements */
+        input[type="text"], select {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input[type="text"]:focus {
+            outline: 2px solid var(--primary-color);
+            border-color: transparent;
+        }
+
+        .inline-input {
+            display: inline-block;
+            width: 150px !important;
+            margin: 0 5px;
+        }
+
+        .exercise-group {
+            margin-bottom: 30px;
+        }
+
+        .radio-group label {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        .btn:hover { opacity: 0.9; }
+
+        .toggle-btn {
+            background: none;
+            border: 2px solid var(--text-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Feedback classes */
+        .correct {
+            border: 2px solid var(--accent-color) !important;
+            background-color: rgba(80, 200, 120, 0.1) !important;
+        }
+        .incorrect {
+            border: 2px solid var(--error-color) !important;
+            background-color: rgba(231, 76, 60, 0.1) !important;
+        }
+        
+        .feedback-msg {
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .inline-input { width: 100% !important; margin: 5px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>
+            <h1>English Class - Day 08</h1>
+            <small>Simple Future & Quantifiers</small>
+        </div>
+        <button class="toggle-btn" onclick="toggleTheme()">🌗 Mode</button>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>1) Simple Future - "Be going to"</h2>
+            <p>This verbal form expresses simple actions in the future (= will) and also <strong>plans in the future</strong> (≠ will).</p>
+            
+            <div class="grammar-box">
+                <strong>Examples:</strong><br>
+                • They are going to call the police later. (= They will call the police later.)<br>
+                • I<strong>'m going to be</strong> a nurse when I grow up. (Plan)
+            </div>
+
+            <h3>Forms</h3>
+            <div class="comparison-table">
+                <table>
+                    <tr>
+                        <th>A) Affirmative</th>
+                        <td>The store <strong>is going to open</strong> at 9 am.<br>
+                        <small><em>Verb 'to be' conjugated + going to + main verb (infinitive)</em></small></td>
+                    </tr>
+                    <tr>
+                        <th>B) Negative</th>
+                        <td>The store <strong>isn't going to open</strong> at 9 am.</td>
+                    </tr>
+                    <tr>
+                        <th>C) Interrogative</th>
+                        <td><strong>Is</strong> the store <strong>going to open</strong> at 9 am?</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p><strong>Expressing time in the future:</strong> tomorrow, next week/year, soon, in a while, in a minute, after this class, tonight.</p>
+        </section>
+
+        <section class="card">
+            <h2>2) Quantifiers - Quantity Indicators</h2>
+            <p>In English, to indicate quantity, we use the words below:</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3>A) With Countable Nouns</h3>
+                    <p><em>(dogs, cars, people, houses, ideas, secrets)</em></p>
+                    <ul>
+                        <li><strong>Few</strong> -> I have few dollars. ($3)</li>
+                        <li><strong>A few</strong> -> I have a few dollars. ($10)</li>
+                        <li><strong>Many</strong> -> I have many dollars. ($100)</li>
+                        <li><strong>A lot</strong> -> I have a lot of dollars. ($1000)</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3>B) With Uncountable Nouns</h3>
+                    <p><em>(water, paper, coffee)</em></p>
+                    <ul>
+                        <li><strong>Little</strong> -> I have little money. ($3)</li>
+                        <li><strong>A little</strong> -> I have a little money. ($10)</li>
+                        <li><strong>Much</strong> -> I have much money. ($100)</li>
+                        <li><strong>A lot</strong> -> I have a lot of money. ($1000)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grammar-box">
+                <strong>Note:</strong><br>
+                • <strong>Countable nouns</strong> normally have a singular and a plural form (book - books).<br>
+                • <strong>Uncountable nouns</strong> normally don't have a plural form (air, money, rice). Action words are uncountable (love, hate, sleep, eat).
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3) Some Question Words</h2>
+            <p><strong>What / Where / When / Who / Why</strong></p>
+            <p>Compare the structure and answers:</p>
+            <ul>
+                <li><strong>Yes/No:</strong> Do you dance? -> Yes, I do.</li>
+                <li><strong>What:</strong> What type of dance do you do? -> Samba.</li>
+                <li><strong>Where:</strong> Where do you dance? -> At a dance school and at parties.</li>
+                <li><strong>When:</strong> When do you dance? -> Every weekend.</li>
+                <li><strong>Who:</strong> Who do you dance with? -> My dance partner, Carlos.</li>
+                <li><strong>Why:</strong> Why do you dance? -> Because I feel free.</li>
+            </ul>
+        </section>
+
+        <section class="card" id="exercises">
+            <h2>Exercises</h2>
+            <form id="quizForm">
+                
+                <div class="exercise-group">
+                    <h3>I - Choose the correct form of "be going to"</h3>
+                    
+                    <p>a) Claire <select class="answer-select" data-answer="is going to">
+                        <option value="">Select...</option>
+                        <option value="is going to">is going to</option>
+                        <option value="are going to">are going to</option>
+                    </select> start an NGO project.</p>
+
+                    <p>b) The girls <select class="answer-select" data-answer="are going to">
+                        <option value="">Select...</option>
+                        <option value="is going to">is going to</option>
+                        <option value="are going to">are going to</option>
+                    </select> look for a building.</p>
+
+                    <p>c) I <select class="answer-select" data-answer="am going to">
+                        <option value="">Select...</option>
+                        <option value="am going to">am going to</option>
+                        <option value="is going to">is going to</option>
+                        <option value="are going to">are going to</option>
+                    </select> work together. <em>(Note: Although contextually weird for 'I', we follow grammar).</em></p>
+
+                    <p>d) They <select class="answer-select" data-answer="are going to">
+                        <option value="">Select...</option>
+                        <option value="are going to">are going to</option>
+                        <option value="am going to">am going to</option>
+                    </select> help the community.</p>
+
+                    <p>e) Claire and I <select class="answer-select" data-answer="are going to">
+                        <option value="">Select...</option>
+                        <option value="am going to">am going to</option>
+                        <option value="are going to">are going to</option>
+                    </select> take care of stray animals.</p>
+                </div>
+
+                <div class="exercise-group">
+                    <h3>II - Complete with verbs from the box</h3>
+                    <div class="grammar-box">live (not) - buy - take - go (2x)</div>
+                    
+                    <p>a) Where <input type="text" class="inline-input answer-text" data-answer="are" placeholder="verb to be"> you <input type="text" class="inline-input answer-text" data-answer="going to go" placeholder="going to + verb"> this evening? I <input type="text" class="inline-input answer-text" data-answer="am going to go" placeholder="am going to + verb"> to a meeting.</p>
+                    
+                    <p>b) Mom, I <input type="text" class="inline-input answer-text" data-answer="am going to take"> the cat to the vet.</p>
+                    
+                    <p>c) This food is so cheap! I <input type="text" class="inline-input answer-text" data-answer="am going to buy"> all of it!</p>
+                    
+                    <p>d) I'm sorry, but your dog <input type="text" class="inline-input answer-text" data-answer="is not going to live">. The accident was very serious.</p>
+                </div>
+
+                <div class="exercise-group">
+                    <h3>III - Read and complete the conversation</h3>
+                    
+                    <p><strong>Claire:</strong> Where are you? <input type="text" class="inline-input answer-text" data-answer="are"> you <input type="text" class="inline-input answer-text" data-answer="coming"> (come) to the NGO rescue center?</p>
+                    
+                    <p><strong>Jackie:</strong> In 10 minutes, I <input type="text" class="inline-input answer-text" data-answer="am going to start"> (start) to pack my luggage.</p>
+                    
+                    <p><strong>Claire:</strong> Oh, no. What <input type="text" class="inline-input answer-text" data-answer="are"> you <input type="text" class="inline-input answer-text" data-answer="going to do"> (do)?</p>
+                    
+                    <p><strong>Jackie:</strong> I forgot to tell you. I <input type="text" class="inline-input answer-text" data-answer="am going to travel"> (travel) tonight.</p>
+                    
+                    <p><strong>Jackie:</strong> When <input type="text" class="inline-input answer-text" data-answer="are"> you <input type="text" class="inline-input answer-text" data-answer="going to return"> (return)?</p>
+                    
+                    <p><strong>Claire:</strong> Oh, I only <input type="text" class="inline-input answer-text" data-answer="am going to be"> (be) back next month.</p>
+                    
+                    <p><strong>Jackie:</strong> I <input type="text" class="inline-input answer-text" data-answer="am going to be"> (be) going crazy until then!</p>
+                </div>
+
+                <div class="exercise-group">
+                    <h3>IV - Complete questions with "be going to"</h3>
+                    
+                    <p>a) <input type="text" class="inline-input answer-text" data-answer="is"> she <input type="text" class="inline-input answer-text" data-answer="going to"> travel alone?</p>
+                    
+                    <p>b) <input type="text" class="inline-input answer-text" data-answer="are"> you <input type="text" class="inline-input answer-text" data-answer="going to"> buy the tickets?</p>
+                    
+                    <p>c) Where <input type="text" class="inline-input answer-text" data-answer="is"> he <input type="text" class="inline-input answer-text" data-answer="going to"> go on his next vacation?</p>
+                    
+                    <p>d) <input type="text" class="inline-input answer-text" data-answer="are"> they <input type="text" class="inline-input answer-text" data-answer="going to"> buy us some souvenirs?</p>
+                    
+                    <p>e) <input type="text" class="inline-input answer-text" data-answer="is"> she <input type="text" class="inline-input answer-text" data-answer="going to"> take many pictures?</p>
+                </div>
+
+                <div class="exercise-group">
+                    <h3>V - Complete the conversation</h3>
+                    <div class="grammar-box">Visit - stay (2x) - travel (not) - do (2x) - get - participate - have - be (2x) - see</div>
+                    
+                    <p><strong>Jackie:</strong> I'm going to India! I <input type="text" class="inline-input answer-text" data-answer="am going to see"> many beautiful places. It <input type="text" class="inline-input answer-text" data-answer="is going to be"> wonderful.</p>
+                    
+                    <p><strong>Claire:</strong> How long <input type="text" class="inline-input answer-text" data-answer="are"> you <input type="text" class="inline-input answer-text" data-answer="going to stay"> there?</p>
+                    
+                    <p><strong>Jackie:</strong> I <input type="text" class="inline-input answer-text" data-answer="am going to stay"> for one month.</p>
+                    
+                    <p><strong>Claire:</strong> What <input type="text" class="inline-input answer-text" data-answer="are"> you <input type="text" class="inline-input answer-text" data-answer="going to do"> without you? <em>(Note: Based on gap logic).</em></p>
+                    
+                    <p><strong>Jackie:</strong> There are other people that <input type="text" class="inline-input answer-text" data-answer="are going to be"> happy to help you out.</p>
+                    
+                    <p><strong>Claire:</strong> Tell me what you <input type="text" class="inline-input answer-text" data-answer="are going to do"> in India.</p>
+                    
+                    <p><strong>Jackie:</strong> First, I <input type="text" class="inline-input answer-text" data-answer="am going to visit"> the famous tourist attractions. Finally, I <input type="text" class="inline-input answer-text" data-answer="am going to do"> some yoga classes... Then, I <input type="text" class="inline-input answer-text" data-answer="am going to participate"> in the festivals...</p>
+                </div>
+
+                <button type="button" class="btn" onclick="checkAnswers()">Check Answers</button>
+                <div id="resultMsg" class="feedback-msg"></div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer style="margin-top: 50px; text-align: center; color: #888;">
+        <p>Created from Day 08.pdf Material</p>
+    </footer>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    function checkAnswers() {
+        let correctCount = 0;
+        let totalCount = 0;
+
+        // Reset styles
+        document.querySelectorAll('.correct, .incorrect').forEach(el => {
+            el.classList.remove('correct', 'incorrect');
+        });
+
+        // Check Selects
+        document.querySelectorAll('.answer-select').forEach(select => {
+            totalCount++;
+            if (select.value === select.dataset.answer) {
+                select.classList.add('correct');
+                correctCount++;
+            } else {
+                select.classList.add('incorrect');
+            }
+        });
+
+        // Check Text Inputs
+        document.querySelectorAll('.answer-text').forEach(input => {
+            totalCount++;
+            // Normalize: lower case, remove extra spaces
+            let userVal = input.value.toLowerCase().trim();
+            // Handle standard contractions: I am -> I'm, is not -> isn't
+            userVal = userVal.replace("i'm", "i am").replace("it's", "it is").replace("isn't", "is not").replace("aren't", "are not");
+            
+            let correctVal = input.dataset.answer.toLowerCase();
+            
+            if (userVal === correctVal) {
+                input.classList.add('correct');
+                correctCount++;
+            } else {
+                input.classList.add('incorrect');
+            }
+        });
+
+        // Show result
+        const resultDiv = document.getElementById('resultMsg');
+        resultDiv.style.display = 'block';
+        const percentage = Math.round((correctCount / totalCount) * 100);
+        
+        if (percentage >= 70) {
+            resultDiv.style.backgroundColor = 'rgba(80, 200, 120, 0.2)';
+            resultDiv.style.color = '#2e7d32';
+            resultDiv.innerText = `Great Job! You got ${correctCount} out of ${totalCount} correct (${percentage}%).`;
+        } else {
+            resultDiv.style.backgroundColor = 'rgba(231, 76, 60, 0.2)';
+            resultDiv.style.color = '#c0392b';
+            resultDiv.innerText = `Keep practicing! You got ${correctCount} out of ${totalCount} correct (${percentage}%). Check the red fields.`;
+        }
+    }
+</script>
+
+</body>
+</html>

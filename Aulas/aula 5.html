@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Class - Day 05</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --accent-color: #4c51bf;
+            --accent-hover: #434190;
+            --highlight-bg: #ebf4ff;
+            --border-color: #e2e8f0;
+            --success: #38a169;
+            --error: #e53e3e;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark-mode {
+            /* Dark Theme Variables */
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --text-primary: #f7fafc;
+            --text-secondary: #a0aec0;
+            --accent-color: #667eea;
+            --accent-hover: #5a67d8;
+            --highlight-bg: #4a5568;
+            --border-color: #4a5568;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: -2rem auto 2rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+        }
+
+        /* Content Styling */
+        .example-box {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .rule-card {
+            background: var(--bg-color);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .grammar-table th, .grammar-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .grammar-table th {
+            color: var(--accent-color);
+        }
+
+        /* Exercises */
+        .exercise-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        input[type="text"], select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin-top: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-check {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-check:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            display: none;
+        }
+        .correct { color: var(--success); }
+        .incorrect { color: var(--error); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌗 Mode</button>
+        <h1>English Day 05</h1>
+        <div class="subtitle">Grammar Guide & Exercises</div>
+    </header>
+
+    <div class="container">
+        
+        <section class="card">
+            <h2>1) Present Continuous</h2>
+            <p>We use the present continuous for:</p>
+            
+            <h3>a) Actions at the moment of speaking:</h3>
+            <div class="example-box">
+                <ul>
+                    <li>I'm looking for an Archaeology book.</li>
+                    <li>Be quiet! You're speaking too loudly!</li>
+                    <li>The girl in red is reading the book now.</li>
+                    <li>We are studying for a math test.</li>
+                </ul>
+            </div>
+
+            <h3>b) Temporary actions:</h3>
+            <div class="example-box">
+                <ul>
+                    <li>My teacher is organizing a seminar about Archaeology.</li>
+                    <li>He's working at the library this month.</li>
+                </ul>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+            <h3>A) Affirmative</h3>
+            <div class="example-box">
+                <ul>
+                    <li>I'm studying English right now, Mom.</li>
+                    <li>She's reading a fashion magazine.</li>
+                    <li>They're going to class at this moment.</li>
+                </ul>
+            </div>
+
+            <h3>B) Negative</h3>
+            <div class="example-box">
+                <ul>
+                    <li>I'm not talking loudly. I am at the library.</li>
+                    <li>She's not handing in her book. It's her boyfriend's.</li>
+                    <li>We're not writing, we are typing.</li>
+                </ul>
+            </div>
+            <p><em>Note: The contractions "isn't" and "aren't" are also possible, but are used less.</em></p>
+
+            <h3>C) Interrogative</h3>
+            <div class="example-box">
+                <p><strong>Q:</strong> What am I doing? Is she reading a book in the library?</p>
+                <p><strong>A:</strong> Yes, she is / No, she's not</p>
+                <br>
+                <p><strong>Q:</strong> Are they working on their school project together?</p>
+                <p><strong>A:</strong> Yes, they are / No, they're not</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Spelling Rules</h2>
+            <p>Some verbs suffer alterations when they are in the "ing form", but their spelling never changes their pronunciation.</p>
+            
+            <div class="rule-grid">
+                <div class="rule-card">
+                    <strong>a) Ending in "-e"</strong>
+                    <p>Remove the 'e' + ing</p>
+                    <p style="color: var(--accent-color);">dance → dancing<br>produce → producing<br>make → making</p>
+                </div>
+                <div class="rule-card">
+                    <strong>b) Ending in "-ie"</strong>
+                    <p>Change 'ie' to 'y' + ing</p>
+                    <p style="color: var(--accent-color);">die → dying<br>lie → lying<br>tie → tying</p>
+                </div>
+                <div class="rule-card">
+                    <strong>c) Ending in "-c"</strong>
+                    <p>Add 'k' + ing</p>
+                    <p style="color: var(--accent-color);">panic → panicking<br>picnic → picnicking</p>
+                </div>
+                <div class="rule-card">
+                    <strong>d) Ending in "C+V+C"</strong>
+                    <p>Double the last consonant + ing</p>
+                    <p style="color: var(--accent-color);">run → running<br>forget → forgetting<br>jog → jogging</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2) My / Your / His / Her / Its / Our / Their</h2>
+            <p>The possessive adjectives point to who possesses a certain object.</p>
+            
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Possessive Adjective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I</td><td>my</td></tr>
+                    <tr><td>You</td><td>your</td></tr>
+                    <tr><td>He</td><td>his</td></tr>
+                    <tr><td>She</td><td>her</td></tr>
+                    <tr><td>It</td><td>its</td></tr>
+                    <tr><td>We</td><td>our</td></tr>
+                    <tr><td>They</td><td>their</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Examples:</h3>
+            <div class="example-box">
+                <p><strong>She:</strong> Rebecca is not reading <strong>her</strong> book at the library.</p>
+                <p><strong>He:</strong> Richard doesn't know the title of <strong>his</strong> book.</p>
+                <p><strong>They:</strong> Jane and Jack love <strong>their</strong> Archaeology teacher.</p>
+                <p><strong>It:</strong> I have an ebook and <strong>its</strong> cover is pink.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3) 's possessive case</h2>
+            <p>We use <strong>'s</strong> beside a name to indicate he/she is the owner of the object.</p>
+            
+            <div class="example-box">
+                <p>I like to drive <strong>David's</strong> car.</p>
+                <small>David is the owner of the car, the person who possesses it.</small>
+            </div>
+
+            <div class="example-box">
+                <p>Hey, <strong>whose</strong> cell phone is this? <br>It's my <strong>father's</strong> phone.</p>
+                <small>"Whose" questions who the owner is. My father is the owner of the phone.</small>
+            </div>
+
+            <div class="example-box">
+                <p>Oh my God! I think <strong>Debbie's</strong> apartment is bigger than <strong>John's</strong> house! It's huge!</p>
+                <small>Debbie has an apartment and John has a house.</small>
+            </div>
+
+            <div style="background-color: #fff3cd; color: #856404; padding: 1rem; border-radius: 8px; margin-top: 1.5rem; border: 1px solid #ffeeba;">
+                <strong>Attention!</strong> The possessive is also used when talking about animals:
+                <br><br>
+                <em>"Tommy? Is that your cat's name?"</em> (The name of the cat is Tommy).
+                <br>
+                <em>"He is painting his dog's house."</em> (The dog is the owner of the house).
+                <br><br>
+                <strong>But it isn't used in cases between things/objects:</strong>
+                <br>
+                ❌ A book's Archaeology → ✅ An Archaeology book. (A book of Archaeology).
+                <br>
+                ❌ The house's window → ✅ The house window. (The window of the house).
+            </div>
+        </section>
+
+        <section class="card" id="exercises-section">
+            <h2>📝 Practice Exercises</h2>
+            <p>Test your knowledge based on the content above.</p>
+
+            <form id="quizForm" onsubmit="return false;">
+                
+                <div class="exercise-item">
+                    <label><strong>1. Present Continuous:</strong> Complete the sentence correctly based on the examples.<br>
+                    "The girl in red ____________ (read) the book now."</label>
+                    <input type="text" id="q1" placeholder="Type answer here...">
+                    <div id="fb1" class="feedback"></div>
+                </div>
+
+                <div class="exercise-item">
+                    <label><strong>2. Spelling:</strong> What is the correct "ing" form of the verb <strong>"panic"</strong>?</label>
+                    <select id="q2">
+                        <option value="">Select...</option>
+                        <option value="panicing">panicing</option>
+                        <option value="panicking">panicking</option>
+                        <option value="panicying">panicying</option>
+                    </select>
+                    <div id="fb2" class="feedback"></div>
+                </div>
+
+                <div class="exercise-item">
+                    <label><strong>3. Possessive Adjective:</strong><br>
+                    "Richard doesn't know the title of ____________ book."</label>
+                    <select id="q3">
+                        <option value="">Select...</option>
+                        <option value="her">her</option>
+                        <option value="his">his</option>
+                        <option value="its">its</option>
+                    </select>
+                    <div id="fb3" class="feedback"></div>
+                </div>
+
+                <div class="exercise-item">
+                    <label><strong>4. Possessive Case:</strong> Rewrite the phrase using 's.<br>
+                    "The phone of my father"</label>
+                    <input type="text" id="q4" placeholder="e.g. David's car">
+                    <div id="fb4" class="feedback"></div>
+                </div>
+
+                <div class="exercise-item" style="border-bottom: none;">
+                    <label><strong>5. True or False:</strong><br>
+                    We use the 's possessive for inanimate objects (e.g., "The house's window").</label>
+                    <select id="q5">
+                        <option value="">Select...</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                    <div id="fb5" class="feedback"></div>
+                </div>
+
+                <button class="btn-check" onclick="checkAnswers()">Check Answers</button>
+            </form>
+        </section>
+
+        <footer>
+            Created for educational purposes based on Day 05 Material.
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-toggle');
+            if(document.body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ Light';
+            } else {
+                btn.textContent = '🌗 Dark';
+            }
+        }
+
+        // Exercise Checking Logic
+        function checkAnswers() {
+            let score = 0;
+            const total = 5;
+
+            // Question 1
+            const a1 = document.getElementById('q1').value.trim().toLowerCase();
+            const fb1 = document.getElementById('fb1');
+            if(a1 === "is reading") {
+                fb1.innerHTML = "✅ Correct!";
+                fb1.className = "feedback correct";
+                fb1.style.display = "block";
+                score++;
+            } else {
+                fb1.innerHTML = "❌ Incorrect. Hint: verb to be + verb-ing. Answer: is reading";
+                fb1.className = "feedback incorrect";
+                fb1.style.display = "block";
+            }
+
+            // Question 2
+            const a2 = document.getElementById('q2').value;
+            const fb2 = document.getElementById('fb2');
+            if(a2 === "panicking") {
+                fb2.innerHTML = "✅ Correct! Verbs ending in -c add 'k'.";
+                fb2.className = "feedback correct";
+                fb2.style.display = "block";
+                score++;
+            } else {
+                fb2.innerHTML = "❌ Incorrect.";
+                fb2.className = "feedback incorrect";
+                fb2.style.display = "block";
+            }
+
+            // Question 3
+            const a3 = document.getElementById('q3').value;
+            const fb3 = document.getElementById('fb3');
+            if(a3 === "his") {
+                fb3.innerHTML = "✅ Correct! Richard = He -> His.";
+                fb3.className = "feedback correct";
+                fb3.style.display = "block";
+                score++;
+            } else {
+                fb3.innerHTML = "❌ Incorrect.";
+                fb3.className = "feedback incorrect";
+                fb3.style.display = "block";
+            }
+
+            // Question 4
+            const a4 = document.getElementById('q4').value.trim().toLowerCase().replace("it's ", "").replace("it is ", "");
+            const fb4 = document.getElementById('fb4');
+            // Allowing slight variations
+            if(a4 === "my father's phone" || a4 === "my father's") {
+                fb4.innerHTML = "✅ Correct!";
+                fb4.className = "feedback correct";
+                fb4.style.display = "block";
+                score++;
+            } else {
+                fb4.innerHTML = "❌ Incorrect. Answer: My father's phone";
+                fb4.className = "feedback incorrect";
+                fb4.style.display = "block";
+            }
+
+            // Question 5
+            const a5 = document.getElementById('q5').value;
+            const fb5 = document.getElementById('fb5');
+            if(a5 === "false") {
+                fb5.innerHTML = "✅ Correct! We say 'The house window'.";
+                fb5.className = "feedback correct";
+                fb5.style.display = "block";
+                score++;
+            } else {
+                fb5.innerHTML = "❌ Incorrect. See the 'Attention' box.";
+                fb5.className = "feedback incorrect";
+                fb5.style.display = "block";
+            }
+
+            alert(`You got ${score} out of ${total} correct!`);
+        }
+    </script>
+</body>
+</html>

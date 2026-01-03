@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 07 - English Class</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2b2d42;
+            --border-color: #e9ecef;
+            --input-bg: #f1f3f5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode {
+            --primary-color: #4cc9f0;
+            --secondary-color: #4895ef;
+            --accent-color: #4361ee;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --border-color: #333333;
+            --input-bg: #2c2c2c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header & Toggle */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+        }
+
+        h1 { margin: 0; font-size: 2rem; }
+        h2 { margin-top: 0; font-size: 1.5rem; border-left: 5px solid var(--accent-color); padding-left: 15px; }
+
+        .theme-toggle {
+            background: var(--input-bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .note-box {
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            min-width: 500px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--input-bg);
+            color: var(--primary-color);
+        }
+
+        /* Forms & Exercises */
+        .exercise-group {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .radio-option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        
+        .radio-option:hover {
+            background-color: var(--input-bg);
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            background: var(--input-bg);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Feedback Classes */
+        .correct {
+            border-color: var(--success-color) !important;
+            background-color: rgba(46, 204, 113, 0.1) !important;
+        }
+
+        .incorrect {
+            border-color: var(--error-color) !important;
+            background-color: rgba(231, 76, 60, 0.1) !important;
+        }
+
+        .feedback-msg {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Button */
+        .btn-check {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+            margin-top: 20px;
+        }
+
+        .btn-check:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Day 07 - English Class</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span id="theme-icon">🌙</span> Dark Mode
+        </button>
+    </header>
+
+    <section class="card">
+        <h2>1) Simple Future - "Will" Future</h2>
+        <p>The Simple Future expresses a spontaneous decision, an assumption with regard to the future, an action in the future that cannot be influenced or a prediction based on no evidence.</p>
+        
+        <div class="note-box">
+            <strong>Examples:</strong>
+            <ul>
+                <li>"Oh, the trash is full. I'll take it out." (You didn't plan it; you just decided right now).</li>
+                <li>"You'll love Paris!" (This is your opinion, not a fact).</li>
+                <li>"I think the Green team will win the game." (Belief, not based on clear evidence).</li>
+                <li>"The sun will rise tomorrow at 6:15 AM."</li>
+                <li>"Next year, I will be 30."</li>
+            </ul>
+        </div>
+
+        <h3>A) Simple Future Forms</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Affirmative (+)</th>
+                        <th>Negative (-)</th>
+                        <th>Interrogative (?)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SUBJECT + WILL + VERB</strong></td>
+                        <td><strong>SUBJECT + WILL NOT + VERB</strong></td>
+                        <td><strong>WILL + SUBJECT + VERB</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Ex: I will travel to Rio soon.</td>
+                        <td>Ex: I will not travel to Rio soon.</td>
+                        <td>Ex: Will Jackie travel to Rio soon?</td>
+                    </tr>
+                    <tr>
+                        <td>Contracted form: <strong>'ll</strong></td>
+                        <td>Contracted form: <strong>won't</strong></td>
+                        <td>Short Answers: Yes, she will. / No, she won't.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>B) Uses of "Will" Future</h3>
+        <ul>
+            <li><strong>A spontaneous decision:</strong> "Wait, I will help you with that!"</li>
+            <li><strong>An opinion, hope, uncertainty:</strong> "She'll probably visit many beautiful places in Rio."</li>
+            <li><strong>A promise:</strong> "I'll bring you a present from Rio."</li>
+            <li><strong>A prediction (imagination/no evidence):</strong> "It won't rain during my holidays in Brazil."</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>2) Object Pronouns</h2>
+        <p>Subject and object pronouns are used in everyday language. However, it can be a little tricky to remember which is which! Take a look:</p>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject Pronouns (Takes Action)</th>
+                        <th>Object Pronouns (Receives Action)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I</td><td>Me</td></tr>
+                    <tr><td>You</td><td>You</td></tr>
+                    <tr><td>He</td><td>Him</td></tr>
+                    <tr><td>She</td><td>Her</td></tr>
+                    <tr><td>It</td><td>It</td></tr>
+                    <tr><td>We</td><td>Us</td></tr>
+                    <tr><td>You</td><td>You</td></tr>
+                    <tr><td>They</td><td>Them</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box">
+            The <strong>subject pronoun</strong> always takes action. The <strong>object pronoun</strong> is part of the activity, but it does not do any acting.
+        </div>
+
+        <h3>Examples in Context</h3>
+        <p><strong>Scenario:</strong> Faith is talking to Bella on the phone.</p>
+        <ul>
+            <li><strong>Faith (she)</strong> is the subject (she is talking), she is taking the action.</li>
+            <li><strong>Bella (her)</strong> is the object of Faith's action; the talking is done to her, not by her.</li>
+            <li><strong>Result:</strong> Faith is talking to Bella / She is talking to her.</li>
+        </ul>
+        <p><strong>More examples:</strong></p>
+        <ul>
+            <li>Faith will bring <strong>me</strong> a Brazilian souvenir.</li>
+            <li>I need to tell <strong>you</strong> something about Rio de Janeiro: it's wonderful!</li>
+            <li>It wasn't for <strong>her</strong>, it was for <strong>us</strong>!</li>
+        </ul>
+    </section>
+
+    <form id="exercise-form">
+        <section class="card">
+            <h2>Exercises</h2>
+
+            <h3>I - Circle the correct option.</h3>
+            
+            <div class="exercise-group">
+                <p>1) Is this <strong>your</strong> snack bar?</p>
+                <p>No, it belongs to Mary.</p>
+                <label class="radio-option"><input type="radio" name="ex1_1" value="your"> a) your</label>
+                <label class="radio-option"><input type="radio" name="ex1_1" value="yours"> b) yours</label>
+            </div>
+
+            <div class="exercise-group">
+                <p>2) Do you think I am good at <strong>my</strong> job?</p>
+                <p>Yes, you are a great employee!</p>
+                <label class="radio-option"><input type="radio" name="ex1_2" value="mine"> a) mine</label>
+                <label class="radio-option"><input type="radio" name="ex1_2" value="my"> b) my</label>
+            </div>
+
+            <div class="exercise-group">
+                <p>3) Did you give them <strong>their</strong> food?</p>
+                <p>Yes, they are eating it now.</p>
+                <label class="radio-option"><input type="radio" name="ex1_3" value="them"> a) them</label>
+                <label class="radio-option"><input type="radio" name="ex1_3" value="their"> b) their</label>
+            </div>
+
+            <div class="exercise-group">
+                <p>4) These hot dogs are <strong>ours</strong>, right?</p>
+                <p>No, we ordered hamburgers.</p>
+                <label class="radio-option"><input type="radio" name="ex1_4" value="ours"> a) ours</label>
+                <label class="radio-option"><input type="radio" name="ex1_4" value="our"> b) our</label>
+            </div>
+
+            <div class="exercise-group">
+                <p>5) This jacket is <strong>mine</strong>.</p>
+                <p>Ok, I won't touch it.</p>
+                <label class="radio-option"><input type="radio" name="ex1_5" value="my"> a) my</label>
+                <label class="radio-option"><input type="radio" name="ex1_5" value="mine"> b) mine</label>
+            </div>
+    
+            <hr>
+            <h3>II - Complete the conversation.</h3>
+            <div class="word-bank">
+                <span>boss</span> | <span>job</span> | <span>can</span> | <span>work</span> | <span>experience</span>
+            </div>
+            <div class="exercise-group">
+                <p><strong>Sara:</strong> Tell me about your job.</p>
+                <p><strong>Sara:</strong> Hey Emily! How is your new <input type="text" name="ex3_1" style="width: 150px; display:inline-block"> going?</p>
+                <p><strong>Emily:</strong> It's great. I'm getting a lot of <input type="text" name="ex3_2" style="width: 150px; display:inline-block">.</p>
+                <p><strong>Sara:</strong> And what do you think of your <input type="text" name="ex3_3" style="width: 150px; display:inline-block">?</p>
+                <p><strong>Emily:</strong> She's very nice, but she makes us <input type="text" name="ex3_4" style="width: 150px; display:inline-block"> hard!</p>
+                <p><strong>Sara:</strong> I understand. <input type="text" name="ex3_5" style="width: 150px; display:inline-block"> I come visit you there some time?</p>
+                <p><strong>Emily:</strong> Of course! You can come any time.</p>
+            </div>
+
+            <hr>
+            <h3>III - Complete with the appropriate modal (can, could, may, would).</h3>
+            <div class="exercise-group">
+                <p>a) <input type="text" name="ex4_1" style="width: 100px; display:inline-block"> you like a drink?</p>
+                <p>b) Dad, <input type="text" name="ex4_2" style="width: 100px; display:inline-block"> we go to the theme park?</p>
+                <p>c) <input type="text" name="ex4_3" style="width: 100px; display:inline-block"> I take your jacket, sir?</p>
+                <p>d) <input type="text" name="ex4_4" style="width: 100px; display:inline-block"> you please help me with my work?</p>
+                <p>e) <input type="text" name="ex4_5" style="width: 100px; display:inline-block"> I help you?</p>
+            </div>
+
+            <hr>
+            <h3>IV - Complete with appropriate possessives.</h3>
+            <div class="exercise-group">
+                <p>a) Where is <input type="text" name="ex6a_1" style="width: 100px; display:inline-block"> house? My house is in Orlando.</p>
+                <p>b) Do you like <input type="text" name="ex6a_2" style="width: 100px; display:inline-block"> hair? Yes, your hair looks lovely.</p>
+                <p>c) Did you go to <input type="text" name="ex6a_3" style="width: 100px; display:inline-block"> dinner party? No, but I heard their party was great.</p>
+                <p>d) Is this <input type="text" name="ex6a_4" style="width: 100px; display:inline-block"> table? Yes, this one is ours.</p>
+                <p>e) What is <input type="text" name="ex6a_5" style="width: 100px; display:inline-block"> boss's name? My boss's name is Anne.</p>
+            </div>
+
+            <hr>
+            <h3>V - Complete the conversation below:</h3>
+            <div class="exercise-group">
+                <p><strong>Joe:</strong> Hey Jill! <input type="text" name="ex6b_1" style="width: 100px; display:inline-block"> you like to go to a theme park with me tomorrow?</p>
+                <p><strong>Jill:</strong> Hi Joe! That sounds really fun. <input type="text" name="ex6b_2" style="width: 100px; display:inline-block"> I bring a friend?</p>
+                <p><strong>Joe:</strong> I guess so. Is <input type="text" name="ex6b_3" style="width: 100px; display:inline-block"> friend a nice person?</p>
+                <p><strong>Jill:</strong> Yes, she's great. <input type="text" name="ex6b_4" style="width: 100px; display:inline-block"> name is Kelly.</p>
+                <p><strong>Joe:</strong> Oh, I know Kelly! She's Brazilian, right?</p>
+                <p><strong>Jill:</strong> No, she's from the USA! You need to improve <input type="text" name="ex6b_5" style="width: 100px; display:inline-block"> memory.</p>
+                <p><strong>Joe:</strong> I think you are right. So do you want to go in the <input type="text" name="ex6b_6" style="width: 100px; display:inline-block"> or the afternoon?</p>
+                <p><strong>Jill:</strong> I'd like to leave in the morning.</p>
+                <p><strong>Joe:</strong> Ok! Can I pick you up at <input type="text" name="ex6b_7" style="width: 100px; display:inline-block"> house at 9 am?</p>
+                <p><strong>Jill:</strong> Sounds good. See you tomorrow!</p>
+            </div>
+
+            <hr>
+            <h3>VI - Choose the right word.</h3>
+            
+            <div class="exercise-group">
+                <p><strong>1) A: Do you have a lot of _____?</strong></p>
+                <p>B: Of course! I have been working for 10 years.</p>
+                <label class="radio-option"><input type="radio" name="ex7_1" value="job"> a) job</label>
+                <label class="radio-option"><input type="radio" name="ex7_1" value="experience"> b) experience</label>
+                <label class="radio-option"><input type="radio" name="ex7_1" value="work"> c) work</label>
+            </div>
+
+            <div class="exercise-group">
+                <p><strong>2) A: _____ you do me a favor, please?</strong></p>
+                <p>B: Sure, that's what friends are for.</p>
+                <label class="radio-option"><input type="radio" name="ex7_2" value="may"> a) May</label>
+                <label class="radio-option"><input type="radio" name="ex7_2" value="could"> b) Could</label>
+                <label class="radio-option"><input type="radio" name="ex7_2" value="do"> c) Do</label>
+            </div>
+
+            <button type="button" class="btn-check" onclick="checkAnswers()">Check My Answers</button>
+            <div id="result-display" style="text-align: center; margin-top: 20px; font-weight: bold; font-size: 1.2rem;"></div>
+
+        </section>
+    </form>
+</div>
+
+<script>
+    // Theme Toggle Logic
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const icon = document.getElementById('theme-icon');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.textContent = '☀️';
+        } else {
+            icon.textContent = '🌙';
+        }
+    }
+
+    // Checking Logic
+    function checkAnswers() {
+        let score = 0;
+        let total = 29; // Total number of inputs/selections
+
+        // Helper function to check Radio buttons
+        function checkRadio(name, correctVal) {
+            const radios = document.getElementsByName(name);
+            let selected = null;
+            let parent = radios[0].closest('.exercise-group');
+            
+            // Reset style
+            parent.classList.remove('correct', 'incorrect');
+
+            for (let r of radios) {
+                if (r.checked) selected = r.value;
+            }
+
+            if (selected === correctVal) {
+                parent.classList.add('correct');
+                score++;
+            } else {
+                parent.classList.add('incorrect');
+            }
+        }
+
+        // Helper function to check Inputs/Selects
+        function checkInput(name, correctVals) {
+            const input = document.getElementsByName(name)[0];
+            const val = input.value.trim().toLowerCase();
+            
+            // Allow single string or array of acceptable strings
+            let isCorrect = false;
+            if (Array.isArray(correctVals)) {
+                isCorrect = correctVals.includes(val);
+            } else {
+                isCorrect = val === correctVals.toLowerCase();
+            }
+
+            input.classList.remove('correct', 'incorrect');
+            if (isCorrect) {
+                input.classList.add('correct');
+                score++;
+            } else {
+                input.classList.add('incorrect');
+            }
+        }
+
+        // --- CHECKING EXERCISES ---
+
+        // Ex I
+        checkRadio('ex1_1', 'yours'); // "Is this yours" (no noun after) OR "your snack bar". Wait, text says "Is this [blank] snack bar". So it is YOUR.
+        // Correction based on text structure: "Is this ____ snack bar?" -> YOUR.
+        // Wait, looking at PDF text: "Is this ____ snack bar?" options: a) your b) yours. Correct is 'your'.
+        // My code Logic above for Ex1_1 used 'your' as value for option a.
+        
+        // Let's re-verify logic based on PDF Source 37
+        // 1) Is this ____ snack bar? -> your (Option A)
+        // 2) good at ____ job? -> my (Option B)
+        // 3) give them ____ food? -> their (Option B)
+        // 4) hot dogs are ____ right? -> ours (Option A)
+        // 5) This jacket is ____ -> mine (Option B)
+
+        checkRadio('ex1_1', 'your'); 
+        checkRadio('ex1_2', 'my');
+        checkRadio('ex1_3', 'their');
+        checkRadio('ex1_4', 'ours');
+        checkRadio('ex1_5', 'mine');
+
+        // Ex II (Matching)
+        // 1 (Hamburger) -> A (Ketchup)
+        // 2 (Where jacket) -> C (On table)
+        // 3 (Food ready) -> D (No not yet)
+        // 4 (When open) -> E (Noon)
+        // 5 (Yours or mine) -> B (Mine)
+        checkInput('ex2_1', 'A');
+        checkInput('ex2_2', 'C');
+        checkInput('ex2_3', 'D');
+        checkInput('ex2_4', 'E');
+        checkInput('ex2_5', 'B');
+
+        // Ex III (Conversation 1)
+        checkInput('ex3_1', 'job');
+        checkInput('ex3_2', 'experience');
+        checkInput('ex3_3', 'boss');
+        checkInput('ex3_4', 'work');
+        checkInput('ex3_5', 'can');
+
+        // Ex IV (Modals)
+        // a) Would you like
+        // b) Can/Could we go
+        // c) May/Can I take
+        // d) Could/Can you help
+        // e) May/Can I help
+        checkInput('ex4_1', 'would');
+        checkInput('ex4_2', ['can', 'could']);
+        checkInput('ex4_3', ['may', 'can', 'could']);
+        checkInput('ex4_4', ['could', 'can', 'would']);
+        checkInput('ex4_5', ['may', 'can']);
+
+        // Ex VI (Possessives - 6a in code)
+        // a) Where is YOUR house? (My house is...)
+        // b) Do you like MY hair? (Your hair looks...)
+        // c) Did you go to THEIR party? (Their party was...)
+        // d) Is this OUR table? (This one is ours...)
+        // e) What is YOUR boss's name? (My boss is...)
+        checkInput('ex6a_1', 'your');
+        checkInput('ex6a_2', 'my');
+        checkInput('ex6a_3', 'their');
+        checkInput('ex6a_4', 'our');
+        checkInput('ex6a_5', 'your');
+
+        // Ex VI (Conversation 2 - 6b in code)
+        // 1) Would you like
+        // 2) Can/Could I bring
+        // 3) Your friend
+        // 4) Her name
+        // 5) Your memory
+        // 6) Morning (Based on Jill saying "I'd like to leave in the morning")
+        // 7) Your house
+        checkInput('ex6b_1', 'would');
+        checkInput('ex6b_2', ['can', 'could']);
+        checkInput('ex6b_3', 'your');
+        checkInput('ex6b_4', 'her');
+        checkInput('ex6b_5', 'your');
+        checkInput('ex6b_6', 'morning');
+        checkInput('ex6b_7', 'your');
+
+        // Ex VII
+        // 1) Have a lot of EXPERIENCE (b)
+        // 2) COULD you do me a favor (b)
+        checkRadio('ex7_1', 'experience');
+        checkRadio('ex7_2', 'could');
+
+        // Display Score
+        const resultDisplay = document.getElementById('result-display');
+        const percentage = Math.round((score / total) * 100);
+        
+        let message = "";
+        if (percentage === 100) message = "Perfect! Excellent work! 🎉";
+        else if (percentage >= 80) message = "Great job! Almost there! 👍";
+        else if (percentage >= 50) message = "Good effort. Keep practicing! 📚";
+        else message = "Don't give up! Review the grammar notes above. 💪";
+
+        resultDisplay.textContent = `Score: ${score}/${total} (${percentage}%) - ${message}`;
+        resultDisplay.style.color = percentage >= 50 ? 'var(--success-color)' : 'var(--error-color)';
+    }
+</script>
+
+</body>
+</html>

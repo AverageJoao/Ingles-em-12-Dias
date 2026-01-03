@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Class: Simple Present - Day 04</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+            --error: #ef4444;
+            --accent: #f59e0b;
+        }
+
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --text-color: #f9fafb;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+            --accent: #fbbf24;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header & Toggle */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Layout */
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-top: 0; }
+        h3 { color: var(--accent); margin-top: 1.5rem; }
+
+        /* Graphics & Decorations */
+        .icon-box {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(245, 158, 11, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-list li {
+            margin-bottom: 0.5rem;
+            list-style-type: none;
+        }
+        .example-list li::before {
+            content: "👉";
+            margin-right: 8px;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            min-width: 500px;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.02);
+        }
+
+        /* Forms & Interactive Elements */
+        input[type="text"], select {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 0.25rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .radio-option {
+            background: var(--bg-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        
+        .radio-option:hover {
+            border-color: var(--primary);
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        /* Exercise Specifics */
+        .exercise-block {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .question {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .feedback {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+            font-weight: bold;
+        }
+
+        .correct input, .correct select { border-color: var(--success); background-color: rgba(16, 185, 129, 0.1); }
+        .incorrect input, .incorrect select { border-color: var(--error); background-color: rgba(239, 68, 68, 0.1); }
+        
+        .feedback.show-correct { color: var(--success); display: block; }
+        .feedback.show-incorrect { color: var(--error); display: block; }
+
+        .btn-check {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-check:hover {
+            background-color: #059669;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Grammar Tags */
+        .grammar-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+        .tag-sub { background-color: #e0f2fe; color: #0369a1; }
+        .tag-verb { background-color: #dcfce7; color: #15803d; }
+        .tag-obj { background-color: #ffedd5; color: #c2410c; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        <h1>Day 04</h1>
+        <p>Simple Present Tense</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>📘 Simple Present</h2>
+            <p>This verb form represents frequent actions, everyday activities and generalizations.</p>
+            
+            <h3>Examples:</h3>
+            <ul class="example-list">
+                <li>I <strong>visit</strong> my grandmother on Sundays. (Verb - to visit)</li>
+                <li>Frank <strong>plays</strong> volleyball at school. (Verb - to play)</li>
+                <li>They <strong>go</strong> to the beach every summer. (Verb - to go)</li>
+                <li>She <strong>takes</strong> a shower every morning. (Verb - to take)</li>
+                <li>The sky <strong>is</strong> blue. (Verb - to be)</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>🏗️ Verbal Conjugation</h2>
+            <p>The following table shows the Affirmative, Negative, and Interrogative forms.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Group</th>
+                            <th>Affirmative form</th>
+                            <th>Negative form</th>
+                            <th>Interrogative form</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2"><strong>I / You</strong></td>
+                            <td>I dance.</td>
+                            <td>I don't dance.</td>
+                            <td>Do I dance?</td>
+                        </tr>
+                        <tr>
+                            <td>You dance.</td>
+                            <td>You don't dance.</td>
+                            <td>Do you dance?</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"><strong>Singular<br>(He/She/It)</strong></td>
+                            <td>He dances.</td>
+                            <td>He doesn't dance.</td>
+                            <td>Does he dance?</td>
+                        </tr>
+                        <tr>
+                            <td>She dances.</td>
+                            <td>She doesn't dance.</td>
+                            <td>Does she dance?</td>
+                        </tr>
+                        <tr>
+                            <td>It dances.</td>
+                            <td>It doesn't dance.</td>
+                            <td>Does it dance?</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"><strong>Plural<br>(We/You/They)</strong></td>
+                            <td>We dance.</td>
+                            <td>We don't dance.</td>
+                            <td>Do we dance?</td>
+                        </tr>
+                        <tr>
+                            <td>You dance.</td>
+                            <td>You don't dance.</td>
+                            <td>Do you dance?</td>
+                        </tr>
+                        <tr>
+                            <td>They dance.</td>
+                            <td>They don't dance.</td>
+                            <td>Do they dance?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🧱 Sentence Construction Example</h2>
+            <div class="table-responsive">
+                <table style="text-align: center;">
+                    <tr>
+                        <td><strong>We</strong></td>
+                        <td><strong>eat</strong></td>
+                        <td><strong>at the cafeteria</strong></td>
+                        <td><strong>on Mondays.</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="grammar-tag tag-sub">subject</span></td>
+                        <td><span class="grammar-tag tag-verb">verb in present</span></td>
+                        <td><span class="grammar-tag tag-obj">where</span></td>
+                        <td><span class="grammar-tag tag-obj">when</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="highlight-box">
+                <h3>⚠️ Attention!</h3>
+                <p>It is important to identify the subject of a sentence.</p>
+                <p><strong>Examples:</strong></p>
+                <ul class="example-list">
+                    <li>Mary drives a Mercedes. > Subject = <strong>Mary (she)</strong></li>
+                    <li>The shop opens at 8 am. > Subject = <strong>The shop (it)</strong></li>
+                    <li>The bus leaves in the morning. > Subject = <strong>The bus (it)</strong></li>
+                    <li>Father and Mother play with the kids. > Subject = <strong>Father and Mother (they)</strong></li>
+                </ul>
+            </div>
+
+            <div class="highlight-box" style="border-color: var(--primary);">
+                <h3>⚠️ Attention for He / She / It</h3>
+                <ol>
+                    <li>For verbs ending in <strong>sh, ch, ss, o or x</strong>, add <strong>es</strong> to the verb (e.g. teaches, washes, watches, kisses).</li>
+                    <li>For verbs ending in <strong>consonant + y</strong>, substitute y for <strong>i</strong> and add <strong>es</strong> to the verb (e.g. candies, tries, etc).</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="card" id="exercises">
+            <h2>✏️ Homework / Exercises</h2>
+            <form id="quizForm" onsubmit="return false;">
+
+                <div class="exercise-block">
+                    <h3>I - Circle the correct option.</h3>
+                    
+                    <div class="question">
+                        1) <select id="ex1_1"><option value="">...</option><option value="Do">Do</option><option value="Does">Does</option></select> you study?
+                    </div>
+                    
+                    <div class="question">
+                        2) <select id="ex1_2"><option value="">...</option><option value="Do">Do</option><option value="Does">Does</option></select> your friend work?
+                    </div>
+
+                    <div class="question">
+                        3) She <select id="ex1_3"><option value="">...</option><option value="doesn't">doesn't</option><option value="don't">don't</option></select> eat breakfast.
+                    </div>
+
+                    <div class="question">
+                        4) <select id="ex1_4"><option value="">...</option><option value="Do">Do</option><option value="Does">Does</option></select> Emma and her husband like to watch soap operas on TV?
+                    </div>
+
+                    <div class="question">
+                        5) My husband <select id="ex1_5"><option value="">...</option><option value="watch">watch</option><option value="watches">watches</option></select> sports on TV.
+                    </div>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>II - Match the sentences.</h3>
+                    <p><em>Select the letter that matches the question number.</em></p>
+                    
+                    <div class="question">
+                        1 - What do you normally eat for breakfast? 
+                        <select id="ex2_1">
+                            <option value="">Choose...</option>
+                            <option value="a">a) Yes, I do. I love a good book.</option>
+                            <option value="b">b) I wake up at 6:30 am.</option>
+                            <option value="c">c) I normally go out dancing with my friend.</option>
+                            <option value="d">d) Yes, he does.</option>
+                            <option value="e">e) I eat a slice of toast and I drink some juice.</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        2 - Do you like to read books?
+                        <select id="ex2_2">
+                            <option value="">Choose...</option>
+                            <option value="a">a) Yes, I do. I love a good book.</option>
+                            <option value="b">b) I wake up at 6:30 am.</option>
+                            <option value="c">c) I normally go out dancing with my friend.</option>
+                            <option value="d">d) Yes, he does.</option>
+                            <option value="e">e) I eat a slice of toast and I drink some juice.</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        3 - What time do you wake up?
+                        <select id="ex2_3">
+                            <option value="">Choose...</option>
+                            <option value="a">a) Yes, I do. I love a good book.</option>
+                            <option value="b">b) I wake up at 6:30 am.</option>
+                            <option value="c">c) I normally go out dancing with my friend.</option>
+                            <option value="d">d) Yes, he does.</option>
+                            <option value="e">e) I eat a slice of toast and I drink some juice.</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        4 - What do you do on Saturdays?
+                        <select id="ex2_4">
+                            <option value="">Choose...</option>
+                            <option value="a">a) Yes, I do. I love a good book.</option>
+                            <option value="b">b) I wake up at 6:30 am.</option>
+                            <option value="c">c) I normally go out dancing with my friend.</option>
+                            <option value="d">d) Yes, he does.</option>
+                            <option value="e">e) I eat a slice of toast and I drink some juice.</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        5 - Does he go running in the mornings?
+                        <select id="ex2_5">
+                            <option value="">Choose...</option>
+                            <option value="a">a) Yes, I do. I love a good book.</option>
+                            <option value="b">b) I wake up at 6:30 am.</option>
+                            <option value="c">c) I normally go out dancing with my friend.</option>
+                            <option value="d">d) Yes, he does.</option>
+                            <option value="e">e) I eat a slice of toast and I drink some juice.</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>III - Complete the conversation.</h3>
+                    <p>Use the words: <strong>does, do, don't, doesn't, does</strong></p>
+                    
+                    <p><strong>Stephanie:</strong> <input type="text" id="ex3_1" placeholder="..."> you like sports?</p>
+                    <p><strong>Jessica:</strong> Yes, I do! I love sports! And you?</p>
+                    <p><strong>Stephanie:</strong> No, I <input type="text" id="ex3_2" placeholder="..."> like sports! I prefer to read a book.</p>
+                    <p><strong>Jessica:</strong> What about your boyfriend? <input type="text" id="ex3_3" placeholder="..."> he like sports?</p>
+                    <p><strong>Stephanie:</strong> Yes, he <input type="text" id="ex3_4" placeholder="..."> He is obsessed with sports actually! But he <input type="text" id="ex3_5" placeholder="..."> like to read! Unbelievable!</p>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>IV - Complete the sentences with the correct form of the verb.</h3>
+                    <p>Hi! My name is Melissa. I <input type="text" id="ex4_1" placeholder="(live)"> in Seattle. I <input type="text" id="ex4_2" placeholder="(work)"> at a language school.</p>
+                    <p>I'm married. My husband <input type="text" id="ex4_3" placeholder="(work)"> in a car factory. We <input type="text" id="ex4_4" placeholder="(have)"> one child.</p>
+                    <p>Her name is Carla and she <input type="text" id="ex4_5" placeholder="(study)"> in the morning and <input type="text" id="ex4_6" placeholder="(play)"> with her dolls in the afternoon.</p>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>V - Complete the sentences in the simple present.</h3>
+                    
+                    <div class="question">a) Where <input type="text" id="ex5_1" placeholder="..."> ? (he/work)</div>
+                    <div class="question">b) <input type="text" id="ex5_2" placeholder="..."> dinner at 6 pm. (she/eat)</div>
+                    <div class="question">c) <input type="text" id="ex5_3" placeholder="..."> fast food. (They/not/like)</div>
+                    <div class="question">d) <input type="text" id="ex5_4" placeholder="..."> English at a language school. (she/teach)</div>
+                    <div class="question">e) <input type="text" id="ex5_5" placeholder="..."> usually <input type="text" id="ex5_6" placeholder="..."> TV. (we/not/watch)</div>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>VI - Complete this text with the appropriate personal pronoun.</h3>
+                    <p>(I / you / he / she / it / we / they)</p>
+                    
+                    <p>My name is David. <input type="text" id="ex6_1" placeholder="(me)"> get up at 7 in the morning and go to school.</p>
+                    <p>I love my teacher. Her name is Emily. <input type="text" id="ex6_2" placeholder="(my teacher)"> is very kind.</p>
+                    <p>At school, I always see my best friend. His name is Carlos. <input type="text" id="ex6_3" placeholder="(Carlos)"> is very funny.</p>
+                    <p>When I get back home, I watch TV with my parents. <input type="text" id="ex6_4" placeholder="(my parents)"> like to help me with my homework.</p>
+                    <p><input type="text" id="ex6_5" placeholder="(my parents and I)"> are a happy family!</p>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>VII - Choose the right option.</h3>
+                    
+                    <div class="question">
+                        1) A - I don't think driving is ________. B - I agree! It's very stressful.<br>
+                        <select id="ex7_1"><option value="">...</option><option value="comforting">comforting</option><option value="routine">routine</option><option value="relaxing">relaxing</option></select>
+                    </div>
+
+                    <div class="question">
+                        2) A - I go to the gym every day to ________.<br>
+                        <select id="ex7_2"><option value="">...</option><option value="keep up">keep up</option><option value="keep fit">keep fit</option><option value="keep moving">keep moving</option></select>
+                    </div>
+
+                    <div class="question">
+                        3) A - Oh my goodness! It's lunch time and the teacher won't stop talking. B - I know! I'm so ________.<br>
+                        <select id="ex7_3"><option value="">...</option><option value="angry">angry</option><option value="hungry">hungry</option><option value="sad">sad</option></select>
+                    </div>
+
+                    <div class="question">
+                        4) A - Do you have a ________ diet? B - Yes, I do. I eat fruits and vegetables every day!<br>
+                        <select id="ex7_4"><option value="">...</option><option value="healthy">healthy</option><option value="eggs">eggs</option><option value="bread">bread</option></select>
+                    </div>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>VIII - Cross out the wrong option. (Select the CORRECT one)</h3>
+                    
+                    <div class="question">a) My British teachers <select id="ex8_1"><option value="">...</option><option value="drinks">drinks</option><option value="drink">drink</option></select> a lot of tea.</div>
+                    <div class="question">b) I <select id="ex8_2"><option value="">...</option><option value="don't">don't</option><option value="doesn't">doesn't</option></select> understand the word "movie".</div>
+                    <div class="question">c) <select id="ex8_3"><option value="">...</option><option value="Do">Do</option><option value="Does">Does</option></select> she like routine?</div>
+                    <div class="question">d) He <select id="ex8_4"><option value="">...</option><option value="wake">wake</option><option value="wakes">wakes</option></select> up at 6 am.</div>
+                    <div class="question">e) What time <select id="ex8_5"><option value="">...</option><option value="do">do</option><option value="does">does</option></select> it start?</div>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>IX - Unscramble the sentences.</h3>
+                    
+                    <div class="question">
+                        a) drink / I / any juice / in / morning / the / don't /.<br>
+                        <input type="text" id="ex9_1">
+                    </div>
+                    <div class="question">
+                        b) you / Do / have / in / the / breakfast / morning /?<br>
+                        <input type="text" id="ex9_2">
+                    </div>
+                    <div class="question">
+                        c) work / as / I / paramedic / a /.<br>
+                        <input type="text" id="ex9_3">
+                    </div>
+                    <div class="question">
+                        d) he / What / does / on / TV / watch /?<br>
+                        <input type="text" id="ex9_4">
+                    </div>
+                    <div class="question">
+                        e) watches / usually / Sundays / He / football / on /.<br>
+                        <input type="text" id="ex9_5">
+                    </div>
+                </div>
+
+                <div class="exercise-block">
+                    <h3>X - Rewrite the sentences into the interrogative form.</h3>
+                    
+                    <div class="question">
+                        a) She reads books.<br>
+                        <input type="text" id="ex10_1">
+                    </div>
+                    <div class="question">
+                        b) You like to eat breakfast.<br>
+                        <input type="text" id="ex10_2">
+                    </div>
+                    <div class="question">
+                        c) She goes dancing with her friend on Saturdays.<br>
+                        <input type="text" id="ex10_3">
+                    </div>
+                    <div class="question">
+                        d) We wake up very early.<br>
+                        <input type="text" id="ex10_4">
+                    </div>
+                    <div class="question">
+                        e) He runs eight miles every week to keep fit.<br>
+                        <input type="text" id="ex10_5">
+                    </div>
+                </div>
+
+                <button class="btn-check" onclick="checkAnswers()">✅ Check Answers</button>
+
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Simple Present Material converted to Web Format.</p>
+    </footer>
+
+    <script>
+        // Dark Mode Logic
+        const themeBtn = document.getElementById('themeBtn');
+        const html = document.documentElement;
+        
+        // Check local storage
+        if (localStorage.getItem('theme') === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️ Light Mode';
+        }
+
+        function toggleTheme() {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeBtn.innerText = '🌙 Dark Mode';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☀️ Light Mode';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Answer Key
+        const correctAnswers = {
+            'ex1_1': 'Do',
+            'ex1_2': 'Does',
+            'ex1_3': 'doesn\'t',
+            'ex1_4': 'Do',
+            'ex1_5': 'watches',
+
+            'ex2_1': 'e',
+            'ex2_2': 'a',
+            'ex2_3': 'b',
+            'ex2_4': 'c',
+            'ex2_5': 'd',
+
+            'ex3_1': 'Do',
+            'ex3_2': 'don\'t',
+            'ex3_3': 'Does',
+            'ex3_4': 'does',
+            'ex3_5': 'doesn\'t',
+
+            'ex4_1': 'live',
+            'ex4_2': 'work',
+            'ex4_3': 'works',
+            'ex4_4': 'have',
+            'ex4_5': 'studies',
+            'ex4_6': 'plays',
+
+            'ex5_1': ['does he work', 'does he work?'],
+            'ex5_2': ['She eats', 'She eats'],
+            'ex5_3': ['They don\'t like', 'They do not like'],
+            'ex5_4': ['She teaches', 'She teaches'],
+            'ex5_5': ['We'],
+            'ex5_6': ['don\'t watch', 'do not watch'],
+
+            'ex6_1': 'I',
+            'ex6_2': 'She',
+            'ex6_3': 'He',
+            'ex6_4': 'They',
+            'ex6_5': 'We',
+
+            'ex7_1': 'relaxing',
+            'ex7_2': 'keep fit',
+            'ex7_3': 'hungry',
+            'ex7_4': 'healthy',
+
+            'ex8_1': 'drink',
+            'ex8_2': 'don\'t',
+            'ex8_3': 'Does',
+            'ex8_4': 'wakes',
+            'ex8_5': 'does',
+
+            'ex9_1': ['I don\'t drink any juice in the morning.', 'I do not drink any juice in the morning.', 'I don\'t drink any juice in the morning'],
+            'ex9_2': ['Do you have breakfast in the morning?', 'Do you have breakfast in the morning'],
+            'ex9_3': ['I work as a paramedic.', 'I work as a paramedic'],
+            'ex9_4': ['What does he watch on TV?', 'What does he watch on TV'],
+            'ex9_5': ['He usually watches football on Sundays.', 'He usually watches football on Sundays'],
+
+            'ex10_1': ['Does she read books?', 'Does she read books'],
+            'ex10_2': ['Do you like to eat breakfast?', 'Do you like to eat breakfast'],
+            'ex10_3': ['Does she go dancing with her friend on Saturdays?', 'Does she go dancing with her friend on Saturdays'],
+            'ex10_4': ['Do we wake up very early?', 'Do we wake up very early'],
+            'ex10_5': ['Does he run eight miles every week to keep fit?', 'Does he run eight miles every week to keep fit']
+        };
+
+        function normalizeText(text) {
+            return text.toLowerCase().trim().replace(/\s+/g, ' ');
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            let total = Object.keys(correctAnswers).length;
+
+            for (const [id, correct] of Object.entries(correctAnswers)) {
+                const element = document.getElementById(id);
+                if (!element) continue;
+
+                const val = normalizeText(element.value);
+                let isCorrect = false;
+
+                if (Array.isArray(correct)) {
+                    // Check against multiple possible valid answers (mostly for full sentences)
+                    isCorrect = correct.some(c => normalizeText(c) === val);
+                } else {
+                    isCorrect = normalizeText(correct) === val;
+                }
+
+                // Remove previous styles
+                element.parentElement.classList.remove('correct', 'incorrect');
+                
+                // Special handling for inputs inside paragraphs/sentences to target parent cleanly or self
+                if (element.tagName === 'SELECT' || element.type === 'text') {
+                     if (isCorrect) {
+                        element.style.borderColor = 'var(--success)';
+                        element.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                        score++;
+                    } else {
+                        element.style.borderColor = 'var(--error)';
+                        element.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                    }
+                }
+            }
+
+            alert(`You got ${score} out of ${total} correct! Check the red fields to try again.`);
+        }
+    </script>
+</body>
+</html>

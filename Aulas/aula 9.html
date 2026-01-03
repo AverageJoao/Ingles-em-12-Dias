@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Class - Simple Past (Day 09)</title>
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fdcb6e;
+            --bg-body: #f9f9f9;
+            --bg-card: #ffffff;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --success: #00b894;
+            --error: #d63031;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Variables */
+            --primary: #a29bfe;
+            --secondary: #6c5ce7;
+            --accent: #e17055;
+            --bg-body: #1e1e1e;
+            --bg-card: #2d2d2d;
+            --text-main: #dfe6e9;
+            --text-muted: #b2bec3;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Toggle --- */
+        header {
+            background-color: var(--bg-card);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { margin: 0; font-size: 1.5rem; color: var(--primary); }
+        
+        .theme-switch {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .theme-switch:hover { background: var(--primary); color: white; }
+
+        /* --- Container --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Sections --- */
+        section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        h2 { color: var(--primary); border-bottom: 1px solid var(--secondary); padding-bottom: 10px; }
+        h3 { color: var(--text-muted); margin-top: 20px; }
+
+        /* --- Verb Tables --- */
+        .verb-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .verb-card {
+            background: var(--bg-body);
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        .verb-card span:first-child { color: var(--text-muted); font-weight: normal; }
+        .verb-card span:last-child { color: var(--primary); }
+
+        /* --- Sentence Cards --- */
+        .sentence-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sentence-item {
+            background-color: var(--bg-body);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .affirmative { border-left-color: var(--success); }
+        .negative { border-left-color: var(--error); }
+        .interrogative { border-left-color: var(--accent); }
+
+        /* --- Special Table (To Be) --- */
+        .tobe-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .tobe-table th, .tobe-table td {
+            padding: 12px;
+            border: 1px solid var(--secondary);
+            text-align: left;
+        }
+        
+        .tobe-table th { background-color: var(--primary); color: white; }
+
+        /* --- Exercises --- */
+        .exercise-area {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-body) 100%);
+            border: 2px solid var(--primary);
+        }
+
+        .question { margin-bottom: 20px; }
+        
+        input[type="text"], select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid var(--text-muted);
+            width: 100%;
+            max-width: 300px;
+            margin-top: 5px;
+            background-color: var(--bg-card);
+            color: var(--text-main);
+        }
+
+        .btn-check {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+        }
+        
+        .btn-check:hover { transform: translateY(-2px); }
+
+        .feedback {
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .correct { color: var(--success); }
+        .incorrect { color: var(--error); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .verb-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Day 09: Simple Past</h1>
+    <button class="theme-switch" onclick="toggleTheme()">🌗 Mode</button>
+</header>
+
+<div class="container">
+
+    <section>
+        <h2>Definition</h2>
+        <p>The simple past expresses a completed action that happened at a specific time in the past.</p>
+    </section>
+
+    <section>
+        <h2>Verbs List</h2>
+        
+        <h3>Regular Verbs</h3>
+        <div class="verb-grid">
+            <div class="verb-card"><span>to live</span> <span>lived</span></div>
+            <div class="verb-card"><span>to start</span> <span>started</span></div>
+            <div class="verb-card"><span>to visit</span> <span>visited</span></div>
+            <div class="verb-card"><span>to watch</span> <span>watched</span></div>
+            <div class="verb-card"><span>to play</span> <span>played</span></div>
+        </div>
+
+        <h3>Irregular Verbs</h3>
+        <div class="verb-grid">
+            <div class="verb-card"><span>to be</span> <span>was, were</span></div>
+            <div class="verb-card"><span>to write</span> <span>wrote</span></div>
+            <div class="verb-card"><span>to go</span> <span>went</span></div>
+            <div class="verb-card"><span>to do</span> <span>did</span></div>
+            <div class="verb-card"><span>to have</span> <span>had</span></div>
+            <div class="verb-card"><span>to speak</span> <span>spoke</span></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Affirmative Sentences</h2>
+        <ul class="sentence-list">
+            <li class="sentence-item affirmative">I <strong>studied</strong> English last week.</li>
+            <li class="sentence-item affirmative">She <strong>watched</strong> TV yesterday.</li>
+            <li class="sentence-item affirmative">They <strong>played</strong> video games last night.</li>
+            <li class="sentence-item affirmative">He <strong>woke up</strong> at 6 am this morning.</li>
+            <li class="sentence-item affirmative">They <strong>understood</strong> the grammar.</li>
+            <li class="sentence-item affirmative">We <strong>went</strong> to TopWay yesterday in the afternoon.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Negative Sentences</h2>
+        <p><em>Use <strong>did not (didn't)</strong> + Infinitive verb</em></p>
+        <ul class="sentence-list">
+            <li class="sentence-item negative">I <strong>did not (didn't) eat</strong> pizza for lunch.</li>
+            <li class="sentence-item negative">He <strong>didn't work</strong> last weekend.</li>
+            <li class="sentence-item negative">You <strong>didn't like</strong> the movie last night.</li>
+            <li class="sentence-item negative">The dog <strong>didn't catch</strong> the ball.</li>
+            <li class="sentence-item negative">We <strong>didn't travel</strong> to Europe last year.</li>
+            <li class="sentence-item negative">They <strong>didn't drink</strong> wine at the party.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Interrogative Sentences</h2>
+        <p><em>Use <strong>Did</strong> + Subject + Infinitive verb...?</em></p>
+        <ul class="sentence-list">
+            <li class="sentence-item interrogative"><strong>Did</strong> you <strong>eat</strong> breakfast this morning?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> Brazil <strong>win</strong> the 2002 World Cup?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> she <strong>go</strong> to school yesterday?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> the dog <strong>eat</strong> the food?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> he <strong>play</strong> football with Pelé?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> you <strong>do</strong> your homework?</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Verb "to be" (was/were)</h2>
+        <div style="overflow-x: auto;">
+            <table class="tobe-table">
+                <thead>
+                    <tr>
+                        <th>Interrogative</th>
+                        <th>Affirmative</th>
+                        <th>Negative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Were you happy?</td>
+                        <td>Yes, I was happy.</td>
+                        <td>No, I was not happy.</td>
+                    </tr>
+                    <tr>
+                        <td>Was she an English student?</td>
+                        <td>Yes, she was an English student.</td>
+                        <td>No, she wasn't.</td>
+                    </tr>
+                    <tr>
+                        <td>Were they British?</td>
+                        <td>Yes, they were British.</td>
+                        <td>No, they weren't.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="exercise-area">
+        <h2>📝 Practice Exercises</h2>
+        <p>Fill in the blanks based on the content above.</p>
+
+        <div class="question">
+            <label>1. Simple Past of "to watch" (Regular):</label><br>
+            <input type="text" id="q1" placeholder="Type here...">
+            <div id="fb1" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label>2. Simple Past of "to go" (Irregular):</label><br>
+            <input type="text" id="q2" placeholder="Type here...">
+            <div id="fb2" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label>3. Complete the negative sentence: "He _____ work last weekend."</label><br>
+            <input type="text" id="q3" placeholder="didn't...">
+            <div id="fb3" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label>4. Did Brazil _____ the 2002 World Cup?</label><br>
+            <select id="q4">
+                <option value="">Select...</option>
+                <option value="won">won</option>
+                <option value="win">win</option>
+                <option value="winning">winning</option>
+            </select>
+            <div id="fb4" class="feedback"></div>
+        </div>
+
+        <div class="question">
+            <label>5. Verb to be: "_____ they British?"</label><br>
+            <select id="q5">
+                <option value="">Select...</option>
+                <option value="Was">Was</option>
+                <option value="Were">Were</option>
+                <option value="Did">Did</option>
+            </select>
+            <div id="fb5" class="feedback"></div>
+        </div>
+
+        <button class="btn-check" onclick="checkAnswers()">Check Answers ✔️</button>
+        <p id="final-score" style="text-align: center; font-weight: bold; margin-top: 15px; font-size: 1.2rem;"></p>
+    </section>
+
+</div>
+
+<script>
+    // Theme Logic
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            body.removeAttribute('data-theme');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+        }
+    }
+
+    // Exercise Logic
+    function checkAnswers() {
+        let score = 0;
+        const total = 5;
+
+        // Answers Key
+        const answers = {
+            q1: ["watched"],
+            q2: ["went"],
+            q3: ["didn't", "did not", "didn't work", "did not work"], // Allow flexible inputs
+            q4: "win",
+            q5: "Were"
+        };
+
+        // Helper to check text input
+        function validateText(id, correctArr) {
+            const el = document.getElementById(id);
+            const val = el.value.trim().toLowerCase();
+            const fb = document.getElementById('fb' + id.substring(1));
+            
+            // Check if user input is in the array of correct possibilities
+            let isCorrect = false;
+            
+            if(id === 'q3') {
+                 if(val.includes("didn't") || val.includes("did not")) isCorrect = true;
+            } else {
+                 if(correctArr.includes(val)) isCorrect = true;
+            }
+
+            if (isCorrect) {
+                el.style.borderColor = "var(--success)";
+                fb.innerHTML = "Correct! 👏";
+                fb.className = "feedback correct";
+                return 1;
+            } else {
+                el.style.borderColor = "var(--error)";
+                fb.innerHTML = `Incorrect. The answer is "${correctArr[0]}".`;
+                fb.className = "feedback incorrect";
+                return 0;
+            }
+        }
+
+        // Helper to check select input
+        function validateSelect(id, correctVal) {
+            const el = document.getElementById(id);
+            const fb = document.getElementById('fb' + id.substring(1));
+            
+            if (el.value === correctVal) {
+                el.style.borderColor = "var(--success)";
+                fb.innerHTML = "Correct! 👏";
+                fb.className = "feedback correct";
+                return 1;
+            } else {
+                el.style.borderColor = "var(--error)";
+                fb.innerHTML = "Incorrect.";
+                fb.className = "feedback incorrect";
+                return 0;
+            }
+        }
+
+        score += validateText('q1', answers.q1);
+        score += validateText('q2', answers.q2);
+        score += validateText('q3', answers.q3);
+        score += validateSelect('q4', answers.q4);
+        score += validateSelect('q5', answers.q5);
+
+        const finalMsg = document.getElementById('final-score');
+        finalMsg.innerText = `You got ${score} out of ${total} correct!`;
+        
+        if(score === total) {
+            finalMsg.innerText += " Excellent work! 🌟";
+        }
+    }
+</script>
+
+</body>
+</html>

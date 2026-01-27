@@ -1,269 +1,413 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 02 - English Class</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="../icons/2/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/2/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/2/favicon-16x16.png">
-    <link rel="manifest" href="../icons/2/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Day 02: English Class</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- DEFINIÇÃO DE CORES (VARIÁVEIS) --- */
+        /* --- ESTILOS GERAIS (Mantidos da Base) --- */
         :root {
-            /* Tema Claro (Padrão) */
-            --primary: #4A90E2;
-            --secondary: #50E3C2;
-            --accent: #FF6B6B;
-            --text: #333333;
-            --bg: #F0F4F8;
+            /* Cores Base (Light Mode) */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
             --card-bg: #ffffff;
-            --box-bg: #f9f9f9; /* Fundo dos exemplos */
-            --input-bg: #ffffff;
-            --border-color: #dddddd;
-            --table-stripe: #f3f3f3;
-            --table-text: #333333;
-            --success: #2ecc71;
-            --error: #e74c3c;
-            --shadow: rgba(0,0,0,0.1);
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
         }
 
-        /* Tema Escuro */
+        /* Configurações do Dark Mode */
         [data-theme="dark"] {
-            --primary: #5D9CEC; /* Azul um pouco mais claro para contraste */
-            --secondary: #48C9AC;
-            --accent: #FF8585;
-            --text: #f0f0f0;
-            --bg: #121212;
-            --card-bg: #1e1e1e;
-            --box-bg: #2d2d2d;
-            --input-bg: #2d2d2d;
-            --border-color: #444444;
-            --table-stripe: #252525;
-            --table-text: #f0f0f0;
-            --shadow: rgba(0,0,0,0.5);
+            --primary: #6366f1;
+            --primary-light: #312e81;
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;
+            --card-bg: #1F2937;
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
         }
 
         * {
             box-sizing: border-box;
-            /* Transição suave ao trocar de tema */
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Nunito', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            margin: 0;
-            padding: 0;
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Botão de Tema */
-        .theme-toggle-btn {
+        .theme-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--card-bg);
-            color: var(--text);
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
             border: 2px solid var(--primary);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
             cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             z-index: 1000;
-            box-shadow: 0 4px 10px var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-        }
-        
-        .theme-toggle-btn:hover {
-            transform: scale(1.1);
+            transition: all 0.3s ease;
         }
 
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), #357ABD);
-            color: white;
-            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
             text-align: center;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            box-shadow: 0 4px 15px var(--shadow);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            font-family: 'Poppins', sans-serif;
+        header h1 {
             font-size: 2.5rem;
-            margin: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
         }
 
-        h2 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary);
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 10px;
-            margin-top: 0;
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff;
         }
 
-        h3 {
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-
+        /* Container */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem 1rem;
         }
 
+        /* Cards & Sections */
         .card {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
             transition: transform 0.2s, background-color 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
         }
 
-        .example-box {
-            background-color: var(--box-bg);
-            border-left: 5px solid var(--secondary);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            font-style: italic;
+        h3 {
+            color: var(--text);
+            opacity: 0.9;
+            margin: 1.5rem 0 1rem;
+            font-weight: 700;
         }
 
         /* Tables */
-        .styled-table {
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.9em;
-            box-shadow: 0 0 20px var(--shadow);
+            margin-bottom: 1rem;
+            background: var(--primary-light);
             border-radius: 10px;
             overflow: hidden;
-            background-color: var(--card-bg);
         }
 
-        .styled-table thead tr {
-            background-color: var(--primary);
-            color: #ffffff;
+        th, td {
+            padding: 1rem;
             text-align: left;
-        }
-
-        .styled-table th, .styled-table td {
-            padding: 12px 15px;
-            color: var(--table-text);
-        }
-
-        .styled-table tbody tr {
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .styled-table tbody tr:nth-of-type(even) {
-            background-color: var(--table-stripe);
-        }
-
-        /* Interactive Elements */
-        input[type="text"], select {
-            padding: 8px;
-            background-color: var(--input-bg);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             color: var(--text);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-family: 'Nunito', sans-serif;
-            width: 100%;
-            max-width: 200px;
-            margin-top: 5px;
-            transition: border-color 0.3s, background-color 0.3s;
+        }
+        
+        [data-theme="dark"] td {
+             color: #E5E7EB;
         }
 
-        input[type="text"]:focus, select:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .radio-group label {
-            display: block;
-            margin: 5px 0;
-            cursor: pointer;
-        }
-
-        .btn-check {
-            background-color: var(--accent);
+        th {
+            background-color: var(--primary);
             color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
-            margin-top: 20px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Grammar Highlights */
+        .grammar-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
+        }
+
+        /* Dialogues / Examples */
+        .dialogue {
+            background: var(--dialogue-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px dashed var(--dialogue-border);
+            margin-top: 1rem;
+        }
+        
+        .example-box {
+            background: var(--dialogue-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        /* Lists */
+        ul.clean-list {
+            list-style: none;
+            padding: 0;
+        }
+        ul.clean-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--input-border);
+        }
+        ul.clean-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* --- EXERCISES SECTION --- */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
             transition: background-color 0.3s;
         }
 
+        .exercise-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--input-border);
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+        }
+
+        /* Inputs Text */
+        input[type="text"] {
+            padding: 0.5rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all 0.3s;
+            max-width: 100%;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* --- NEW RADIO STYLES --- */
+        .radio-options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* Esconde o radio button nativo visualmente mas mantém acessibilidade */
+        .radio-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .radio-card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Hover Effect */
+        .radio-card:hover {
+            border-color: var(--primary);
+            background-color: var(--card-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            color: var(--primary);
+        }
+
+        /* Checked State */
+        .radio-card input[type="radio"]:checked + span {
+            /* Styling applied to the span inside label when checked */
+        }
+        
+        /* Apply style to the label itself when radio is checked (using :has is not fully supported everywhere yet, 
+           so we use a combination or trust the user clicks. 
+           However, standard CSS :checked + span works for text inside. 
+           To style the BORDER of the label based on checked input inside, we need :focus-within or just rely on the 'click' visuals.
+           
+           Better approach for "Checked" visual without JS for immediate feedback:
+           We will use the input:checked + span logic for text, but for the border we might need JS or just accept text change.
+           
+           Actually, we can put the input BEFORE the label in HTML or use simple sibling tricks, but let's stick to standard nesting.
+           Since :has() is widely supported in modern browsers now (Chrome 105+, Safari 15.4+, Firefox 121+), we will try to use it 
+           for the best effect, but provide a fallback visual on the text span.
+        */
+
+        .radio-card:has(input:checked) {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 800;
+        }
+        
+        /* Fallback for older browsers: Check mark next to text */
+        .radio-card span::before {
+            content: "○ ";
+            margin-right: 4px;
+        }
+        .radio-card input:checked + span::before {
+            content: "● ";
+        }
+
+        /* Dark mode adjustments for radios */
+        [data-theme="dark"] .radio-card:has(input:checked) {
+            background-color: rgba(99, 102, 241, 0.2); 
+            color: #fff;
+        }
+
+        /* --- FEEDBACK STYLES (JS Applied) --- */
+        .fill-in.correct-answer,
+        .radio-card.correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.1) !important;
+            color: var(--accent) !important;
+        }
+
+        .fill-in.wrong-answer,
+        .radio-card.wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.1) !important;
+            color: var(--danger) !important;
+        }
+
+        /* Button */
+        .btn-check {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+
         .btn-check:hover {
-            background-color: #ff5252;
+            background: #d97706;
         }
 
-        /* Feedback colors need to override variable colors when active */
-        .correct {
-            border-color: var(--success) !important;
-            background-color: rgba(46, 204, 113, 0.2) !important; /* Semi-transparent green */
-            color: var(--text);
+        .feedback-msg {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
         }
 
-        .incorrect {
-            border-color: var(--error) !important;
-            background-color: rgba(231, 76, 60, 0.2) !important; /* Semi-transparent red */
-            color: var(--text);
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
-
-        /* Grid for Adjectives */
+        
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
-        /* Responsive */
         @media (max-width: 600px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            h1 { font-size: 1.8rem; }
-            .card { padding: 20px; }
-            .theme-toggle-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-                top: 10px;
-                right: 10px;
-            }
+            header h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .radio-options-container { flex-direction: column; }
+            .radio-card { width: 100%; justify-content: flex-start; }
         }
     </style>
 </head>
 <body>
 
-<button class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar Tema">🌙</button>
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
 
 <header>
     <h1>Day 02</h1>
     <p>English Learning Material & Exercises</p>
 </header>
 
-<main class="container">
+<div class="container">
 
     <div class="card">
         <h2>1) When 📅</h2>
@@ -275,7 +419,7 @@
             💬 It's on October 4th.</p>
         </div>
 
-        <h3>2) Dates</h3>
+        <h2>2) Dates</h2>
         <p>Ordinal numbers are used for dates.</p>
         <div class="example-box">
             <p>🎂 My birthday is on February 2nd.</p>
@@ -288,7 +432,7 @@
         <h2>3) Why ❓</h2>
         <p><strong>WHY</strong> is used to ask about reasons/objectives.</p>
         <p><strong>BECAUSE</strong> is used to explain/answer.</p>
-        <div class="example-box">
+        <div class="grammar-box">
             <p>🗣️ Why are you studying English?<br>
             💬 Because I like English.</p>
             <p>🗣️ Why is the dog running?<br>
@@ -299,55 +443,58 @@
     <div class="card">
         <h2>4) Adjectives' Opposites ↔️</h2>
         <div class="grid-2">
-            <table class="styled-table">
-                <thead>
-                    <tr><th>Objects</th><th>Opposite</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Good 👍</td><td>Bad 👎</td></tr>
-                    <tr><td>Big 🐘</td><td>Small 🐜</td></tr>
-                    <tr><td>Difficult 🧩</td><td>Easy ✅</td></tr>
-                    <tr><td>Long 📏</td><td>Short 🤏</td></tr>
-                    <tr><td>Thick 🧱</td><td>Thin 📄</td></tr>
-                    <tr><td>New ✨</td><td>Old 🕰️</td></tr>
-                </tbody>
-            </table>
-            <table class="styled-table">
-                <thead>
-                    <tr><th>People</th><th>Opposite</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Young 👶</td><td>Elderly 👴</td></tr>
-                    <tr><td>Tall 🦒</td><td>Short 🐁</td></tr>
-                    <tr><td>Relaxed 😌</td><td>Stressed 😫</td></tr>
-                    <tr><td>Rich 💰</td><td>Poor 💸</td></tr>
-                    <tr><td>Happy 😄</td><td>Sad 😢</td></tr>
-                    <tr><td>Beautiful 💅</td><td>Ugly 👺</td></tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr><th>Objects</th><th>Opposite</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Good 👍</td><td>Bad 👎</td></tr>
+                        <tr><td>Big 🐘</td><td>Small 🐜</td></tr>
+                        <tr><td>Difficult 🧩</td><td>Easy ✅</td></tr>
+                        <tr><td>Long 📏</td><td>Short 🤏</td></tr>
+                        <tr><td>Thick 🧱</td><td>Thin 📄</td></tr>
+                        <tr><td>New ✨</td><td>Old 🕰️</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr><th>People</th><th>Opposite</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Young 👶</td><td>Elderly 👴</td></tr>
+                        <tr><td>Tall 🦒</td><td>Short 🐁</td></tr>
+                        <tr><td>Relaxed 😌</td><td>Stressed 😫</td></tr>
+                        <tr><td>Rich 💰</td><td>Poor 💸</td></tr>
+                        <tr><td>Happy 😄</td><td>Sad 😢</td></tr>
+                        <tr><td>Beautiful 💅</td><td>Ugly 👺</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <div class="card">
         <h2>5) How / What 🤔</h2>
-        
         <h3>HOW</h3>
         <p>Used to ask about <strong>condition</strong>.</p>
-        <div class="example-box">
+        <div class="dialogue">
             <p>🗣️ How are you?<br>
             💬 Fine, thanks.</p>
         </div>
 
         <h3>HOW OLD</h3>
         <p>Used to ask about <strong>age</strong>.</p>
-        <div class="example-box">
+        <div class="dialogue">
             <p>🗣️ How old is the cat?<br>
             💬 He's five years old.</p>
         </div>
 
         <h3>WHAT ... LIKE</h3>
         <p>Used to ask about <strong>characteristics</strong> (Something/Someone).</p>
-        <div class="example-box">
+        <div class="dialogue">
             <p>🗣️ What is she like?<br>
             💬 She's very pretty, tall and intelligent.</p>
         </div>
@@ -355,44 +502,37 @@
 
     <div class="card">
         <h2>6) Numbers 🔢</h2>
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Cardinal Numbers</th>
-                    <th>Ordinal Numbers</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>1</td><td>One</td><td>1st (First)</td></tr>
-                <tr><td>2</td><td>Two</td><td>2nd (Second)</td></tr>
-                <tr><td>3</td><td>Three</td><td>3rd (Third)</td></tr>
-                <tr><td>4</td><td>Four</td><td>4th (Fourth)</td></tr>
-                <tr><td>5</td><td>Five</td><td>5th (Fifth)</td></tr>
-                <tr><td>6</td><td>Six</td><td>6th (Sixth)</td></tr>
-                <tr><td>7</td><td>Seven</td><td>7th (Seventh)</td></tr>
-                <tr><td>8</td><td>Eight</td><td>8th (Eighth)</td></tr>
-                <tr><td>9</td><td>Nine</td><td>9th (Ninth)</td></tr>
-                <tr><td>10</td><td>Ten</td><td>10th (Tenth)</td></tr>
-                <tr><td>11</td><td>Eleven</td><td>11th (Eleventh)</td></tr>
-                <tr><td>12</td><td>Twelve</td><td>12th (Twelfth)</td></tr>
-                <tr><td>13</td><td>Thirteen</td><td>13th (Thirteenth)</td></tr>
-                <tr><td>14</td><td>Fourteen</td><td>14th (Fourteenth)</td></tr>
-                <tr><td>15</td><td>Fifteen</td><td>15th (Fifteenth)</td></tr>
-                <tr><td>16</td><td>Sixteen</td><td>16th (Sixteenth)</td></tr>
-                <tr><td>17</td><td>Seventeen</td><td>17th (Seventeenth)</td></tr>
-                <tr><td>18</td><td>Eighteen</td><td>18th (Eighteenth)</td></tr>
-                <tr><td>19</td><td>Nineteen</td><td>19th (Nineteenth)</td></tr>
-                <tr><td>20</td><td>Twenty</td><td>20th (Twentieth)</td></tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cardinal Numbers</th>
+                        <th>Ordinal Numbers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>One</td><td>1st (First)</td></tr>
+                    <tr><td>2</td><td>Two</td><td>2nd (Second)</td></tr>
+                    <tr><td>3</td><td>Three</td><td>3rd (Third)</td></tr>
+                    <tr><td>4</td><td>Four</td><td>4th (Fourth)</td></tr>
+                    <tr><td>5</td><td>Five</td><td>5th (Fifth)</td></tr>
+                    <tr><td>6</td><td>Six</td><td>6th (Sixth)</td></tr>
+                    <tr><td>7</td><td>Seven</td><td>7th (Seventh)</td></tr>
+                    <tr><td>8</td><td>Eight</td><td>8th (Eighth)</td></tr>
+                    <tr><td>9</td><td>Nine</td><td>9th (Ninth)</td></tr>
+                    <tr><td>10</td><td>Ten</td><td>10th (Tenth)</td></tr>
+                    <tr><td>20</td><td>Twenty</td><td>20th (Twentieth)</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="card">
         <div class="grid-2">
             <div>
                 <h2>7) Months 🗓️</h2>
-                <ul style="list-style: none; padding: 0;">
+                <ul class="clean-list">
                     <li>❄️ January (Janeiro)</li>
                     <li>🎭 February (Fevereiro)</li>
                     <li>🍂 March (Março)</li>
@@ -409,7 +549,7 @@
             </div>
             <div>
                 <h2>8) Days of the week 📆</h2>
-                <ul style="list-style: none; padding: 0;">
+                <ul class="clean-list">
                     <li>Monday</li>
                     <li>Tuesday</li>
                     <li>Wednesday</li>
@@ -427,355 +567,365 @@
         <p>The demonstrative pronouns are used to indicate a particular item or person.</p>
         
         <h3>Singular (1 item)</h3>
-        <p><strong>This</strong> - indicates something's <span style="color:var(--success)">close</span> to the speaker.</p>
+        <p><strong>This</strong> - indicates something's <span style="color:var(--accent)">close</span> to the speaker.</p>
         <div class="example-box">
             <p>🗣️ Hey, what is this?<br>
             • This is your credit card.</p>
         </div>
 
-        <p><strong>That</strong> - indicates something's <span style="color:var(--accent)">far</span> from the speaker.</p>
+        <p><strong>That</strong> - indicates something's <span style="color:var(--secondary)">far</span> from the speaker.</p>
         <div class="example-box">
             <p>🗣️ What is that!?<br>
             💬 That is just a bird, man! Calm down!</p>
         </div>
 
         <h3>Plural (2+ items)</h3>
-        <p><strong>These</strong> - indicates something's <span style="color:var(--success)">close</span> to the speaker.</p>
+        <p><strong>These</strong> - indicates something's <span style="color:var(--accent)">close</span> to the speaker.</p>
         <div class="example-box">
             <p>💬 These are my lovely cats!<br>
             💬 And these are my hungry dogs!</p>
         </div>
 
-        <p><strong>Those</strong> - indicates something's <span style="color:var(--accent)">far</span> from the speaker.</p>
+        <p><strong>Those</strong> - indicates something's <span style="color:var(--secondary)">far</span> from the speaker.</p>
         <div class="example-box">
             <p>💬 Those are my textbooks on the shelf.</p>
         </div>
     </div>
 
-    <div class="card" id="homework" style="border: 2px solid var(--primary);">
-        <h2 style="text-align: center; color: var(--primary);">📝 HOMEWORK</h2>
-        <p style="text-align: center;">Test your knowledge below!</p>
+    <div class="exercise-section" id="homework">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Homework</h2>
+        <p style="text-align:center; margin-bottom:2rem;">Test your knowledge below!</p>
 
-        <h3>I - Circle the correct option</h3>
-        
-        <div class="question-block">
-            <p>1. A: _______ is your dog's birthday? <br> B: It's on July 5th.</p>
-            <div class="radio-group" id="q1">
-                <label><input type="radio" name="q1" value="a"> a) How</label>
-                <label><input type="radio" name="q1" value="b"> b) When</label>
+        <div class="exercise-item">
+            <h3>I - Select the correct option</h3>
+            
+            <div class="question-block radio-question" data-correct="when">
+                <p>1) A: _______ is your dog's birthday? B: It's on July 5th.</p>
+                <div class="radio-options-container">
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q1" value="how">
+                        <span>How</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q1" value="when">
+                        <span>When</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="what">
+                <p>2) A: _______ is Spot like? B: He is very active and healthy.</p>
+                <div class="radio-options-container">
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q2" value="how">
+                        <span>How</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q2" value="what">
+                        <span>What</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="why">
+                <p>3) A: _______ is she called Lucy? B: Because of the Beatles' song.</p>
+                <div class="radio-options-container">
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q3" value="why">
+                        <span>Why</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q3" value="how">
+                        <span>How</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="how">
+                <p>4) A: _______ are you today? B: I'm fine, thanks for asking.</p>
+                <div class="radio-options-container">
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q4" value="who">
+                        <span>Who</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q4" value="how">
+                        <span>How</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="when">
+                <p>5) A: _______ do you come to the park? B: I come here every afternoon.</p>
+                <div class="radio-options-container">
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q5" value="when">
+                        <span>When</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="ex1_q5" value="how">
+                        <span>How</span>
+                    </label>
+                </div>
             </div>
         </div>
 
-        <div class="question-block">
-            <p>2. A: _______ is Spot like? <br> B: He is very active and healthy.</p>
-            <div class="radio-group" id="q2">
-                <label><input type="radio" name="q2" value="a"> a) How</label>
-                <label><input type="radio" name="q2" value="b"> b) What</label>
+        <div class="exercise-item">
+            <h3>II - Match the sentences</h3>
+            <div style="margin-bottom:1.5rem; padding:1rem; background:var(--primary-light); border-radius:10px;">
+                <p style="font-weight:bold; margin-bottom:0.5rem;">Options:</p>
+                <ul class="clean-list" style="font-size:0.95rem;">
+                    <li><strong>a)</strong> No, she's young. She's only two.</li>
+                    <li><strong>b)</strong> Spot is 14 years old.</li>
+                    <li><strong>c)</strong> Her birthday is next week.</li>
+                    <li><strong>d)</strong> The park is very large.</li>
+                    <li><strong>e)</strong> Because my cat gets alarmed easily!</li>
+                </ul>
+            </div>
+
+            <div class="question-block radio-question" data-correct="d">
+                <p>1) What is the park like?</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="ex2_q1" value="a"><span>a</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q1" value="b"><span>b</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q1" value="c"><span>c</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q1" value="d"><span>d</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q1" value="e"><span>e</span></label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="e">
+                <p>2) Why isn't your cat here?</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="ex2_q2" value="a"><span>a</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q2" value="b"><span>b</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q2" value="c"><span>c</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q2" value="d"><span>d</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q2" value="e"><span>e</span></label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="b">
+                <p>3) How old is Spot?</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="ex2_q3" value="a"><span>a</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q3" value="b"><span>b</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q3" value="c"><span>c</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q3" value="d"><span>d</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q3" value="e"><span>e</span></label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="c">
+                <p>4) When is Lucy's birthday?</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="ex2_q4" value="a"><span>a</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q4" value="b"><span>b</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q4" value="c"><span>c</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q4" value="d"><span>d</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q4" value="e"><span>e</span></label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="a">
+                <p>5) Is Lucy an old dog?</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="ex2_q5" value="a"><span>a</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q5" value="b"><span>b</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q5" value="c"><span>c</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q5" value="d"><span>d</span></label>
+                    <label class="radio-card"><input type="radio" name="ex2_q5" value="e"><span>e</span></label>
+                </div>
             </div>
         </div>
 
-        <div class="question-block">
-            <p>3. A: _______ is she called Lucy? <br> B: Because of the Beatles' song.</p>
-            <div class="radio-group" id="q3">
-                <label><input type="radio" name="q3" value="a"> a) Why</label>
-                <label><input type="radio" name="q3" value="b"> b) How</label>
+        <div class="exercise-item">
+            <h3>III - Complete the conversation</h3>
+            <p>Use: <strong>[ young | how | what | when | tall ]</strong></p>
+            
+            <div class="dialogue">
+                <p><strong>Carol:</strong> So, Gary... <input type="text" class="fill-in" data-correct="what" size="6" placeholder="..."> is your new girlfriend like?</p>
+                <p><strong>Gary:</strong> She's not short, she's <input type="text" class="fill-in" data-correct="tall" size="6" placeholder="..."> and very nice.</p>
+                <p><strong>Carol:</strong> <input type="text" class="fill-in" data-correct="how" size="6" placeholder="..."> old is she?</p>
+                <p><strong>Gary:</strong> She is 18 years old.</p>
+                <p><strong>Carol:</strong> Oh! That's quite <input type="text" class="fill-in" data-correct="young" size="6" placeholder="..."> isn't it?</p>
+                <p><strong>Gary:</strong> Yeah, but she is very mature for her age and actually her birthday is next week.</p>
+                <p><strong>Carol:</strong> Really? <input type="text" class="fill-in" data-correct="when" size="6" placeholder="..."> is her birthday?</p>
+                <p><strong>Gary:</strong> It's on September 17th.</p>
             </div>
         </div>
 
-        <div class="question-block">
-            <p>4. A: _______ are you today? <br> B: I'm fine, thanks for asking.</p>
-            <div class="radio-group" id="q4">
-                <label><input type="radio" name="q4" value="a"> a) Who</label>
-                <label><input type="radio" name="q4" value="b"> b) How</label>
+        <div class="exercise-item">
+            <h3>IV - Complete with verb "to be"</h3>
+            <p>(am / is / are)</p>
+            <div class="dialogue">
+                <p><strong>Reporter:</strong> So, how old <input type="text" class="fill-in" data-correct="are" size="5"> you?</p>
+                <p><strong>Ashton:</strong> I <input type="text" class="fill-in" data-correct="am" size="5"> 35 years old.</p>
+                <p><strong>Reporter:</strong> And when <input type="text" class="fill-in" data-correct="is" size="5"> your birthday?</p>
+                <p><strong>Ashton:</strong> It <input type="text" class="fill-in" data-correct="is" size="5"> on February 7th.</p>
+                <p><strong>Reporter:</strong> <input type="text" class="fill-in" data-correct="are" size="5"> you married?</p>
+                <p><strong>Ashton:</strong> No, I <input type="text" class="fill-in" data-correct="am not|'m not" size="8"> married.</p>
             </div>
         </div>
 
-        <div class="question-block">
-            <p>5. A: _______ do you come to the park? <br> B: I come here every afternoon.</p>
-            <div class="radio-group" id="q5">
-                <label><input type="radio" name="q5" value="a"> a) When</label>
-                <label><input type="radio" name="q5" value="b"> b) How</label>
+        <div class="exercise-item">
+            <h3>V - Complete with Question Word</h3>
+            <div class="question-block">
+                <p class="question-row">a) <input type="text" class="fill-in" data-correct="why" size="6"> is your dog so happy? <br><small><em>(Because she has a new friend.)</em></small></p>
+                <p class="question-row">b) <input type="text" class="fill-in" data-correct="when" size="6"> do you usually walk your dog? <br><small><em>(I usually take him for a walk everyday.)</em></small></p>
+                <p class="question-row">c) <input type="text" class="fill-in" data-correct="where" size="6"> is your cat? <br><small><em>(My cat is at home.)</em></small></p>
+                <p class="question-row">d) <input type="text" class="fill-in" data-correct="how" size="6"> do you come to the park? <br><small><em>(I come to the park by car.)</em></small></p>
+                <p class="question-row">e) <input type="text" class="fill-in" data-correct="why" size="6"> do you love your dog so much? <br><small><em>(Because he is my best friend.)</em></small></p>
             </div>
         </div>
 
-        <hr>
-
-        <h3>II - Match the sentences</h3>
-        <p>Match the question (Number) with the answer (Letter).</p>
-        
-        <div class="question-block">
-            <p>1) What is the park like? 
-                <select id="match1">
-                    <option value="">Select answer...</option>
-                    <option value="a">a) No, she's young. She's only two.</option>
-                    <option value="b">b) Spot is 14 years old.</option>
-                    <option value="c">c) Her birthday is next week.</option>
-                    <option value="d">d) The park is very large.</option>
-                    <option value="e">e) Because my cat gets alarmed easily!</option>
-                </select>
-            </p>
-            <p>2) Why isn't your cat here?
-                <select id="match2">
-                    <option value="">Select answer...</option>
-                    <option value="a">a) No, she's young. She's only two.</option>
-                    <option value="b">b) Spot is 14 years old.</option>
-                    <option value="c">c) Her birthday is next week.</option>
-                    <option value="d">d) The park is very large.</option>
-                    <option value="e">e) Because my cat gets alarmed easily!</option>
-                </select>
-            </p>
-            <p>3) How old is Spot?
-                <select id="match3">
-                    <option value="">Select answer...</option>
-                    <option value="a">a) No, she's young. She's only two.</option>
-                    <option value="b">b) Spot is 14 years old.</option>
-                    <option value="c">c) Her birthday is next week.</option>
-                    <option value="d">d) The park is very large.</option>
-                    <option value="e">e) Because my cat gets alarmed easily!</option>
-                </select>
-            </p>
-            <p>4) When is Lucy's birthday?
-                <select id="match4">
-                    <option value="">Select answer...</option>
-                    <option value="a">a) No, she's young. She's only two.</option>
-                    <option value="b">b) Spot is 14 years old.</option>
-                    <option value="c">c) Her birthday is next week.</option>
-                    <option value="d">d) The park is very large.</option>
-                    <option value="e">e) Because my cat gets alarmed easily!</option>
-                </select>
-            </p>
-            <p>5) Is Lucy an old dog?
-                <select id="match5">
-                    <option value="">Select answer...</option>
-                    <option value="a">a) No, she's young. She's only two.</option>
-                    <option value="b">b) Spot is 14 years old.</option>
-                    <option value="c">c) Her birthday is next week.</option>
-                    <option value="d">d) The park is very large.</option>
-                    <option value="e">e) Because my cat gets alarmed easily!</option>
-                </select>
-            </p>
-        </div>
-
-        <hr>
-
-        <h3>III - Complete the conversation</h3>
-        <p>Use the words: <strong>[ young | how | what | when | tall ]</strong></p>
-        
-        <div class="question-block">
-            <p>Carol: So, Gary... <input type="text" id="ex3_1" placeholder="..."> is your new girlfriend like?</p>
-            <p>Gary: She's not short, she's <input type="text" id="ex3_2" placeholder="..."> and very nice.</p>
-            <p>Carol: <input type="text" id="ex3_3" placeholder="..."> old is she?</p>
-            <p>Gary: She is 18 years old.</p>
-            <p>Carol: Oh! That's quite <input type="text" id="ex3_4" placeholder="..."> isn't it?</p>
-            <p>Gary: Yeah, but she is very mature for her age and actually her birthday is next week.</p>
-            <p>Carol: Really? <input type="text" id="ex3_5" placeholder="..."> is her birthday?</p>
-            <p>Gary: It's on September 17th.</p>
-        </div>
-
-        <hr>
-
-        <h3>IV - Complete with verb "to be"</h3>
-        <p>Interview with Ashton Kutcher (am / is / are)</p>
-        
-        <div class="question-block">
-            <p>Reporter: So, how old <input type="text" id="ex4_1"> you?</p>
-            <p>Ashton: I <input type="text" id="ex4_2"> 35 years old.</p>
-            <p>Reporter: And when <input type="text" id="ex4_3"> your birthday?</p>
-            <p>Ashton: It <input type="text" id="ex4_4"> on February 7th.</p>
-            <p>Reporter: <input type="text" id="ex4_5"> you married?</p>
-            <p>Ashton: No, I <input type="text" id="ex4_6"> married. (Hint: negative answer implied from context of "No", use 'am not' or similar)</p>
-        </div>
-
-        <hr>
-
-        <h3>V - Complete with Question Word</h3>
-        <div class="question-block">
-            <p>a) <input type="text" id="ex5_1"> is your dog so happy? <br><em>(Because she has a new friend.)</em></p>
-            <p>b) <input type="text" id="ex5_2"> do you usually walk your dog? <br><em>(I usually take him for a walk everyday.)</em></p>
-            <p>c) <input type="text" id="ex5_3"> is your cat? <br><em>(My cat is at home.)</em></p>
-            <p>d) <input type="text" id="ex5_4"> do you come to the park? <br><em>(I come to the park by car.)</em></p>
-            <p>e) <input type="text" id="ex5_5"> do you love your dog so much? <br><em>(Because he is my best friend.)</em></p>
-        </div>
-
-        <hr>
-
-        <h3>VI - Complete the conversation</h3>
-        <p>Party time!</p>
-        <div class="question-block">
-            <p>Tim: Hey mate! It is my birthday next week!</p>
-            <p>Matt: Really? How <input type="text" id="ex6_1"> will you be?</p>
-            <p>Tim: I'll be 26 <input type="text" id="ex6_2"> old.</p>
-            <p>Matt: But when exactly is your <input type="text" id="ex6_3">?</p>
-            <p>Tim: It is <input type="text" id="ex6_4"> March 15th. Can you come to my party?</p>
-            <p>Matt: Of course! <input type="text" id="ex6_5"> is it going to be? And what time?</p>
-            <p>Tim: At my house, at 8 pm!</p>
-        </div>
-
-        <hr>
-
-        <h3>VII - Choose the right expression</h3>
-        
-        <div class="question-block">
-            <p>1. A: Do they _______? <br> B: Of course! They're best friends!</p>
-            <div class="radio-group" id="q7_1">
-                <label><input type="radio" name="q7_1" value="a"> a) understand</label>
-                <label><input type="radio" name="q7_1" value="b"> b) get along</label>
-                <label><input type="radio" name="q7_1" value="c"> c) call</label>
+        <div class="exercise-item">
+            <h3>VI - Complete the conversation</h3>
+            <p>Party time!</p>
+            <div class="dialogue">
+                <p><strong>Tim:</strong> Hey mate! It is my birthday next week!</p>
+                <p><strong>Matt:</strong> Really? How <input type="text" class="fill-in" data-correct="old" size="5"> will you be?</p>
+                <p><strong>Tim:</strong> I'll be 26 <input type="text" class="fill-in" data-correct="years" size="5"> old.</p>
+                <p><strong>Matt:</strong> But when exactly is your <input type="text" class="fill-in" data-correct="birthday" size="8">?</p>
+                <p><strong>Tim:</strong> It is <input type="text" class="fill-in" data-correct="on" size="4"> March 15th. Can you come to my party?</p>
+                <p><strong>Matt:</strong> Of course! <input type="text" class="fill-in" data-correct="where" size="6"> is it going to be? And what time?</p>
+                <p><strong>Tim:</strong> At my house, at 8 pm!</p>
             </div>
         </div>
 
-        <div class="question-block">
-            <p>2. A: Who's your favourite _______? <br> B: I think it's Beyoncé.</p>
-            <div class="radio-group" id="q7_2">
-                <label><input type="radio" name="q7_2" value="a"> a) dog</label>
-                <label><input type="radio" name="q7_2" value="b"> b) park</label>
-                <label><input type="radio" name="q7_2" value="c"> c) singer</label>
+        <div class="exercise-item">
+            <h3>VII - Choose the right expression</h3>
+            
+            <div class="question-block radio-question" data-correct="b">
+                <p>1. A: Do they _______? <br> B: Of course! They're best friends!</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="q7_1" value="a"><span>a) understand</span></label>
+                    <label class="radio-card"><input type="radio" name="q7_1" value="b"><span>b) get along</span></label>
+                    <label class="radio-card"><input type="radio" name="q7_1" value="c"><span>c) call</span></label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="c">
+                <p>2. A: Who's your favourite _______? <br> B: I think it's Beyoncé.</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="q7_2" value="a"><span>a) dog</span></label>
+                    <label class="radio-card"><input type="radio" name="q7_2" value="b"><span>b) park</span></label>
+                    <label class="radio-card"><input type="radio" name="q7_2" value="c"><span>c) singer</span></label>
+                </div>
+            </div>
+
+            <div class="question-block radio-question" data-correct="b">
+                <p>3. A: My dog likes to exercise because he is _______ <br> B: Really? Well, my dog likes to sleep a lot!</p>
+                <div class="radio-options-container">
+                    <label class="radio-card"><input type="radio" name="q7_3" value="a"><span>a) fat and old</span></label>
+                    <label class="radio-card"><input type="radio" name="q7_3" value="b"><span>b) active and healthy</span></label>
+                    <label class="radio-card"><input type="radio" name="q7_3" value="c"><span>c) a nice dog</span></label>
+                </div>
             </div>
         </div>
 
-        <div class="question-block">
-            <p>3. A: My dog likes to exercise because he is _______ <br> B: Really? Well, my dog likes to sleep a lot!</p>
-            <div class="radio-group" id="q7_3">
-                <label><input type="radio" name="q7_3" value="a"> a) fat and old</label>
-                <label><input type="radio" name="q7_3" value="b"> b) active and healthy</label>
-                <label><input type="radio" name="q7_3" value="c"> c) a nice dog</label>
-            </div>
-        </div>
-
-        <button class="btn-check" onclick="checkAnswers()">CHECK ANSWERS ✅</button>
-        <div id="result-area" style="text-align: center; margin-top: 20px; font-size: 1.2rem;"></div>
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
 
     </div>
 
-</main>
+</div>
+
+<footer>
+    <p>Created for English Learning • Based on Day 02 Material</p>
+</footer>
 
 <script>
-    // --- LÓGICA DO TEMA ESCURO/CLARO ---
-    const toggleBtn = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
 
-    // Verificar se já existe uma preferência salva
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
-        html.setAttribute('data-theme', 'dark');
-        toggleBtn.textContent = '☀️';
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
     }
 
-    toggleBtn.addEventListener('click', () => {
-        if (html.getAttribute('data-theme') === 'dark') {
-            html.removeAttribute('data-theme');
-            toggleBtn.textContent = '🌙';
+    function toggleTheme() {
+        const currentTheme = root.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            root.removeAttribute('data-theme');
             localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
         } else {
-            html.setAttribute('data-theme', 'dark');
-            toggleBtn.textContent = '☀️';
+            root.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
         }
-    });
+    }
 
-    // --- LÓGICA DE CORREÇÃO DOS EXERCÍCIOS (MANTIDA) ---
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
     function checkAnswers() {
         let score = 0;
         let total = 0;
 
-        function checkRadio(name, correctVal) {
+        // 1. Reset Styles
+        // Remove correct/wrong classes from all inputs and radio labels
+        document.querySelectorAll('input').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+        document.querySelectorAll('.radio-card').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+
+
+        // 2. Check Radio Questions (Exercises I, II, VII)
+        // We find all containers with the class 'radio-question'
+        document.querySelectorAll('.radio-question').forEach(questionBlock => {
             total++;
-            const selected = document.querySelector(`input[name="${name}"]:checked`);
+            const correctVal = questionBlock.dataset.correct;
+            // Find the checked input within this specific block
+            const selectedInput = questionBlock.querySelector('input[type="radio"]:checked');
             
-            // Remove previous highlights
-            const labels = document.querySelectorAll(`input[name="${name}"]`);
-            labels.forEach(l => l.parentElement.style.color = 'inherit');
-            labels.forEach(l => l.parentElement.style.fontWeight = 'normal');
-
-            if (selected && selected.value === correctVal) {
-                score++;
-                selected.parentElement.style.color = 'var(--success)';
-                selected.parentElement.style.fontWeight = 'bold';
-            } else if (selected) {
-                selected.parentElement.style.color = 'var(--error)';
+            if (selectedInput) {
+                // Determine the parent label (card) to style it
+                const labelCard = selectedInput.closest('.radio-card');
+                
+                if (selectedInput.value === correctVal) {
+                    labelCard.classList.add('correct-answer');
+                    score++;
+                } else {
+                    labelCard.classList.add('wrong-answer');
+                }
             }
-        }
+        });
 
-        function checkInput(id, correctVals) {
+
+        // 3. Check Fill-in Text Inputs (Exercises III, IV, V, VI)
+        document.querySelectorAll('.fill-in').forEach(el => {
             total++;
-            const el = document.getElementById(id);
-            const val = el.value.trim().toLowerCase();
+            const userVal = el.value.trim().toLowerCase();
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
             
-            let isCorrect = false;
-            if (Array.isArray(correctVals)) {
-                isCorrect = correctVals.includes(val);
-            } else {
-                isCorrect = val === correctVals.toLowerCase();
-            }
-
-            if (isCorrect) {
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
                 score++;
-                el.classList.add('correct');
-                el.classList.remove('incorrect');
             } else {
-                el.classList.add('incorrect');
-                el.classList.remove('correct');
+                el.classList.add('wrong-answer');
             }
-        }
+        });
 
-        // Ex I
-        checkRadio('q1', 'b'); 
-        checkRadio('q2', 'b'); 
-        checkRadio('q3', 'a'); 
-        checkRadio('q4', 'b'); 
-        checkRadio('q5', 'a'); 
 
-        // Ex II 
-        checkInput('match1', 'd'); 
-        checkInput('match2', 'e'); 
-        checkInput('match3', 'b'); 
-        checkInput('match4', 'c'); 
-        checkInput('match5', 'a'); 
-
-        // Ex III 
-        checkInput('ex3_1', 'what');
-        checkInput('ex3_2', 'tall');
-        checkInput('ex3_3', 'how');
-        checkInput('ex3_4', 'young');
-        checkInput('ex3_5', 'when');
-
-        // Ex IV 
-        checkInput('ex4_1', 'are');
-        checkInput('ex4_2', 'am'); 
-        checkInput('ex4_3', 'is');
-        checkInput('ex4_4', 'is');
-        checkInput('ex4_5', 'are');
-        checkInput('ex4_6', ['am not', "'m not"]);
-
-        // Ex V 
-        checkInput('ex5_1', 'why');
-        checkInput('ex5_2', 'when'); 
-        checkInput('ex5_3', 'where'); 
-        checkInput('ex5_4', 'how');
-        checkInput('ex5_5', 'why');
-
-        // Ex VI 
-        checkInput('ex6_1', 'old');
-        checkInput('ex6_2', 'years');
-        checkInput('ex6_3', 'birthday');
-        checkInput('ex6_4', 'on');
-        checkInput('ex6_5', 'where');
-
-        // Ex VII 
-        checkRadio('q7_1', 'b'); 
-        checkRadio('q7_2', 'c'); 
-        checkRadio('q7_3', 'b'); 
-
-        const resultArea = document.getElementById('result-area');
-        const percentage = Math.round((score / total) * 100);
+        // 4. Feedback Message
+        const feedback = document.getElementById('feedback');
+        const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
         
-        let msg = "";
-        if (percentage === 100) msg = "PERFECT! 🌟 Excellent job!";
-        else if (percentage >= 70) msg = "Great job! Keep practicing! 👍";
-        else msg = "Good effort! Review the material and try again. 💪";
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect!";
+        else if(percentage >= 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
 
-        resultArea.innerHTML = `You got ${score} out of ${total} correct (${percentage}%).<br>${msg}`;
-        resultArea.style.color = percentage >= 70 ? 'var(--success)' : 'var(--text)';
+        feedback.textContent = msg;
+        feedback.style.color = percentage >= 70 ? 'var(--accent)' : 'var(--danger)';
     }
 </script>
 

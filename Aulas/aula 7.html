@@ -3,104 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 07 - English Class</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="../icons/7/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/7/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/7/favicon-16x16.png">
-    <link rel="manifest" href="../icons/7/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <title>Day 07: Future "Will" & Object Pronouns</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --accent-color: #4cc9f0;
-            --success-color: #2ecc71;
-            --error-color: #e74c3c;
-            --bg-color: #f8f9fa;
+            /* Base Colors (Light Mode) */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
             --card-bg: #ffffff;
-            --text-color: #2b2d42;
-            --border-color: #e9ecef;
-            --input-bg: #f1f3f5;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
         }
 
-        body.dark-mode {
-            --primary-color: #4cc9f0;
-            --secondary-color: #4895ef;
-            --accent-color: #4361ee;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --border-color: #333333;
-            --input-bg: #2c2c2c;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        /* Dark Mode Config */
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --primary-light: #312e81;
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;
+            --card-bg: #1F2937;
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
         }
 
         * {
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            margin: 0;
-            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
+        /* Theme Button */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff;
+        }
+
+        /* Container */
         .container {
             max-width: 900px;
             margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        /* Header & Toggle */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-color);
-        }
-
-        h1 { margin: 0; font-size: 2rem; }
-        h2 { margin-top: 0; font-size: 1.5rem; border-left: 5px solid var(--accent-color); padding-left: 15px; }
-
-        .theme-toggle {
-            background: var(--input-bg);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Cards */
+        /* Cards & Sections */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.3s;
         }
 
-        .note-box {
-            background-color: rgba(67, 97, 238, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 4px solid var(--primary-color);
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--text);
+            opacity: 0.8;
+            margin: 1.5rem 0 1rem;
         }
 
         /* Tables */
@@ -111,142 +147,222 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            min-width: 500px;
+            margin-bottom: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text);
+            vertical-align: middle;
+        }
+        
+        [data-theme="dark"] td {
+             color: #E5E7EB;
         }
 
         th {
-            background-color: var(--input-bg);
-            color: var(--primary-color);
+            background-color: var(--primary);
+            color: white;
         }
 
-        /* Forms & Exercises */
-        .exercise-group {
-            margin-bottom: 25px;
-            padding: 15px;
-            border: 1px solid var(--border-color);
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Grammar Highlights */
+        .grammar-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
+        }
+
+        /* Dialogues */
+        .dialogue {
+            background: var(--dialogue-bg);
+            padding: 1.5rem;
             border-radius: 10px;
+            border: 1px dashed var(--dialogue-border);
+            margin-top: 1rem;
         }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .dialogue p {
+            margin-bottom: 1rem;
         }
-
-        input[type="text"], select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 2px solid var(--border-color);
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
-        }
-
-        input[type="text"]:focus, select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .radio-option {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
+        .dialogue p:last-child {
+            margin-bottom: 0;
         }
         
-        .radio-option:hover {
-            background-color: var(--input-bg);
+        .speaker {
+            font-weight: 800;
+            color: var(--primary);
+            margin-right: 5px;
         }
 
-        .word-bank {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+        /* EXERCISES SECTION */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
+            transition: background-color 0.3s;
+        }
+
+        .exercise-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--input-border);
+        }
+
+        /* Text Input Styling */
+        input[type="text"] {
+            padding: 0.5rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
             background: var(--input-bg);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            color: var(--primary-color);
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* --- RADIO BUTTON STYLING --- */
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .radio-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--input-border);
+            border-radius: 30px; /* Pill shape */
+            cursor: pointer;
+            background: var(--input-bg);
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .radio-label:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 8px;
+            accent-color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        /* State when Radio is Checked (UI enhancement) */
+        .radio-label:has(input:checked) {
+             border-color: var(--primary);
+             background-color: var(--primary-light);
+             color: var(--primary);
         }
 
         /* Feedback Classes */
-        .correct {
-            border-color: var(--success-color) !important;
-            background-color: rgba(46, 204, 113, 0.1) !important;
-        }
-
-        .incorrect {
-            border-color: var(--error-color) !important;
-            background-color: rgba(231, 76, 60, 0.1) !important;
-        }
-
-        .feedback-msg {
-            font-size: 0.9rem;
-            margin-top: 5px;
+        .correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent);
             font-weight: bold;
+        }
+
+        .wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: var(--danger);
+        }
+        
+        /* Special handling for text inputs to have bold font when correct */
+        input[type="text"].correct-answer {
+             font-weight: bold;
         }
 
         /* Button */
         .btn-check {
+            display: block;
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: var(--secondary);
             color: white;
+            padding: 1rem;
             border: none;
             border-radius: 10px;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
-            margin-top: 20px;
+            transition: background 0.3s;
+            margin-top: 2rem;
         }
 
         .btn-check:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+            background: #d97706;
+        }
+
+        .feedback-msg {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
-            .card { padding: 20px; }
+            header h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+            .radio-group { flex-direction: column; gap: 0.5rem; }
+            .radio-label { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Day 07 - English Class</h1>
-        <button class="theme-toggle" onclick="toggleTheme()">
-            <span id="theme-icon">🌙</span> Dark Mode
-        </button>
-    </header>
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
 
-    <section class="card">
-        <h2>1) Simple Future - "Will" Future</h2>
-        <p>The Simple Future expresses a spontaneous decision, an assumption with regard to the future, an action in the future that cannot be influenced or a prediction based on no evidence.</p>
+<header>
+    <h1>Day 07</h1>
+    <p>English Masterclass: Future "Will" & Object Pronouns</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>1) Simple Future - "Will"</h2>
+        <p>The Simple Future expresses a spontaneous decision, an assumption regarding the future, an action that cannot be influenced, or a prediction based on no evidence.</p>
         
-        <div class="note-box">
-            <strong>Examples:</strong>
-            <ul>
-                <li>"Oh, the trash is full. I'll take it out." (You didn't plan it; you just decided right now).</li>
-                <li>"You'll love Paris!" (This is your opinion, not a fact).</li>
-                <li>"I think the Green team will win the game." (Belief, not based on clear evidence).</li>
-                <li>"The sun will rise tomorrow at 6:15 AM."</li>
-                <li>"Next year, I will be 30."</li>
+        <div class="grammar-box">
+            <strong style="display:block; margin-bottom:0.5rem; color:var(--primary);">Examples:</strong>
+            <ul style="padding-left: 1.2rem;">
+                <li>"Oh, the trash is full. I'll take it out." <span style="font-weight:bold; color:var(--accent);">(Spontaneous decision)</span></li>
+                <li>"You'll love Paris!" <span style="font-weight:bold; color:var(--accent);">(Opinion)</span></li>
+                <li>"I think the Green team will win." <span style="font-weight:bold; color:var(--accent);">(Belief)</span></li>
+                <li>"The sun will rise tomorrow at 6:15 AM." <span style="font-weight:bold; color:var(--accent);">(Fact)</span></li>
             </ul>
         </div>
 
@@ -267,33 +383,33 @@
                         <td><strong>WILL + SUBJECT + VERB</strong></td>
                     </tr>
                     <tr>
-                        <td>Ex: I will travel to Rio soon.</td>
-                        <td>Ex: I will not travel to Rio soon.</td>
-                        <td>Ex: Will Jackie travel to Rio soon?</td>
+                        <td>Ex: I will travel soon.</td>
+                        <td>Ex: I will not travel soon.</td>
+                        <td>Ex: Will she travel soon?</td>
                     </tr>
                     <tr>
-                        <td>Contracted form: <strong>'ll</strong></td>
-                        <td>Contracted form: <strong>won't</strong></td>
-                        <td>Short Answers: Yes, she will. / No, she won't.</td>
+                        <td>Contraction: <strong>'ll</strong></td>
+                        <td>Contraction: <strong>won't</strong></td>
+                        <td>Short: Yes, she will. / No, she won't.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <h3>B) Uses of "Will" Future</h3>
-        <ul>
-            <li><strong>A spontaneous decision:</strong> "Wait, I will help you with that!"</li>
-            <li><strong>An opinion, hope, uncertainty:</strong> "She'll probably visit many beautiful places in Rio."</li>
-            <li><strong>A promise:</strong> "I'll bring you a present from Rio."</li>
-            <li><strong>A prediction (imagination/no evidence):</strong> "It won't rain during my holidays in Brazil."</li>
+        <ul style="padding-left: 1.2rem; list-style-type: disc;">
+            <li style="margin-bottom: 0.5rem;"><strong>A spontaneous decision:</strong> "Wait, I will help you with that!"</li>
+            <li style="margin-bottom: 0.5rem;"><strong>An opinion, hope, uncertainty:</strong> "She'll probably visit many beautiful places in Rio."</li>
+            <li style="margin-bottom: 0.5rem;"><strong>A promise:</strong> "I'll bring you a present from Rio."</li>
+            <li style="margin-bottom: 0.5rem;"><strong>A prediction (imagination/no evidence):</strong> "It won't rain during my holidays in Brazil."</li>
         </ul>
-    </section>
+    </div>
 
-    <section class="card">
+    <div class="card">
         <h2>2) Object Pronouns</h2>
-        <p>Subject and object pronouns are used in everyday language. However, it can be a little tricky to remember which is which! Take a look:</p>
+        <p>Subject and object pronouns are used in everyday language. It can be tricky to remember which is which!</p>
 
-        <div class="table-responsive">
+        <div class="table-responsive" style="margin-top: 1rem;">
             <table>
                 <thead>
                     <tr>
@@ -308,306 +424,318 @@
                     <tr><td>She</td><td>Her</td></tr>
                     <tr><td>It</td><td>It</td></tr>
                     <tr><td>We</td><td>Us</td></tr>
-                    <tr><td>You</td><td>You</td></tr>
                     <tr><td>They</td><td>Them</td></tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="note-box">
+        <div class="grammar-box">
             The <strong>subject pronoun</strong> always takes action. The <strong>object pronoun</strong> is part of the activity, but it does not do any acting.
         </div>
 
         <h3>Examples in Context</h3>
-        <p><strong>Scenario:</strong> Faith is talking to Bella on the phone.</p>
-        <ul>
+        <p style="margin-bottom:0.5rem;"><strong>Scenario:</strong> Faith is talking to Bella on the phone.</p>
+        <ul style="padding-left: 1.2rem; margin-bottom: 1rem;">
             <li><strong>Faith (she)</strong> is the subject (she is talking), she is taking the action.</li>
             <li><strong>Bella (her)</strong> is the object of Faith's action; the talking is done to her, not by her.</li>
             <li><strong>Result:</strong> Faith is talking to Bella / She is talking to her.</li>
         </ul>
-        <p><strong>More examples:</strong></p>
-        <ul>
-            <li>Faith will bring <strong>me</strong> a Brazilian souvenir.</li>
-            <li>I need to tell <strong>you</strong> something about Rio de Janeiro: it's wonderful!</li>
-            <li>It wasn't for <strong>her</strong>, it was for <strong>us</strong>!</li>
-        </ul>
-    </section>
 
-    <form id="exercise-form">
-        <section class="card">
-            <h2>Exercises</h2>
+        <div class="dialogue">
+            <strong style="color:var(--primary);">More examples:</strong>
+            <ul style="padding-left: 1.2rem; margin-top:0.5rem;">
+                <li>Faith will bring <strong>me</strong> a Brazilian souvenir.</li>
+                <li>I need to tell <strong>you</strong> something about Rio de Janeiro: it's wonderful!</li>
+                <li>It wasn't for <strong>her</strong>, it was for <strong>us</strong>!</li>
+            </ul>
+        </div>
+    </div>
 
-            <h3>I - Circle the correct option.</h3>
+    <div class="exercise-section" id="homework">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Exercises</h2>
+        <p style="text-align:center; margin-bottom:2rem;">Test your knowledge below.</p>
+
+        <div class="exercise-item">
+            <h3>I - Choose the correct option</h3>
             
-            <div class="exercise-group">
-                <p>1) Is this <strong>your</strong> snack bar?</p>
-                <p>No, it belongs to Mary.</p>
-                <label class="radio-option"><input type="radio" name="ex1_1" value="your"> a) your</label>
-                <label class="radio-option"><input type="radio" name="ex1_1" value="yours"> b) yours</label>
+            <div style="margin-bottom: 1.5rem;">
+                <p><strong>1)</strong> Is this ______ snack bar? <small style="color:var(--text-muted)">(No, it belongs to Mary.)</small></p>
+                <div class="radio-group" id="ex1_1_group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_1" value="your"> your
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_1" value="yours"> yours
+                    </label>
+                </div>
             </div>
 
-            <div class="exercise-group">
-                <p>2) Do you think I am good at <strong>my</strong> job?</p>
-                <p>Yes, you are a great employee!</p>
-                <label class="radio-option"><input type="radio" name="ex1_2" value="mine"> a) mine</label>
-                <label class="radio-option"><input type="radio" name="ex1_2" value="my"> b) my</label>
+            <div style="margin-bottom: 1.5rem;">
+                <p><strong>2)</strong> Do you think I am good at ______ job?</p>
+                <div class="radio-group" id="ex1_2_group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_2" value="mine"> mine
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_2" value="my"> my
+                    </label>
+                </div>
             </div>
 
-            <div class="exercise-group">
-                <p>3) Did you give them <strong>their</strong> food?</p>
-                <p>Yes, they are eating it now.</p>
-                <label class="radio-option"><input type="radio" name="ex1_3" value="them"> a) them</label>
-                <label class="radio-option"><input type="radio" name="ex1_3" value="their"> b) their</label>
+            <div style="margin-bottom: 1.5rem;">
+                <p><strong>3)</strong> Did you give them ______ food?</p>
+                <div class="radio-group" id="ex1_3_group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_3" value="them"> them
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_3" value="their"> their
+                    </label>
+                </div>
             </div>
 
-            <div class="exercise-group">
-                <p>4) These hot dogs are <strong>ours</strong>, right?</p>
-                <p>No, we ordered hamburgers.</p>
-                <label class="radio-option"><input type="radio" name="ex1_4" value="ours"> a) ours</label>
-                <label class="radio-option"><input type="radio" name="ex1_4" value="our"> b) our</label>
+            <div style="margin-bottom: 1.5rem;">
+                <p><strong>4)</strong> These hot dogs are ______, right?</p>
+                <div class="radio-group" id="ex1_4_group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_4" value="ours"> ours
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_4" value="our"> our
+                    </label>
+                </div>
             </div>
 
-            <div class="exercise-group">
-                <p>5) This jacket is <strong>mine</strong>.</p>
-                <p>Ok, I won't touch it.</p>
-                <label class="radio-option"><input type="radio" name="ex1_5" value="my"> a) my</label>
-                <label class="radio-option"><input type="radio" name="ex1_5" value="mine"> b) mine</label>
+            <div style="margin-bottom: 1.5rem;">
+                <p><strong>5)</strong> This jacket is ______.</p>
+                <div class="radio-group" id="ex1_5_group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_5" value="my"> my
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex1_5" value="mine"> mine
+                    </label>
+                </div>
             </div>
-    
-            <hr>
-            <h3>II - Complete the conversation.</h3>
-            <div class="word-bank">
-                <span>boss</span> | <span>job</span> | <span>can</span> | <span>work</span> | <span>experience</span>
-            </div>
-            <div class="exercise-group">
-                <p><strong>Sara:</strong> Tell me about your job.</p>
-                <p><strong>Sara:</strong> Hey Emily! How is your new <input type="text" name="ex3_1" style="width: 150px; display:inline-block"> going?</p>
-                <p><strong>Emily:</strong> It's great. I'm getting a lot of <input type="text" name="ex3_2" style="width: 150px; display:inline-block">.</p>
-                <p><strong>Sara:</strong> And what do you think of your <input type="text" name="ex3_3" style="width: 150px; display:inline-block">?</p>
-                <p><strong>Emily:</strong> She's very nice, but she makes us <input type="text" name="ex3_4" style="width: 150px; display:inline-block"> hard!</p>
-                <p><strong>Sara:</strong> I understand. <input type="text" name="ex3_5" style="width: 150px; display:inline-block"> I come visit you there some time?</p>
-                <p><strong>Emily:</strong> Of course! You can come any time.</p>
-            </div>
+        </div>
 
-            <hr>
-            <h3>III - Complete with the appropriate modal (can, could, may, would).</h3>
-            <div class="exercise-group">
-                <p>a) <input type="text" name="ex4_1" style="width: 100px; display:inline-block"> you like a drink?</p>
-                <p>b) Dad, <input type="text" name="ex4_2" style="width: 100px; display:inline-block"> we go to the theme park?</p>
-                <p>c) <input type="text" name="ex4_3" style="width: 100px; display:inline-block"> I take your jacket, sir?</p>
-                <p>d) <input type="text" name="ex4_4" style="width: 100px; display:inline-block"> you please help me with my work?</p>
-                <p>e) <input type="text" name="ex4_5" style="width: 100px; display:inline-block"> I help you?</p>
+        <div class="exercise-item">
+            <h3>II - Complete the conversation</h3>
+            <div class="grammar-box" style="text-align:center;">
+                boss • job • can • work • experience
             </div>
-
-            <hr>
-            <h3>IV - Complete with appropriate possessives.</h3>
-            <div class="exercise-group">
-                <p>a) Where is <input type="text" name="ex6a_1" style="width: 100px; display:inline-block"> house? My house is in Orlando.</p>
-                <p>b) Do you like <input type="text" name="ex6a_2" style="width: 100px; display:inline-block"> hair? Yes, your hair looks lovely.</p>
-                <p>c) Did you go to <input type="text" name="ex6a_3" style="width: 100px; display:inline-block"> dinner party? No, but I heard their party was great.</p>
-                <p>d) Is this <input type="text" name="ex6a_4" style="width: 100px; display:inline-block"> table? Yes, this one is ours.</p>
-                <p>e) What is <input type="text" name="ex6a_5" style="width: 100px; display:inline-block"> boss's name? My boss's name is Anne.</p>
-            </div>
-
-            <hr>
-            <h3>V - Complete the conversation below:</h3>
-            <div class="exercise-group">
-                <p><strong>Joe:</strong> Hey Jill! <input type="text" name="ex6b_1" style="width: 100px; display:inline-block"> you like to go to a theme park with me tomorrow?</p>
-                <p><strong>Jill:</strong> Hi Joe! That sounds really fun. <input type="text" name="ex6b_2" style="width: 100px; display:inline-block"> I bring a friend?</p>
-                <p><strong>Joe:</strong> I guess so. Is <input type="text" name="ex6b_3" style="width: 100px; display:inline-block"> friend a nice person?</p>
-                <p><strong>Jill:</strong> Yes, she's great. <input type="text" name="ex6b_4" style="width: 100px; display:inline-block"> name is Kelly.</p>
-                <p><strong>Joe:</strong> Oh, I know Kelly! She's Brazilian, right?</p>
-                <p><strong>Jill:</strong> No, she's from the USA! You need to improve <input type="text" name="ex6b_5" style="width: 100px; display:inline-block"> memory.</p>
-                <p><strong>Joe:</strong> I think you are right. So do you want to go in the <input type="text" name="ex6b_6" style="width: 100px; display:inline-block"> or the afternoon?</p>
-                <p><strong>Jill:</strong> I'd like to leave in the morning.</p>
-                <p><strong>Joe:</strong> Ok! Can I pick you up at <input type="text" name="ex6b_7" style="width: 100px; display:inline-block"> house at 9 am?</p>
-                <p><strong>Jill:</strong> Sounds good. See you tomorrow!</p>
-            </div>
-
-            <hr>
-            <h3>VI - Choose the right word.</h3>
             
-            <div class="exercise-group">
-                <p><strong>1) A: Do you have a lot of _____?</strong></p>
-                <p>B: Of course! I have been working for 10 years.</p>
-                <label class="radio-option"><input type="radio" name="ex7_1" value="job"> a) job</label>
-                <label class="radio-option"><input type="radio" name="ex7_1" value="experience"> b) experience</label>
-                <label class="radio-option"><input type="radio" name="ex7_1" value="work"> c) work</label>
+            <div class="dialogue">
+                <p><span class="speaker">Sara:</span> Hey Emily! How is your new <input type="text" class="fill-in" data-correct="job" size="10"> going?</p>
+                <p><span class="speaker">Emily:</span> It's great. I'm getting a lot of <input type="text" class="fill-in" data-correct="experience" size="12">.</p>
+                <p><span class="speaker">Sara:</span> And what do you think of your <input type="text" class="fill-in" data-correct="boss" size="10">?</p>
+                <p><span class="speaker">Emily:</span> She's very nice, but she makes us <input type="text" class="fill-in" data-correct="work" size="10"> hard!</p>
+                <p><span class="speaker">Sara:</span> I understand. <input type="text" class="fill-in" data-correct="can" size="8"> I come visit you there some time?</p>
+                <p><span class="speaker">Emily:</span> Of course! You can come any time.</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>III - Complete with Modal Verbs (can, could, may, would)</h3>
+            <div style="margin-bottom: 0.8rem;">
+                <span>a)</span> <input type="text" class="fill-in" data-correct="would" size="8"> <span>you like a drink?</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>b) Dad,</span> <input type="text" class="fill-in" data-correct="can|could" size="8"> <span>we go to the theme park?</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>c)</span> <input type="text" class="fill-in" data-correct="may|can|could" size="8"> <span>I take your jacket, sir?</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>d)</span> <input type="text" class="fill-in" data-correct="could|can|would" size="8"> <span>you please help me with my work?</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>e)</span> <input type="text" class="fill-in" data-correct="may|can" size="8"> <span>I help you?</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>IV - Complete with appropriate possessives</h3>
+            <div style="margin-bottom: 0.8rem;">
+                <span>a) Where is</span> <input type="text" class="fill-in" data-correct="your" size="8"> <span>house? My house is in Orlando.</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>b) Do you like</span> <input type="text" class="fill-in" data-correct="my" size="8"> <span>hair? Yes, your hair looks lovely.</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>c) Did you go to</span> <input type="text" class="fill-in" data-correct="their" size="8"> <span>dinner party? No, but I heard their party was great.</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>d) Is this</span> <input type="text" class="fill-in" data-correct="our" size="8"> <span>table? Yes, this one is ours.</span>
+            </div>
+            <div style="margin-bottom: 0.8rem;">
+                <span>e) What is</span> <input type="text" class="fill-in" data-correct="your" size="8"> <span>boss's name? My boss's name is Anne.</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>V - Complete the conversation</h3>
+            <div class="dialogue">
+                <p><span class="speaker">Joe:</span> Hey Jill! <input type="text" class="fill-in" data-correct="would" size="10"> you like to go to a theme park with me tomorrow?</p>
+                <p><span class="speaker">Jill:</span> Hi Joe! That sounds fun. <input type="text" class="fill-in" data-correct="can|could" size="10"> I bring a friend?</p>
+                <p><span class="speaker">Joe:</span> I guess so. Is <input type="text" class="fill-in" data-correct="your" size="10"> friend a nice person?</p>
+                <p><span class="speaker">Jill:</span> Yes, she's great. <input type="text" class="fill-in" data-correct="her" size="10"> name is Kelly.</p>
+                <p><span class="speaker">Joe:</span> Oh, I know Kelly! She's Brazilian, right?</p>
+                <p><span class="speaker">Jill:</span> No, she's from the USA! You need to improve <input type="text" class="fill-in" data-correct="your" size="10"> memory.</p>
+                <p><span class="speaker">Joe:</span> I think you are right. So do you want to go in the <input type="text" class="fill-in" data-correct="morning" size="10"> or the afternoon?</p>
+                <p><span class="speaker">Jill:</span> I'd like to leave in the morning.</p>
+                <p><span class="speaker">Joe:</span> Ok! Can I pick you up at <input type="text" class="fill-in" data-correct="your" size="10"> house at 9 am?</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>VI - Choose the right word</h3>
+            
+            <div style="margin-bottom: 2rem;">
+                <p style="margin-bottom:0.5rem;"><strong>1) A: Do you have a lot of...</strong></p>
+                <p style="margin-bottom:1rem; font-size:0.9em; color:var(--text-muted);">(B: Of course! I have been working for 10 years.)</p>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex6_1" value="job"> job
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex6_1" value="experience"> experience
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex6_1" value="work"> work
+                    </label>
+                </div>
             </div>
 
-            <div class="exercise-group">
-                <p><strong>2) A: _____ you do me a favor, please?</strong></p>
-                <p>B: Sure, that's what friends are for.</p>
-                <label class="radio-option"><input type="radio" name="ex7_2" value="may"> a) May</label>
-                <label class="radio-option"><input type="radio" name="ex7_2" value="could"> b) Could</label>
-                <label class="radio-option"><input type="radio" name="ex7_2" value="do"> c) Do</label>
+            <hr style="border:0; border-top:1px dashed var(--input-border); margin: 1.5rem 0;">
+
+            <div style="margin-bottom: 1rem;">
+                <p style="margin-bottom:0.5rem;"><strong>2) A: ... you do me a favor, please?</strong></p>
+                <p style="margin-bottom:1rem; font-size:0.9em; color:var(--text-muted);">(B: Sure, that's what friends are for.)</p>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="ex6_2" value="may"> May
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex6_2" value="could"> Could
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="ex6_2" value="do"> Do
+                    </label>
+                </div>
             </div>
+        </div>
 
-            <button type="button" class="btn-check" onclick="checkAnswers()">Check My Answers</button>
-            <div id="result-display" style="text-align: center; margin-top: 20px; font-weight: bold; font-size: 1.2rem;"></div>
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
 
-        </section>
-    </form>
+    </div>
+
 </div>
 
+<footer>
+    <p>Created for English Learning • Based on Day 07 Material</p>
+</footer>
+
 <script>
-    // Theme Toggle Logic
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
+    }
+
     function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
-        const icon = document.getElementById('theme-icon');
-        if (document.body.classList.contains('dark-mode')) {
-            icon.textContent = '☀️';
+        const currentTheme = root.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
         } else {
-            icon.textContent = '🌙';
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
         }
     }
 
-    // Checking Logic
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
     function checkAnswers() {
         let score = 0;
-        let total = 29; // Total number of inputs/selections
+        let total = 0;
 
-        // Helper function to check Radio buttons
-        function checkRadio(name, correctVal) {
-            const radios = document.getElementsByName(name);
-            let selected = null;
-            let parent = radios[0].closest('.exercise-group');
+        // Reset Styles (Remove feedback classes)
+        document.querySelectorAll('input, select, .radio-label').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+
+        // --- 1. Check RADIO Buttons (Ex 1 & 6) ---
+        const radioConfig = [
+            // Exercise 1
+            {name: 'ex1_1', ans: 'your'},
+            {name: 'ex1_2', ans: 'my'},
+            {name: 'ex1_3', ans: 'their'},
+            {name: 'ex1_4', ans: 'ours'},
+            {name: 'ex1_5', ans: 'mine'},
+            // Exercise 6
+            {name: 'ex6_1', ans: 'experience'},
+            {name: 'ex6_2', ans: 'could'}
+        ];
+
+        radioConfig.forEach(item => {
+            total++;
+            const checked = document.querySelector(`input[name="${item.name}"]:checked`);
             
-            // Reset style
-            parent.classList.remove('correct', 'incorrect');
-
-            for (let r of radios) {
-                if (r.checked) selected = r.value;
+            if (checked) {
+                // Find parent label to apply style
+                const parentLabel = checked.parentElement;
+                
+                if (checked.value === item.ans) {
+                    parentLabel.classList.add('correct-answer');
+                    score++;
+                } else {
+                    parentLabel.classList.add('wrong-answer');
+                }
             }
+        });
 
-            if (selected === correctVal) {
-                parent.classList.add('correct');
+        // --- 2. Check Fill-in Inputs (Ex 2, 3, 4, 5) ---
+        document.querySelectorAll('.fill-in').forEach(el => {
+            total++;
+            let userVal = el.value.trim().toLowerCase();
+            // Normalization
+            userVal = userVal.replace("it's", "it is").replace("i'm", "i am");
+
+            // Handle multiple correct possibilities separated by |
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
+            
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
                 score++;
             } else {
-                parent.classList.add('incorrect');
+                el.classList.add('wrong-answer');
             }
-        }
+        });
 
-        // Helper function to check Inputs/Selects
-        function checkInput(name, correctVals) {
-            const input = document.getElementsByName(name)[0];
-            const val = input.value.trim().toLowerCase();
-            
-            // Allow single string or array of acceptable strings
-            let isCorrect = false;
-            if (Array.isArray(correctVals)) {
-                isCorrect = correctVals.includes(val);
-            } else {
-                isCorrect = val === correctVals.toLowerCase();
-            }
-
-            input.classList.remove('correct', 'incorrect');
-            if (isCorrect) {
-                input.classList.add('correct');
-                score++;
-            } else {
-                input.classList.add('incorrect');
-            }
-        }
-
-        // --- CHECKING EXERCISES ---
-
-        // Ex I
-        checkRadio('ex1_1', 'yours'); // "Is this yours" (no noun after) OR "your snack bar". Wait, text says "Is this [blank] snack bar". So it is YOUR.
-        // Correction based on text structure: "Is this ____ snack bar?" -> YOUR.
-        // Wait, looking at PDF text: "Is this ____ snack bar?" options: a) your b) yours. Correct is 'your'.
-        // My code Logic above for Ex1_1 used 'your' as value for option a.
+        // --- Feedback Message ---
+        const feedback = document.getElementById('feedback');
+        const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
         
-        // Let's re-verify logic based on PDF Source 37
-        // 1) Is this ____ snack bar? -> your (Option A)
-        // 2) good at ____ job? -> my (Option B)
-        // 3) give them ____ food? -> their (Option B)
-        // 4) hot dogs are ____ right? -> ours (Option A)
-        // 5) This jacket is ____ -> mine (Option B)
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect!";
+        else if(percentage > 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
 
-        checkRadio('ex1_1', 'your'); 
-        checkRadio('ex1_2', 'my');
-        checkRadio('ex1_3', 'their');
-        checkRadio('ex1_4', 'ours');
-        checkRadio('ex1_5', 'mine');
-
-        // Ex II (Matching)
-        // 1 (Hamburger) -> A (Ketchup)
-        // 2 (Where jacket) -> C (On table)
-        // 3 (Food ready) -> D (No not yet)
-        // 4 (When open) -> E (Noon)
-        // 5 (Yours or mine) -> B (Mine)
-        checkInput('ex2_1', 'A');
-        checkInput('ex2_2', 'C');
-        checkInput('ex2_3', 'D');
-        checkInput('ex2_4', 'E');
-        checkInput('ex2_5', 'B');
-
-        // Ex III (Conversation 1)
-        checkInput('ex3_1', 'job');
-        checkInput('ex3_2', 'experience');
-        checkInput('ex3_3', 'boss');
-        checkInput('ex3_4', 'work');
-        checkInput('ex3_5', 'can');
-
-        // Ex IV (Modals)
-        // a) Would you like
-        // b) Can/Could we go
-        // c) May/Can I take
-        // d) Could/Can you help
-        // e) May/Can I help
-        checkInput('ex4_1', 'would');
-        checkInput('ex4_2', ['can', 'could']);
-        checkInput('ex4_3', ['may', 'can', 'could']);
-        checkInput('ex4_4', ['could', 'can', 'would']);
-        checkInput('ex4_5', ['may', 'can']);
-
-        // Ex VI (Possessives - 6a in code)
-        // a) Where is YOUR house? (My house is...)
-        // b) Do you like MY hair? (Your hair looks...)
-        // c) Did you go to THEIR party? (Their party was...)
-        // d) Is this OUR table? (This one is ours...)
-        // e) What is YOUR boss's name? (My boss is...)
-        checkInput('ex6a_1', 'your');
-        checkInput('ex6a_2', 'my');
-        checkInput('ex6a_3', 'their');
-        checkInput('ex6a_4', 'our');
-        checkInput('ex6a_5', 'your');
-
-        // Ex VI (Conversation 2 - 6b in code)
-        // 1) Would you like
-        // 2) Can/Could I bring
-        // 3) Your friend
-        // 4) Her name
-        // 5) Your memory
-        // 6) Morning (Based on Jill saying "I'd like to leave in the morning")
-        // 7) Your house
-        checkInput('ex6b_1', 'would');
-        checkInput('ex6b_2', ['can', 'could']);
-        checkInput('ex6b_3', 'your');
-        checkInput('ex6b_4', 'her');
-        checkInput('ex6b_5', 'your');
-        checkInput('ex6b_6', 'morning');
-        checkInput('ex6b_7', 'your');
-
-        // Ex VII
-        // 1) Have a lot of EXPERIENCE (b)
-        // 2) COULD you do me a favor (b)
-        checkRadio('ex7_1', 'experience');
-        checkRadio('ex7_2', 'could');
-
-        // Display Score
-        const resultDisplay = document.getElementById('result-display');
-        const percentage = Math.round((score / total) * 100);
-        
-        let message = "";
-        if (percentage === 100) message = "Perfect! Excellent work! 🎉";
-        else if (percentage >= 80) message = "Great job! Almost there! 👍";
-        else if (percentage >= 50) message = "Good effort. Keep practicing! 📚";
-        else message = "Don't give up! Review the grammar notes above. 💪";
-
-        resultDisplay.textContent = `Score: ${score}/${total} (${percentage}%) - ${message}`;
-        resultDisplay.style.color = percentage >= 50 ? 'var(--success-color)' : 'var(--error-color)';
+        feedback.textContent = msg;
+        feedback.style.color = percentage > 70 ? 'var(--accent)' : 'var(--danger)';
     }
 </script>
 

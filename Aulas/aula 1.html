@@ -33,14 +33,14 @@
 
         /* Configurações do Dark Mode */
         [data-theme="dark"] {
-            --primary: #6366f1; /* Um pouco mais claro para contraste */
-            --primary-light: #312e81; /* Fundo de tabela escuro */
+            --primary: #6366f1;
+            --primary-light: #312e81;
             --secondary: #fbbf24;
             
             --text: #F3F4F6;
             --text-muted: #9CA3AF;
-            --bg: #111827;      /* Fundo da página bem escuro */
-            --card-bg: #1F2937; /* Fundo dos cards cinza escuro */
+            --bg: #111827;
+            --card-bg: #1F2937;
             
             --input-bg: #374151;
             --input-border: #4B5563;
@@ -104,7 +104,7 @@
         header p {
             font-size: 1.1rem;
             opacity: 0.9;
-            color: #fff; /* Força branco no header mesmo no dark mode */
+            color: #fff;
         }
 
         /* Container */
@@ -138,7 +138,7 @@
         }
 
         h3 {
-            color: var(--text); /* Alterado para adaptar ao tema */
+            color: var(--text);
             opacity: 0.8;
             margin: 1.5rem 0 1rem;
         }
@@ -164,7 +164,6 @@
             color: var(--text);
         }
         
-        /* Ajuste específico para texto dentro de tabelas no dark mode se necessário */
         [data-theme="dark"] td {
              color: #E5E7EB;
         }
@@ -180,17 +179,12 @@
 
         /* Grammar Highlights */
         .grammar-box {
-            background: rgba(16, 185, 129, 0.1); /* Transparente para funcionar nos dois temas */
+            background: rgba(16, 185, 129, 0.1);
             border-left: 5px solid var(--accent);
             padding: 1rem;
             margin: 1rem 0;
             border-radius: 0 10px 10px 0;
             color: var(--text);
-        }
-
-        .note {
-            font-weight: bold;
-            color: var(--secondary);
         }
 
         /* Dialogues */
@@ -230,8 +224,8 @@
             flex-wrap: wrap;
         }
 
-        /* Inputs */
-        input[type="text"], select {
+        /* Inputs (Text) */
+        input[type="text"] {
             padding: 0.5rem;
             border: 2px solid var(--input-border);
             border-radius: 8px;
@@ -241,35 +235,116 @@
             transition: all 0.3s;
         }
 
-        input[type="text"]:focus, select:focus {
+        input[type="text"]:focus {
             outline: none;
             border-color: var(--primary);
         }
 
-        input[type="radio"] {
-            transform: scale(1.2);
-            margin-right: 5px;
+        /* -------------------------------------- */
+        /* BEAUTIFUL RADIO LABELS CSS             */
+        /* -------------------------------------- */
+        
+        /* Container for horizontal alignment */
+        .radio-inline-group {
+            display: inline-flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
+
+        /* The Label (acts as the button) */
+        .exercise-item label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0.5rem 1.2rem;
+            border: 2px solid var(--input-border);
+            border-radius: 50px; /* Pill shape */
+            background-color: var(--input-bg);
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+            min-width: 60px;
+        }
+
+        /* Hide the actual ugly radio circle */
+        .exercise-item input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 0;
+            height: 0;
+            margin: 0;
+            opacity: 0;
+            position: absolute;
+        }
+
+        /* Hover Effect */
+        .exercise-item label:hover {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.1); /* Primary tint */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Selected State (Checking the input inside the label) */
+        .exercise-item label:has(input:checked) {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 8px rgba(79, 70, 229, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* Dark Mode Hover Adjustment */
+        [data-theme="dark"] .exercise-item label:hover {
+            background-color: rgba(99, 102, 241, 0.2); 
+        }
+
+        /* -------------------------------------- */
+        /* VALIDATION STYLES                      */
+        /* -------------------------------------- */
 
         .correct-answer {
             border-color: var(--accent) !important;
-            background-color: rgba(16, 185, 129, 0.2) !important; /* Transparente para Dark Mode */
+            background-color: rgba(16, 185, 129, 0.2) !important;
             color: var(--accent);
             font-weight: bold;
         }
 
         .wrong-answer {
             border-color: var(--danger) !important;
-            background-color: rgba(239, 68, 68, 0.2) !important; /* Transparente para Dark Mode */
+            background-color: rgba(239, 68, 68, 0.2) !important;
             color: var(--danger);
         }
 
-        /* Button */
+        /* Radio Buttons Validation States */
+        .correct-label {
+            background-color: var(--accent) !important;
+            border-color: var(--accent) !important;
+            color: white !important;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.4) !important;
+        }
+
+        .wrong-label {
+            background-color: var(--danger) !important;
+            border-color: var(--danger) !important;
+            color: white !important;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        /* Button Check */
         .btn-check {
             display: block;
             width: 100%;
             background: var(--secondary);
-            color: white; /* Sempre branco */
+            color: white;
             padding: 1rem;
             border: none;
             border-radius: 10px;
@@ -303,6 +378,8 @@
             header h1 { font-size: 2rem; }
             .card { padding: 1.5rem; }
             .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+            .radio-inline-group { width: 100%; margin-bottom: 5px; }
+            .question-row span:first-child { font-weight: bold; margin-right: 5px;}
         }
     </style>
 </head>
@@ -486,65 +563,59 @@
         <p style="text-align:center; margin-bottom:2rem;">Teste seu conhecimento abaixo.</p>
 
         <div class="exercise-item">
-            <h3>1. Circle the correct option</h3>
+            <h3>1. Choose the correct option</h3>
             
             <div class="question-row">
                 <span>1)</span>
-                <select id="ex1_1">
-                    <option value="">Select...</option>
-                    <option value="where">Where</option>
-                    <option value="what">What</option>
-                </select>
+                <span class="radio-inline-group">
+                    <label><input type="radio" name="ex1_1" value="where"> Where</label>
+                    <label><input type="radio" name="ex1_1" value="what"> What</label>
+                </span>
                 <span>is your name? -> My name is Megan.</span>
             </div>
 
             <div class="question-row">
                 <span>2)</span>
-                <select id="ex1_2">
-                    <option value="">Select...</option>
-                    <option value="who">Who</option>
-                    <option value="where">Where</option>
-                </select>
+                <span class="radio-inline-group">
+                    <label><input type="radio" name="ex1_2" value="who"> Who</label>
+                    <label><input type="radio" name="ex1_2" value="where"> Where</label>
+                </span>
                 <span>is she? -> She is Emma.</span>
             </div>
 
             <div class="question-row">
                 <span>3)</span>
-                <select id="ex1_3">
-                    <option value="">Select...</option>
-                    <option value="what">What</option>
-                    <option value="who">Who</option>
-                </select>
+                <span class="radio-inline-group">
+                    <label><input type="radio" name="ex1_3" value="what"> What</label>
+                    <label><input type="radio" name="ex1_3" value="who"> Who</label>
+                </span>
                 <span>is your occupation? -> I am a lawyer.</span>
             </div>
 
             <div class="question-row">
                 <span>4)</span>
-                <select id="ex1_4">
-                    <option value="">Select...</option>
-                    <option value="where">Where</option>
-                    <option value="who">Who</option>
-                </select>
+                <span class="radio-inline-group">
+                    <label><input type="radio" name="ex1_4" value="where"> Where</label>
+                    <label><input type="radio" name="ex1_4" value="who"> Who</label>
+                </span>
                 <span>are you from? -> I'm from Brazil.</span>
             </div>
             
             <div class="question-row">
                 <span>5)</span>
-                <select id="ex1_5">
-                    <option value="">Select...</option>
-                    <option value="what">What</option>
-                    <option value="who">Who</option>
-                </select>
+                <span class="radio-inline-group">
+                    <label><input type="radio" name="ex1_5" value="what"> What</label>
+                    <label><input type="radio" name="ex1_5" value="who"> Who</label>
+                </span>
                 <span>is he? -> He is my husband.</span>
             </div>
 
             <div class="question-row">
                 <span>6)</span>
-                <select id="ex1_6">
-                    <option value="">Select...</option>
-                    <option value="where">Where</option>
-                    <option value="who">Who</option>
-                </select>
+                <span class="radio-inline-group">
+                    <label><input type="radio" name="ex1_6" value="where"> Where</label>
+                    <label><input type="radio" name="ex1_6" value="who"> Who</label>
+                </span>
                 <span>do you live? -> I live in São Paulo.</span>
             </div>
         </div>
@@ -584,20 +655,24 @@
         <div class="exercise-item">
             <h3>5. Choose the right expression</h3>
             
-            <div style="margin-bottom: 1rem;">
-                <p><strong>A:</strong> Hello, my name is John.</p>
-                <p><strong>B:</strong> Hi John, my name is Megan.</p>
-                <label><input type="radio" name="ex6_1" value="a"> a) I'm fine, thanks</label><br>
-                <label><input type="radio" name="ex6_1" value="b" class="radio-correct"> b) Nice to meet you</label><br>
-                <label><input type="radio" name="ex6_1" value="c"> c) See you later</label>
+            <div style="margin-bottom: 1.5rem;">
+                <p style="margin-bottom:0.5rem"><strong>A:</strong> Hello, my name is John.</p>
+                <p style="margin-bottom:0.5rem"><strong>B:</strong> Hi John, my name is Megan.</p>
+                <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                    <label><input type="radio" name="ex6_1" value="a"> a) I'm fine, thanks</label>
+                    <label><input type="radio" name="ex6_1" value="b" class="radio-correct"> b) Nice to meet you</label>
+                    <label><input type="radio" name="ex6_1" value="c"> c) See you later</label>
+                </div>
             </div>
 
             <div>
-                <p><strong>A:</strong> My favourite subject is Biology.</p>
-                <p><strong>B:</strong> Really?! Mine too. I love Biology.</p>
-                <label><input type="radio" name="ex6_2" value="a"> a) My husband.</label><br>
-                <label><input type="radio" name="ex6_2" value="b"> b) Who?</label><br>
-                <label><input type="radio" name="ex6_2" value="c" class="radio-correct"> c) What a coincidence!</label>
+                <p style="margin-bottom:0.5rem"><strong>A:</strong> My favourite subject is Biology.</p>
+                <p style="margin-bottom:0.5rem"><strong>B:</strong> Really?! Mine too. I love Biology.</p>
+                <div style="display:flex; flex-direction:column; gap:5px; align-items:flex-start;">
+                    <label><input type="radio" name="ex6_2" value="a"> a) My husband.</label>
+                    <label><input type="radio" name="ex6_2" value="b"> b) Who?</label>
+                    <label><input type="radio" name="ex6_2" value="c" class="radio-correct"> c) What a coincidence!</label>
+                </div>
             </div>
         </div>
 
@@ -646,44 +721,37 @@
         let score = 0;
         let total = 0;
 
-        // Reset Styles
-        document.querySelectorAll('input, select').forEach(el => {
-            el.classList.remove('correct-answer', 'wrong-answer');
+        // 1. Reset Styles
+        // Remove class based validation
+        document.querySelectorAll('.correct-answer, .wrong-answer, .correct-label, .wrong-label').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer', 'correct-label', 'wrong-label');
         });
 
-        // 1. Check Selects (Ex 1)
+        // 2. Check Radios (Ex 1)
         const ex1Config = [
-            {id: 'ex1_1', ans: 'what'},
-            {id: 'ex1_2', ans: 'who'},
-            {id: 'ex1_3', ans: 'what'},
-            {id: 'ex1_4', ans: 'where'},
-            {id: 'ex1_5', ans: 'who'},
-            {id: 'ex1_6', ans: 'where'}
+            {name: 'ex1_1', ans: 'what'},
+            {name: 'ex1_2', ans: 'who'},
+            {name: 'ex1_3', ans: 'what'},
+            {name: 'ex1_4', ans: 'where'},
+            {name: 'ex1_5', ans: 'who'},
+            {name: 'ex1_6', ans: 'where'}
         ];
         
         ex1Config.forEach(item => {
             total++;
-            const el = document.getElementById(item.id);
-            if(el.value === item.ans) {
-                el.classList.add('correct-answer');
+            const selected = document.querySelector(`input[name="${item.name}"]:checked`);
+            
+            if(selected && selected.value === item.ans) {
+                // Apply success class to parent LABEL
+                selected.parentElement.classList.add('correct-label');
                 score++;
-            } else {
-                el.classList.add('wrong-answer');
+            } else if (selected) {
+                // Apply error class to parent LABEL
+                selected.parentElement.classList.add('wrong-label');
             }
         });
 
-        // 2. Check Matching (Ex 2)
-        document.querySelectorAll('.match-select').forEach(el => {
-            total++;
-            if(el.value === el.dataset.correct) {
-                el.classList.add('correct-answer');
-                score++;
-            } else {
-                el.classList.add('wrong-answer');
-            }
-        });
-
-        // 3. Check Fill-ins (Ex 3, 4, 5)
+        // 3. Check Fill-ins (Ex 2, 3, 4)
         document.querySelectorAll('.fill-in').forEach(el => {
             total++;
             const userVal = el.value.trim().toLowerCase();
@@ -697,29 +765,25 @@
             }
         });
 
-        // 4. Check Radios (Ex 6)
+        // 4. Check Radios (Ex 5)
         // Group 1
         total++;
         const r1 = document.querySelector('input[name="ex6_1"]:checked');
         if(r1 && r1.classList.contains('radio-correct')) {
-            // No estilo inline, cuidado com dark mode, melhor usar classes
-            // Mas manteremos compatibilidade simples aqui
-            r1.parentElement.style.color = "var(--accent)"; 
-            r1.parentElement.style.fontWeight = "bold";
+            r1.parentElement.classList.add('correct-label');
             score++;
         } else if (r1) {
-            r1.parentElement.style.color = "var(--danger)";
+            r1.parentElement.classList.add('wrong-label');
         }
 
         // Group 2
         total++;
         const r2 = document.querySelector('input[name="ex6_2"]:checked');
         if(r2 && r2.classList.contains('radio-correct')) {
-            r2.parentElement.style.color = "var(--accent)";
-            r2.parentElement.style.fontWeight = "bold";
+            r2.parentElement.classList.add('correct-label');
             score++;
         } else if (r2) {
-            r2.parentElement.style.color = "var(--danger)";
+            r2.parentElement.classList.add('wrong-label');
         }
 
         // Feedback
@@ -737,5 +801,4 @@
 </script>
 
 </body>
-
 </html>

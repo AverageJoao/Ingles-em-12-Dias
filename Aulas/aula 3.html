@@ -3,223 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 03 - There is / There are</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="../icons/3/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/3/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/3/favicon-16x16.png">
-    <link rel="manifest" href="../icons/3/site.webmanifest">
+    <title>Day 03: There is / There are</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* --- ESTILOS PADRÃO (AULA 1) --- */
         :root {
-            /* Variáveis de Cores - Tema Claro (Padrão) */
-            --primary-color: #4a90e2;
-            --secondary-color: #50e3c2;
-            --bg-color: #f0f4f8;
+            /* Cores Base (Light Mode) */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
             --card-bg: #ffffff;
-            --text-color: #333333;
-            --text-muted: #666666;
-            --border-color: #e1e1e1;
-            --success-color: #2ecc71;
-            --error-color: #e74c3c;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --header-bg: #ffffff;
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
         }
 
+        /* Configurações do Dark Mode */
         [data-theme="dark"] {
-            /* Variáveis de Cores - Tema Escuro */
-            --primary-color: #64b5f6;
-            --secondary-color: #26a69a;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --text-muted: #a0a0a0;
-            --border-color: #333333;
-            --shadow: 0 4px 6px rgba(0,0,0,0.5);
-            --header-bg: #1e1e1e;
+            --primary: #6366f1;
+            --primary-light: #312e81;
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;
+            --card-bg: #1F2937;
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
         }
 
         * {
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Header e Navegação */
-        header {
-            background-color: var(--header-bg);
-            padding: 1rem 2rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        h1 { margin: 0; font-size: 1.5rem; color: var(--primary-color); }
-
+        /* Botão de Tema */
         .theme-toggle {
-            background: none;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--text);
             padding: 0.5rem 1rem;
-            border-radius: 20px;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
-            background-color: var(--primary-color);
-            color: white;
+            transform: scale(1.05);
         }
 
-        /* Layout Principal */
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff;
+        }
+
+        /* Container */
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
+        /* Cards & Sections */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
         }
 
         h2 {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--border-color);
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            margin-top: 0;
         }
 
-        h3 { color: var(--primary-color); margin-top: 1.5rem; }
+        h3 {
+            color: var(--text);
+            opacity: 0.9;
+            margin: 1.5rem 0 1rem;
+            font-weight: 700;
+        }
 
-        /* Elementos Didáticos */
+        /* Grammar Highlights */
         .grammar-box {
-            background-color: rgba(74, 144, 226, 0.1);
-            border-left: 4px solid var(--primary-color);
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--accent);
             padding: 1rem;
             margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
         }
 
-        .example-list li { margin-bottom: 0.5rem; }
-        .highlight { font-weight: bold; color: var(--primary-color); }
-
-        /* Estilos dos Exercícios */
-        .exercise-section { margin-top: 3rem; }
+        /* Lists */
+        ul.example-list {
+            list-style: none;
+            padding: 0;
+        }
+        ul.example-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--input-border);
+        }
+        ul.example-list li:last-child {
+            border-bottom: none;
+        }
         
-        .question-block {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px dashed var(--border-color);
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
         }
 
-        label { display: block; margin-bottom: 0.5rem; }
+        /* EXERCISES SECTION */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
+            transition: background-color 0.3s;
+        }
 
-        select, input[type="text"] {
+        .exercise-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--input-border);
+        }
+
+        .question-row {
+            margin: 1.2rem 0; /* Slightly increased for better spacing with radios */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            line-height: 2.2; /* Better vertical alignment */
+        }
+
+        /* Inputs (Text) */
+        input[type="text"] {
             padding: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-size: 1rem;
-            width: 100%;
-            max-width: 300px;
-            margin-bottom: 0.5rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all 0.3s;
+            max-width: 100%;
         }
 
-        .inline-input {
-            display: inline-block;
-            width: auto;
-            min-width: 80px;
-            margin: 0 5px;
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
+        /* ------------------------------------- */
+        /* NEW: RADIO BUTTON STYLES             */
+        /* ------------------------------------- */
+        
+        /* Container for the options */
+        .radio-group {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            vertical-align: middle;
+            margin: 0 0.2rem;
+        }
+
+        /* Hide the actual radio input circle */
+        .radio-group input[type="radio"] {
+            display: none;
+        }
+
+        /* Style the label to look like a pill/button */
+        .radio-lbl {
+            padding: 0.4rem 1rem;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 25px; /* Pill shape */
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none; /* Prevent text selection */
+            box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+        }
+
+        /* Hover Effect */
+        .radio-lbl:hover {
+            background-color: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Active/Pressed Effect */
+        .radio-lbl:active {
+            transform: translateY(0);
+        }
+
+        /* Checked State (Visual) */
+        .radio-group input[type="radio"]:checked + .radio-lbl {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Word Box specific for Day 3 */
         .word-box {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             padding: 1rem;
-            background-color: var(--border-color);
+            background-color: var(--input-bg);
+            border: 1px dashed var(--input-border);
             border-radius: 8px;
             margin-bottom: 1.5rem;
             justify-content: center;
         }
 
         .word-tag {
-            background-color: var(--card-bg);
-            padding: 5px 10px;
-            border-radius: 4px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
             font-weight: bold;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Correction Classes (Text Inputs) */
+        .correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: var(--danger);
+        }
+
+        /* Correction Classes (Radio Labels) */
+        /* Logic: apply these classes to the label when checking */
+        .radio-lbl.status-correct {
+            background-color: var(--accent) !important;
+            border-color: var(--accent) !important;
+            color: white !important;
+        }
+
+        .radio-lbl.status-wrong {
+            background-color: var(--danger) !important;
+            border-color: var(--danger) !important;
+            color: white !important;
+        }
+
+        /* Button */
+        .btn-check {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+
+        .btn-check:hover {
+            background: #d97706;
+        }
+
+        .feedback-msg {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* Botões de Ação */
-        .action-bar {
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .btn-check {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.4);
-            transition: transform 0.2s;
-        }
-
-        .btn-check:hover { transform: translateY(-2px); }
-
-        /* Feedback Visual */
-        .correct {
-            border: 2px solid var(--success-color) !important;
-            background-color: rgba(46, 204, 113, 0.1) !important;
-        }
-
-        .incorrect {
-            border: 2px solid var(--error-color) !important;
-            background-color: rgba(231, 76, 60, 0.1) !important;
-        }
-
-        .feedback-msg { font-size: 0.9rem; margin-top: 5px; font-weight: bold; }
-        .feedback-correct { color: var(--success-color); }
-        .feedback-incorrect { color: var(--error-color); }
-
-        /* Mobile */
         @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
             .card { padding: 1.5rem; }
-            header { flex-direction: column; gap: 10px; }
-            select, input[type="text"] { max-width: 100%; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+            .question-row { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .radio-group { display: flex; width: 100%; overflow-x: auto; padding-bottom: 5px; }
         }
     </style>
 </head>
 <body>
 
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
+
 <header>
-    <h1>📘 English Class: Day 03</h1>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Alternar Tema</button>
+    <h1>Day 03</h1>
+    <p>English Class: There is / There are</p>
 </header>
 
 <div class="container">
 
-    <section class="card">
+    <div class="card">
         <h2>Grammar: There is / There are</h2>
         <p>We use <strong>there is</strong> and <strong>there are</strong> to say that something exists.</p>
         
@@ -235,23 +391,25 @@
             <li><span class="highlight">There is</span> a frog in the bathroom!</li>
             <li><span class="highlight">There are</span> many toys on the dining room floor.</li>
         </ul>
-        <p><strong>Contracted forms:</strong><br>
-        There is = <strong>There's</strong> (e.g., There's a delicious chocolate cake).<br>
-        <em>*You cannot contract 'there are'.</em></p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            <strong>Contracted forms:</strong><br>
+            There is = <strong>There's</strong> (e.g., There's a delicious chocolate cake).<br>
+            <em>*You cannot contract 'there are'.</em>
+        </p>
+    </div>
 
-        <hr>
-
+    <div class="card">
         <h3>B) Negative form</h3>
         <p>It is formed by adding <strong>not</strong> after is or are.</p>
         <ul class="example-list">
             <li>There is <span class="highlight">not</span> any furniture in Mike's living room.</li>
             <li>There are <span class="highlight">not</span> sofas in Mike's living room.</li>
         </ul>
-        <p><strong>Contracted forms:</strong><br>
-        There is not = <strong>There isn't</strong><br>
-        There are not = <strong>There aren't</strong></p>
-
-        <hr>
+        <div class="grammar-box">
+            <p><strong>Contracted forms:</strong></p>
+            <p>There is not = <strong>There isn't</strong></p>
+            <p>There are not = <strong>There aren't</strong></p>
+        </div>
 
         <h3>C) Interrogative forms</h3>
         <p>To form a question we place <strong>is/are</strong> in front of <strong>there</strong>.</p>
@@ -260,184 +418,202 @@
             <li><span class="highlight">Are there</span> sofas in his room?</li>
         </ul>
 
-        <hr>
-
         <h3>D) Short answers</h3>
-        <p>We also use there is/are in short answers.</p>
         <ul class="example-list">
             <li>Is there a dog in your house? <strong>No, there isn't.</strong></li>
             <li>Are there sofas in Mike's living room? <strong>No, there aren't.</strong></li>
         </ul>
-    </section>
+    </div>
 
-    <div class="exercise-section">
-        <h2 style="text-align: center; color: var(--primary-color);">📝 Practice Exercises</h2>
+    <div class="exercise-section" id="homework">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Practice Exercises</h2>
 
-        <section class="card">
-            <h3>I - Circle the correct options to complete the conversations.</h3>
+        <div class="exercise-item">
+            <h3>I - Choose the correct options</h3>
             
-            <div class="question-block">
-                <p>1. A - Hello, Mandy. How 
-                    <select class="inline-input" data-ans="are">
-                        <option value="">...</option>
-                        <option value="am">am</option>
-                        <option value="is">is</option>
-                        <option value="are">are</option>
-                    </select> 
-                    you today?<br>
-                    B - I 
-                    <select class="inline-input" data-ans="am">
-                        <option value="">...</option>
-                        <option value="am">am</option>
-                        <option value="is">is</option>
-                        <option value="are">are</option>
-                    </select>
-                    fine, thanks!
-                </p>
+            <div class="question-row">
+                <span>1. A - Hello, Mandy. How</span>
+                <div class="radio-group" data-correct="are">
+                    <input type="radio" id="q1_a1" name="q1_a" value="am"><label class="radio-lbl" for="q1_a1">am</label>
+                    <input type="radio" id="q1_a2" name="q1_a" value="is"><label class="radio-lbl" for="q1_a2">is</label>
+                    <input type="radio" id="q1_a3" name="q1_a" value="are"><label class="radio-lbl" for="q1_a3">are</label>
+                </div>
+                <span>you today?</span>
+            </div>
+            <div class="question-row">
+                <span>B - I</span>
+                <div class="radio-group" data-correct="am">
+                    <input type="radio" id="q1_b1" name="q1_b" value="am"><label class="radio-lbl" for="q1_b1">am</label>
+                    <input type="radio" id="q1_b2" name="q1_b" value="is"><label class="radio-lbl" for="q1_b2">is</label>
+                    <input type="radio" id="q1_b3" name="q1_b" value="are"><label class="radio-lbl" for="q1_b3">are</label>
+                </div>
+                <span>fine, thanks!</span>
+            </div>
+            <br>
+
+            <div class="question-row">
+                <span>2. A - So,</span>
+                <div class="radio-group" data-correct="is">
+                    <input type="radio" id="q2_a1" name="q2_a" value="is"><label class="radio-lbl" for="q2_a1">is</label>
+                    <input type="radio" id="q2_a2" name="q2_a" value="are"><label class="radio-lbl" for="q2_a2">are</label>
+                    <input type="radio" id="q2_a3" name="q2_a" value="am"><label class="radio-lbl" for="q2_a3">am</label>
+                </div>
+                <span>this your new house, Mike?</span>
+            </div>
+            <div class="question-row">
+                <span>B - Yeah, It's a huge house,</span>
+                <div class="radio-group" data-correct="isn't">
+                    <input type="radio" id="q2_b1" name="q2_b" value="isn't"><label class="radio-lbl" for="q2_b1">isn't</label>
+                    <input type="radio" id="q2_b2" name="q2_b" value="aren't"><label class="radio-lbl" for="q2_b2">aren't</label>
+                </div>
+                <span>it?</span>
+            </div>
+            <br>
+
+            <div class="question-row">
+                <span>3. A - How many rooms</span>
+                <div class="radio-group" data-correct="are there">
+                    <input type="radio" id="q3_a1" name="q3_a" value="is there"><label class="radio-lbl" for="q3_a1">is there</label>
+                    <input type="radio" id="q3_a2" name="q3_a" value="are there"><label class="radio-lbl" for="q3_a2">are there</label>
+                </div>
+                <span>in your house?</span>
+            </div>
+            <div class="question-row">
+                <span>B - Not so many! My house is very small.</span>
+                <div class="radio-group" data-correct="there is">
+                    <input type="radio" id="q3_b1" name="q3_b" value="there is"><label class="radio-lbl" for="q3_b1">There is</label>
+                    <input type="radio" id="q3_b2" name="q3_b" value="there are"><label class="radio-lbl" for="q3_b2">there are</label>
+                </div>
+                <span>only one bedroom, a kitchen and a tiny bathroom.</span>
+            </div>
+            <br>
+
+            <div class="question-row">
+                <span>4. A - I live in a beautiful large house.</span>
+                <div class="radio-group" data-correct="there are">
+                    <input type="radio" id="q4_a1" name="q4_a" value="there are"><label class="radio-lbl" for="q4_a1">There are</label>
+                    <input type="radio" id="q4_a2" name="q4_a" value="there is"><label class="radio-lbl" for="q4_a2">there is</label>
+                </div>
+                <span>many glass doors...</span>
+            </div>
+            <div class="question-row">
+                <div class="radio-group" data-correct="is there">
+                    <input type="radio" id="q4_b1" name="q4_b" value="is there"><label class="radio-lbl" for="q4_b1">Is there</label>
+                    <input type="radio" id="q4_b2" name="q4_b" value="are there"><label class="radio-lbl" for="q4_b2">are there</label>
+                </div>
+                <span>a pool in your garden?</span>
+            </div>
+            <div class="question-row">
+                <span>B - No,</span>
+                <div class="radio-group" data-correct="there isn't">
+                    <input type="radio" id="q4_c1" name="q4_c" value="there isn't"><label class="radio-lbl" for="q4_c1">there isn't</label>
+                    <input type="radio" id="q4_c2" name="q4_c" value="there aren't"><label class="radio-lbl" for="q4_c2">there aren't</label>
+                </div>
+                <span>one in my garden.</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>II - Match the sentences</h3>
+            <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-muted)">
+                Options:<br>
+                1. but my house is between two gardens.<br>
+                2. surrounded by comfortable sun loungers.<br>
+                3. exotic! Who lives there?<br>
+                4. home sweet home!<br>
+                5. Yes, there is and there's a puppy there too!
+            </p>
+
+            <div class="question-row">
+                <span>A. His house has this huge rectangular shaped pool...</span>
+                <div class="radio-group" data-correct="2">
+                    <input type="radio" id="m_a1" name="match_a" value="1"><label class="radio-lbl" for="m_a1">1</label>
+                    <input type="radio" id="m_a2" name="match_a" value="2"><label class="radio-lbl" for="m_a2">2</label>
+                    <input type="radio" id="m_a3" name="match_a" value="3"><label class="radio-lbl" for="m_a3">3</label>
+                    <input type="radio" id="m_a4" name="match_a" value="4"><label class="radio-lbl" for="m_a4">4</label>
+                    <input type="radio" id="m_a5" name="match_a" value="5"><label class="radio-lbl" for="m_a5">5</label>
+                </div>
             </div>
 
-            <div class="question-block">
-                <p>2. A - So, 
-                    <select class="inline-input" data-ans="is">
-                        <option value="">...</option>
-                        <option value="is">is</option>
-                        <option value="are">are</option>
-                        <option value="am">am</option>
-                    </select>
-                    this your new house, Mike?<br>
-                    B - Yeah, It's a huge house, 
-                    <select class="inline-input" data-ans="isn't">
-                        <option value="">...</option>
-                        <option value="isn't">isn't</option>
-                        <option value="aren't">aren't</option>
-                    </select>
-                    it?
-                </p>
+            <div class="question-row">
+                <span>B. The house next to yours is so...</span>
+                <div class="radio-group" data-correct="3">
+                    <input type="radio" id="m_b1" name="match_b" value="1"><label class="radio-lbl" for="m_b1">1</label>
+                    <input type="radio" id="m_b2" name="match_b" value="2"><label class="radio-lbl" for="m_b2">2</label>
+                    <input type="radio" id="m_b3" name="match_b" value="3"><label class="radio-lbl" for="m_b3">3</label>
+                    <input type="radio" id="m_b4" name="match_b" value="4"><label class="radio-lbl" for="m_b4">4</label>
+                    <input type="radio" id="m_b5" name="match_b" value="5"><label class="radio-lbl" for="m_b5">5</label>
+                </div>
             </div>
 
-            <div class="question-block">
-                <p>3. A - How many rooms 
-                    <select class="inline-input" data-ans="are there">
-                        <option value="">...</option>
-                        <option value="is there">is there</option>
-                        <option value="are there">are there</option>
-                    </select>
-                    in your house?<br>
-                    B - Not so many! My house is very small. 
-                    <select class="inline-input" data-ans="There is">
-                        <option value="">...</option>
-                        <option value="There is">There is</option>
-                        <option value="there are">there are</option>
-                    </select>
-                    only one bedroom, a kitchen and a tiny bathroom.
-                </p>
+            <div class="question-row">
+                <span>C. There aren't many trees on my street...</span>
+                <div class="radio-group" data-correct="1">
+                    <input type="radio" id="m_c1" name="match_c" value="1"><label class="radio-lbl" for="m_c1">1</label>
+                    <input type="radio" id="m_c2" name="match_c" value="2"><label class="radio-lbl" for="m_c2">2</label>
+                    <input type="radio" id="m_c3" name="match_c" value="3"><label class="radio-lbl" for="m_c3">3</label>
+                    <input type="radio" id="m_c4" name="match_c" value="4"><label class="radio-lbl" for="m_c4">4</label>
+                    <input type="radio" id="m_c5" name="match_c" value="5"><label class="radio-lbl" for="m_c5">5</label>
+                </div>
             </div>
 
-            <div class="question-block">
-                <p>4. A - I live in a beautiful large house. 
-                    <select class="inline-input" data-ans="There are">
-                        <option value="">...</option>
-                        <option value="There are">There are</option>
-                        <option value="there is">there is</option>
-                    </select>
-                    many glass doors at the front and there's also a wonderful swimming pool in the back garden!
-                    <select class="inline-input" data-ans="Is there">
-                        <option value="">...</option>
-                        <option value="Is there">Is there</option>
-                        <option value="are there">are there</option>
-                    </select>
-                    a pool in your garden?<br>
-                    B - No, 
-                    <select class="inline-input" data-ans="there isn't">
-                        <option value="">...</option>
-                        <option value="there isn't">there isn't</option>
-                        <option value="there aren't">there aren't</option>
-                    </select>
-                    one in my garden.
-                </p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h3>II - Match the sentences.</h3>
-            <p><em>Select the number that best completes the sentence.</em></p>
-
-            <div class="question-block">
-                <label>A. His house has this huge rectangular shaped pool...</label>
-                <select class="inline-input" data-ans="2">
-                    <option value="">Select match...</option>
-                    <option value="1">1. but my house is between two gardens.</option>
-                    <option value="2">2. surrounded by comfortable sun loungers.</option>
-                    <option value="3">3. exotic! Who lives there?</option>
-                    <option value="4">4. home sweet home!</option>
-                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
-                </select>
+            <div class="question-row">
+                <span>D. Is there a garden at your house?</span>
+                <div class="radio-group" data-correct="5">
+                    <input type="radio" id="m_d1" name="match_d" value="1"><label class="radio-lbl" for="m_d1">1</label>
+                    <input type="radio" id="m_d2" name="match_d" value="2"><label class="radio-lbl" for="m_d2">2</label>
+                    <input type="radio" id="m_d3" name="match_d" value="3"><label class="radio-lbl" for="m_d3">3</label>
+                    <input type="radio" id="m_d4" name="match_d" value="4"><label class="radio-lbl" for="m_d4">4</label>
+                    <input type="radio" id="m_d5" name="match_d" value="5"><label class="radio-lbl" for="m_d5">5</label>
+                </div>
             </div>
 
-            <div class="question-block">
-                <label>B. The house next to yours is so...</label>
-                <select class="inline-input" data-ans="3">
-                    <option value="">Select match...</option>
-                    <option value="1">1. but my house is between two gardens.</option>
-                    <option value="2">2. surrounded by comfortable sun loungers.</option>
-                    <option value="3">3. exotic! Who lives there?</option>
-                    <option value="4">4. home sweet home!</option>
-                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
-                </select>
+            <div class="question-row">
+                <span>E. There isn't a better place than our...</span>
+                <div class="radio-group" data-correct="4">
+                    <input type="radio" id="m_e1" name="match_e" value="1"><label class="radio-lbl" for="m_e1">1</label>
+                    <input type="radio" id="m_e2" name="match_e" value="2"><label class="radio-lbl" for="m_e2">2</label>
+                    <input type="radio" id="m_e3" name="match_e" value="3"><label class="radio-lbl" for="m_e3">3</label>
+                    <input type="radio" id="m_e4" name="match_e" value="4"><label class="radio-lbl" for="m_e4">4</label>
+                    <input type="radio" id="m_e5" name="match_e" value="5"><label class="radio-lbl" for="m_e5">5</label>
+                </div>
             </div>
+        </div>
 
-            <div class="question-block">
-                <label>C. There aren't many trees on my street...</label>
-                <select class="inline-input" data-ans="1">
-                    <option value="">Select match...</option>
-                    <option value="1">1. but my house is between two gardens.</option>
-                    <option value="2">2. surrounded by comfortable sun loungers.</option>
-                    <option value="3">3. exotic! Who lives there?</option>
-                    <option value="4">4. home sweet home!</option>
-                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
-                </select>
+        <div class="exercise-item">
+            <h3>III - Complete the questions</h3>
+            <p>Use correct forms of <strong>there is/are</strong>. (Context: John's messy bedroom)</p>
+            
+            <div class="question-row">
+                <span>a)</span>
+                <input type="text" class="fill-in" data-correct="are there" size="10">
+                <span>dirty socks under your bed, John?</span>
             </div>
-
-            <div class="question-block">
-                <label>D. Is there a garden at your house?</label>
-                <select class="inline-input" data-ans="5">
-                    <option value="">Select match...</option>
-                    <option value="1">1. but my house is between two gardens.</option>
-                    <option value="2">2. surrounded by comfortable sun loungers.</option>
-                    <option value="3">3. exotic! Who lives there?</option>
-                    <option value="4">4. home sweet home!</option>
-                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
-                </select>
+            <div class="question-row">
+                <span>b)</span>
+                <input type="text" class="fill-in" data-correct="is there" size="10">
+                <span>a wet towel on his bed, too?</span>
             </div>
-
-            <div class="question-block">
-                <label>E. There isn't a better place than our...</label>
-                <select class="inline-input" data-ans="4">
-                    <option value="">Select match...</option>
-                    <option value="1">1. but my house is between two gardens.</option>
-                    <option value="2">2. surrounded by comfortable sun loungers.</option>
-                    <option value="3">3. exotic! Who lives there?</option>
-                    <option value="4">4. home sweet home!</option>
-                    <option value="5">5. Yes, there is and there's a puppy there too!</option>
-                </select>
+            <div class="question-row">
+                <span>c)</span>
+                <input type="text" class="fill-in" data-correct="are there" size="10">
+                <span>books all over the floor, John?</span>
             </div>
-        </section>
-
-        <section class="card">
-            <h3>III - Complete the questions appropriately. Use the correct forms of there is/are.</h3>
-            <p><strong>Context: John's messy bedroom</strong></p>
-
-            <div class="question-block">
-                <p>a) <input type="text" class="inline-input" data-ans="Are there"> dirty socks under your bed, John?</p>
-                <p>b) <input type="text" class="inline-input" data-ans="Is there"> a wet towel on his bed, too?</p>
-                <p>c) <input type="text" class="inline-input" data-ans="Are there"> books all over the floor, John?</p>
-                <p>d) <input type="text" class="inline-input" data-ans="Is there"> a pair of smelly jeans, John? <em>(Of course, there is!)</em></p>
-                <p>e) Oh, John, <input type="text" class="inline-input" data-ans="is there"> anything in order in that room? You're a very messy, messy boy!</p>
+            <div class="question-row">
+                <span>d)</span>
+                <input type="text" class="fill-in" data-correct="is there" size="10">
+                <span>a pair of smelly jeans, John?</span>
             </div>
-        </section>
+            <div class="question-row">
+                <span>e) Oh, John,</span>
+                <input type="text" class="fill-in" data-correct="is there" size="10">
+                <span>anything in order in that room?</span>
+            </div>
+        </div>
 
-        <section class="card">
-            <h3>IV - Complete the conversation. Use the words in the box.</h3>
+        <div class="exercise-item">
+            <h3>IV - Complete the conversation</h3>
+            <p>Use the words in the box:</p>
             
             <div class="word-box">
                 <span class="word-tag">How many</span>
@@ -452,93 +628,155 @@
                 <span class="word-tag">bright</span>
             </div>
 
-            <div class="question-block">
-                <p><strong>Sarah:</strong> Ok, then. Next, the living room. It's basically a place to relax and receive friends. So it's essential to have big <input type="text" class="inline-input" data-ans="comfortable"> chairs or sofas. We also need a coffee table <input type="text" class="inline-input" data-ans="where"> you can keep some magazines for you to read.</p>
-                
-                <p><strong>Sarah:</strong> <input type="text" class="inline-input" data-ans="How"> big is your family? Is it <input type="text" class="inline-input" data-ans="a"> large or small family, Mr. Johnson?</p>
+            <p><strong>Sarah:</strong> Ok, then. Next, the living room... it's essential to have big <input type="text" class="fill-in" data-correct="comfortable" size="12"> chairs or sofas. We also need a coffee table <input type="text" class="fill-in" data-correct="where" size="6"> you can keep some magazines.</p>
+            
+            <p><strong>Sarah:</strong> <input type="text" class="fill-in" data-correct="how" size="5"> big is your family? Is it <input type="text" class="fill-in" data-correct="a" size="2"> large or small family, Mr. Johnson?</p>
 
-                <p><strong>Mr. Johnson:</strong> Actually, it's just me, my wife and my son Jeff. Oh and of course, Pit-the dog!</p>
+            <p><strong>Mr. Johnson:</strong> Actually, it's just me, my wife and my son Jeff.</p>
 
-                <p><strong>Sarah:</strong> Nice! So, tell me. What's your favorite color?</p>
+            <p><strong>Sarah:</strong> Nice! So, tell me. What's your favorite color?</p>
 
-                <p><strong>Mr. Johnson:</strong> That is <input type="text" class="inline-input" data-ans="an"> easy question! White is my <input type="text" class="inline-input" data-ans="favorite"> color, Sarah.</p>
+            <p><strong>Mr. Johnson:</strong> That is <input type="text" class="fill-in" data-correct="an" size="3"> easy question! White is my <input type="text" class="fill-in" data-correct="favorite" size="8"> color, Sarah.</p>
 
-                <p><strong>Sarah:</strong> Great! We also need to get a fluffy rug to put <input type="text" class="inline-input" data-ans="on"> the floor and beautiful <input type="text" class="inline-input" data-ans="bright"> curtains for the windows. <input type="text" class="inline-input" data-ans="How many"> windows are there <input type="text" class="inline-input" data-ans="in"> your living room, Mr. Johnson?</p>
-            </div>
-        </section>
+            <p><strong>Sarah:</strong> Great! We also need to get a fluffy rug to put <input type="text" class="fill-in" data-correct="on" size="3"> the floor and beautiful <input type="text" class="fill-in" data-correct="bright" size="8"> curtains for the windows. <input type="text" class="fill-in" data-correct="how many" size="10"> windows are there <input type="text" class="fill-in" data-correct="in" size="3"> your living room?</p>
+        </div>
 
-        <section class="card">
-            <h3>V - Complete the dialogues with the appropriate forms of there is/are.</h3>
+        <div class="exercise-item">
+            <h3>V - Complete the dialogues</h3>
+            <p>Use appropriate forms of <strong>there is/are</strong>.</p>
 
-            <div class="question-block">
-                <p>a) <input type="text" class="inline-input" data-ans="Is there"> a pink house beside yours? Yes, there is!</p>
+            <div class="question-row">
+                <span>a)</span>
+                <input type="text" class="fill-in" data-correct="is there" size="10">
+                <span>a pink house beside yours? Yes, there is!</span>
             </div>
             
-            <div class="question-block">
-                <p>b) I don't know why but <input type="text" class="inline-input" data-ans="there isn't"> any food in the refrigerator. That's because we had 10 visitors over yesterday!</p>
+            <div class="question-row">
+                <span>b) I don't know why but</span>
+                <input type="text" class="fill-in" data-correct="there isn't|there is not" size="12">
+                <span>any food in the refrigerator.</span>
             </div>
 
-            <div class="question-block">
-                <p>c) <input type="text" class="inline-input" data-ans="Are there"> apples in the green basket on the kitchen table? Yes, <input type="text" class="inline-input" data-ans="there are"> four ugly apples in the green basket.</p>
+            <div class="question-row">
+                <span>c)</span>
+                <input type="text" class="fill-in" data-correct="are there" size="10">
+                <span>apples in the green basket? Yes,</span>
+                <input type="text" class="fill-in" data-correct="there are" size="10">
+                <span>four ugly apples.</span>
             </div>
 
-            <div class="question-block">
-                <p>d) Mom, <input type="text" class="inline-input" data-ans="there is"> nothing to eat in this house! How come? <input type="text" class="inline-input" data-ans="Are there"> fruits and vegetables in the fridge?</p>
+            <div class="question-row">
+                <span>d) Mom,</span>
+                <input type="text" class="fill-in" data-correct="there is|there's" size="10">
+                <span>nothing to eat in this house! How come?</span>
+                <input type="text" class="fill-in" data-correct="are there" size="10">
+                <span>fruits and vegetables in the fridge?</span>
             </div>
-        </section>
-
-        <div class="action-bar">
-            <button class="btn-check" onclick="checkAnswers()">✔️ Verificar Respostas</button>
         </div>
+
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
 
     </div>
 
-    <footer style="text-align: center; color: var(--text-muted); padding: 2rem;">
-        <p>Day 03 - English Practice Material</p>
-    </footer>
-
 </div>
 
+<footer>
+    <p>Created for English Learning • Based on Day 03 Material</p>
+</footer>
+
 <script>
-    // Theme Toggle Functionality
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
+    }
+
     function toggleTheme() {
-        const body = document.body;
-        const currentTheme = body.getAttribute('data-theme');
-        const themeBtn = document.querySelector('.theme-toggle');
-        
+        const currentTheme = root.getAttribute('data-theme');
         if (currentTheme === 'dark') {
-            body.setAttribute('data-theme', 'light');
-            themeBtn.textContent = '🌙 Alternar Tema';
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
         } else {
-            body.setAttribute('data-theme', 'dark');
-            themeBtn.textContent = '☀️ Alternar Tema';
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
         }
     }
 
-    // Answer Checking Logic
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
     function checkAnswers() {
-        const inputs = document.querySelectorAll('input[type="text"], select');
-        
-        inputs.forEach(input => {
-            // Remove previous feedback
-            input.classList.remove('correct', 'incorrect');
-            const parent = input.parentElement;
-            
-            // Get user value and expected answer
-            let userVal = input.value.trim().toLowerCase();
-            let correctAns = input.getAttribute('data-ans').toLowerCase();
+        let score = 0;
+        let total = 0;
 
-            // Ignore capitalization for validation
-            if (userVal === correctAns) {
-                input.classList.add('correct');
-            } else {
-                if (userVal !== "") { // Only mark incorrect if user tried
-                    input.classList.add('incorrect');
+        // Reset Styles - Text Inputs
+        document.querySelectorAll('input[type="text"]').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+
+        // Reset Styles - Radio Labels
+        document.querySelectorAll('.radio-lbl').forEach(el => {
+            el.classList.remove('status-correct', 'status-wrong');
+        });
+
+        // 1. Check Radio Groups (Replaces Select Logic)
+        document.querySelectorAll('.radio-group').forEach(group => {
+            total++;
+            const correctVal = group.dataset.correct.toLowerCase();
+            
+            // Find which radio is checked inside this group
+            const checkedRadio = group.querySelector('input[type="radio"]:checked');
+
+            if (checkedRadio) {
+                const userVal = checkedRadio.value.toLowerCase();
+                // Find the label associated with the checked radio to style it
+                const label = group.querySelector(`label[for="${checkedRadio.id}"]`);
+                
+                if(userVal === correctVal) {
+                    score++;
+                    label.classList.add('status-correct');
+                } else {
+                    label.classList.add('status-wrong');
                 }
+            } else {
+                // Not answered: No score, no style (or you could add a 'missing' style here)
             }
         });
 
-        alert("Correção finalizada! Verifique os campos coloridos.\nVerde = Correto\nVermelho = Incorreto");
+        // 2. Check Fill-ins (Text Inputs) - Logic remains the same
+        document.querySelectorAll('.fill-in').forEach(el => {
+            total++;
+            const userVal = el.value.trim().toLowerCase();
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
+            
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
+                score++;
+            } else {
+                el.classList.add('wrong-answer');
+            }
+        });
+
+        // Feedback Message
+        const feedback = document.getElementById('feedback');
+        const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
+        
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect!";
+        else if(percentage >= 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
+
+        feedback.textContent = msg;
+        feedback.style.color = percentage >= 70 ? 'var(--accent)' : 'var(--danger)';
     }
 </script>
 

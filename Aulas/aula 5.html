@@ -3,335 +3,527 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Class - Day 05</title>
+    <title>Day 05: Present Continuous & Possessives</title>
     <link rel="apple-touch-icon" sizes="180x180" href="../icons/5/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/5/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/5/favicon-16x16.png">
-    <link rel="manifest" href="../icons/5/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* COPIED & ADAPTED CSS FROM AULA 8 
+           To ensure visual consistency 
+        */
         :root {
-            /* Light Theme Variables */
-            --bg-color: #f0f4f8;
+            /* Base Colors (Light Mode) */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
             --card-bg: #ffffff;
-            --text-primary: #2d3748;
-            --text-secondary: #4a5568;
-            --accent-color: #4c51bf;
-            --accent-hover: #434190;
-            --highlight-bg: #ebf4ff;
-            --border-color: #e2e8f0;
-            --success: #38a169;
-            --error: #e53e3e;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
         }
 
-        .dark-mode {
-            /* Dark Theme Variables */
-            --bg-color: #1a202c;
-            --card-bg: #2d3748;
-            --text-primary: #f7fafc;
-            --text-secondary: #a0aec0;
-            --accent-color: #667eea;
-            --accent-hover: #5a67d8;
-            --highlight-bg: #4a5568;
-            --border-color: #4a5568;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+        /* Dark Mode Configuration */
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --primary-light: #312e81;
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;
+            --card-bg: #1F2937;
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
         }
 
         * {
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Theme Button */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
-            color: white;
-            padding: 2rem 1rem;
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
             text-align: center;
-            position: relative;
-            box-shadow: var(--shadow);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
+        header h1 {
             font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
         }
 
-        .subtitle {
-            opacity: 0.9;
+        header p {
             font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff;
         }
 
-        /* Toggle Button */
-        .theme-toggle {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.4);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .theme-toggle:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Main Container */
+        /* Container */
         .container {
-            max-width: 800px;
-            margin: -2rem auto 2rem;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
         /* Cards */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
         }
 
         h2 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--border-color);
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            margin-top: 0;
         }
 
         h3 {
-            color: var(--text-primary);
-            margin-top: 1.5rem;
+            color: var(--text);
+            opacity: 0.9;
+            margin: 1.5rem 0 1rem;
+            font-weight: 700;
         }
 
-        /* Content Styling */
-        .example-box {
-            background-color: var(--highlight-bg);
-            border-left: 4px solid var(--accent-color);
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text);
+            vertical-align: top;
+        }
+        
+        [data-theme="dark"] td {
+             color: #E5E7EB;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Grammar Highlights */
+        .grammar-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--accent);
             padding: 1rem;
             margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
+        }
+        
+        /* Specific box for "Attention/Warning" */
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 5px solid var(--secondary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
         }
 
+        .note {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
         ul {
-            list-style-type: none;
+            list-style-type: none; /* Removing default bullets to use custom ones if needed, or keep clean */
             padding-left: 0;
         }
-
-        li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
+        
+        .grammar-box ul li {
             position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
         }
-
-        li::before {
+        
+        .grammar-box ul li::before {
             content: "•";
-            color: var(--accent-color);
+            color: var(--accent);
             font-weight: bold;
             position: absolute;
             left: 0;
         }
 
-        .rule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+        /* EXERCISES SECTION */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
+            transition: background-color 0.3s;
         }
 
-        .rule-card {
-            background: var(--bg-color);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .grammar-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        .grammar-table th, .grammar-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-            text-align: left;
-        }
-        .grammar-table th {
-            color: var(--accent-color);
-        }
-
-        /* Exercises */
         .exercise-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px dashed var(--border-color);
+            border-bottom: 1px solid var(--input-border);
+        }
+        
+        .exercise-item:last-child {
+            border-bottom: none;
         }
 
-        input[type="text"], select {
+        .question-row {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Inputs */
+        input[type="text"] {
             padding: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            margin-top: 0.5rem;
-            width: 100%;
-            max-width: 300px;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all 0.3s;
+            max-width: 100%;
         }
 
-        .btn-check {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn-check:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
-        .feedback {
+        /* --- NEW RADIO BUTTON STYLES --- */
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
             margin-top: 0.5rem;
-            font-weight: bold;
+        }
+
+        /* Hide the actual radio input */
+        .radio-group input[type="radio"] {
             display: none;
         }
-        .correct { color: var(--success); }
-        .incorrect { color: var(--error); }
+
+        /* Style the label as a button */
+        .radio-label {
+            position: relative;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
+
+        /* Hover Effect */
+        .radio-label:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Checked State */
+        .radio-group input[type="radio"]:checked + .radio-label {
+            background-color: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+        }
+
+        [data-theme="dark"] .radio-group input[type="radio"]:checked + .radio-label {
+            background-color: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+        }
+
+        /* Correct/Wrong Feedback Styles */
+        .fill-in.correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .fill-in.wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: var(--danger);
+        }
+
+        /* Feedback for Radios (Applied to Label) */
+        .radio-label.correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent) !important;
+        }
+
+        .radio-label.wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: var(--danger) !important;
+        }
+        /* ------------------------------- */
+
+        /* Button */
+        .btn-check {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+
+        .btn-check:hover {
+            background: #d97706;
+        }
+
+        .feedback-msg {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+        }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 2rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
+            header h1 { font-size: 2rem; }
             .card { padding: 1.5rem; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <button class="theme-toggle" onclick="toggleTheme()">🌗 Mode</button>
-        <h1>English Day 05</h1>
-        <div class="subtitle">Grammar Guide & Exercises</div>
-    </header>
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
 
-    <div class="container">
+<header>
+    <h1>Day 05</h1>
+    <p>English Masterclass: Present Continuous & Possessives</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>1) Present Continuous</h2>
+        <p>We use the present continuous for:</p>
         
-        <section class="card">
-            <h2>1) Present Continuous</h2>
-            <p>We use the present continuous for:</p>
+        <h3>a) Actions at the moment of speaking:</h3>
+        <div class="grammar-box">
+            <ul>
+                <li>I'm looking for an Archaeology book.</li>
+                <li>Be quiet! You're speaking too loudly!</li>
+                <li>The girl in red is reading the book now.</li>
+                <li>We are studying for a math test.</li>
+            </ul>
+        </div>
+
+        <h3>b) Temporary actions:</h3>
+        <div class="grammar-box">
+            <ul>
+                <li>My teacher is organizing a seminar about Archaeology.</li>
+                <li>He's working at the library this month.</li>
+            </ul>
+        </div>
+
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px dashed var(--input-border);">
+
+        <h3>A) Affirmative</h3>
+        <div class="grammar-box">
+            <ul>
+                <li>I'm studying English right now, Mom.</li>
+                <li>She's reading a fashion magazine.</li>
+                <li>They're going to class at this moment.</li>
+            </ul>
+        </div>
+
+        <h3>B) Negative</h3>
+        <div class="grammar-box">
+            <ul>
+                <li>I'm not talking loudly. I am at the library.</li>
+                <li>She's not handing in her book. It's her boyfriend's.</li>
+                <li>We're not writing, we are typing.</li>
+            </ul>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;"><em>Note: The contractions "isn't" and "aren't" are also possible, but are used less.</em></p>
+        </div>
+
+        <h3>C) Interrogative</h3>
+        <div class="grammar-box">
+            <p style="margin-bottom:0.5rem;"><strong>Q:</strong> What am I doing? Is she reading a book in the library?</p>
+            <p style="margin-bottom:1rem; color:var(--accent);"><strong>A:</strong> Yes, she is / No, she's not</p>
             
-            <h3>a) Actions at the moment of speaking:</h3>
-            <div class="example-box">
-                <ul>
-                    <li>I'm looking for an Archaeology book.</li>
-                    <li>Be quiet! You're speaking too loudly!</li>
-                    <li>The girl in red is reading the book now.</li>
-                    <li>We are studying for a math test.</li>
-                </ul>
-            </div>
+            <p style="margin-bottom:0.5rem;"><strong>Q:</strong> Are they working on their school project together?</p>
+            <p style="color:var(--accent);"><strong>A:</strong> Yes, they are / No, they're not</p>
+        </div>
+    </div>
 
-            <h3>b) Temporary actions:</h3>
-            <div class="example-box">
-                <ul>
-                    <li>My teacher is organizing a seminar about Archaeology.</li>
-                    <li>He's working at the library this month.</li>
-                </ul>
-            </div>
+    <div class="card">
+        <h2>Spelling Rules</h2>
+        <p>Some verbs suffer alterations when they are in the "ing form", but their spelling never changes their pronunciation.</p>
+        
+        <div class="table-responsive" style="margin-top: 1.5rem;">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Rule</th>
+                        <th style="width: 60%;">Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>a) Ending in "-e"</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.9rem;">Remove the 'e' + ing</span>
+                        </td>
+                        <td>
+                            dance → <strong>dancing</strong><br>
+                            produce → <strong>producing</strong><br>
+                            make → <strong>making</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>b) Ending in "-ie"</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.9rem;">Change 'ie' to 'y' + ing</span>
+                        </td>
+                        <td>
+                            die → <strong>dying</strong><br>
+                            lie → <strong>lying</strong><br>
+                            tie → <strong>tying</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>c) Ending in "-c"</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.9rem;">Add 'k' + ing</span>
+                        </td>
+                        <td>
+                            panic → <strong>panicking</strong><br>
+                            picnic → <strong>picnicking</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>d) Ending in "C+V+C"</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.9rem;">Double the last consonant + ing</span>
+                        </td>
+                        <td>
+                            run → <strong>running</strong><br>
+                            forget → <strong>forgetting</strong><br>
+                            jog → <strong>jogging</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
-
-            <h3>A) Affirmative</h3>
-            <div class="example-box">
-                <ul>
-                    <li>I'm studying English right now, Mom.</li>
-                    <li>She's reading a fashion magazine.</li>
-                    <li>They're going to class at this moment.</li>
-                </ul>
-            </div>
-
-            <h3>B) Negative</h3>
-            <div class="example-box">
-                <ul>
-                    <li>I'm not talking loudly. I am at the library.</li>
-                    <li>She's not handing in her book. It's her boyfriend's.</li>
-                    <li>We're not writing, we are typing.</li>
-                </ul>
-            </div>
-            <p><em>Note: The contractions "isn't" and "aren't" are also possible, but are used less.</em></p>
-
-            <h3>C) Interrogative</h3>
-            <div class="example-box">
-                <p><strong>Q:</strong> What am I doing? Is she reading a book in the library?</p>
-                <p><strong>A:</strong> Yes, she is / No, she's not</p>
-                <br>
-                <p><strong>Q:</strong> Are they working on their school project together?</p>
-                <p><strong>A:</strong> Yes, they are / No, they're not</p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Spelling Rules</h2>
-            <p>Some verbs suffer alterations when they are in the "ing form", but their spelling never changes their pronunciation.</p>
-            
-            <div class="rule-grid">
-                <div class="rule-card">
-                    <strong>a) Ending in "-e"</strong>
-                    <p>Remove the 'e' + ing</p>
-                    <p style="color: var(--accent-color);">dance → dancing<br>produce → producing<br>make → making</p>
-                </div>
-                <div class="rule-card">
-                    <strong>b) Ending in "-ie"</strong>
-                    <p>Change 'ie' to 'y' + ing</p>
-                    <p style="color: var(--accent-color);">die → dying<br>lie → lying<br>tie → tying</p>
-                </div>
-                <div class="rule-card">
-                    <strong>c) Ending in "-c"</strong>
-                    <p>Add 'k' + ing</p>
-                    <p style="color: var(--accent-color);">panic → panicking<br>picnic → picnicking</p>
-                </div>
-                <div class="rule-card">
-                    <strong>d) Ending in "C+V+C"</strong>
-                    <p>Double the last consonant + ing</p>
-                    <p style="color: var(--accent-color);">run → running<br>forget → forgetting<br>jog → jogging</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>2) My / Your / His / Her / Its / Our / Their</h2>
-            <p>The possessive adjectives point to who possesses a certain object.</p>
-            
-            <table class="grammar-table">
+    <div class="card">
+        <h2>2) My / Your / His / Her / Its / Our / Their</h2>
+        <p>The possessive adjectives point to who possesses a certain object.</p>
+        
+        <div class="table-responsive" style="margin-top: 1.5rem;">
+            <table>
                 <thead>
                     <tr>
                         <th>Subject</th>
@@ -339,212 +531,232 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>I</td><td>my</td></tr>
-                    <tr><td>You</td><td>your</td></tr>
-                    <tr><td>He</td><td>his</td></tr>
-                    <tr><td>She</td><td>her</td></tr>
-                    <tr><td>It</td><td>its</td></tr>
-                    <tr><td>We</td><td>our</td></tr>
-                    <tr><td>They</td><td>their</td></tr>
+                    <tr><td>I</td><td><strong>my</strong></td></tr>
+                    <tr><td>You</td><td><strong>your</strong></td></tr>
+                    <tr><td>He</td><td><strong>his</strong></td></tr>
+                    <tr><td>She</td><td><strong>her</strong></td></tr>
+                    <tr><td>It</td><td><strong>its</strong></td></tr>
+                    <tr><td>We</td><td><strong>our</strong></td></tr>
+                    <tr><td>They</td><td><strong>their</strong></td></tr>
                 </tbody>
             </table>
+        </div>
 
-            <h3>Examples:</h3>
-            <div class="example-box">
-                <p><strong>She:</strong> Rebecca is not reading <strong>her</strong> book at the library.</p>
-                <p><strong>He:</strong> Richard doesn't know the title of <strong>his</strong> book.</p>
-                <p><strong>They:</strong> Jane and Jack love <strong>their</strong> Archaeology teacher.</p>
-                <p><strong>It:</strong> I have an ebook and <strong>its</strong> cover is pink.</p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>3) 's possessive case</h2>
-            <p>We use <strong>'s</strong> beside a name to indicate he/she is the owner of the object.</p>
-            
-            <div class="example-box">
-                <p>I like to drive <strong>David's</strong> car.</p>
-                <small>David is the owner of the car, the person who possesses it.</small>
-            </div>
-
-            <div class="example-box">
-                <p>Hey, <strong>whose</strong> cell phone is this? <br>It's my <strong>father's</strong> phone.</p>
-                <small>"Whose" questions who the owner is. My father is the owner of the phone.</small>
-            </div>
-
-            <div class="example-box">
-                <p>Oh my God! I think <strong>Debbie's</strong> apartment is bigger than <strong>John's</strong> house! It's huge!</p>
-                <small>Debbie has an apartment and John has a house.</small>
-            </div>
-
-            <div style="background-color: #fff3cd; color: #856404; padding: 1rem; border-radius: 8px; margin-top: 1.5rem; border: 1px solid #ffeeba;">
-                <strong>Attention!</strong> The possessive is also used when talking about animals:
-                <br><br>
-                <em>"Tommy? Is that your cat's name?"</em> (The name of the cat is Tommy).
-                <br>
-                <em>"He is painting his dog's house."</em> (The dog is the owner of the house).
-                <br><br>
-                <strong>But it isn't used in cases between things/objects:</strong>
-                <br>
-                ❌ A book's Archaeology → ✅ An Archaeology book. (A book of Archaeology).
-                <br>
-                ❌ The house's window → ✅ The house window. (The window of the house).
-            </div>
-        </section>
-
-        <section class="card" id="exercises-section">
-            <h2>📝 Practice Exercises</h2>
-            <p>Test your knowledge based on the content above.</p>
-
-            <form id="quizForm" onsubmit="return false;">
-                
-                <div class="exercise-item">
-                    <label><strong>1. Present Continuous:</strong> Complete the sentence correctly based on the examples.<br>
-                    "The girl in red ____________ (read) the book now."</label>
-                    <input type="text" id="q1" placeholder="Type answer here...">
-                    <div id="fb1" class="feedback"></div>
-                </div>
-
-                <div class="exercise-item">
-                    <label><strong>2. Spelling:</strong> What is the correct "ing" form of the verb <strong>"panic"</strong>?</label>
-                    <select id="q2">
-                        <option value="">Select...</option>
-                        <option value="panicing">panicing</option>
-                        <option value="panicking">panicking</option>
-                        <option value="panicying">panicying</option>
-                    </select>
-                    <div id="fb2" class="feedback"></div>
-                </div>
-
-                <div class="exercise-item">
-                    <label><strong>3. Possessive Adjective:</strong><br>
-                    "Richard doesn't know the title of ____________ book."</label>
-                    <select id="q3">
-                        <option value="">Select...</option>
-                        <option value="her">her</option>
-                        <option value="his">his</option>
-                        <option value="its">its</option>
-                    </select>
-                    <div id="fb3" class="feedback"></div>
-                </div>
-
-                <div class="exercise-item">
-                    <label><strong>4. Possessive Case:</strong> Rewrite the phrase using 's.<br>
-                    "The phone of my father"</label>
-                    <input type="text" id="q4" placeholder="e.g. David's car">
-                    <div id="fb4" class="feedback"></div>
-                </div>
-
-                <div class="exercise-item" style="border-bottom: none;">
-                    <label><strong>5. True or False:</strong><br>
-                    We use the 's possessive for inanimate objects (e.g., "The house's window").</label>
-                    <select id="q5">
-                        <option value="">Select...</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                    </select>
-                    <div id="fb5" class="feedback"></div>
-                </div>
-
-                <button class="btn-check" onclick="checkAnswers()">Check Answers</button>
-            </form>
-        </section>
-
-        <footer>
-            Created for educational purposes based on Day 05 Material.
-        </footer>
+        <h3>Examples:</h3>
+        <div class="grammar-box">
+            <p style="margin-bottom:0.5rem;"><strong>She:</strong> Rebecca is not reading <strong>her</strong> book at the library.</p>
+            <p style="margin-bottom:0.5rem;"><strong>He:</strong> Richard doesn't know the title of <strong>his</strong> book.</p>
+            <p style="margin-bottom:0.5rem;"><strong>They:</strong> Jane and Jack love <strong>their</strong> Archaeology teacher.</p>
+            <p><strong>It:</strong> I have an ebook and <strong>its</strong> cover is pink.</p>
+        </div>
     </div>
 
-    <script>
-        // Theme Toggle Logic
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const btn = document.querySelector('.theme-toggle');
-            if(document.body.classList.contains('dark-mode')) {
-                btn.textContent = '☀️ Light';
-            } else {
-                btn.textContent = '🌗 Dark';
-            }
+    <div class="card">
+        <h2>3) 's possessive case</h2>
+        <p style="margin-bottom:1rem;">We use <strong>'s</strong> beside a name to indicate he/she is the owner of the object.</p>
+        
+        <div class="grammar-box">
+            <p>I like to drive <strong>David's</strong> car.</p>
+            <span style="display:block; margin-top:0.5rem; opacity:0.8; font-size:0.9rem;">(David is the owner of the car, the person who possesses it.)</span>
+        </div>
+
+        <div class="grammar-box">
+            <p>Hey, <strong>whose</strong> cell phone is this? &rarr; It's my <strong>father's</strong> phone.</p>
+            <span style="display:block; margin-top:0.5rem; opacity:0.8; font-size:0.9rem;">("Whose" questions who the owner is. My father is the owner of the phone.)</span>
+        </div>
+
+        <div class="grammar-box">
+            <p>Oh my God! I think <strong>Debbie's</strong> apartment is bigger than <strong>John's</strong> house! It's huge!</p>
+            <span style="display:block; margin-top:0.5rem; opacity:0.8; font-size:0.9rem;">(Debbie has an apartment and John has a house.)</span>
+        </div>
+
+        <div class="warning-box">
+            <h3 style="margin:0 0 1rem 0; color:var(--secondary);">Attention!</h3>
+            <p>The possessive is also used when talking about animals:</p>
+            <ul style="padding-left:1.2rem; list-style:disc; margin-top:0.5rem; margin-bottom:1rem;">
+                <li>"Tommy? Is that your cat's name?" <span style="opacity:0.8; font-size:0.9rem;">(The name of the cat is Tommy).</span></li>
+                <li>"He is painting his dog's house." <span style="opacity:0.8; font-size:0.9rem;">(The dog is the owner of the house).</span></li>
+            </ul>
+            <p><strong>But it isn't used in cases between things/objects:</strong></p>
+            <p style="margin-top:0.5rem; color:var(--danger);">❌ A book's Archaeology</p>
+            <p style="color:var(--accent);">✅ An Archaeology book. <span style="opacity:0.8; font-size:0.9rem;">(A book of Archaeology).</span></p>
+            <br>
+            <p style="color:var(--danger);">❌ The house's window</p>
+            <p style="color:var(--accent);">✅ The house window. <span style="opacity:0.8; font-size:0.9rem;">(The window of the house).</span></p>
+        </div>
+    </div>
+
+    <div class="exercise-section" id="homework">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Practice Exercises</h2>
+        <p style="text-align:center; margin-bottom:2rem;">Test your knowledge based on the content above.</p>
+
+        <div class="exercise-item">
+            <h3>1. Present Continuous</h3>
+            <p>Complete the sentence correctly based on the examples.</p>
+            <div class="question-row">
+                <span>"The girl in red</span>
+                <input type="text" class="fill-in" data-correct="is reading" size="15">
+                <span>(read) the book now."</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>2. Spelling</h3>
+            <p>What is the correct "ing" form of the verb <strong>"panic"</strong>?</p>
+            <div class="radio-group" id="q2-group">
+                <input type="radio" name="q2" id="q2-a" value="panicing">
+                <label class="radio-label" for="q2-a">panicing</label>
+
+                <input type="radio" name="q2" id="q2-b" value="panicking">
+                <label class="radio-label" for="q2-b">panicking</label>
+
+                <input type="radio" name="q2" id="q2-c" value="panicying">
+                <label class="radio-label" for="q2-c">panicying</label>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>3. Possessive Adjective</h3>
+            <p>"Richard doesn't know the title of _______ book."</p>
+            <div class="radio-group" id="q3-group">
+                <input type="radio" name="q3" id="q3-a" value="her">
+                <label class="radio-label" for="q3-a">her</label>
+
+                <input type="radio" name="q3" id="q3-b" value="his">
+                <label class="radio-label" for="q3-b">his</label>
+
+                <input type="radio" name="q3" id="q3-c" value="its">
+                <label class="radio-label" for="q3-c">its</label>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>4. Possessive Case</h3>
+            <p>Rewrite the phrase using 's. (e.g., "The phone of my father")</p>
+            <div class="question-row">
+                <input type="text" class="fill-in" data-correct="my father's phone|my father's" size="30" placeholder="Type answer here...">
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>5. True or False</h3>
+            <p>We use the 's possessive for inanimate objects (e.g., "The house's window").</p>
+            <div class="radio-group" id="q5-group">
+                <input type="radio" name="q5" id="q5-a" value="true">
+                <label class="radio-label" for="q5-a">True</label>
+
+                <input type="radio" name="q5" id="q5-b" value="false">
+                <label class="radio-label" for="q5-b">False</label>
+            </div>
+        </div>
+
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>Created for educational purposes • Based on Day 05 Material</p>
+</footer>
+
+<script>
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
+    }
+
+    function toggleTheme() {
+        const currentTheme = root.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
+        } else {
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
         }
+    }
 
-        // Exercise Checking Logic
-        function checkAnswers() {
-            let score = 0;
-            const total = 5;
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
+    function checkAnswers() {
+        let score = 0;
+        let total = 0;
 
-            // Question 1
-            const a1 = document.getElementById('q1').value.trim().toLowerCase();
-            const fb1 = document.getElementById('fb1');
-            if(a1 === "is reading") {
-                fb1.innerHTML = "✅ Correct!";
-                fb1.className = "feedback correct";
-                fb1.style.display = "block";
+        // Reset Styles for Inputs
+        document.querySelectorAll('input[type="text"]').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+        
+        // Reset Styles for Radio Labels
+        document.querySelectorAll('.radio-label').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+
+        // 1. Check Radios (Exercises 2, 3, 5)
+        const radioConfig = [
+            {name: 'q2', ans: 'panicking'},
+            {name: 'q3', ans: 'his'},
+            {name: 'q5', ans: 'false'}
+        ];
+        
+        radioConfig.forEach(item => {
+            total++;
+            // Find the selected radio button for this group
+            const selectedOption = document.querySelector(`input[name="${item.name}"]:checked`);
+            
+            if(selectedOption) {
+                const label = document.querySelector(`label[for="${selectedOption.id}"]`);
+                if(selectedOption.value === item.ans) {
+                    label.classList.add('correct-answer');
+                    score++;
+                } else {
+                    label.classList.add('wrong-answer');
+                }
+            }
+        });
+
+        // 2. Check Fill-ins (Exercises 1, 4)
+        document.querySelectorAll('.fill-in').forEach(el => {
+            total++;
+            let userVal = el.value.trim().toLowerCase();
+            // Normalization
+            userVal = userVal.replace("it's ", "").replace("it is ", "");
+
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
+            
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
                 score++;
             } else {
-                fb1.innerHTML = "❌ Incorrect. Hint: verb to be + verb-ing. Answer: is reading";
-                fb1.className = "feedback incorrect";
-                fb1.style.display = "block";
+                el.classList.add('wrong-answer');
             }
+        });
 
-            // Question 2
-            const a2 = document.getElementById('q2').value;
-            const fb2 = document.getElementById('fb2');
-            if(a2 === "panicking") {
-                fb2.innerHTML = "✅ Correct! Verbs ending in -c add 'k'.";
-                fb2.className = "feedback correct";
-                fb2.style.display = "block";
-                score++;
-            } else {
-                fb2.innerHTML = "❌ Incorrect.";
-                fb2.className = "feedback incorrect";
-                fb2.style.display = "block";
-            }
+        // Feedback
+        const feedback = document.getElementById('feedback');
+        const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
+        
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect!";
+        else if(percentage > 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
 
-            // Question 3
-            const a3 = document.getElementById('q3').value;
-            const fb3 = document.getElementById('fb3');
-            if(a3 === "his") {
-                fb3.innerHTML = "✅ Correct! Richard = He -> His.";
-                fb3.className = "feedback correct";
-                fb3.style.display = "block";
-                score++;
-            } else {
-                fb3.innerHTML = "❌ Incorrect.";
-                fb3.className = "feedback incorrect";
-                fb3.style.display = "block";
-            }
+        feedback.textContent = msg;
+        feedback.style.color = percentage > 70 ? 'var(--accent)' : 'var(--danger)';
+    }
+</script>
 
-            // Question 4
-            const a4 = document.getElementById('q4').value.trim().toLowerCase().replace("it's ", "").replace("it is ", "");
-            const fb4 = document.getElementById('fb4');
-            // Allowing slight variations
-            if(a4 === "my father's phone" || a4 === "my father's") {
-                fb4.innerHTML = "✅ Correct!";
-                fb4.className = "feedback correct";
-                fb4.style.display = "block";
-                score++;
-            } else {
-                fb4.innerHTML = "❌ Incorrect. Answer: My father's phone";
-                fb4.className = "feedback incorrect";
-                fb4.style.display = "block";
-            }
-
-            // Question 5
-            const a5 = document.getElementById('q5').value;
-            const fb5 = document.getElementById('fb5');
-            if(a5 === "false") {
-                fb5.innerHTML = "✅ Correct! We say 'The house window'.";
-                fb5.className = "feedback correct";
-                fb5.style.display = "block";
-                score++;
-            } else {
-                fb5.innerHTML = "❌ Incorrect. See the 'Attention' box.";
-                fb5.className = "feedback incorrect";
-                fb5.style.display = "block";
-            }
-
-            alert(`You got ${score} out of ${total} correct!`);
-        }
-    </script>
 </body>
 </html>

@@ -3,226 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Day 10 - Comparatives & Superlatives</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="../icons/10/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/10/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/10/favicon-16x16.png">
-    <link rel="manifest" href="../icons/10/site.webmanifest">
+    <title>Day 10: Comparatives & Superlatives</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4a90e2;
-            --secondary: #50e3c2;
-            --accent: #f5a623;
-            --bg-color: #f9f9f9;
+            /* Cores Base (Light Mode) */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
             --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e0e0e0;
-            --success: #2ecc71;
-            --error: #e74c3c;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
         }
 
-        body.dark-mode {
-            --primary: #4a90e2;
-            --secondary: #2c3e50;
-            --bg-color: #1a1a1a;
-            --card-bg: #2d2d2d;
-            --text-color: #e0e0e0;
-            --border-color: #444;
+        /* Configurações do Dark Mode */
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --primary-light: #312e81;
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;
+            --card-bg: #1F2937;
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+        /* Botão de Tema */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), #6c5ce7);
-            color: white;
-            padding: 40px 20px;
-            border-radius: 0 0 20px 20px;
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: relative;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        h1 { margin: 0; font-size: 2.5em; }
-        h2 { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 10px; margin-top: 40px; }
-        h3 { color: var(--accent); margin-top: 25px; }
-
-        /* Controls */
-        .controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .theme-toggle {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid white;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
         }
 
-        /* Content Cards */
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Cards & Sections */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.3s;
         }
 
-        .note {
-            background-color: rgba(245, 166, 35, 0.1);
-            border-left: 5px solid var(--accent);
-            padding: 15px;
-            margin: 15px 0;
-            font-style: italic;
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--text);
+            opacity: 0.9;
+            margin: 1.5rem 0 1rem;
+            font-weight: 700;
         }
 
         /* Tables */
-        .table-container {
+        .table-responsive {
             overflow-x: auto;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            background-color: var(--card-bg);
+            margin-bottom: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
         }
+
         th, td {
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
+            padding: 1rem;
             text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text);
+            vertical-align: top;
         }
+        
+        [data-theme="dark"] td {
+             color: #E5E7EB;
+        }
+
         th {
             background-color: var(--primary);
             color: white;
         }
-        tr:nth-child(even) {
-            background-color: rgba(0,0,0,0.02);
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
-        /* Exercises */
-        .exercise-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-bottom: 1px solid var(--border-color);
+        /* Grammar Highlights */
+        .grammar-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
         }
 
-        .input-box {
-            border: 2px solid var(--border-color);
-            padding: 5px 10px;
-            border-radius: 5px;
-            background: var(--card-bg);
-            color: var(--text-color);
-            width: 120px;
-            transition: border-color 0.3s;
-        }
-        
-        .input-box:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .input-box.correct { border-color: var(--success); background-color: rgba(46, 204, 113, 0.1); }
-        .input-box.incorrect { border-color: var(--error); background-color: rgba(231, 76, 60, 0.1); }
-
-        .radio-group label {
-            margin-right: 15px;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 5px;
-            border: 1px solid transparent;
-        }
-        .radio-group input[type="radio"]:checked + span {
+        .note {
             font-weight: bold;
-            color: var(--primary);
+            color: var(--secondary);
         }
 
-        .radio-correct { background-color: rgba(46, 204, 113, 0.2); border: 1px solid var(--success) !important; }
-        .radio-incorrect { background-color: rgba(231, 76, 60, 0.2); border: 1px solid var(--error) !important; text-decoration: line-through; }
+        /* EXERCISES SECTION */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
+            transition: background-color 0.3s;
+        }
 
-        /* Data Table for Ex III */
-        .data-card {
+        .exercise-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--input-border);
+        }
+
+        .question-row {
+            margin: 1.2rem 0;
             display: flex;
+            align-items: center;
             gap: 10px;
             flex-wrap: wrap;
-            justify-content: center;
+            line-height: 2;
         }
-        .person-card {
+
+        /* --- Radio Button Styling (New) --- */
+        .radio-group {
+            display: inline-flex;
+            gap: 0.6rem;
+            margin: 0 0.5rem;
+            vertical-align: middle;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            position: relative;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Hide the default radio input */
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        /* The Custom Label Appearance */
+        .radio-option span {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border: 2px solid var(--input-border);
+            background: var(--input-bg);
+            color: var(--text);
+            border-radius: 50px; /* Pill shape */
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+
+        /* Hover Effect */
+        .radio-option:hover span {
+            border-color: var(--primary);
             background: var(--card-bg);
-            border: 1px solid var(--primary);
-            border-radius: 8px;
-            padding: 15px;
-            width: 200px;
-            text-align: center;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .person-card h4 { margin-top: 0; color: var(--primary); }
+
+        /* Checked State */
+        .radio-option input[type="radio"]:checked + span {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 5px rgba(79, 70, 229, 0.4);
+            transform: translateY(0);
+        }
+
+        /* Feedback States for Radios */
+        /* Correct Answer Styles */
+        .radio-option.correct-choice span {
+            border-color: var(--accent) !important;
+            color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.15) !important;
+        }
+        .radio-option.correct-choice input:checked + span {
+            background-color: var(--accent) !important;
+            color: #fff !important;
+        }
+
+        /* Wrong Answer Styles */
+        .radio-option.wrong-choice span {
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.15) !important;
+        }
+        .radio-option.wrong-choice input:checked + span {
+            background-color: var(--danger) !important;
+            color: #fff !important;
+        }
+
+        /* --- End Radio Styling --- */
+
+        /* Inputs for Fill-in-blanks */
+        input[type="text"] {
+            padding: 0.5rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Feedback for Text Inputs */
+        .correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: var(--danger);
+        }
+
+        /* Profiles for Exercise III */
+        .profiles-container {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-card {
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .profile-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .profile-card p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
 
         /* Button */
-        .btn-action {
+        .btn-check {
             display: block;
             width: 100%;
-            padding: 15px;
-            background-color: var(--success);
+            background: var(--secondary);
             color: white;
+            padding: 1rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 30px;
-            transition: transform 0.2s;
-        }
-        .btn-action:hover {
-            transform: scale(1.02);
-            background-color: #27ae60;
+            transition: background 0.3s;
+            margin-top: 2rem;
         }
 
-        #result-area {
-            text-align: center;
-            font-size: 1.5em;
-            margin-top: 20px;
+        .btn-check:hover {
+            background: #d97706;
+        }
+
+        .feedback-msg {
+            margin-top: 1rem;
             font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 1.8em; }
-            .person-card { width: 100%; }
+            header h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+            .profile-card { width: 100%; }
+            .radio-group { display: flex; width: 100%; margin: 10px 0; }
+            .radio-option { flex: 1; text-align: center; }
+            .radio-option span { width: 100%; }
         }
     </style>
 </head>
 <body>
 
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
+
 <header>
-    <div class="controls">
-        <button class="theme-toggle" onclick="toggleTheme()">🌗 Dark/Light</button>
-    </div>
-    <h1>English Grammar: Day 10</h1>
-    <p>Comparatives, Superlatives & Stative Verbs</p>
+    <h1>Day 10</h1>
+    <p>English Masterclass: Comparatives & Superlatives</p>
 </header>
 
 <div class="container">
 
-    <section class="card">
+    <div class="card">
         <h2>Grammar Rules Summary</h2>
-        <div class="table-container">
+        <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
@@ -234,31 +425,31 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>One syllable</strong><br>(Uma sílaba)<br>Adiciona -er/-est</td>
+                        <td><strong>One syllable</strong><br><small>(Uma sílaba) Adiciona -er/-est</small></td>
                         <td>clear<br>dark</td>
                         <td>clearer<br>darker</td>
                         <td>clearest<br>darkest</td>
                     </tr>
                     <tr>
-                        <td><strong>One syllable ending with -e</strong><br>(Uma sílaba terminada em -e)<br>Adiciona -r/-st</td>
+                        <td><strong>One syllable ending with -e</strong><br><small>(Terminada em -e) Adiciona -r/-st</small></td>
                         <td>wise<br>simple</td>
                         <td>wiser<br>simpler</td>
                         <td>wisest<br>simplest</td>
                     </tr>
                     <tr>
-                        <td><strong>Ending 1 vowel + 1 consonant</strong><br>(Dobra a consoante + -er/-est)</td>
+                        <td><strong>Ending 1 vowel + 1 consonant</strong><br><small>(Dobra a consoante + -er/-est)</small></td>
                         <td>thin<br>fat</td>
                         <td>thinner<br>fatter</td>
                         <td>thinnest<br>fattest</td>
                     </tr>
                     <tr>
-                        <td><strong>Two syllables ending in -y</strong><br>(Troca y por i + -er/-est)</td>
+                        <td><strong>Two syllables ending in -y</strong><br><small>(Troca y por i + -er/-est)</small></td>
                         <td>busy<br>merry</td>
                         <td>busier<br>merrier</td>
                         <td>busiest<br>merriest</td>
                     </tr>
                     <tr>
-                        <td><strong>Three or more syllables</strong><br>(Usa more / most)</td>
+                        <td><strong>Three or more syllables</strong><br><small>(Usa more / most)</small></td>
                         <td>creative<br>popular</td>
                         <td>more creative<br>more popular</td>
                         <td>most creative<br>most popular</td>
@@ -272,283 +463,456 @@
                 </tbody>
             </table>
         </div>
-    </section>
+    </div>
 
-    <section class="card">
+    <div class="card">
         <h2>1) Comparatives</h2>
-        <p>When you compare two things (objects, people, cities, etc.) or more, you use comparative adjectives.</p>
+        <p style="margin-bottom: 1rem;">When you compare two things (objects, people, cities, etc.) or more, you use comparative adjectives.</p>
         
-        <div class="note">
-            <strong>Examples:</strong><br>
-            • Abbey Road studio is <em>bigger than</em> a personal studio.<br>
-            • Classical music is <em>more beautiful than</em> rap music.
+        <div class="grammar-box">
+            <strong style="display:block; margin-bottom:0.5rem; color:var(--primary);">Examples:</strong>
+            <ul style="padding-left: 1.2rem; list-style-type: disc;">
+                <li>Abbey Road studio is <strong>bigger than</strong> a personal studio.</li>
+                <li>Classical music is <strong>more beautiful than</strong> rap music.</li>
+            </ul>
         </div>
 
-        <h3>Pay attention:</h3>
-        <ul>
+        <h3 style="color:var(--secondary);">Pay attention:</h3>
+        <ul style="padding-left: 1.2rem; margin-bottom: 1.5rem;">
             <li><strong>Short adjectives</strong> = Adjective + ER + than</li>
             <li><strong>Long adjectives</strong> = More + adjective + than</li>
         </ul>
 
-        <div class="table-container">
+        <div class="table-responsive">
             <table>
-                <tr><td>Old</td><td>Older than</td></tr>
-                <tr><td>Small</td><td>Smaller than</td></tr>
-                <tr><td>Happy</td><td>Happier than</td></tr>
-                <tr><td>Intelligent</td><td>More intelligent than</td></tr>
-                <tr><td>Extroverted</td><td>More extroverted than</td></tr>
-                <tr><td>Expensive</td><td>More expensive than</td></tr>
+                <tbody>
+                    <tr><td>Old</td><td>Older than</td></tr>
+                    <tr><td>Small</td><td>Smaller than</td></tr>
+                    <tr><td>Happy</td><td>Happier than</td></tr>
+                    <tr><td>Intelligent</td><td>More intelligent than</td></tr>
+                    <tr><td>Extroverted</td><td>More extroverted than</td></tr>
+                    <tr><td>Expensive</td><td>More expensive than</td></tr>
+                </tbody>
             </table>
         </div>
 
-        <div class="note">
-            <strong>Spelling Notes:</strong>
-            <ul>
-                <li>CVC (Consonant-Vowel-Consonant): Double the final consonant (big → bigger, fat → fatter).</li>
-                <li>Ending in Y: Change 'y' to 'i' (happy → happier, funny → funniest).</li>
-                <li>Irregular: good → better, bad → worse, far → farther.</li>
+        <div class="grammar-box">
+            <h3 style="margin:0 0 0.5rem 0; color:var(--secondary);">Spelling Notes:</h3>
+            <ul style="padding-left: 1.2rem;">
+                <li><strong>CVC (Consonant-Vowel-Consonant):</strong> Double the final consonant (big → bigger, fat → fatter).</li>
+                <li><strong>Ending in Y:</strong> Change 'y' to 'i' (happy → happier, funny → funniest).</li>
+                <li><strong>Irregular:</strong> good → better, bad → worse, far → farther.</li>
             </ul>
         </div>
-    </section>
+    </div>
 
-    <section class="card">
+    <div class="card">
         <h2>2) Superlatives</h2>
-        <p>When you compare one thing with a group of the same type, you use a superlative adjective.</p>
+        <p style="margin-bottom: 1rem;">When you compare one thing with a group of the same type, you use a superlative adjective.</p>
 
-        <div class="note">
-            <strong>Examples:</strong><br>
-            • Abbey Road is <em>the largest</em> studio in the world.<br>
-            • The violin has <em>the most beautiful</em> sound of all instruments.
+        <div class="grammar-box">
+            <strong style="display:block; margin-bottom:0.5rem; color:var(--primary);">Examples:</strong>
+            <ul style="padding-left: 1.2rem; list-style-type: disc;">
+                <li>Abbey Road is <strong>the largest</strong> studio in the world.</li>
+                <li>The violin has <strong>the most beautiful</strong> sound of all instruments.</li>
+            </ul>
         </div>
 
-        <h3>Pay attention:</h3>
-        <ul>
+        <h3 style="color:var(--secondary);">Pay attention:</h3>
+        <ul style="padding-left: 1.2rem; margin-bottom: 1.5rem;">
             <li><strong>Short adjectives</strong> (1 or 2 syllables) = The + Adjective + EST</li>
             <li><strong>Long adjectives</strong> (2 or more syllables) = The most + Adjective</li>
         </ul>
 
-        <div class="table-container">
+        <div class="table-responsive">
             <table>
-                <tr><td>Old</td><td>The oldest</td></tr>
-                <tr><td>Small</td><td>The smallest</td></tr>
-                <tr><td>Happy</td><td>The happiest</td></tr>
-                <tr><td>Intelligent</td><td>The most intelligent</td></tr>
-                <tr><td>Extroverted</td><td>The most extroverted</td></tr>
-                <tr><td>Expensive</td><td>The most expensive</td></tr>
+                <tbody>
+                    <tr><td>Old</td><td>The oldest</td></tr>
+                    <tr><td>Small</td><td>The smallest</td></tr>
+                    <tr><td>Happy</td><td>The happiest</td></tr>
+                    <tr><td>Intelligent</td><td>The most intelligent</td></tr>
+                    <tr><td>Extroverted</td><td>The most extroverted</td></tr>
+                    <tr><td>Expensive</td><td>The most expensive</td></tr>
+                </tbody>
             </table>
         </div>
-    </section>
+    </div>
 
-    <section class="card">
+    <div class="card">
         <h2>3) Stative Verbs</h2>
         <p>Stative verbs are verbs that express a state rather than an action. They usually relate to thoughts, emotions, relationships, senses, states of being and measurements.</p>
-        <p><strong>⚠️ These verbs are not usually used with "-ing" in continuous tenses.</strong></p>
-        <p><em>Examples:</em> agree, be, belong to, believe, feel, hate, know, like, love, need, remember, see, smell, understand, want.</p>
-    </section>
-
-    <hr>
-    
-    <h1 style="text-align: center; margin-top: 40px;">Exercises</h1>
-
-    <section class="card">
-        <h3>I - Circle the correct option.</h3>
         
-        <div class="exercise-item radio-group" id="ex1-1">
-            1. Some players are 
-            <label><input type="radio" name="q1" value="correct"> <span>more skilful</span></label> / 
-            <label><input type="radio" name="q1" value="wrong"> <span>skilfuller</span></label> than others.
+        <div class="grammar-box" style="border-left-color: var(--danger); background: rgba(239, 68, 68, 0.1);">
+            <strong>⚠️ Note:</strong> These verbs are not usually used with "-ing" in continuous tenses.
         </div>
 
-        <div class="exercise-item radio-group" id="ex1-2">
-            2. Bass players are usually 
-            <label><input type="radio" name="q2" value="correct"> <span>less famous</span></label> / 
-            <label><input type="radio" name="q2" value="wrong"> <span>least famous</span></label> than guitar players.
-        </div>
+        <p style="margin-top: 1rem;"><strong>Examples:</strong> agree, be, belong to, believe, feel, hate, know, like, love, need, remember, see, smell, understand, want.</p>
+    </div>
 
-        <div class="exercise-item radio-group" id="ex1-3">
-            3. Drummers usually die 
-            <label><input type="radio" name="q3" value="correct"> <span>earlier</span></label> / 
-            <label><input type="radio" name="q3" value="wrong"> <span>more early</span></label> than the rest of the band.
-        </div>
+    <div class="exercise-section" id="homework">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Homework</h2>
+        <p style="text-align:center; margin-bottom:2rem;">Practice what you learned today.</p>
 
-        <div class="exercise-item radio-group" id="ex1-4">
-            4. Some guitars are 
-            <label><input type="radio" name="q4" value="correct"> <span>more expensive</span></label> / 
-            <label><input type="radio" name="q4" value="wrong"> <span>expensiver</span></label> than others.
-        </div>
-
-        <div class="exercise-item radio-group" id="ex1-5">
-            5. Martin liked a different kind of music when he was 
-            <label><input type="radio" name="q5" value="wrong"> <span>more young</span></label> / 
-            <label><input type="radio" name="q5" value="correct"> <span>younger</span></label>.
-        </div>
-    </section>
-
-    <section class="card">
-        <h3>II - Select the correct option.</h3>
-        
-        <div class="exercise-item radio-group" id="ex2-1">
-            a) Ferris wants to find a 
-            <label><input type="radio" name="q2a" value="wrong"> <span>least</span></label> / 
-            <label><input type="radio" name="q2a" value="correct"> <span>less</span></label> expensive guitar.
-        </div>
-        <div class="exercise-item radio-group" id="ex2-2">
-            b) Martin thinks rock and roll is the 
-            <label><input type="radio" name="q2b" value="correct"> <span>best</span></label> / 
-            <label><input type="radio" name="q2b" value="wrong"> <span>better</span></label> kind of music.
-        </div>
-        <div class="exercise-item radio-group" id="ex2-3">
-            c) In his opinion Elvis had 
-            <label><input type="radio" name="q2c" value="correct"> <span>more energy</span></label> / 
-            <label><input type="radio" name="q2c" value="wrong"> <span>most energy</span></label> than the Beatles.
-        </div>
-        <div class="exercise-item radio-group" id="ex2-4">
-            d) Ferris thinks those guitars sound 
-            <label><input type="radio" name="q2d" value="correct"> <span>as good as</span></label> / 
-            <label><input type="radio" name="q2d" value="wrong"> <span>the good as</span></label> the others they saw.
-        </div>
-        <div class="exercise-item radio-group" id="ex2-5">
-            e) When he was 
-            <label><input type="radio" name="q2e" value="wrong"> <span>more young</span></label> / 
-            <label><input type="radio" name="q2e" value="correct"> <span>younger</span></label>, he only listened to Elvis Presley.
-        </div>
-    </section>
-
-    <section class="card">
-        <h3>III - Complete the sentences using the comparative form.</h3>
-        
-        <div class="data-card">
-            <div class="person-card">
-                <h4>Tom Cruise</h4>
-                <p><strong>Age:</strong> 56</p>
-                <p><strong>Height:</strong> 1.70 m</p>
-                <p><strong>Active:</strong> 1981-present</p>
-                <p><strong>Weight:</strong> 67 kg</p>
+        <div class="exercise-item">
+            <h3>I - Choose the correct option</h3>
+            
+            <div class="question-row">
+                <span>1. Some players are</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_1" value="more skilful">
+                        <span>more skilful</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_1" value="skilfuller">
+                        <span>skilfuller</span>
+                    </label>
+                </div>
+                <span>than others.</span>
             </div>
-            <div class="person-card">
-                <h4>Ashton Kutcher</h4>
-                <p><strong>Age:</strong> 40</p>
-                <p><strong>Height:</strong> 1.89 m</p>
-                <p><strong>Active:</strong> 1998-present</p>
-                <p><strong>Weight:</strong> 80 kg</p>
+
+            <div class="question-row">
+                <span>2. Bass players are usually</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_2" value="less famous">
+                        <span>less famous</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_2" value="least famous">
+                        <span>least famous</span>
+                    </label>
+                </div>
+                <span>than guitar players.</span>
             </div>
-            <div class="person-card">
-                <h4>Jackie Chan</h4>
-                <p><strong>Age:</strong> 64</p>
-                <p><strong>Height:</strong> 1.74 m</p>
-                <p><strong>Active:</strong> 1959-present</p>
-                <p><strong>Weight:</strong> 75 kg</p>
+
+            <div class="question-row">
+                <span>3. Drummers usually die</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_3" value="earlier">
+                        <span>earlier</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_3" value="more early">
+                        <span>more early</span>
+                    </label>
+                </div>
+                <span>than the rest of the band.</span>
+            </div>
+
+            <div class="question-row">
+                <span>4. Some guitars are</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_4" value="more expensive">
+                        <span>more expensive</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_4" value="expensiver">
+                        <span>expensiver</span>
+                    </label>
+                </div>
+                <span>than others.</span>
+            </div>
+
+            <div class="question-row">
+                <span>5. Martin liked a different kind of music when he was</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_5" value="more young">
+                        <span>more young</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex1_5" value="younger">
+                        <span>younger</span>
+                    </label>
+                </div>
+                <span>.</span>
             </div>
         </div>
-        <br>
 
         <div class="exercise-item">
-            1) Jackie Chan is <input type="text" class="input-box text-input" data-answer="funnier"> than Tom Cruise. (funny)
-        </div>
-        <div class="exercise-item">
-            2) Ashton Kutcher is <input type="text" class="input-box text-input" data-answer="taller"> than Jackie Chan. (tall)
-        </div>
-        <div class="exercise-item">
-            3) Jackie Chan is <input type="text" class="input-box text-input" data-answer="uglier"> than Tom Cruise. (ugly)
-        </div>
-        <div class="exercise-item">
-            4) Tom Cruise is <input type="text" class="input-box text-input" data-answer="older"> than Ashton Kutcher. (old)
-        </div>
-        <div class="exercise-item">
-            5) Jackie Chan is <input type="text" class="input-box text-input" data-answer="fatter"> than Tom Cruise. (fat)
-        </div>
-        <div class="exercise-item">
-            6) Ashton Kutcher is as <input type="text" class="input-box text-input" data-answer="handsome"> as Tom Cruise. (handsome)
-        </div>
-        <div class="exercise-item">
-            7) Jackie Chan fights <input type="text" class="input-box text-input" data-answer="better"> than Tom Cruise. (good)
-        </div>
-        <div class="exercise-item">
-            8) Tom Cruise has <input type="text" class="input-box text-input" data-answer="shorter"> hair than Ashton Kutcher. (short)
-        </div>
-        <div class="exercise-item">
-            9) Jackie Chan is <input type="text" class="input-box text-input" data-answer="more experienced"> than Tom Cruise. (experienced)
-        </div>
-    </section>
+            <h3>II - Select the correct option</h3>
+            
+            <div class="question-row">
+                <span>a) Ferris wants to find a</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_a" value="least">
+                        <span>least</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_a" value="less">
+                        <span>less</span>
+                    </label>
+                </div>
+                <span>expensive guitar.</span>
+            </div>
 
-    <section class="card">
-        <h3>IV - Complete the text using the simple past of the verb "to be" (was/were).</h3>
-        
-        <p>
-            Nowadays, I love rock and roll, but when I <input type="text" class="input-box text-input" data-answer="was"> a child I liked listening to "Mamonas Assassinas". 
-            They <input type="text" class="input-box text-input" data-answer="were"> my favourite singers because they <input type="text" class="input-box text-input" data-answer="were"> really funny. 
-            My friends and I <input type="text" class="input-box text-input" data-answer="were"> very sad when we heard they had died. I cried for days. 
-            It <input type="text" class="input-box text-input" data-answer="was"> a dreadful event that Brazil will never forget.
-        </p>
-    </section>
+            <div class="question-row">
+                <span>b) Martin thinks rock and roll is the</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_b" value="best">
+                        <span>best</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_b" value="better">
+                        <span>better</span>
+                    </label>
+                </div>
+                <span>kind of music.</span>
+            </div>
 
-    <button class="btn-action" onclick="checkAnswers()">Verificar Respostas</button>
-    
-    <div id="result-area"></div>
+            <div class="question-row">
+                <span>c) In his opinion Elvis had</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_c" value="more energy">
+                        <span>more energy</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_c" value="most energy">
+                        <span>most energy</span>
+                    </label>
+                </div>
+                <span>than the Beatles.</span>
+            </div>
+
+            <div class="question-row">
+                <span>d) Ferris thinks those guitars sound</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_d" value="as good as">
+                        <span>as good as</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_d" value="the good as">
+                        <span>the good as</span>
+                    </label>
+                </div>
+                <span>the others they saw.</span>
+            </div>
+
+            <div class="question-row">
+                <span>e) When he was</span>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_e" value="more young">
+                        <span>more young</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="ex2_e" value="younger">
+                        <span>younger</span>
+                    </label>
+                </div>
+                <span>, he only listened to Elvis Presley.</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>III - Complete the sentences using the comparative form</h3>
+            
+            <div class="profiles-container">
+                <div class="profile-card">
+                    <h4>Tom Cruise</h4>
+                    <p><strong>Age:</strong> 56</p>
+                    <p><strong>Height:</strong> 1.70 m</p>
+                    <p><strong>Active:</strong> 1981-present</p>
+                    <p><strong>Weight:</strong> 67 kg</p>
+                </div>
+                <div class="profile-card">
+                    <h4>Ashton Kutcher</h4>
+                    <p><strong>Age:</strong> 40</p>
+                    <p><strong>Height:</strong> 1.89 m</p>
+                    <p><strong>Active:</strong> 1998-present</p>
+                    <p><strong>Weight:</strong> 80 kg</p>
+                </div>
+                <div class="profile-card">
+                    <h4>Jackie Chan</h4>
+                    <p><strong>Age:</strong> 64</p>
+                    <p><strong>Height:</strong> 1.74 m</p>
+                    <p><strong>Active:</strong> 1959-present</p>
+                    <p><strong>Weight:</strong> 75 kg</p>
+                </div>
+            </div>
+
+            <div class="question-row">
+                <span>1) Jackie Chan is</span>
+                <input type="text" class="fill-in" data-correct="funnier" size="10">
+                <span>than Tom Cruise. (funny)</span>
+            </div>
+            <div class="question-row">
+                <span>2) Ashton Kutcher is</span>
+                <input type="text" class="fill-in" data-correct="taller" size="10">
+                <span>than Jackie Chan. (tall)</span>
+            </div>
+            <div class="question-row">
+                <span>3) Jackie Chan is</span>
+                <input type="text" class="fill-in" data-correct="uglier" size="10">
+                <span>than Tom Cruise. (ugly)</span>
+            </div>
+            <div class="question-row">
+                <span>4) Tom Cruise is</span>
+                <input type="text" class="fill-in" data-correct="older" size="10">
+                <span>than Ashton Kutcher. (old)</span>
+            </div>
+            <div class="question-row">
+                <span>5) Jackie Chan is</span>
+                <input type="text" class="fill-in" data-correct="fatter" size="10">
+                <span>than Tom Cruise. (fat)</span>
+            </div>
+            <div class="question-row">
+                <span>6) Ashton Kutcher is as</span>
+                <input type="text" class="fill-in" data-correct="handsome" size="10">
+                <span>as Tom Cruise. (handsome)</span>
+            </div>
+            <div class="question-row">
+                <span>7) Jackie Chan fights</span>
+                <input type="text" class="fill-in" data-correct="better" size="10">
+                <span>than Tom Cruise. (good)</span>
+            </div>
+            <div class="question-row">
+                <span>8) Tom Cruise has</span>
+                <input type="text" class="fill-in" data-correct="shorter" size="10">
+                <span>hair than Ashton Kutcher. (short)</span>
+            </div>
+            <div class="question-row">
+                <span>9) Jackie Chan is</span>
+                <input type="text" class="fill-in" data-correct="more experienced" size="15">
+                <span>than Tom Cruise. (experienced)</span>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <h3>IV - Complete with simple past of "to be" (was/were)</h3>
+            
+            <p style="line-height: 2.2rem;">
+                Nowadays, I love rock and roll, but when I <input type="text" class="fill-in" data-correct="was" size="5"> a child I liked listening to "Mamonas Assassinas". 
+                They <input type="text" class="fill-in" data-correct="were" size="5"> my favourite singers because they <input type="text" class="fill-in" data-correct="were" size="5"> really funny. 
+                My friends and I <input type="text" class="fill-in" data-correct="were" size="5"> very sad when we heard they had died. I cried for days. 
+                It <input type="text" class="fill-in" data-correct="was" size="5"> a dreadful event that Brazil will never forget.
+            </p>
+        </div>
+
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
+
+    </div>
 
 </div>
 
+<footer>
+    <p>Created for English Learning • Based on Day 10 Material</p>
+</footer>
+
 <script>
-    // Theme Toggle
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
     }
 
-    // Check Answers Logic
+    function toggleTheme() {
+        const currentTheme = root.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
+        } else {
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
+        }
+    }
+
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
     function checkAnswers() {
         let score = 0;
         let total = 0;
 
         // Reset Styles
-        document.querySelectorAll('.radio-correct, .radio-incorrect').forEach(el => {
-            el.classList.remove('radio-correct', 'radio-incorrect');
+        // Remove class from radio options
+        document.querySelectorAll('.radio-option').forEach(el => {
+            el.classList.remove('correct-choice', 'wrong-choice');
         });
-        document.querySelectorAll('.input-box').forEach(el => {
-            el.classList.remove('correct', 'incorrect');
-        });
-
-        // 1. Check Radio Buttons (Ex I & II)
-        const radioGroups = document.querySelectorAll('.radio-group');
-        radioGroups.forEach(group => {
-            total++;
-            const selected = group.querySelector('input:checked');
-            
-            if (selected) {
-                if (selected.value === 'correct') {
-                    score++;
-                    selected.parentElement.classList.add('radio-correct');
-                } else {
-                    selected.parentElement.classList.add('radio-incorrect');
-                }
-            }
+        // Remove class from text inputs
+        document.querySelectorAll('input[type="text"]').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
         });
 
-        // 2. Check Text Inputs (Ex III & IV)
-        const textInputs = document.querySelectorAll('.text-input');
-        textInputs.forEach(input => {
-            total++;
-            const userAnswer = input.value.trim().toLowerCase();
-            const correctAnswer = input.getAttribute('data-answer').toLowerCase();
-            
-            if (userAnswer === correctAnswer) {
-                score++;
-                input.classList.add('correct');
-            } else {
-                input.classList.add('incorrect');
-            }
-        });
-
-        // Display Result
-        const resultArea = document.getElementById('result-area');
-        const percentage = Math.round((score / total) * 100);
+        // 1. Check Radios (Exercise 1 & 2)
+        const selectConfigs = [
+            // Ex 1
+            {id: 'ex1_1', ans: 'more skilful'},
+            {id: 'ex1_2', ans: 'less famous'},
+            {id: 'ex1_3', ans: 'earlier'},
+            {id: 'ex1_4', ans: 'more expensive'},
+            {id: 'ex1_5', ans: 'younger'},
+            // Ex 2
+            {id: 'ex2_a', ans: 'less'},
+            {id: 'ex2_b', ans: 'best'},
+            {id: 'ex2_c', ans: 'more energy'},
+            {id: 'ex2_d', ans: 'as good as'},
+            {id: 'ex2_e', ans: 'younger'},
+        ];
         
-        let message = "";
-        if (percentage === 100) message = "Perfeito! 🌟";
-        else if (percentage >= 70) message = "Muito bom! 👍";
-        else message = "Continue praticando! 💪";
+        selectConfigs.forEach(item => {
+            total++;
+            // Find selected radio
+            const selectedRadio = document.querySelector(`input[name="${item.id}"]:checked`);
+            
+            if(selectedRadio) {
+                const labelParent = selectedRadio.parentElement; // .radio-option
+                if(selectedRadio.value === item.ans) {
+                    labelParent.classList.add('correct-choice');
+                    score++;
+                } else {
+                    labelParent.classList.add('wrong-choice');
+                }
+            } else {
+                // Not answered: Optional, could mark as wrong here if we want to force answers
+                // For now, no visual feedback if nothing is selected
+            }
+        });
 
-        resultArea.innerHTML = `Sua pontuação: ${score} de ${total} (${percentage}%)<br><small>${message}</small>`;
-        resultArea.style.color = percentage >= 70 ? 'var(--success)' : 'var(--text-color)';
+        // 2. Check Fill-ins (Exercise 3 & 4)
+        document.querySelectorAll('.fill-in').forEach(el => {
+            total++;
+            let userVal = el.value.trim().toLowerCase();
+            // Normalization
+            userVal = userVal.replace("it's", "it is").replace("i'm", "i am");
+
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
+            
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
+                score++;
+            } else {
+                el.classList.add('wrong-answer');
+            }
+        });
+
+        // Feedback
+        const feedback = document.getElementById('feedback');
+        const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
+        
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect!";
+        else if(percentage > 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
+
+        feedback.textContent = msg;
+        feedback.style.color = percentage > 70 ? 'var(--accent)' : 'var(--danger)';
     }
 </script>
 

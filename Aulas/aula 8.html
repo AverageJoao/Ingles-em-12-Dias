@@ -312,11 +312,6 @@
             font-weight: 700;
             box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
         }
-        
-        /* Fallback for browsers without :has support (using adjacent sibling if structure allowed, 
-           but since input is inside label, we rely on :has or JS class toggle. 
-           Most modern browsers support :has. If strict legacy support is needed, JS toggles are safer) 
-        */
 
         /* Feedback Classes */
         .correct-answer {
@@ -395,10 +390,45 @@
         
         <div class="grammar-box">
             <strong style="display:block; margin-bottom:0.5rem; color:var(--primary);">Examples:</strong>
-            <ul style="padding-left: 1.2rem; list-style-type: disc;">
+            <ul style="padding-left: 1.2rem; list-style-type: disc; margin-bottom: 0;">
                 <li>They are going to call the police later. <span style="opacity:0.8;">(= They will call the police later.)</span></li>
                 <li>I'm going to be a nurse when I grow up. <span style="font-weight:bold; color:var(--accent);">(Plan)</span></li>
             </ul>
+        </div>
+
+        <h3 style="border-bottom: 1px solid var(--input-border); padding-bottom: 0.5rem; margin-top: 1.5rem;">Forms</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+            <div style="background: var(--input-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent);">
+                <strong style="color: var(--accent);">A) Affirmative</strong>
+                <p style="margin: 0.5rem 0; font-size: 1.1rem;">The store <strong>is going to open</strong> at 9 am.</p>
+                <small style="display: block; color: var(--text-muted); font-style: italic;">
+                    Structure: Verb 'to be' + going to + main verb (infinitive)
+                </small>
+            </div>
+
+            <div style="background: var(--input-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--danger);">
+                <strong style="color: var(--danger);">B) Negative</strong>
+                <p style="margin: 0.5rem 0; font-size: 1.1rem;">The store <strong>isn't going to open</strong> at 9 am.</p>
+            </div>
+
+            <div style="background: var(--input-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--secondary);">
+                <strong style="color: var(--secondary);">C) Interrogative</strong>
+                <p style="margin: 0.5rem 0; font-size: 1.1rem;"><strong>Is</strong> the store <strong>going to open</strong> at 9 am?</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <p><strong>Expressing time in the future:</strong></p>
+            <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 8px;">
+                <span class="q-badge">tomorrow</span>
+                <span class="q-badge">next week/year</span>
+                <span class="q-badge">soon</span>
+                <span class="q-badge">in a while</span>
+                <span class="q-badge">in a minute</span>
+                <span class="q-badge">after this class</span>
+                <span class="q-badge">tonight</span>
+            </div>
         </div>
     </div>
 
@@ -762,8 +792,7 @@
                     parentLabel.classList.add('wrong-answer');
                 }
             } else {
-                // If nothing selected, you could mark all as wrong or just do nothing (counting as incorrect)
-                // score is not incremented
+                // If nothing selected, score is not incremented
             }
         });
 

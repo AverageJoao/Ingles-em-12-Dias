@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 09: Simple Past</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icons/9/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/9/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/9/favicon-16x16.png">
+    <link rel="manifest" href="../icons/9/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cores Base (Light Mode) - Matching Aula 8 */
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            
+            --text: #1F2937;
+            --text-muted: #6B7280;
+            --bg: #F3F4F6;
+            --card-bg: #ffffff;
+            --white: #ffffff;
+            
+            --input-bg: #F9FAFB;
+            --input-border: #D1D5DB;
+            
+            --danger: #EF4444;
+            --dialogue-bg: #f9fafb;
+            --dialogue-border: #ccc;
+        }
+
+        /* Configurações do Dark Mode */
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --primary-light: #312e81;
+            --secondary: #fbbf24;
+            
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --bg: #111827;
+            --card-bg: #1F2937;
+            
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            
+            --dialogue-bg: #1f2937;
+            --dialogue-border: #4B5563;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Botão de Tema */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #fff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Cards & Sections */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--text);
+            opacity: 0.9;
+            margin: 1.5rem 0 1rem;
+            font-weight: 700;
+        }
+
+        /* Tables & Lists */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text);
+            vertical-align: top;
+        }
+        
+        [data-theme="dark"] td {
+             color: #E5E7EB;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Specific Styles from Aula 9 Adapted */
+        .verb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .verb-card {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--input-border);
+            transition: all 0.3s;
+        }
+        
+        .verb-card:hover {
+            border-color: var(--primary);
+        }
+
+        .verb-card span:first-child { color: var(--text-muted); font-weight: normal; }
+        .verb-card span:last-child { color: var(--primary); font-weight: 800; }
+
+        .sentence-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sentence-item {
+            background-color: var(--dialogue-bg);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            font-size: 1.05rem;
+        }
+
+        .affirmative { border-left-color: var(--accent); }
+        .negative { border-left-color: var(--danger); }
+        .interrogative { border-left-color: var(--secondary); }
+
+        /* Grammar Highlights */
+        .grammar-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            color: var(--text);
+        }
+
+        /* EXERCISES SECTION */
+        .exercise-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            margin-top: 3rem;
+            transition: background-color 0.3s;
+        }
+
+        .exercise-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--input-border);
+        }
+
+        .question-row {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .question-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Inputs */
+        input[type="text"], select {
+            padding: 0.6rem;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* RADIO BUTTON STYLING START */
+        .radio-options-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        /* Hide the actual radio input circle */
+        .radio-options-container input[type="radio"] {
+            display: none;
+        }
+
+        /* Style the visible label */
+        .radio-label-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 100px;
+        }
+
+        /* Hover Effect */
+        .radio-label-box:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Checked State */
+        .radio-options-container input[type="radio"]:checked + .radio-label-box {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Focus State for accessibility */
+        .radio-options-container input[type="radio"]:focus + .radio-label-box {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        /* RADIO BUTTON STYLING END */
+
+        .correct-answer {
+            border-color: var(--accent) !important;
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* Specific override for radio buttons to show correctness on the parent label */
+        input[type="radio"].correct-answer + .radio-label-box {
+            background-color: var(--accent) !important;
+            border-color: var(--accent) !important;
+            color: white !important;
+        }
+
+        .wrong-answer {
+            border-color: var(--danger) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: var(--danger);
+        }
+        
+        /* Specific override for radio buttons to show wrong on the parent label */
+        input[type="radio"].wrong-answer + .radio-label-box {
+            background-color: var(--danger) !important;
+            border-color: var(--danger) !important;
+            color: white !important;
+        }
+
+        /* Button */
+        .btn-check {
+            display: block;
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-check:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .feedback-msg {
+            margin-top: 1rem;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .theme-toggle { top: 0.5rem; right: 0.5rem; font-size: 1rem; }
+            .verb-grid { grid-template-columns: 1fr; }
+            input[type="text"] { width: 100%; }
+            .radio-options-container { flex-direction: column; gap: 8px; }
+            .radio-label-box { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<button id="theme-btn" class="theme-toggle" onclick="toggleTheme()">
+    🌙 Dark Mode
+</button>
+
+<header>
+    <h1>Day 09</h1>
+    <p>English Masterclass: Simple Past</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Definition</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 1rem;">The simple past expresses a completed action that happened at a specific time in the past.</p>
+    </div>
+
+    <div class="card">
+        <h2>Verbs List</h2>
+        
+        <h3>Regular Verbs</h3>
+        <p style="margin-bottom: 10px; opacity: 0.8;">Verbs that end in -ed.</p>
+        <div class="verb-grid">
+            <div class="verb-card"><span>to live</span> <span>lived</span></div>
+            <div class="verb-card"><span>to start</span> <span>started</span></div>
+            <div class="verb-card"><span>to visit</span> <span>visited</span></div>
+            <div class="verb-card"><span>to watch</span> <span>watched</span></div>
+            <div class="verb-card"><span>to play</span> <span>played</span></div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">Irregular Verbs</h3>
+        <p style="margin-bottom: 10px; opacity: 0.8;">Verbs that change form completely.</p>
+        <div class="verb-grid">
+            <div class="verb-card"><span>to be</span> <span>was, were</span></div>
+            <div class="verb-card"><span>to write</span> <span>wrote</span></div>
+            <div class="verb-card"><span>to go</span> <span>went</span></div>
+            <div class="verb-card"><span>to do</span> <span>did</span></div>
+            <div class="verb-card"><span>to have</span> <span>had</span></div>
+            <div class="verb-card"><span>to speak</span> <span>spoke</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Affirmative Sentences</h2>
+        <p style="margin-bottom: 1rem;">Subject + Verb in Past + Complement</p>
+        <ul class="sentence-list">
+            <li class="sentence-item affirmative">I <strong>studied</strong> English last week.</li>
+            <li class="sentence-item affirmative">She <strong>watched</strong> TV yesterday.</li>
+            <li class="sentence-item affirmative">They <strong>played</strong> video games last night.</li>
+            <li class="sentence-item affirmative">He <strong>woke up</strong> at 6 am this morning.</li>
+            <li class="sentence-item affirmative">They <strong>understood</strong> the grammar.</li>
+            <li class="sentence-item affirmative">We <strong>went</strong> to TopWay yesterday in the afternoon.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Negative Sentences</h2>
+        <div class="grammar-box">
+            <strong style="color:var(--danger)">Rule:</strong> Use <strong>did not (didn't)</strong> + Infinitive verb
+        </div>
+        <ul class="sentence-list">
+            <li class="sentence-item negative">I <strong>did not (didn't) eat</strong> pizza for lunch.</li>
+            <li class="sentence-item negative">He <strong>didn't work</strong> last weekend.</li>
+            <li class="sentence-item negative">You <strong>didn't like</strong> the movie last night.</li>
+            <li class="sentence-item negative">The dog <strong>didn't catch</strong> the ball.</li>
+            <li class="sentence-item negative">We <strong>didn't travel</strong> to Europe last year.</li>
+            <li class="sentence-item negative">They <strong>didn't drink</strong> wine at the party.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Interrogative Sentences</h2>
+        <div class="grammar-box">
+            <strong style="color:var(--secondary)">Rule:</strong> Use <strong>Did</strong> + Subject + Infinitive verb...?
+        </div>
+        <ul class="sentence-list">
+            <li class="sentence-item interrogative"><strong>Did</strong> you <strong>eat</strong> breakfast this morning?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> Brazil <strong>win</strong> the 2002 World Cup?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> she <strong>go</strong> to school yesterday?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> the dog <strong>eat</strong> the food?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> he <strong>play</strong> football with Pelé?</li>
+            <li class="sentence-item interrogative"><strong>Did</strong> you <strong>do</strong> your homework?</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Verb "to be" (was/were)</h2>
+        <div class="table-responsive" style="margin-top: 1rem;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Interrogative</th>
+                        <th>Affirmative</th>
+                        <th>Negative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Were you happy?</td>
+                        <td>Yes, I was happy.</td>
+                        <td>No, I was not happy.</td>
+                    </tr>
+                    <tr>
+                        <td>Was she an English student?</td>
+                        <td>Yes, she was an English student.</td>
+                        <td>No, she wasn't.</td>
+                    </tr>
+                    <tr>
+                        <td>Were they British?</td>
+                        <td>Yes, they were British.</td>
+                        <td>No, they weren't.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="exercise-section">
+        <h2 style="width:100%; text-align:center; border:none;">📝 Practice Exercises</h2>
+        <p style="text-align:center; margin-bottom:2rem;">Fill in the blanks based on the content above.</p>
+
+        <div class="exercise-item">
+            <label class="question-label">1. Simple Past of "to watch" (Regular):</label>
+            <div class="question-row">
+                <input type="text" class="fill-in" data-correct="watched" placeholder="Type here..." style="width: 100%; max-width: 400px;">
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label class="question-label">2. Simple Past of "to go" (Irregular):</label>
+            <div class="question-row">
+                <input type="text" class="fill-in" data-correct="went" placeholder="Type here..." style="width: 100%; max-width: 400px;">
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label class="question-label">3. Complete the negative sentence: "He _____ work last weekend."</label>
+            <div class="question-row">
+                <input type="text" class="fill-in" data-correct="didn't|did not" placeholder="didn't..." style="width: 100%; max-width: 400px;">
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label class="question-label">4. Did Brazil _____ the 2002 World Cup?</label>
+            <div class="radio-options-container">
+                <label>
+                    <input type="radio" name="q4" value="won">
+                    <span class="radio-label-box">won</span>
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="win">
+                    <span class="radio-label-box">win</span>
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="winning">
+                    <span class="radio-label-box">winning</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label class="question-label">5. Verb to be: "_____ they British?"</label>
+            <div class="radio-options-container">
+                <label>
+                    <input type="radio" name="q5" value="Was">
+                    <span class="radio-label-box">Was</span>
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="Were">
+                    <span class="radio-label-box">Were</span>
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="Did">
+                    <span class="radio-label-box">Did</span>
+                </label>
+            </div>
+        </div>
+
+        <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
+        <div class="feedback-msg" id="feedback"></div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Created for English Learning • Based on Day 09 Material</p>
+</footer>
+
+<script>
+    // -------------------
+    // THEME LOGIC
+    // -------------------
+    const themeBtn = document.getElementById('theme-btn');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️ Light Mode';
+    }
+
+    function toggleTheme() {
+        const currentTheme = root.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            root.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeBtn.textContent = '🌙 Dark Mode';
+        } else {
+            root.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeBtn.textContent = '☀️ Light Mode';
+        }
+    }
+
+    // -------------------
+    // EXERCISE LOGIC
+    // -------------------
+    function checkAnswers() {
+        let score = 0;
+        let total = 0;
+
+        // Reset Styles
+        document.querySelectorAll('input, select').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer');
+        });
+
+        // 1. Check Radio Buttons (Questions 4 & 5)
+        const radioConfig = [
+            {name: 'q4', ans: 'win'},
+            {name: 'q5', ans: 'Were'}
+        ];
+        
+        radioConfig.forEach(item => {
+            total++;
+            // Find selected option
+            const selected = document.querySelector(`input[name="${item.name}"]:checked`);
+            
+            if(selected) {
+                if(selected.value === item.ans) {
+                    selected.classList.add('correct-answer');
+                    score++;
+                } else {
+                    selected.classList.add('wrong-answer');
+                }
+            } else {
+                // If nothing selected, find all inputs for this name to mark red (optional, or do nothing)
+            }
+        });
+
+        // 2. Check Fill-ins (Questions 1, 2, 3)
+        document.querySelectorAll('.fill-in').forEach(el => {
+            total++;
+            let userVal = el.value.trim().toLowerCase();
+            // Normalization
+            userVal = userVal.replace("it's", "it is").replace("i'm", "i am");
+
+            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
+            
+            if(correctVals.includes(userVal)) {
+                el.classList.add('correct-answer');
+                score++;
+            } else {
+                el.classList.add('wrong-answer');
+            }
+        });
+
+        // Feedback
+        const feedback = document.getElementById('feedback');
+        const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
+        
+        let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
+        if(percentage === 100) msg += "🎉 Perfect! Excellent work! 🌟";
+        else if(percentage > 70) msg += "👏 Great job!";
+        else msg += "💪 Keep practicing!";
+
+        feedback.textContent = msg;
+        
+        if (percentage === 100) {
+            feedback.style.color = 'var(--accent)';
+            feedback.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (percentage > 70) {
+            feedback.style.color = 'var(--primary)';
+            feedback.style.backgroundColor = 'var(--primary-light)';
+        } else {
+            feedback.style.color = 'var(--danger)';
+            feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+    }
+</script>
+
+</body>
+</html>

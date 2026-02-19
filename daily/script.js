@@ -62,7 +62,7 @@ const DATABASE = {
         { q: "To Kneel (Simple Past)", options: ["Knelt", "Kneeled", "Knolled"], correct: "Knelt" },
         { q: "To Lay (Simple Past)", options: ["Laid", "Layed", "Lain"], correct: "Laid" },
         { q: "To Lead (Simple Past)", options: ["Led", "Leaded", "Laden"], correct: "Led" },
-        { q: "To Learn (Simple Past)", options: ["Learnt", "Learned", "Lorn"], correct: "Learnt" },
+        { q: "To Learn (Simple Past)", options: ["Learnted", "Learned/Learnt", "Lorn"], correct: "Learned/Learnt" },
         { q: "To Leave (Simple Past)", options: ["Left", "Leaved", "Loven"], correct: "Left" },
         { q: "To Lend (Simple Past)", options: ["Lent", "Lended", "Land"], correct: "Lent" },
         { q: "To Let (Simple Past)", options: ["Let", "Letted", "Lot"], correct: "Let" },

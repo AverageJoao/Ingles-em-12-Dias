@@ -1,7 +1,7 @@
 // --- BANCO DE DADOS (HARDCODED) ---
 const DATABASE = {
     grammar: [
-{ q: "To Go (Simple Past)", options: ["Went", "Goed", "Gone"], correct: "Went" },
+        { q: "To Go (Simple Past)", options: ["Went", "Goed", "Gone"], correct: "Went" },
         { q: "To See (Simple Past)", options: ["Saw", "Seed", "Seen"], correct: "Saw" },
         { q: "To Buy (Simple Past)", options: ["Buyed", "Bought", "Brought"], correct: "Bought" },
         { q: "To Be (Simple Past - We)", options: ["Was", "Were", "Is"], correct: "Were" },
@@ -116,8 +116,7 @@ const DATABASE = {
         { q: "To Strike (Simple Past)", options: ["Struck", "Striked", "Stricken"], correct: "Struck" },
         { q: "To Swear (Simple Past)", options: ["Swore", "Sweared", "Sworn"], correct: "Swore" },
         { q: "To Sweat (Simple Past)", options: ["Sweat/Sweated", "Swot", "Sweaten"], correct: "Sweat/Sweated" }
-    ]
-};
+    ],
     listening: [
             { text: "Where is the library?", options: ["Where is the library?", "When is the library?", "Where is the liberty?"], correct: "Where is the library?" },
             { text: "I like to eat apples.", options: ["I like to eat apples.", "I'd like two apples.", "I like to heat apples."], correct: "I like to eat apples." },

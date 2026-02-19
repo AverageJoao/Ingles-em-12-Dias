@@ -62,7 +62,7 @@ const DATABASE = {
         { q: "To Kneel (Simple Past)", options: ["Knelt", "Kneeled", "Knolled"], correct: "Knelt" },
         { q: "To Lay (Simple Past)", options: ["Laid", "Layed", "Lain"], correct: "Laid" },
         { q: "To Lead (Simple Past)", options: ["Led", "Leaded", "Laden"], correct: "Led" },
-        { q: "To Learn (Simple Past)", options: ["Learnt", "Learned", "Lorn"], correct: ["Learnt", "Learned"] }
+        { q: "To Learn (Simple Past)", options: ["Learnt", "Learned", "Lorn"], correct: "Learnt" },
         { q: "To Leave (Simple Past)", options: ["Left", "Leaved", "Loven"], correct: "Left" },
         { q: "To Lend (Simple Past)", options: ["Lent", "Lended", "Land"], correct: "Lent" },
         { q: "To Let (Simple Past)", options: ["Let", "Letted", "Lot"], correct: "Let" },
@@ -591,25 +591,13 @@ const renderGame = () => {
 const renderGrammar = (data) => {
     ui.questionType.innerText = "Grammar Challenge";
     ui.challengeDisplay.innerHTML = `<div class="big-text">${data.q}</div>`;
-    
+    // Opções continuam aleatórias a cada renderização (para não fixar posição dos botões)
     const shuffledOptions = data.options.sort(() => Math.random() - 0.5); 
-    
     shuffledOptions.forEach(opt => {
         const btn = document.createElement('button');
         btn.className = 'btn btn-option';
         btn.innerText = opt;
-        
-        // NOVA LÓGICA: Verifica se 'data.correct' é um Array ou uma String simples
-        const isCorrect = Array.isArray(data.correct) 
-            ? data.correct.includes(opt) 
-            : opt === data.correct;
-            
-        // Formata o texto da resposta correta para o caso de erro (ex: "Learnt ou Learned")
-        const correctText = Array.isArray(data.correct) 
-            ? data.correct.join(" ou ") 
-            : data.correct;
-
-        btn.onclick = (e) => checkAnswer(isCorrect, correctText, e.target);
+        btn.onclick = (e) => checkAnswer(opt === data.correct, data.correct, e.target);
         ui.interactionArea.appendChild(btn);
     });
 };

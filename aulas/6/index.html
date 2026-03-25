@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 06: Requests & Offers</title>
+    <title>Day 06: Requests, Offers & Prepositions</title>
     <link rel="apple-touch-icon" sizes="180x180" href="../icons/6/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/6/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/6/favicon-16x16.png">
@@ -380,7 +380,7 @@
 
 <header>
     <h1>Day 06</h1>
-    <p>Requests, Offers, Modals & Possessives</p>
+    <p>Requests, Offers, Modals, Possessives & Prepositions</p>
 </header>
 
 <div class="container">
@@ -452,6 +452,47 @@
                     </tr>
                     <tr>
                         <td><strong>Would you like to</strong> eat a hot dog?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📍 Prepositions: In, On, At</h2>
+        <div class="grammar-box">
+            <strong>When to use In, On, At?</strong><br>
+            These prepositions are often used to talk about <strong>Time</strong> and <strong>Place</strong>. The secret is to think about them going from <em>general</em> (IN) to <em>very specific</em> (AT).
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Preposition</th>
+                        <th>Use (Time)</th>
+                        <th>Use (Place)</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>IN</strong><br>(General / Enclosed)</td>
+                        <td>Months, Years, Seasons, Parts of the day</td>
+                        <td>Cities, Countries, Enclosed spaces (rooms)</td>
+                        <td><em>in</em> 2024, <em>in</em> the morning<br><em>in</em> Brazil, <em>in</em> the car</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ON</strong><br>(More Specific / Surface)</td>
+                        <td>Days of the week, Specific dates</td>
+                        <td>Streets, Avenues, Surfaces</td>
+                        <td><em>on</em> Monday, <em>on</em> May 5th<br><em>on</em> Main Street, <em>on</em> the table</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AT</strong><br>(Very Specific / Point)</td>
+                        <td>Clock times, Exact moments, Holidays</td>
+                        <td>Specific addresses, Exact locations</td>
+                        <td><em>at</em> 3:00 PM, <em>at</em> night<br><em>at</em> 123 Baker St, <em>at</em> the bus stop</td>
                     </tr>
                 </tbody>
             </table>
@@ -656,6 +697,37 @@
             </div>
         </div>
 
+        <div class="exercise-item">
+            <h3>VI. Complete with Prepositions</h3>
+            <p>Use: <strong>in, on, at</strong></p>
+
+            <div class="question-row">
+                <span>a) The meeting is</span>
+                <input type="text" class="fill-in" data-correct="at" size="5">
+                <span>3:00 PM.</span>
+            </div>
+            <div class="question-row">
+                <span>b) I usually go to the gym</span>
+                <input type="text" class="fill-in" data-correct="in" size="5">
+                <span>the morning.</span>
+            </div>
+            <div class="question-row">
+                <span>c) We will have a party</span>
+                <input type="text" class="fill-in" data-correct="on" size="5">
+                <span>Friday.</span>
+            </div>
+            <div class="question-row">
+                <span>d) She lives</span>
+                <input type="text" class="fill-in" data-correct="in" size="5">
+                <span>London.</span>
+            </div>
+            <div class="question-row">
+                <span>e) I left my keys</span>
+                <input type="text" class="fill-in" data-correct="on" size="5">
+                <span>the table.</span>
+            </div>
+        </div>
+
         <button class="btn-check" onclick="checkAnswers()">✔ CHECK ANSWERS</button>
         <div class="feedback-msg" id="feedback"></div>
 
@@ -711,7 +783,7 @@
             el.classList.remove('correct-answer', 'wrong-answer');
         });
 
-        // 1. Check Radio Buttons (New Section IV)
+        // 1. Check Radio Buttons
         document.querySelectorAll('.radio-container').forEach(container => {
             total++;
             const correctVal = container.dataset.correct.toLowerCase();
@@ -728,9 +800,6 @@
                 } else {
                     selectedLabel.classList.add('wrong-answer');
                 }
-            } else {
-                // If nothing is selected, we just don't add to score.
-                // Optionally, could mark the container to show it was missed.
             }
         });
 

@@ -135,14 +135,14 @@
                 name: 'fixed-price',
                 description: 'Payment Per Project (Fixed Price)',
                 messages: [
-                    { sender: 'Client', text: "Hi! I need a 30-second promotional video for my new product launch. When can you have it ready?" },
-                    { sender: 'Editor', text: "Hey! I can definitely do that. For a 30-second promotional video, I charge a flat rate of $500 per project. This includes color grading, sound design, and two rounds of revisions. How soon do you need it?" },
-                    { sender: 'Client', text: "$500 seems a bit high for just 30 seconds. Can you do it for $350?" },
-                    { sender: 'Editor', text: "I appreciate the offer, but the $500 is a fixed project rate, not based on duration. It covers all the editing work, effects, and revisions. I could do $400 if you're flexible with the deadline. How urgent is this?" },
-                    { sender: 'Client', text: "We need it in 5 days. Can you meet that timeline?" },
-                    { sender: 'Editor', text: "Five days is tight for quality work. I can do it, but that would be $500 as quoted. If you can give me 7-10 days, I can bring it down to $400." },
-                    { sender: 'Client', text: "Let's compromise. $450 and 7 days?" },
-                    { sender: 'Editor', text: "Deal! $450 as a fixed project rate for a 7-day turnaround. I'll send you the contract details." }
+                    { sender: 'Client', text: "Hi! I need a 30-second promotional video for my new product launch. When can you have it ready?", textPt: "Preciso de um vídeo promocional de 30 segundos para o lançamento do meu novo produto. Quando você consegue entregar?" },
+                    { sender: 'Editor', text: "Hey! I can definitely do that. For a 30-second promotional video, I charge a flat rate of $500 per project. This includes color grading, sound design, and two rounds of revisions. How soon do you need it?", textPt: "Com certeza posso fazer isso. Para um vídeo promocional de 30 segundos, cobro um valor fixo de $500 por projeto. Isso inclui correção de cor, design de som e duas rodadas de revisões. Para quando você precisa?" },
+                    { sender: 'Client', text: "$500 seems a bit high for just 30 seconds. Can you do it for $350?", textPt: "$500 parece um pouco alto para apenas 30 segundos. Você consegue fazer por $350?" },
+                    { sender: 'Editor', text: "I appreciate the offer, but the $500 is a fixed project rate, not based on duration. It covers all the editing work, effects, and revisions. I could do $400 if you're flexible with the deadline. How urgent is this?", textPt: "Agradeço a oferta, mas os $500 são um valor fixo por projeto, não baseado na duração. Ele cobre todo o trabalho de edição, efeitos e revisões. Eu poderia fazer por $400 se você tiver flexibilidade com o prazo. Qual a urgência?" },
+                    { sender: 'Client', text: "We need it in 5 days. Can you meet that timeline?", textPt: "Precisamos para daqui a 5 dias. Você consegue cumprir esse prazo?" },
+                    { sender: 'Editor', text: "Five days is tight for quality work. I can do it, but that would be $500 as quoted. If you can give me 7-10 days, I can bring it down to $400.", textPt: "Cinco dias é bem apertado para entregar um trabalho de qualidade. Eu consigo fazer, mas ficaria pelos $500 que passei. Se puder me dar de 7 a 10 dias, posso fechar por $400." },
+                    { sender: 'Client', text: "Let's compromise. $450 and 7 days?", textPt: "Vamos fechar um meio-termo. $450 e 7 dias?" },
+                    { sender: 'Editor', text: "Deal! $450 as a fixed project rate for a 7-day turnaround. I'll send you the contract details.", textPt: "Fechado! $450 como valor fixo do projeto para entrega em 7 dias. Vou enviar os detalhes do contrato." }
                 ]
             },
             {
@@ -151,18 +151,18 @@
                 name: 'per-minute',
                 description: 'Payment Per Minute of Video',
                 messages: [
-                    { sender: 'Client', text: "We need a 15-minute corporate training video. What's your rate?" },
-                    { sender: 'Editor', text: "For corporate videos, I charge $80 per finished minute. So for a 15-minute video, that would be $1,200." },
-                    { sender: 'Client', text: "That's quite expensive. We're a small startup. Is there a discount?" },
-                    { sender: 'Editor', text: "What's your budget range?" },
-                    { sender: 'Client', text: "We were thinking around $800-$900." },
-                    { sender: 'Editor', text: "At $800-$900, that would be roughly 10-11 minutes of finished video. Can you work with a shorter version?" },
-                    { sender: 'Client', text: "Not really. We need all 15 minutes. What if we reduce the complexity? Less color grading, simpler transitions?" },
-                    { sender: 'Editor', text: "Even with simpler editing, the per-minute rate stays the same because it's based on the finished video length. However, I can offer $70 per minute if you commit to a 2-week turnaround instead of 1 week. That would be $1,050 for 15 minutes." },
-                    { sender: 'Client', text: "That works better. $70 per minute for 15 minutes equals $1,050, and we can do 2 weeks." },
-                    { sender: 'Editor', text: "Perfect! So $1,050 total for your 15-minute video with a 2-week deadline. When can you provide the raw footage?" },
-                    { sender: 'Client', text: "We'll send it over by tomorrow." },
-                    { sender: 'Editor', text: "Great! I'll start as soon as I receive it." }
+                    { sender: 'Client', text: "We need a 15-minute corporate training video. What's your rate?", textPt: "Precisamos de um vídeo de treinamento corporativo de 15 minutos. Qual é o seu valor?" },
+                    { sender: 'Editor', text: "For corporate videos, I charge $80 per finished minute. So for a 15-minute video, that would be $1,200.", textPt: "Para vídeos corporativos, cobro $80 por minuto finalizado. Então, para um vídeo de 15 minutos, ficaria $1.200." },
+                    { sender: 'Client', text: "That's quite expensive. We're a small startup. Is there a discount?", textPt: "Isso é bem caro. Somos uma startup pequena. Tem algum desconto?" },
+                    { sender: 'Editor', text: "What's your budget range?", textPt: "Qual é a sua faixa de orçamento?" },
+                    { sender: 'Client', text: "We were thinking around $800-$900.", textPt: "Estávamos pensando em algo em torno de $800 a $900." },
+                    { sender: 'Editor', text: "At $800-$900, that would be roughly 10-11 minutes of finished video. Can you work with a shorter version?", textPt: "Por $800-$900, daria cerca de 10 a 11 minutos de vídeo finalizado. Vocês conseguem trabalhar com uma versão mais curta?" },
+                    { sender: 'Client', text: "Not really. We need all 15 minutes. What if we reduce the complexity? Less color grading, simpler transitions?", textPt: "Na verdade, não. Precisamos dos 15 minutos completos. E se reduzirmos a complexidade? Menos correção de cor, transições mais simples?" },
+                    { sender: 'Editor', text: "Even with simpler editing, the per-minute rate stays the same because it's based on the finished video length. However, I can offer $70 per minute if you commit to a 2-week turnaround instead of 1 week. That would be $1,050 for 15 minutes.", textPt: "Mesmo com uma edição mais simples, o valor por minuto continua o mesmo porque é baseado na duração final do vídeo. No entanto, posso fazer $70 por minuto se fecharmos um prazo de 2 semanas em vez de 1 semana. Isso daria $1.050 para 15 minutos." },
+                    { sender: 'Client', text: "That works better. $70 per minute for 15 minutes equals $1,050, and we can do 2 weeks.", textPt: "Isso funciona melhor. $70 por minuto para 15 minutos dá $1.050, e podemos fazer em 2 semanas." },
+                    { sender: 'Editor', text: "Perfect! So $1,050 total for your 15-minute video with a 2-week deadline. When can you provide the raw footage?", textPt: "Perfeito! Então $1.050 no total pelo vídeo de 15 minutos com prazo de entrega de 2 semanas. Quando vocês conseguem enviar o material bruto (raw)?" },
+                    { sender: 'Client', text: "We'll send it over by tomorrow.", textPt: "Vamos enviar amanhã." },
+                    { sender: 'Editor', text: "Great! I'll start as soon as I receive it.", textPt: "Ótimo! Começo assim que receber." }
                 ]
             },
             {
@@ -171,18 +171,18 @@
                 name: 'per-hour',
                 description: 'Payment Per Hour of Editing Work',
                 messages: [
-                    { sender: 'Client', text: "Hi! We have about 8 hours of raw wedding footage and want a 10-minute highlight reel. How much would that cost?" },
-                    { sender: 'Editor', text: "Congratulations on the wedding! For wedding editing, I charge $75 per hour of editing work. Typically, for 8 hours of raw footage, I estimate about 12-15 hours of editing time to create a polished 10-minute reel." },
-                    { sender: 'Client', text: "So that would be around $900-$1,125?" },
-                    { sender: 'Editor', text: "Exactly. Let me break it down: I'll watch all 8 hours, select the best moments, sync music, color grade, and add transitions. Based on my experience, I estimate 12-14 hours for this scope. Let's say $1,000 as a fair estimate (approximately 13 hours)." },
-                    { sender: 'Client', text: "When can you have it done? We need it in 2 weeks." },
-                    { sender: 'Editor', text: "Two weeks is comfortable. I can definitely meet that deadline." },
-                    { sender: 'Client', text: "$1,000 is more than we expected. Can you do it for $800?" },
-                    { sender: 'Editor', text: "$800 would only cover about 10-11 hours of work. I'd have to rush through the color grading and music selection. For quality work, I need at least $1,000. However, if you're willing to wait 3 weeks, I can fit this in during slower periods and reduce it to $900." },
-                    { sender: 'Client', text: "We really need it in 2 weeks. How about $950?" },
-                    { sender: 'Editor', text: "I can meet you at $950 for the 2-week turnaround. That's approximately 12-13 hours of work." },
-                    { sender: 'Client', text: "Deal! $950 it is. When do you need the footage?" },
-                    { sender: 'Editor', text: "Send it over ASAP. I charge $75 per hour, and I'll track my hours carefully. Once I hit approximately 13 hours, I'll have your reel ready." }
+                    { sender: 'Client', text: "Hi! We have about 8 hours of raw wedding footage and want a 10-minute highlight reel. How much would that cost?", textPt: "Oi! Temos cerca de 8 horas de material bruto de casamento e queremos um vídeo de melhores momentos de 10 minutos. Quanto custaria?" },
+                    { sender: 'Editor', text: "Congratulations on the wedding! For wedding editing, I charge $75 per hour of editing work. Typically, for 8 hours of raw footage, I estimate about 12-15 hours of editing time to create a polished 10-minute reel.", textPt: "Parabéns pelo casamento! Para edição de casamentos, cobro $75 por hora de trabalho de edição. Normalmente, para 8 horas de material bruto, estimo cerca de 12 a 15 horas de edição para criar um vídeo bem polido de 10 minutos." },
+                    { sender: 'Client', text: "So that would be around $900-$1,125?", textPt: "Então ficaria em torno de $900 a $1.125?" },
+                    { sender: 'Editor', text: "Exactly. Let me break it down: I'll watch all 8 hours, select the best moments, sync music, color grade, and add transitions. Based on my experience, I estimate 12-14 hours for this scope. Let's say $1,000 as a fair estimate (approximately 13 hours).", textPt: "Exatamente. Deixa eu detalhar: vou assistir a todas as 8 horas, selecionar os melhores momentos, sincronizar a música, fazer a correção de cor e adicionar transições. Com base na minha experiência, estimo de 12 a 14 horas para esse escopo. Vamos colocar $1.000 como uma estimativa justa (aproximadamente 13 horas)." },
+                    { sender: 'Client', text: "When can you have it done? We need it in 2 weeks.", textPt: "Quando você consegue entregar? Precisamos disso em 2 semanas." },
+                    { sender: 'Editor', text: "Two weeks is comfortable. I can definitely meet that deadline.", textPt: "Duas semanas é um prazo tranquilo. Com certeza consigo entregar." },
+                    { sender: 'Client', text: "$1,000 is more than we expected. Can you do it for $800?", textPt: "$1.000 é mais do que esperávamos. Você consegue fazer por $800?" },
+                    { sender: 'Editor', text: "$800 would only cover about 10-11 hours of work. I'd have to rush through the color grading and music selection. For quality work, I need at least $1,000. However, if you're willing to wait 3 weeks, I can fit this in during slower periods and reduce it to $900.", textPt: "$800 cobriria apenas de 10 a 11 horas de trabalho. Eu teria que correr com a correção de cor e a seleção das músicas. Para um trabalho de qualidade, preciso de pelo menos $1.000. Porém, se vocês estiverem dispostos a esperar 3 semanas, posso encaixar isso nos meus horários mais tranquilos e baixar para $900." },
+                    { sender: 'Client', text: "We really need it in 2 weeks. How about $950?", textPt: "Precisamos muito disso em 2 semanas. Que tal $950?" },
+                    { sender: 'Editor', text: "I can meet you at $950 for the 2-week turnaround. That's approximately 12-13 hours of work.", textPt: "Podemos fechar em $950 para o prazo de 2 semanas. Isso dá aproximadamente de 12 a 13 horas de trabalho." },
+                    { sender: 'Client', text: "Deal! $950 it is. When do you need the footage?", textPt: "Fechado! Fica $950 então. Quando você precisa do material?" },
+                    { sender: 'Editor', text: "Send it over ASAP. I charge $75 per hour, and I'll track my hours carefully. Once I hit approximately 13 hours, I'll have your reel ready.", textPt: "Mande o quanto antes (ASAP). Eu cobro $75 por hora e vou controlar as minhas horas direitinho. Assim que eu bater cerca de 13 horas, o vídeo estará pronto." }
                 ]
             },
             {
@@ -191,20 +191,20 @@
                 name: 'monthly-retainer',
                 description: 'Payment Per Salary (Monthly Retainer)',
                 messages: [
-                    { sender: 'Client', text: "We're launching a YouTube channel and will need consistent video editing support. We're planning to upload 2-3 videos per week. Can you work with us on an ongoing basis?" },
-                    { sender: 'Editor', text: "Absolutely! For ongoing work like that, I offer a monthly retainer model. Instead of per-project pricing, you pay a fixed monthly salary, and I dedicate a certain number of hours to your channel each week." },
-                    { sender: 'Client', text: "How much would that be?" },
-                    { sender: 'Editor', text: "For 2-3 videos per week (roughly 8-12 hours per week), I offer a monthly retainer of $3,500. This includes 40 hours per month of editing work, revisions, and channel optimization." },
-                    { sender: 'Client', text: "That's quite a commitment. What if we start with just 1-2 videos per week?" },
-                    { sender: 'Editor', text: "For 1-2 videos per week (roughly 4-6 hours per week), I can do a monthly retainer of $2,000. This covers 20 hours per month." },
-                    { sender: 'Client', text: "And what happens if some weeks we need more hours?" },
-                    { sender: 'Editor', text: "Great question. The retainer includes up to 20 hours per month. Any hours beyond that are billed at $50 per hour. So if you need extra editing one week, we just add those hours." },
-                    { sender: 'Client', text: "What if we need fewer hours one month?" },
-                    { sender: 'Editor', text: "The retainer is a fixed monthly commitment. However, if you consistently need fewer hours, we can renegotiate the contract. But for now, let's lock in $2,000 per month for 20 hours, with overage at $50/hour." },
-                    { sender: 'Client', text: "And what's the minimum commitment?" },
-                    { sender: 'Editor', text: "I require a 3-month minimum contract. After that, we can adjust or renew month-to-month." },
-                    { sender: 'Client', text: "Okay, $2,000 per month for 20 hours, 3-month minimum. When can we start?" },
-                    { sender: 'Editor', text: "I can start next Monday. I'll send you the retainer agreement with all the terms. Once you sign and make the first payment, we're good to go!" }
+                    { sender: 'Client', text: "We're launching a YouTube channel and will need consistent video editing support. We're planning to upload 2-3 videos per week. Can you work with us on an ongoing basis?", textPt: "Estamos lançando um canal no YouTube e vamos precisar de suporte contínuo com edição de vídeo. Planejamos postar de 2 a 3 vídeos por semana. Você pode trabalhar com a gente de forma contínua?" },
+                    { sender: 'Editor', text: "Absolutely! For ongoing work like that, I offer a monthly retainer model. Instead of per-project pricing, you pay a fixed monthly salary, and I dedicate a certain number of hours to your channel each week.", textPt: "Com certeza! Para trabalhos contínuos assim, eu ofereço um modelo de mensalidade (retainer). Em vez de cobrar por projeto, vocês pagam um valor fixo por mês, e eu dedico um certo número de horas ao canal de vocês toda semana." },
+                    { sender: 'Client', text: "How much would that be?", textPt: "Quanto ficaria isso?" },
+                    { sender: 'Editor', text: "For 2-3 videos per week (roughly 8-12 hours per week), I offer a monthly retainer of $3,500. This includes 40 hours per month of editing work, revisions, and channel optimization.", textPt: "Para 2 a 3 vídeos por semana (cerca de 8 a 12 horas por semana), ofereço um pacote mensal de $3.500. Isso inclui 40 horas por mês de edição, revisões e otimização do canal." },
+                    { sender: 'Client', text: "That's quite a commitment. What if we start with just 1-2 videos per week?", textPt: "Isso é um compromisso bem grande. E se a gente começar com apenas 1 ou 2 vídeos por semana?" },
+                    { sender: 'Editor', text: "For 1-2 videos per week (roughly 4-6 hours per week), I can do a monthly retainer of $2,000. This covers 20 hours per month.", textPt: "Para 1 ou 2 vídeos por semana (cerca de 4 a 6 horas por semana), posso fazer um pacote mensal de $2.000. Isso cobre 20 horas por mês." },
+                    { sender: 'Client', text: "And what happens if some weeks we need more hours?", textPt: "E o que acontece se em algumas semanas precisarmos de mais horas?" },
+                    { sender: 'Editor', text: "Great question. The retainer includes up to 20 hours per month. Any hours beyond that are billed at $50 per hour. So if you need extra editing one week, we just add those hours.", textPt: "Ótima pergunta. O pacote inclui até 20 horas por mês. Qualquer hora extra é cobrada a $50 por hora. Então, se vocês precisarem de edição extra em uma semana, nós só adicionamos essas horas." },
+                    { sender: 'Client', text: "What if we need fewer hours one month?", textPt: "E se precisarmos de menos horas em um mês?" },
+                    { sender: 'Editor', text: "The retainer is a fixed monthly commitment. However, if you consistently need fewer hours, we can renegotiate the contract. But for now, let's lock in $2,000 per month for 20 hours, with overage at $50/hour.", textPt: "O pacote é um compromisso mensal fixo. No entanto, se vocês começarem a precisar de menos horas consistentemente, podemos renegociar o contrato. Mas, por enquanto, vamos fechar em $2.000 por mês para 20 horas, com horas extras a $50/hora." },
+                    { sender: 'Client', text: "And what's the minimum commitment?", textPt: "E qual é o tempo mínimo de contrato?" },
+                    { sender: 'Editor', text: "I require a 3-month minimum contract. After that, we can adjust or renew month-to-month.", textPt: "Eu peço um contrato mínimo de 3 meses. Depois disso, podemos ajustar ou renovar mês a mês." },
+                    { sender: 'Client', text: "Okay, $2,000 per month for 20 hours, 3-month minimum. When can we start?", textPt: "Ok, $2.000 por mês por 20 horas, com mínimo de 3 meses. Quando podemos começar?" },
+                    { sender: 'Editor', text: "I can start next Monday. I'll send you the retainer agreement with all the terms. Once you sign and make the first payment, we're good to go!", textPt: "Posso começar na próxima segunda-feira. Vou enviar o contrato com todos os termos. Assim que vocês assinarem e fizerem o primeiro pagamento, já podemos começar!" }
                 ]
             },
             {
@@ -213,19 +213,19 @@
                 name: 'hybrid-rush-model',
                 description: 'Hybrid Model - Per Minute + Per Hour for Rush Work',
                 messages: [
-                    { sender: 'Client', text: "We need a 5-minute product demo video. What's your rate?" },
-                    { sender: 'Editor', text: "For product demo videos, I charge $100 per finished minute. So for 5 minutes, that would be $500." },
-                    { sender: 'Client', text: "When can you have it done?" },
-                    { sender: 'Editor', text: "I can have it ready in 10 business days." },
-                    { sender: 'Client', text: "We need it in 3 days. Is that possible?" },
-                    { sender: 'Editor', text: "Three days is a rush timeline. I can do it, but I charge an additional $50 per hour for rush work on top of the per-minute rate. Since this is a 5-minute video, I estimate about 8 hours of editing work. So it would be $500 (per-minute rate) plus $400 (8 hours × $50/hour rush fee) = $900 total." },
-                    { sender: 'Client', text: "That's a significant increase. Can you negotiate?" },
-                    { sender: 'Editor', text: "The rush fee reflects the priority I'm giving your project over my other clients. However, I can offer this: If you can wait 5 days instead of 3, I'll drop the rush fee entirely and just charge the standard $500." },
-                    { sender: 'Client', text: "We really need it in 3 days. What if we do $700 total?" },
-                    { sender: 'Editor', text: "$700 doesn't cover the rush work. My minimum for a 3-day turnaround is $850. That's $500 for the per-minute rate plus $350 for rush hours." },
-                    { sender: 'Client', text: "Okay, $850 for 3 days. But I need daily updates on progress." },
-                    { sender: 'Editor', text: "Deal! $850 for a 3-day turnaround with daily progress updates. I'll send you the contract and payment terms. Once I receive payment and all assets, I'll start immediately." },
-                    { sender: 'Client', text: "Perfect! Sending everything now." }
+                    { sender: 'Client', text: "We need a 5-minute product demo video. What's your rate?", textPt: "Precisamos de um vídeo de demonstração de produto de 5 minutos. Qual é o seu valor?" },
+                    { sender: 'Editor', text: "For product demo videos, I charge $100 per finished minute. So for 5 minutes, that would be $500.", textPt: "Para vídeos de demonstração de produtos, cobro $100 por minuto finalizado. Então, para 5 minutos, ficaria $500." },
+                    { sender: 'Client', text: "When can you have it done?", textPt: "Quando você consegue entregar?" },
+                    { sender: 'Editor', text: "I can have it ready in 10 business days.", textPt: "Posso entregar em 10 dias úteis." },
+                    { sender: 'Client', text: "We need it in 3 days. Is that possible?", textPt: "Precisamos disso em 3 dias. É possível?" },
+                    { sender: 'Editor', text: "Three days is a rush timeline. I can do it, but I charge an additional $50 per hour for rush work on top of the per-minute rate. Since this is a 5-minute video, I estimate about 8 hours of editing work. So it would be $500 (per-minute rate) plus $400 (8 hours × $50/hour rush fee) = $900 total.", textPt: "Três dias é um prazo corrido (urgente). Eu consigo fazer, mas cobro uma taxa adicional de urgência de $50 por hora em cima do valor por minuto. Como é um vídeo de 5 minutos, estimo cerca de 8 horas de edição. Então ficaria $500 (valor por minuto) mais $400 (8 horas × taxa de urgência de $50/h) = $900 no total." },
+                    { sender: 'Client', text: "That's a significant increase. Can you negotiate?", textPt: "Isso é um aumento considerável. Podemos negociar?" },
+                    { sender: 'Editor', text: "The rush fee reflects the priority I'm giving your project over my other clients. However, I can offer this: If you can wait 5 days instead of 3, I'll drop the rush fee entirely and just charge the standard $500.", textPt: "A taxa de urgência reflete a prioridade que vou dar ao seu projeto em relação aos meus outros clientes. Mas eu posso oferecer o seguinte: se vocês puderem esperar 5 dias em vez de 3, eu tiro a taxa de urgência e cobro apenas os $500 padrão." },
+                    { sender: 'Client', text: "We really need it in 3 days. What if we do $700 total?", textPt: "A gente precisa muito disso em 3 dias. E se fecharmos em $700 no total?" },
+                    { sender: 'Editor', text: "$700 doesn't cover the rush work. My minimum for a 3-day turnaround is $850. That's $500 for the per-minute rate plus $350 for rush hours.", textPt: "$700 não cobre a urgência. O meu valor mínimo para entregar em 3 dias é $850. Sendo $500 pelo minuto e $350 pelas horas extras de urgência." },
+                    { sender: 'Client', text: "Okay, $850 for 3 days. But I need daily updates on progress.", textPt: "Ok, $850 para 3 dias. Mas vou precisar de atualizações diárias sobre o andamento." },
+                    { sender: 'Editor', text: "Deal! $850 for a 3-day turnaround with daily progress updates. I'll send you the contract and payment terms. Once I receive payment and all assets, I'll start immediately.", textPt: "Fechado! $850 para entregar em 3 dias com atualizações diárias. Vou mandar o contrato e os termos de pagamento. Assim que receber o pagamento e os arquivos, começo imediatamente." },
+                    { sender: 'Client', text: "Perfect! Sending everything now.", textPt: "Perfeito! Enviando tudo agora." }
                 ]
             },
             {
@@ -234,11 +234,11 @@
                 name: 'casual-check-in',
                 description: 'Follow-up 1: Casual Check-in (Day 3 of 7)',
                 messages: [
-                    { sender: 'Client', text: "Hey! Just checking in on the promotional video. How's it coming along? Are we still on track for the 7-day deadline?" },
-                    { sender: 'Editor', text: "Hey! Thanks for checking in. I'm making great progress. I've finished the initial color grading and I'm currently working on syncing the music and sound effects. I'd say I'm about 60% done. Should have a rough cut for you by tomorrow or the day after." },
-                    { sender: 'Client', text: "Awesome! Can't wait to see it. Any issues so far?" },
-                    { sender: 'Editor', text: "None at all. The footage looks great. I'll send you a preview link as soon as the rough cut is ready." },
-                    { sender: 'Client', text: "Perfect, thanks!" }
+                    { sender: 'Client', text: "Hey! Just checking in on the promotional video. How's it coming along? Are we still on track for the 7-day deadline?", textPt: "Oi! Só passando pra checar como está o vídeo promocional. Tá tudo certo com o prazo de 7 dias?" },
+                    { sender: 'Editor', text: "Hey! Thanks for checking in. I'm making great progress. I've finished the initial color grading and I'm currently working on syncing the music and sound effects. I'd say I'm about 60% done. Should have a rough cut for you by tomorrow or the day after.", textPt: "Oi! Obrigado por perguntar. Estou avançando bem. Terminei a correção de cor inicial e estou sincronizando a música e os efeitos sonoros. Diria que estou com uns 60% pronto. Devo mandar um primeiro corte (rough cut) amanhã ou depois." },
+                    { sender: 'Client', text: "Awesome! Can't wait to see it. Any issues so far?", textPt: "Maravilha! Mal posso esperar para ver. Algum problema até agora?" },
+                    { sender: 'Editor', text: "None at all. The footage looks great. I'll send you a preview link as soon as the rough cut is ready.", textPt: "Nenhum. O material está ótimo. Vou mandar um link de prévia assim que o primeiro corte estiver pronto." },
+                    { sender: 'Client', text: "Perfect, thanks!", textPt: "Perfeito, valeu!" }
                 ]
             },
             {
@@ -247,11 +247,11 @@
                 name: 'timeline-check',
                 description: 'Follow-up 2: Slightly Concerned About Timeline (Day 5 of 10)',
                 messages: [
-                    { sender: 'Client', text: "Hi! We're halfway through our deadline and I wanted to check on the status of the corporate training video. Are we still on schedule?" },
-                    { sender: 'Editor', text: "Hi! Yes, we're on track. I've completed about 70% of the editing. I've finished organizing all the footage, added the transitions, and I'm currently working on the color correction and audio mixing. I should have the first draft ready for you by day 7, which gives you 3 days for revisions before the final deadline." },
-                    { sender: 'Client', text: "Great to hear! Will there be any issues with the 2-week turnaround we agreed on?" },
-                    { sender: 'Editor', text: "No issues at all. I'm ahead of schedule actually. You'll have the first draft early, so we'll have plenty of time for any changes you want to make." },
-                    { sender: 'Client', text: "Excellent! Looking forward to seeing it." }
+                    { sender: 'Client', text: "Hi! We're halfway through our deadline and I wanted to check on the status of the corporate training video. Are we still on schedule?", textPt: "Oi! Chegamos na metade do nosso prazo e queria dar uma checada no status do vídeo de treinamento. Estamos dentro do cronograma?" },
+                    { sender: 'Editor', text: "Hi! Yes, we're on track. I've completed about 70% of the editing. I've finished organizing all the footage, added the transitions, and I'm currently working on the color correction and audio mixing. I should have the first draft ready for you by day 7, which gives you 3 days for revisions before the final deadline.", textPt: "Oi! Sim, estamos dentro do cronograma. Concluí cerca de 70% da edição. Já organizei o material todo, adicionei as transições e agora estou trabalhando na correção de cor e mixagem de áudio. Devo ter o primeiro rascunho (draft) pronto no dia 7, o que vai dar 3 dias para revisões antes do prazo final." },
+                    { sender: 'Client', text: "Great to hear! Will there be any issues with the 2-week turnaround we agreed on?", textPt: "Que bom! Vai ter algum problema com aquele prazo de 2 semanas que combinamos?" },
+                    { sender: 'Editor', text: "No issues at all. I'm ahead of schedule actually. You'll have the first draft early, so we'll have plenty of time for any changes you want to make.", textPt: "Sem problemas. Na verdade estou até adiantado. Vocês vão receber o primeiro rascunho antes, então teremos bastante tempo para qualquer alteração." },
+                    { sender: 'Client', text: "Excellent! Looking forward to seeing it.", textPt: "Excelente! Ansioso para ver." }
                 ]
             },
             {
@@ -260,12 +260,12 @@
                 name: 'urgent-update',
                 description: 'Follow-up 3: Urgent Follow-up (Day 8 of 10)',
                 messages: [
-                    { sender: 'Client', text: "Hi! We're getting close to the deadline and I haven't heard from you yet. Where are we with the wedding highlight reel? We need it for the anniversary party this weekend!" },
-                    { sender: 'Editor', text: "Hi! I apologize for the delayed update. I've been deep in the editing process. I'm currently at 85% completion. I've finished selecting all the best moments, synced the music, and I'm in the final stages of color grading. I should have the complete video ready for you by tomorrow evening." },
-                    { sender: 'Client', text: "Tomorrow evening? The party is Saturday. Will that be enough time?" },
-                    { sender: 'Editor', text: "Yes, absolutely. Tomorrow evening gives you Friday to review it. If you need any quick tweaks, I can turn them around Friday night. You'll definitely have it in time for Saturday." },
-                    { sender: 'Client', text: "Okay, thanks for the update. Please send it as soon as it's ready." },
-                    { sender: 'Editor', text: "Will do! I'll send you a download link tomorrow by 6 PM." }
+                    { sender: 'Client', text: "Hi! We're getting close to the deadline and I haven't heard from you yet. Where are we with the wedding highlight reel? We need it for the anniversary party this weekend!", textPt: "Oi! O prazo está chegando e eu ainda não tive notícias. Como está o vídeo dos melhores momentos do casamento? Precisamos dele para a festa de aniversário neste fim de semana!" },
+                    { sender: 'Editor', text: "Hi! I apologize for the delayed update. I've been deep in the editing process. I'm currently at 85% completion. I've finished selecting all the best moments, synced the music, and I'm in the final stages of color grading. I should have the complete video ready for you by tomorrow evening.", textPt: "Oi! Peço desculpas pela demora em atualizar. Estava totalmente focado na edição. Já estou em 85%. Terminei de selecionar os melhores momentos, sincronizei as músicas e estou na fase final da correção de cor. O vídeo completo deve estar pronto amanhã no final da tarde." },
+                    { sender: 'Client', text: "Tomorrow evening? The party is Saturday. Will that be enough time?", textPt: "Amanhã no final da tarde? A festa é no sábado. Vai dar tempo?" },
+                    { sender: 'Editor', text: "Yes, absolutely. Tomorrow evening gives you Friday to review it. If you need any quick tweaks, I can turn them around Friday night. You'll definitely have it in time for Saturday.", textPt: "Sim, com certeza. Entregando amanhã à tarde, vocês têm a sexta para revisar. Se precisar de algum ajuste rápido, posso fazer na sexta à noite. Vai estar tudo pronto a tempo do sábado." },
+                    { sender: 'Client', text: "Okay, thanks for the update. Please send it as soon as it's ready.", textPt: "Ok, obrigado pelo update. Por favor, mande assim que estiver pronto." },
+                    { sender: 'Editor', text: "Will do! I'll send you a download link tomorrow by 6 PM.", textPt: "Pode deixar! Vou mandar o link para download amanhã até as 18h." }
                 ]
             },
             {
@@ -274,13 +274,13 @@
                 name: 'multiple-checkins',
                 description: 'Follow-up 4: Multiple Check-ins (Week 2 of 8)',
                 messages: [
-                    { sender: 'Client', text: "Hey! We're two weeks into the project and I wanted to see how many of the 10 YouTube videos you've completed. Are we on pace?" },
-                    { sender: 'Editor', text: "Hey! Great question. I've completed 3 videos so far and I'm working on the 4th. I'm right on schedule for delivering 2-3 videos per week. The first 3 are ready for you to review whenever you want." },
-                    { sender: 'Client', text: "Can you send over the first 3? We'd like to start uploading them." },
-                    { sender: 'Editor', text: "Absolutely! I'll send you the download links within the hour. These are the final versions, so they're ready to upload." },
-                    { sender: 'Client', text: "Perfect! What about the remaining 7?" },
-                    { sender: 'Editor', text: "I'll have videos 4 and 5 ready by end of this week, videos 6 and 7 by next week, and so on. We're tracking well for the 8-week deadline." },
-                    { sender: 'Client', text: "Excellent! This is looking great." }
+                    { sender: 'Client', text: "Hey! We're two weeks into the project and I wanted to see how many of the 10 YouTube videos you've completed. Are we on pace?", textPt: "Oi! Já estamos na segunda semana de projeto e eu queria saber quantos dos 10 vídeos do YouTube você já terminou. Estamos num bom ritmo?" },
+                    { sender: 'Editor', text: "Hey! Great question. I've completed 3 videos so far and I'm working on the 4th. I'm right on schedule for delivering 2-3 videos per week. The first 3 are ready for you to review whenever you want.", textPt: "Oi! Ótima pergunta. Terminei 3 vídeos até agora e estou trabalhando no quarto. Estou bem dentro do cronograma para entregar de 2 a 3 vídeos por semana. Os primeiros 3 já estão prontos para revisão quando vocês quiserem." },
+                    { sender: 'Client', text: "Can you send over the first 3? We'd like to start uploading them.", textPt: "Pode mandar os 3 primeiros? Queremos começar a postar." },
+                    { sender: 'Editor', text: "Absolutely! I'll send you the download links within the hour. These are the final versions, so they're ready to upload.", textPt: "Claro! Vou mandar os links de download em menos de uma hora. Essas já são as versões finais, prontas para subir." },
+                    { sender: 'Client', text: "Perfect! What about the remaining 7?", textPt: "Perfeito! E como ficam os outros 7?" },
+                    { sender: 'Editor', text: "I'll have videos 4 and 5 ready by end of this week, videos 6 and 7 by next week, and so on. We're tracking well for the 8-week deadline.", textPt: "Vou ter os vídeos 4 e 5 prontos até o fim da semana, o 6 e o 7 na semana que vem, e assim por diante. Estamos no caminho certo para o prazo de 8 semanas." },
+                    { sender: 'Client', text: "Excellent! This is looking great.", textPt: "Excelente! Tudo ótimo." }
                 ]
             },
             {
@@ -289,14 +289,14 @@
                 name: 'retainer-checkin',
                 description: 'Follow-up 5: Retainer Check-in (Mid-Month)',
                 messages: [
-                    { sender: 'Client', text: "Hi! We're halfway through the month on our retainer agreement. How many hours have you used so far? Are we tracking okay?" },
-                    { sender: 'Editor', text: "Hi! Great question. So far this month, I've completed 4 videos for you, which totals about 12 hours of work. We have 20 hours included in your retainer, so we're right on track. You still have 8 hours available for the rest of the month if you need any additional edits or rush work." },
-                    { sender: 'Client', text: "Good to know! We might need an extra video edited next week. Will that fit within the remaining hours?" },
-                    { sender: 'Editor', text: "Depending on the length and complexity, it might. A typical 8-10 minute video takes about 6-7 hours. If it's within that range, it should fit. If it's longer or more complex, we'd bill the overage at $50/hour. Want to send me the details?" },
-                    { sender: 'Client', text: "I'll send you the footage next week. Also, what's the status on this week's videos?" },
-                    { sender: 'Editor', text: "I'm finishing up video 2 for this week today, and I'll start video 3 tomorrow. You should have both by Friday." },
-                    { sender: 'Client', text: "Perfect! Keep up the great work." },
-                    { sender: 'Editor', text: "Thanks! I'm really enjoying working with you guys." }
+                    { sender: 'Client', text: "Hi! We're halfway through the month on our retainer agreement. How many hours have you used so far? Are we tracking okay?", textPt: "Oi! Já estamos na metade do mês no nosso pacote mensal (retainer). Quantas horas você já usou? Estamos dentro do esperado?" },
+                    { sender: 'Editor', text: "Hi! Great question. So far this month, I've completed 4 videos for you, which totals about 12 hours of work. We have 20 hours included in your retainer, so we're right on track. You still have 8 hours available for the rest of the month if you need any additional edits or rush work.", textPt: "Oi! Ótima pergunta. Até agora, concluí 4 vídeos para vocês, o que dá cerca de 12 horas de trabalho. Como o nosso pacote tem 20 horas, estamos bem no ritmo. Vocês ainda têm 8 horas disponíveis para o resto do mês se precisarem de edições extras ou algo mais urgente." },
+                    { sender: 'Client', text: "Good to know! We might need an extra video edited next week. Will that fit within the remaining hours?", textPt: "Bom saber! Talvez a gente precise de um vídeo extra editado na semana que vem. Ele se encaixa nessas horas restantes?" },
+                    { sender: 'Editor', text: "Depending on the length and complexity, it might. A typical 8-10 minute video takes about 6-7 hours. If it's within that range, it should fit. If it's longer or more complex, we'd bill the overage at $50/hour. Want to send me the details?", textPt: "Dependendo da duração e da complexidade, sim. Um vídeo típico de 8 a 10 minutos leva umas 6 a 7 horas. Se ficar nessa faixa, dá tranquilo. Se for mais longo ou complexo, a hora extra sai a $50/h. Quer mandar os detalhes?" },
+                    { sender: 'Client', text: "I'll send you the footage next week. Also, what's the status on this week's videos?", textPt: "Eu mando o material semana que vem. Falando nisso, qual o status dos vídeos desta semana?" },
+                    { sender: 'Editor', text: "I'm finishing up video 2 for this week today, and I'll start video 3 tomorrow. You should have both by Friday.", textPt: "Estou terminando o segundo vídeo de hoje e começo o terceiro amanhã. Você deve receber os dois até sexta." },
+                    { sender: 'Client', text: "Perfect! Keep up the great work.", textPt: "Perfeito! Continue com o ótimo trabalho." },
+                    { sender: 'Editor', text: "Thanks! I'm really enjoying working with you guys.", textPt: "Obrigado! Estou gostando muito de trabalhar com vocês." }
                 ]
             },
             {
@@ -305,13 +305,13 @@
                 name: 'quality-concern',
                 description: 'Follow-up 6: Concerned About Quality (Day 4 of 5 - Rush Project)',
                 messages: [
-                    { sender: 'Client', text: "Hi! We're on day 4 of our 5-day rush deadline for the product demo. Can you send me a preview? I want to make sure it's heading in the right direction before the final delivery." },
-                    { sender: 'Editor', text: "Hi! I can definitely send you a rough preview. I'm currently at 75% completion. I've finished the main editing, added the product shots, and I'm working on the final color grading and motion graphics. Let me render a preview version and send it to you in about 2 hours." },
-                    { sender: 'Client', text: "Great! What time should I expect it?" },
-                    { sender: 'Editor', text: "By 3 PM today. I'll send you a private link." },
-                    { sender: 'Client', text: "Perfect. One more thing - will everything be done by tomorrow at 5 PM as we agreed?" },
-                    { sender: 'Editor', text: "Yes, absolutely. I'll have the final version ready by 5 PM tomorrow. I'm on track." },
-                    { sender: 'Client', text: "Awesome, thanks!" }
+                    { sender: 'Client', text: "Hi! We're on day 4 of our 5-day rush deadline for the product demo. Can you send me a preview? I want to make sure it's heading in the right direction before the final delivery.", textPt: "Oi! Estamos no dia 4 daquele prazo corrido de 5 dias para a demonstração de produto. Tem como mandar uma prévia? Quero garantir que está no caminho certo antes da entrega final." },
+                    { sender: 'Editor', text: "Hi! I can definitely send you a rough preview. I'm currently at 75% completion. I've finished the main editing, added the product shots, and I'm working on the final color grading and motion graphics. Let me render a preview version and send it to you in about 2 hours.", textPt: "Oi! Posso com certeza mandar uma prévia (rough preview). Já finalizei uns 75%. A edição principal está pronta, adicionei as imagens do produto e agora estou trabalhando no color grading final e nos motion graphics. Deixa eu renderizar uma versão aqui e te mando em umas 2 horas." },
+                    { sender: 'Client', text: "Great! What time should I expect it?", textPt: "Ótimo! Mais ou menos que horas devo receber?" },
+                    { sender: 'Editor', text: "By 3 PM today. I'll send you a private link.", textPt: "Até as 15h de hoje. Vou enviar um link privado." },
+                    { sender: 'Client', text: "Perfect. One more thing - will everything be done by tomorrow at 5 PM as we agreed?", textPt: "Perfeito. E só mais uma coisa: vai estar tudo pronto amanhã às 17h, conforme combinado?" },
+                    { sender: 'Editor', text: "Yes, absolutely. I'll have the final version ready by 5 PM tomorrow. I'm on track.", textPt: "Sim, claro. Terei a versão final pronta amanhã às 17h. Tá tudo no prazo." },
+                    { sender: 'Client', text: "Awesome, thanks!", textPt: "Maravilha, valeu!" }
                 ]
             },
             {
@@ -320,10 +320,10 @@
                 name: 'minor-adjustments',
                 description: 'Feedback 1: Minor Adjustments Needed',
                 messages: [
-                    { sender: 'Client', text: "Hi! I watched the promotional video and it looks great overall! Just a few small things:<br><br>1. The music volume is a bit too loud in the beginning - can you lower it by about 20%?<br>2. The text on the product shot stays on screen for too long. Can you reduce it from 4 seconds to 2 seconds?<br>3. The color of the final frame looks a bit too orange. Can you adjust the color temperature?<br><br>Otherwise, it's exactly what we wanted! How long will these changes take?" },
-                    { sender: 'Editor', text: "Thanks for the feedback! These are all quick adjustments. I can have the revised version ready for you by tomorrow morning. I'll lower the music volume, trim the text duration, and adjust the color temperature on the final frame." },
-                    { sender: 'Client', text: "Perfect! Looking forward to seeing the updated version." },
-                    { sender: 'Editor', text: "I'll send you the link by 10 AM tomorrow." }
+                    { sender: 'Client', text: "Hi! I watched the promotional video and it looks great overall! Just a few small things:<br><br>1. The music volume is a bit too loud in the beginning - can you lower it by about 20%?<br>2. The text on the product shot stays on screen for too long. Can you reduce it from 4 seconds to 2 seconds?<br>3. The color of the final frame looks a bit too orange. Can you adjust the color temperature?<br><br>Otherwise, it's exactly what we wanted! How long will these changes take?", textPt: "Oi! Eu vi o vídeo promocional e, no geral, ficou ótimo! Só alguns pequenos ajustes:<br><br>1. O volume da música está um pouco alto no começo - você pode baixar uns 20%?<br>2. O texto na imagem do produto fica na tela por muito tempo. Você pode diminuir de 4 pra 2 segundos?<br>3. A cor no último frame tá meio alaranjada. Pode ajustar a temperatura de cor?<br><br>De resto, é exatamente o que a gente queria! Quanto tempo leva para fazer essas alterações?" },
+                    { sender: 'Editor', text: "Thanks for the feedback! These are all quick adjustments. I can have the revised version ready for you by tomorrow morning. I'll lower the music volume, trim the text duration, and adjust the color temperature on the final frame.", textPt: "Obrigado pelo feedback! São ajustes rápidos. Eu consigo te entregar a versão revisada amanhã de manhã. Vou abaixar a música, diminuir o tempo do texto e arrumar a temperatura da cor naquele frame." },
+                    { sender: 'Client', text: "Perfect! Looking forward to seeing the updated version.", textPt: "Perfeito! Ansioso pra ver a versão nova." },
+                    { sender: 'Editor', text: "I'll send you the link by 10 AM tomorrow.", textPt: "Vou te mandar o link amanhã até as 10h." }
                 ]
             },
             {
@@ -332,12 +332,12 @@
                 name: 'major-revisions',
                 description: 'Feedback 2: Major Revisions Requested',
                 messages: [
-                    { sender: 'Client', text: "I watched the corporate training video and I have some significant feedback:<br><br>1. The pacing feels too slow. Can you speed up the transitions between sections?<br>2. The background music doesn't match the tone of the content. It feels too upbeat for a serious training video. Can you replace it with something more professional and calm?<br>3. The graphics and text overlays are hard to read. Can you increase the font size and use a higher contrast color?<br>4. The intro is too long. Can you cut it down from 45 seconds to 20 seconds?<br>5. Can you add captions/subtitles for accessibility?<br><br>I know this is more than we initially discussed. What's the timeline for these revisions?" },
-                    { sender: 'Editor', text: "I appreciate the detailed feedback. These are more substantial changes than the initial scope. Let me break down what I can do:<br><br>- Speeding up transitions: Easy, I can do this.<br>- Replacing background music: I'll need to source new music, but I can handle it.<br>- Adjusting graphics and text: I can increase font sizes and improve contrast.<br>- Shortening the intro: No problem.<br>- Adding captions: This will take extra time since I need to transcribe and sync them.<br><br>The first four items I can have done by Friday. Adding captions will take an additional 2-3 days. Would you like me to proceed with everything?" },
-                    { sender: 'Client', text: "Yes, please do all of it. How much extra will the captions cost? We agreed on a per-minute rate." },
-                    { sender: 'Editor', text: "Good question. Captions add about 3-4 hours of work. At my rate of $75/hour, that's $225-$300 extra. I can do it for $250 additional." },
-                    { sender: 'Client', text: "That's reasonable. Go ahead with everything." },
-                    { sender: 'Editor', text: "Perfect! I'll have the revised version with all changes and captions ready by next Wednesday." }
+                    { sender: 'Client', text: "I watched the corporate training video and I have some significant feedback:<br><br>1. The pacing feels too slow. Can you speed up the transitions between sections?<br>2. The background music doesn't match the tone of the content. It feels too upbeat for a serious training video. Can you replace it with something more professional and calm?<br>3. The graphics and text overlays are hard to read. Can you increase the font size and use a higher contrast color?<br>4. The intro is too long. Can you cut it down from 45 seconds to 20 seconds?<br>5. Can you add captions/subtitles for accessibility?<br><br>I know this is more than we initially discussed. What's the timeline for these revisions?", textPt: "Assisti ao vídeo de treinamento e tenho alguns feedbacks importantes:<br><br>1. O ritmo parece um pouco lento. Dá para acelerar as transições entre as seções?<br>2. A música de fundo não combina com o tom. Parece meio animada demais para um vídeo de treinamento mais sério. Dá para trocar por algo mais profissional e tranquilo?<br>3. Os gráficos e os textos estão difíceis de ler. Pode aumentar a fonte e usar uma cor com mais contraste?<br>4. A introdução tá muito longa. Pode reduzir de 45 pra 20 segundos?<br>5. Pode adicionar legendas para acessibilidade?<br><br>Eu sei que isso sai do escopo original. Qual o prazo para essas revisões?" },
+                    { sender: 'Editor', text: "I appreciate the detailed feedback. These are more substantial changes than the initial scope. Let me break down what I can do:<br><br>- Speeding up transitions: Easy, I can do this.<br>- Replacing background music: I'll need to source new music, but I can handle it.<br>- Adjusting graphics and text: I can increase font sizes and improve contrast.<br>- Shortening the intro: No problem.<br>- Adding captions: This will take extra time since I need to transcribe and sync them.<br><br>The first four items I can have done by Friday. Adding captions will take an additional 2-3 days. Would you like me to proceed with everything?", textPt: "Agradeço pelo feedback bem detalhado. Essas alterações são bem mais substanciais que o escopo inicial. Deixa eu detalhar o que consigo fazer:<br><br>- Acelerar transições: Fácil, faço sem problemas.<br>- Trocar a música: Vou precisar procurar uma música nova, mas consigo.<br>- Ajustar gráficos e texto: Posso aumentar a fonte e melhorar o contraste.<br>- Encurtar a intro: Tranquilo.<br>- Adicionar legendas: Isso vai levar um tempo extra porque vou precisar transcrever e sincronizar tudo.<br><br>Consigo entregar os 4 primeiros itens até sexta. As legendas vão levar uns 2-3 dias a mais. Gostaria que eu seguisse em frente com tudo?" },
+                    { sender: 'Client', text: "Yes, please do all of it. How much extra will the captions cost? We agreed on a per-minute rate.", textPt: "Sim, por favor faça tudo. Quanto as legendas vão custar a mais? Nós fechamos um valor por minuto." },
+                    { sender: 'Editor', text: "Good question. Captions add about 3-4 hours of work. At my rate of $75/hour, that's $225-$300 extra. I can do it for $250 additional.", textPt: "Boa pergunta. As legendas adicionam cerca de 3 a 4 horas de trabalho. Na minha taxa de $75/hora, isso daria entre $225 e $300 extras. Posso fechar por mais $250." },
+                    { sender: 'Client', text: "That's reasonable. Go ahead with everything.", textPt: "Justo. Pode seguir com tudo." },
+                    { sender: 'Editor', text: "Perfect! I'll have the revised version with all changes and captions ready by next Wednesday.", textPt: "Perfeito! A versão revisada com todas as alterações e legendas estará pronta na próxima quarta-feira." }
                 ]
             },
             {
@@ -346,12 +346,12 @@
                 name: 'positive-feedback',
                 description: 'Feedback 3: Positive Feedback with Minor Tweaks',
                 messages: [
-                    { sender: 'Client', text: "Wow! The wedding highlight reel is absolutely beautiful! You did an amazing job with the color grading and music selection. My wife loved it!<br><br>Just two tiny things:<br>1. There's a small jump cut at the 3:45 mark - can you smooth that out?<br>2. Can you add a subtle fade-to-black at the very end instead of a hard cut?<br><br>That's it! Otherwise, it's perfect." },
-                    { sender: 'Editor', text: "Thank you so much! I'm thrilled you and your wife love it! Those are super easy fixes. I'll smooth out that jump cut and add the fade-to-black at the end." },
-                    { sender: 'Client', text: "How soon can you have it?" },
-                    { sender: 'Editor', text: "I can have the final version ready for you within 2 hours." },
-                    { sender: 'Client', text: "Perfect! You're the best!" },
-                    { sender: 'Editor', text: "Thanks for the kind words! I'll send you the updated link shortly." }
+                    { sender: 'Client', text: "Wow! The wedding highlight reel is absolutely beautiful! You did an amazing job with the color grading and music selection. My wife loved it!<br><br>Just two tiny things:<br>1. There's a small jump cut at the 3:45 mark - can you smooth that out?<br>2. Can you add a subtle fade-to-black at the very end instead of a hard cut?<br><br>That's it! Otherwise, it's perfect.", textPt: "Uau! O vídeo com os melhores momentos do casamento ficou lindo demais! Você mandou muito bem nas cores e na trilha sonora. Minha esposa adorou!<br><br>Só dois detalhes pequenos:<br>1. Tem um jump cut bem no minuto 3:45 - dá para suavizar?<br>2. Você pode colocar um fade-to-black (escurecer) bem sutil no final em vez de um corte seco?<br><br>Só isso! De resto, tá perfeito." },
+                    { sender: 'Editor', text: "Thank you so much! I'm thrilled you and your wife love it! Those are super easy fixes. I'll smooth out that jump cut and add the fade-to-black at the end.", textPt: "Muito obrigado! Fico feliz demais que você e sua esposa tenham gostado! São correções super fáceis de fazer. Vou suavizar o jump cut e colocar o fade-to-black no final." },
+                    { sender: 'Client', text: "How soon can you have it?", textPt: "Quando você acha que consegue entregar?" },
+                    { sender: 'Editor', text: "I can have the final version ready for you within 2 hours.", textPt: "Em umas 2 horas eu te mando a versão final." },
+                    { sender: 'Client', text: "Perfect! You're the best!", textPt: "Perfeito! Você é demais!" },
+                    { sender: 'Editor', text: "Thanks for the kind words! I'll send you the updated link shortly.", textPt: "Obrigado! Mando o link atualizado daqui a pouco." }
                 ]
             },
             {
@@ -360,11 +360,11 @@
                 name: 'batch-feedback',
                 description: 'Feedback 4: Feedback on Multiple Videos (Batch Project)',
                 messages: [
-                    { sender: 'Client', text: "I watched the first 3 YouTube videos and I have feedback for all of them:<br><br><strong>Video 1:</strong><br>- The intro is too long. Can you trim it down?<br>- The background music cuts off abruptly at the end. Can you add a fade-out?<br><br><strong>Video 2:</strong><br>- This one looks great! No changes needed.<br><br><strong>Video 3:</strong><br>- The text overlay in the middle section is hard to read. Can you increase the font size?<br>- Can you add a lower-third graphic with my name and title?<br><br>Also, for all future videos, can you standardize the font and color scheme? I want consistency across the channel." },
-                    { sender: 'Editor', text: "Great feedback! Let me address each one:<br><br><strong>Video 1:</strong> I'll trim the intro and add a fade-out to the music.<br><br><strong>Video 2:</strong> Glad you love it!<br><br><strong>Video 3:</strong> I'll increase the font size and add a lower-third graphic with your name and title.<br><br>For standardization, I'll create a template with consistent fonts and colors that I'll apply to all future videos. This will also speed up the editing process." },
-                    { sender: 'Client', text: "Perfect! How long for the revisions?" },
-                    { sender: 'Editor', text: "I can have Videos 1 and 3 revised by Friday, and I'll have the template ready for the next batch of videos." },
-                    { sender: 'Client', text: "Excellent! Send them over when ready." }
+                    { sender: 'Client', text: "I watched the first 3 YouTube videos and I have feedback for all of them:<br><br><strong>Video 1:</strong><br>- The intro is too long. Can you trim it down?<br>- The background music cuts off abruptly at the end. Can you add a fade-out?<br><br><strong>Video 2:</strong><br>- This one looks great! No changes needed.<br><br><strong>Video 3:</strong><br>- The text overlay in the middle section is hard to read. Can you increase the font size?<br>- Can you add a lower-third graphic with my name and title?<br><br>Also, for all future videos, can you standardize the font and color scheme? I want consistency across the channel.", textPt: "Eu vi os 3 primeiros vídeos do YouTube e tenho feedbacks para todos:<br><br><strong>Vídeo 1:</strong><br>- A introdução ficou longa. Pode dar uma cortada?<br>- A música corta seco no final. Pode colocar um fade-out?<br><br><strong>Vídeo 2:</strong><br>- Esse ficou ótimo! Sem alterações.<br><br><strong>Vídeo 3:</strong><br>- O texto do meio tá difícil de ler. Pode aumentar a fonte?<br>- Dá para adicionar um lower-third (GC) com o meu nome e cargo?<br><br>Outra coisa: para os próximos vídeos, você pode padronizar a fonte e a paleta de cores? Queria manter o canal consistente." },
+                    { sender: 'Editor', text: "Great feedback! Let me address each one:<br><br><strong>Video 1:</strong> I'll trim the intro and add a fade-out to the music.<br><br><strong>Video 2:</strong> Glad you love it!<br><br><strong>Video 3:</strong> I'll increase the font size and add a lower-third graphic with your name and title.<br><br>For standardization, I'll create a template with consistent fonts and colors that I'll apply to all future videos. This will also speed up the editing process.", textPt: "Excelente feedback! Vamos a eles:<br><br><strong>Vídeo 1:</strong> Vou encurtar a intro e adicionar o fade-out na música.<br><br><strong>Vídeo 2:</strong> Que bom que gostou!<br><br><strong>Vídeo 3:</strong> Vou aumentar a fonte e adicionar o lower-third com seu nome e cargo.<br><br>Quanto à padronização, vou criar um template com fontes e cores fixas e aplicar nos próximos vídeos. Isso inclusive vai acelerar nossa edição." },
+                    { sender: 'Client', text: "Perfect! How long for the revisions?", textPt: "Perfeito! Quanto tempo para as revisões?" },
+                    { sender: 'Editor', text: "I can have Videos 1 and 3 revised by Friday, and I'll have the template ready for the next batch of videos.", textPt: "Entrego os Vídeos 1 e 3 revisados até sexta, e também já deixo o template pronto para o próximo lote." },
+                    { sender: 'Client', text: "Excellent! Send them over when ready.", textPt: "Excelente! Pode mandar quando estiver pronto." }
                 ]
             },
             {
@@ -373,10 +373,10 @@
                 name: 'timestamp-revisions',
                 description: 'Feedback 5: Revision Request with Specific Timestamps',
                 messages: [
-                    { sender: 'Client', text: "I reviewed the product demo video and overall it's good, but I need some changes:<br><br>- 0:15 - The product shot is too zoomed in. Can you zoom out a bit so you can see the full product?<br>- 0:45 - The transition here is too abrupt. Can you add a smoother dissolve?<br>- 1:20 - The text \"Features\" stays on screen too long. Reduce it to 1 second.<br>- 2:10 - Can you add a slow-motion effect to the product demo here?<br>- 3:00 - The background color looks washed out. Can you increase the saturation?<br>- 3:45 - The voiceover audio is slightly out of sync with the mouth movement. Can you adjust the timing?<br><br>I know we're in the final stages, but these are important for the final look. Can you do these before the final delivery tomorrow?" },
-                    { sender: 'Editor', text: "I can definitely make these adjustments! Let me go through each one:<br><br>- 0:15: I'll zoom out on the product shot.<br>- 0:45: I'll add a smoother dissolve transition.<br>- 1:20: I'll reduce the text duration to 1 second.<br>- 2:10: I'll add slow-motion effect to the demo.<br>- 3:00: I'll increase saturation on the background.<br>- 3:45: I'll sync the voiceover with the mouth movement.<br><br>These are all doable. Since we're on a tight timeline, I'll prioritize these revisions and have the updated version ready by 2 PM tomorrow. That gives you time to review before the final 5 PM deadline." },
-                    { sender: 'Client', text: "Perfect! Thanks for being so responsive." },
-                    { sender: 'Editor', text: "No problem! I'll send you the revised version by 2 PM tomorrow." }
+                    { sender: 'Client', text: "I reviewed the product demo video and overall it's good, but I need some changes:<br><br>- 0:15 - The product shot is too zoomed in. Can you zoom out a bit so you can see the full product?<br>- 0:45 - The transition here is too abrupt. Can you add a smoother dissolve?<br>- 1:20 - The text \"Features\" stays on screen too long. Reduce it to 1 second.<br>- 2:10 - Can you add a slow-motion effect to the product demo here?<br>- 3:00 - The background color looks washed out. Can you increase the saturation?<br>- 3:45 - The voiceover audio is slightly out of sync with the mouth movement. Can you adjust the timing?<br><br>I know we're in the final stages, but these are important for the final look. Can you do these before the final delivery tomorrow?", textPt: "Revisei o vídeo de demonstração de produto e no geral tá legal, mas preciso de umas alterações:<br><br>- 0:15 - A imagem do produto tá com muito zoom. Pode afastar um pouco para mostrar ele inteiro?<br>- 0:45 - A transição tá muito seca. Pode colocar um dissolve mais suave?<br>- 1:20 - O texto \"Features\" fica na tela por muito tempo. Reduza para 1 segundo.<br>- 2:10 - Dá pra colocar uma câmera lenta (slow-motion) nessa parte?<br>- 3:00 - A cor de fundo tá meio lavada. Consegue aumentar a saturação?<br>- 3:45 - A voz tá um pouco fora de sincronia com a boca. Dá pra ajustar o tempo?<br><br>Sei que estamos nos acertos finais, mas essas coisas são importantes. Dá para fazer tudo isso antes da entrega de amanhã?" },
+                    { sender: 'Editor', text: "I can definitely make these adjustments! Let me go through each one:<br><br>- 0:15: I'll zoom out on the product shot.<br>- 0:45: I'll add a smoother dissolve transition.<br>- 1:20: I'll reduce the text duration to 1 second.<br>- 2:10: I'll add slow-motion effect to the demo.<br>- 3:00: I'll increase saturation on the background.<br>- 3:45: I'll sync the voiceover with the mouth movement.<br><br>These are all doable. Since we're on a tight timeline, I'll prioritize these revisions and have the updated version ready by 2 PM tomorrow. That gives you time to review before the final 5 PM deadline.", textPt: "Posso fazer sim! Deixa eu passar por cada ponto:<br><br>- 0:15: Vou tirar o zoom do produto.<br>- 0:45: Adiciono um dissolve mais suave.<br>- 1:20: Reduzo o texto para 1 segundo.<br>- 2:10: Coloco o slow-motion na demonstração.<br>- 3:00: Aumento a saturação do fundo.<br>- 3:45: Arrumo o sync da voz com a boca.<br><br>Isso tudo é super fazível. Como o prazo tá apertado, vou priorizar essas revisões e deixar o vídeo pronto amanhã às 14h. Assim vocês conseguem revisar antes da entrega final às 17h." },
+                    { sender: 'Client', text: "Perfect! Thanks for being so responsive.", textPt: "Perfeito! Valeu por responder tão rápido." },
+                    { sender: 'Editor', text: "No problem! I'll send you the revised version by 2 PM tomorrow.", textPt: "Sem problemas! Mando a versão atualizada amanhã até as 14h." }
                 ]
             },
             {
@@ -385,13 +385,13 @@
                 name: 'budget-impact-revisions',
                 description: 'Feedback 6: Revision Request with Budget Impact',
                 messages: [
-                    { sender: 'Client', text: "I reviewed the first batch of videos for our retainer project and I'm happy with the quality. However, I'd like to request some additional changes that go beyond what we initially discussed:<br><br>1. Can you add animated intro sequences to each video? (Not in original scope)<br>2. Can you add motion graphics and lower-thirds? (Not in original scope)<br>3. Can you add background music to all videos? (We didn't discuss this)<br><br>I know these might be extra work. What would the cost be?" },
-                    { sender: 'Editor', text: "Great questions! These additions would definitely enhance the videos. Let me break down the costs:<br><br>1. <strong>Animated intro sequences:</strong> About 2 hours per video. At $50/hour overage, that's $100 per video × 3 videos = $300.<br>2. <strong>Motion graphics and lower-thirds:</strong> About 1.5 hours per video. That's $75 per video × 3 videos = $225.<br>3. <strong>Background music:</strong> About 30 minutes per video to source and sync. That's $25 per video × 3 videos = $75.<br><br>Total additional cost: $600 for these three enhancements." },
-                    { sender: 'Client', text: "That's more than I expected. Can you do it for $400?" },
-                    { sender: 'Editor', text: "$400 is below my rate, but since we have a retainer agreement and I want to build a strong partnership, I can do $450. That's my best offer." },
-                    { sender: 'Client', text: "Deal! $450 for all three enhancements on the 3 videos." },
-                    { sender: 'Editor', text: "Perfect! I'll add these to the queue and have them ready by end of week. This will use about 12 hours of your remaining monthly hours, so you'll have 8 hours left in your retainer." },
-                    { sender: 'Client', text: "Sounds good! Thanks for working with me on this." }
+                    { sender: 'Client', text: "I reviewed the first batch of videos for our retainer project and I'm happy with the quality. However, I'd like to request some additional changes that go beyond what we initially discussed:<br><br>1. Can you add animated intro sequences to each video? (Not in original scope)<br>2. Can you add motion graphics and lower-thirds? (Not in original scope)<br>3. Can you add background music to all videos? (We didn't discuss this)<br><br>I know these might be extra work. What would the cost be?", textPt: "Dei uma olhada no primeiro lote de vídeos do nosso pacote mensal e gostei bastante da qualidade. Porém, eu queria pedir algumas coisinhas a mais que vão além do escopo inicial:<br><br>1. Você pode adicionar introduções animadas em cada vídeo? (Fora do escopo)<br>2. Consegue adicionar motion graphics e lower-thirds? (Fora do escopo)<br>3. Tem como colocar uma música de fundo em todos eles? (Não conversamos sobre isso)<br><br>Sei que isso dá trabalho extra. Qual seria o custo?" },
+                    { sender: 'Editor', text: "Great questions! These additions would definitely enhance the videos. Let me break down the costs:<br><br>1. <strong>Animated intro sequences:</strong> About 2 hours per video. At $50/hour overage, that's $100 per video × 3 videos = $300.<br>2. <strong>Motion graphics and lower-thirds:</strong> About 1.5 hours per video. That's $75 per video × 3 videos = $225.<br>3. <strong>Background music:</strong> About 30 minutes per video to source and sync. That's $25 per video × 3 videos = $75.<br><br>Total additional cost: $600 for these three enhancements.", textPt: "Boas perguntas! Tudo isso com certeza vai agregar nos vídeos. Deixa eu mostrar como ficam os custos:<br><br>1. <strong>Intros animadas:</strong> Umas 2 horas por vídeo. Na taxa de excedente de $50/hora, fica $100 por vídeo × 3 vídeos = $300.<br>2. <strong>Motion graphics e lower-thirds:</strong> Umas 1.5 horas por vídeo. Dá $75 por vídeo × 3 vídeos = $225.<br>3. <strong>Música de fundo:</strong> Uns 30 minutinhos por vídeo para encontrar a música e sincronizar. Dá $25 por vídeo × 3 vídeos = $75.<br><br>Custo adicional total: $600 para as três coisas." },
+                    { sender: 'Client', text: "That's more than I expected. Can you do it for $400?", textPt: "É mais do que eu estava esperando. Você consegue fazer por $400?" },
+                    { sender: 'Editor', text: "$400 is below my rate, but since we have a retainer agreement and I want to build a strong partnership, I can do $450. That's my best offer.", textPt: "$400 fica abaixo da minha taxa, mas como temos um acordo mensal (retainer) e eu quero construir uma boa parceria, consigo fechar em $450. É o melhor que eu consigo fazer." },
+                    { sender: 'Client', text: "Deal! $450 for all three enhancements on the 3 videos.", textPt: "Fechado! $450 para as melhorias nos 3 vídeos." },
+                    { sender: 'Editor', text: "Perfect! I'll add these to the queue and have them ready by end of week. This will use about 12 hours of your remaining monthly hours, so you'll have 8 hours left in your retainer.", textPt: "Perfeito! Vou colocar na fila de edição e entrego até o fim da semana. Isso vai consumir umas 12 horas da sua franquia de horas no mês, então você ainda vai ter 8 horas restantes." },
+                    { sender: 'Client', text: "Sounds good! Thanks for working with me on this.", textPt: "Trato feito! Obrigado pela parceria." }
                 ]
             }
         ];
@@ -479,6 +479,8 @@
             conv.messages.forEach((msg, index) => {
                 const user = users[msg.sender];
                 const timestamp = generateTimestamp(index);
+                const msgId = `msg-${currentChannelIndex}-${index}`;
+                const translateHtml = `<div class="text-[11px] mt-1 text-[#00a8fc] hover:underline cursor-pointer select-none inline-block font-medium" id="translate-btn-${currentChannelIndex}-${index}" onclick="toggleTranslation(${currentChannelIndex}, ${index})">Traduzir mensagem</div>`;
                 
                 // Determine if we need to show the avatar and header, or if it's a consecutive message
                 const showHeader = msg.sender !== lastSender;
@@ -494,7 +496,8 @@
                                     <span class="font-medium text-white hover:underline cursor-pointer">${user.fullName}</span>
                                     <span class="text-xs text-[#72767d]">${timestamp}</span>
                                 </div>
-                                <div class="text-[#dcddde] break-words leading-relaxed">${msg.text}</div>
+                                <div class="text-[#dcddde] break-words leading-relaxed" id="${msgId}" data-translated="false">${msg.text}</div>
+                                ${translateHtml}
                             </div>
                         </div>
                     `;
@@ -506,7 +509,8 @@
                                 ${timestamp.split(' at ')[1]}
                             </div>
                             <div class="flex-1 min-w-0">
-                                <div class="text-[#dcddde] break-words leading-relaxed">${msg.text}</div>
+                                <div class="text-[#dcddde] break-words leading-relaxed" id="${msgId}" data-translated="false">${msg.text}</div>
+                                ${translateHtml}
                             </div>
                         </div>
                     `;
@@ -516,6 +520,23 @@
 
             // Scroll to bottom
             container.scrollTop = container.scrollHeight;
+        }
+
+        function toggleTranslation(channelIdx, msgIdx) {
+            const msgId = `msg-${channelIdx}-${msgIdx}`;
+            const textElement = document.getElementById(msgId);
+            const btnElement = document.getElementById(`translate-btn-${channelIdx}-${msgIdx}`);
+            const msg = conversations[channelIdx].messages[msgIdx];
+            
+            if (textElement.dataset.translated === "true") {
+                textElement.innerHTML = msg.text;
+                textElement.dataset.translated = "false";
+                btnElement.innerText = "Traduzir mensagem";
+            } else {
+                textElement.innerHTML = msg.textPt || "Tradução não disponível para esta mensagem.";
+                textElement.dataset.translated = "true";
+                btnElement.innerText = "Ver original";
+            }
         }
 
         function selectChannel(index) {

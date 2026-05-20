@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor's English Handbook</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar for editing suite aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3f3f56;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #575775;
+        }
+        .glassmorphism {
+            background: rgba(30, 30, 46, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-[#0f0f15] text-slate-100 min-h-screen flex flex-col selection:bg-purple-600 selection:text-white">
+
+    <!-- HEADER -->
+    <header class="border-b border-zinc-800 bg-[#12121a]/90 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-violet-600 to-indigo-600 p-2.5 rounded-xl shadow-lg shadow-indigo-500/20">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-1">
+                <a href="#simulator" class="px-3.5 py-1.5 rounded-lg text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/50 transition">Timeline Lab</a>
+                <a href="#dictionary" class="px-3.5 py-1.5 rounded-lg text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/50 transition">Handbook</a>
+                <a href="#flashcards" class="px-3.5 py-1.5 rounded-lg text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/50 transition">Flashcards</a>
+                <a href="#quiz" class="px-3.5 py-1.5 rounded-lg text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/50 transition">Quiz Challenge</a>
+            </nav>
+
+            <div class="flex items-center gap-2">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        
+        <!-- HERO INTRO -->
+        <section class="text-center max-w-3xl mx-auto space-y-4 py-4">
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+                Domine o Vocabulário de Edição em <span class="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">Inglês</span>
+            </h2>
+            <p class="text-zinc-400 text-base sm:text-lg">
+                Seja Premiere, Final Cut ou DaVinci, o inglês é o padrão do mercado. Explore nosso guia interativo e turbine o vocabulário técnico dos seus alunos de audiovisual.
+            </p>
+        </section>
+
+        <!-- TIMELINE INTERACTIVE LAB -->
+        <section id="simulator" class="glassmorphism rounded-2xl p-6 border border-zinc-800/80 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-violet-600/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-600/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
+                <div>
+                    <div class="flex items-center gap-2 text-violet-400 text-xs font-bold uppercase tracking-widest mb-1">
+                        <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span>
+                        Interactive Lab
+                    </div>
+                    <h3 class="text-xl font-bold">Laboratório Visual de Timeline</h3>
+                    <p class="text-zinc-400 text-xs mt-0.5">Clique nos botões de efeitos e técnicas para ver como elas alteram fisicamente as trilhas de áudio e vídeo.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="playSFX('click'); setTimelineMode('normal')" id="btn-normal" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-800 text-white border border-zinc-700/80 hover:bg-zinc-700">Corte Seco (Normal)</button>
+                    <button onclick="playSFX('click'); setTimelineMode('jcut')" id="btn-jcut" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">J-Cut</button>
+                    <button onclick="playSFX('click'); setTimelineMode('lcut')" id="btn-lcut" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">L-Cut</button>
+                    <button onclick="playSFX('click'); setTimelineMode('ripple')" id="btn-ripple" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">Ripple Delete</button>
+                    <button onclick="playSFX('click'); setTimelineMode('jump')" id="btn-jump" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">Jump Cut</button>
+                </div>
+            </div>
+
+            <!-- Virtual NLE Interface -->
+            <div class="bg-[#0b0b0f] rounded-xl border border-zinc-800 p-4 shadow-inner space-y-4">
+                <!-- Viewer monitor simulation -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-black aspect-video rounded-lg relative overflow-hidden flex items-center justify-center border border-zinc-900 group">
+                        <!-- Simulated playback visual -->
+                        <div id="video-canvas-1" class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950 transition-all duration-500">
+                            <span class="text-xs tracking-widest text-zinc-500 uppercase font-bold absolute top-3 left-3 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span> SOURCE MONITOR
+                            </span>
+                            <div id="video-overlay" class="text-center px-4">
+                                <p id="video-scene-name" class="text-sm font-bold tracking-wide transition-all duration-300">SCENE A: Talking Head Interview</p>
+                                <p id="video-scene-desc" class="text-xs text-zinc-500 mt-1">Camera A - Close-up on Interviewee</p>
+                            </div>
+                            <div class="absolute bottom-3 right-3 text-[10px] text-zinc-400 mono" id="video-timecode">00:01:14:12</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic Explanatory Box -->
+                    <div class="bg-zinc-950/70 p-5 rounded-lg border border-zinc-900 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm font-bold text-violet-300 uppercase tracking-wider mb-2">Conceito Técnico Ilustrado</h4>
+                            <div id="sim-explanation-title" class="text-lg font-bold text-white">Corte Seco (Hard Cut)</div>
+                            <p id="sim-explanation-body" class="text-sm text-zinc-400 mt-2 leading-relaxed">
+                                A transição padrão mais comum na edição. Ocorre quando mudamos instantaneamente do clipe anterior para o clipe seguinte, alterando vídeo e áudio juntos de forma síncrona.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-zinc-900/80 flex items-center justify-between text-xs text-zinc-500">
+                            <span>Atalho típico: <kbd class="px-1.5 py-0.5 bg-zinc-800 rounded text-[10px] text-zinc-300 font-bold mono">Ctrl / Cmd + K</kbd> (Split)</span>
+                            <span class="italic text-indigo-400" id="sim-tip">Essencial para fluidez natural.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Tracks -->
+                <div class="space-y-2 pt-2 border-t border-zinc-900">
+                    <!-- Playhead control bar -->
+                    <div class="relative h-6 flex items-center">
+                        <div class="absolute left-1/2 -ml-1 top-0 bottom-0 w-0.5 bg-red-500 z-20 pointer-events-none" id="sim-playhead">
+                            <div class="w-3 h-3 bg-red-500 rotate-45 -translate-x-[5px] -translate-y-[6px]"></div>
+                        </div>
+                        <div class="w-full h-full flex justify-between px-2 text-[9px] text-zinc-600 mono pointer-events-none select-none">
+                            <span>00:00:00</span>
+                            <span>00:01:00</span>
+                            <span>00:02:00</span>
+                            <span>00:03:00</span>
+                            <span>00:04:00</span>
+                            <span>00:05:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Video Track Row (V1) -->
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 text-[11px] font-bold text-zinc-500 text-right mono">V1</span>
+                        <div class="flex-grow bg-zinc-950 h-10 rounded border border-zinc-900 relative flex overflow-hidden">
+                            <!-- Block Video A -->
+                            <div id="v-block-1" class="bg-indigo-900/60 border border-indigo-500/30 text-[10px] font-bold text-indigo-200 px-3 flex items-center justify-between transition-all duration-500 ease-in-out" style="width: 50%;">
+                                <span class="truncate">Video_Take_01.MP4 [Scene A]</span>
+                            </div>
+                            <!-- Block Video B -->
+                            <div id="v-block-2" class="bg-cyan-900/60 border border-cyan-500/30 text-[10px] font-bold text-cyan-200 px-3 flex items-center justify-between transition-all duration-500 ease-in-out" style="width: 50%;">
+                                <span class="truncate">Video_Take_02.MP4 [Scene B]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Track Row (A1) -->
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 text-[11px] font-bold text-zinc-500 text-right mono">A1</span>
+                        <div class="flex-grow bg-zinc-950 h-10 rounded border border-zinc-900 relative flex overflow-hidden">
+                            <!-- Block Audio A -->
+                            <div id="a-block-1" class="bg-emerald-950 border border-emerald-500/30 text-[10px] font-bold text-emerald-300 px-3 flex items-center justify-between transition-all duration-500 ease-in-out" style="width: 50%;">
+                                <span class="truncate">Audio_Dialogue_A.WAV</span>
+                                <svg class="w-3.5 h-3.5 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-4h2v4zm4 0h-2V8h2v8z"/></svg>
+                            </div>
+                            <!-- Block Audio B -->
+                            <div id="a-block-2" class="bg-teal-950 border border-teal-500/30 text-[10px] font-bold text-teal-300 px-3 flex items-center justify-between transition-all duration-500 ease-in-out" style="width: 50%;">
+                                <span class="truncate">Audio_Dialogue_B.WAV</span>
+                                <svg class="w-3.5 h-3.5 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-4h2v4zm4 0h-2V8h2v8z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ambient Sound Effects (A2) -->
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 text-[11px] font-bold text-zinc-500 text-right mono">A2</span>
+                        <div class="flex-grow bg-zinc-950 h-8 rounded border border-zinc-900 relative flex overflow-hidden">
+                            <div class="bg-purple-950/40 border border-purple-500/20 text-[9px] text-purple-300 px-3 flex items-center w-full">
+                                <span>Ambience_Wind_Loop.WAV (SFX background)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DICTIONARY / EXPLORER SECTION -->
+        <section id="dictionary" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h3 class="text-2xl font-bold tracking-tight">Handbook & Vocabulário Técnico</h3>
+                    <p class="text-zinc-400 text-sm">Navegue pelas quatro principais categorias gramaticais e práticas do mercado.</p>
+                </div>
+                
+                <!-- Search inputs -->
+                <div class="w-full md:w-80 relative">
+                    <input type="text" id="vocab-search" oninput="filterVocabulary()" placeholder="Pesquise termos (ex: cut, bin, timeline...)" 
+                           class="w-full bg-zinc-900 text-slate-100 placeholder-zinc-500 text-sm rounded-xl px-4 py-2.5 border border-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition">
+                    <svg class="w-4 h-4 text-zinc-500 absolute right-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap gap-1.5 p-1 bg-zinc-900/50 border border-zinc-800 rounded-xl max-w-2xl">
+                <button onclick="changeCategory('all')" id="tab-all" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition bg-violet-600 text-white">Todos (42)</button>
+                <button onclick="changeCategory('verbs')" id="tab-verbs" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Verbos (12)</button>
+                <button onclick="changeCategory('nouns')" id="tab-nouns" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Substantivos (15)</button>
+                <button onclick="changeCategory('expressions')" id="tab-expressions" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Expressões (6)</button>
+                <button onclick="changeCategory('techniques')" id="tab-techniques" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Técnicas (9)</button>
+            </div>
+
+            <!-- Vocabulary Cards Grid -->
+            <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamically populated cards go here -->
+            </div>
+            
+            <!-- Empty state fallback -->
+            <div id="empty-state" class="hidden text-center py-12 bg-zinc-900/20 rounded-xl border border-dashed border-zinc-800">
+                <svg class="w-12 h-12 text-zinc-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p class="text-zinc-500 font-medium">Nenhum termo encontrado para sua busca.</p>
+            </div>
+        </section>
+
+        <!-- FLASHCARDS SECTION -->
+        <section id="flashcards" class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6 border-t border-zinc-900">
+            <div class="lg:col-span-1 space-y-4">
+                <div class="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-widest">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"/></svg>
+                    Study Station
+                </div>
+                <h3 class="text-2xl font-bold tracking-tight">Active Recall (Flashcards)</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Estimule a memorização rápida desafiando os alunos com cartões virtuais. Clique para virar o card e revelar o termo em inglês ou a tradução técnica.
+                </p>
+                <div class="p-4 bg-zinc-950 rounded-xl border border-zinc-900 text-xs space-y-2 text-zinc-400">
+                    <span class="font-bold text-zinc-300">💡 Como usar na aula:</span>
+                    <p>Divida a turma em dois times. Um estudante escolhe um número de card, tenta adivinhar o termo técnico baseado na definição em português e depois clica para ver se acertou!</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 flex flex-col items-center justify-center gap-6">
+                <!-- Interactive Card Body -->
+                <div onclick="flipCard()" class="w-full max-w-md aspect-[1.6/1] cursor-pointer group [perspective:1000px]">
+                    <div id="flashcard-inner" class="relative w-full h-full text-center transition-transform duration-500 transform-style-3d [transform-style:preserve-3d]">
+                        <!-- Card Front -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between [backface-visibility:hidden] bg-gradient-to-br from-zinc-900 to-[#12121a] border border-zinc-800 shadow-xl">
+                            <span class="text-[10px] text-violet-400 font-bold tracking-widest uppercase">CONCEITO EM PORTUGUÊS</span>
+                            <div class="my-auto space-y-3">
+                                <h4 id="fc-portuguese" class="text-2xl font-extrabold text-white px-2">Importar / Trazer material</h4>
+                                <p id="fc-hint" class="text-xs text-zinc-500 italic">"Adicionar arquivos brutos de vídeo ou áudio dentro do projeto do software."</p>
+                            </div>
+                            <span class="text-xs text-zinc-500 font-medium">Clique para revelar o termo técnico ↺</span>
+                        </div>
+                        
+                        <!-- Card Back -->
+                        <div class="absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between [backface-visibility:hidden] bg-gradient-to-br from-violet-950 to-indigo-950 border border-violet-800 shadow-xl [transform:rotateY(180deg)]">
+                            <span class="text-[10px] text-teal-400 font-bold tracking-widest uppercase">TERM IN ENGLISH</span>
+                            <div class="my-auto space-y-2">
+                                <h4 id="fc-english" class="text-3xl font-black text-white mono">To Import</h4>
+                                <span class="inline-flex px-2.5 py-1 rounded bg-white/10 text-xs font-semibold uppercase text-violet-200" id="fc-category-badge">VERB</span>
+                            </div>
+                            <span class="text-xs text-violet-300 font-medium">Clique para ver o conceito novamente ↺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex items-center gap-4">
+                    <button onclick="playSFX('click'); prevFlashcard()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl transition border border-zinc-800 shadow">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span id="fc-progress" class="text-sm font-bold mono text-zinc-400 bg-zinc-950 px-4 py-1.5 rounded-lg border border-zinc-900">1 / 10</span>
+                    <button onclick="playSFX('click'); nextFlashcard()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl transition border border-zinc-800 shadow">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAMIFIED QUIZ ZONE -->
+        <section id="quiz" class="glassmorphism rounded-2xl p-6 sm:p-8 border border-zinc-800 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-60 h-60 bg-indigo-500/5 rounded-full filter blur-3xl pointer-events-none"></div>
+            
+            <div id="quiz-start-view" class="text-center py-8 space-y-6 max-w-xl mx-auto">
+                <div class="bg-indigo-500/10 text-indigo-400 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto border border-indigo-500/20 shadow-lg shadow-indigo-500/5">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-extrabold tracking-tight text-white">Pronto para o Desafio Vocab_Quiz.mov?</h3>
+                    <p class="text-zinc-400 text-sm">
+                        Teste seus conhecimentos ou jogue em tempo real com a sala. São 5 perguntas selecionadas para conferir o domínio do dialeto de edição.
+                    </p>
+                </div>
+                <button onclick="startQuiz()" class="px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 rounded-xl text-sm font-bold text-white shadow-lg shadow-indigo-500/20 transition-all transform active:scale-95">
+                    Iniciar Quiz Técnico
+                </button>
+            </div>
+
+            <!-- Quiz Play View (Hidden initially) -->
+            <div id="quiz-play-view" class="hidden space-y-6">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2.5 py-1 bg-zinc-900 rounded-lg text-xs font-bold text-zinc-400 border border-zinc-800" id="quiz-question-index">PERGUNTA 1/5</span>
+                        <span id="quiz-score" class="text-xs text-indigo-400 font-extrabold uppercase">Score: 0000</span>
+                    </div>
+                    <div class="w-24 bg-zinc-950 h-2 rounded-full overflow-hidden border border-zinc-900">
+                        <div id="quiz-progress-bar" class="bg-indigo-500 h-full transition-all duration-300" style="width: 20%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 id="quiz-question-text" class="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
+                        Como você chama a ação de deletar um pedaço de clipe e automaticamente arrastar tudo que está à direita para fechar o espaço?
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="quiz-options-container">
+                        <!-- Dynamic Options buttons generated via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-zinc-900 flex justify-between items-center">
+                    <div class="text-xs text-zinc-500 font-medium" id="quiz-feedback-tip">Dica: Um dos termos mais amados por agilizar o fluxo!</div>
+                    <button id="quiz-next-btn" onclick="nextQuestion()" disabled class="px-4 py-2 bg-zinc-800 text-zinc-500 rounded-lg text-xs font-bold pointer-events-none transition">
+                        Próxima Pergunta
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Results View (Hidden initially) -->
+            <div id="quiz-result-view" class="hidden text-center py-8 space-y-6 max-w-xl mx-auto">
+                <div class="w-20 h-20 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/5">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-black text-white">Quiz Concluído!</h3>
+                    <p class="text-zinc-400 text-sm">Sua pontuação final na edição:</p>
+                    <div class="text-4xl font-black text-violet-400 mono" id="quiz-final-score">4 / 5</div>
+                    <p id="quiz-feedback-message" class="text-xs text-zinc-500 italic font-medium">Parabéns! Você já está dominando a linguagem oficial dos editores.</p>
+                </div>
+                <button onclick="resetQuiz()" class="px-5 py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-xl text-xs font-bold hover:bg-zinc-800 transition">
+                    Jogar Novamente
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-900 bg-[#07070a] py-6 text-center text-xs text-zinc-600 mt-12">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // WEB AUDIO API - Synth for responsive sound feedback without external hosting dependencies
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSFX(type) {
+            // Check state first to comply with browser autoplay security policies
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } else if (type === 'success') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+                osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // G5
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.25);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            }
+        }
+
+        // --- VOCABULARY DATASET ---
+        const vocabData = [
+            // VERBS
+            { term: 'To Cut / To Split', type: 'verbs', definition: 'Cortar ou dividir um arquivo em duas partes.', example: 'Split the interview clip right after she says goodbye.', shortcut: 'Ctrl/Cmd + K' },
+            { term: 'To Trim', type: 'verbs', definition: 'Aparar as bordas de um vídeo (início ou fim).', example: 'Trim the head of this clip; it has dead air.', shortcut: 'T / Keyboard Edge drag' },
+            { term: 'To Crop', type: 'verbs', definition: 'Recortar as margens de imagem para mudar enquadramento.', example: 'Crop this 16:9 vertical format down to standard ratio.', shortcut: 'Effect panel -> Crop' },
+            { term: 'To Ripple Delete', type: 'verbs', definition: 'Deletar clipe e colar os adjacentes sumindo com espaço vazio.', example: 'Use ripple delete to keep our cuts beautifully compact.', shortcut: 'Shift + Delete' },
+            { term: 'To Scrub', type: 'verbs', definition: 'Passar agulha rapidamente na linha do tempo procurando algo.', example: 'Scrub through the B-Roll to find the exact shot.', shortcut: 'Dragging playhead / J-K-L keys' },
+            { term: 'To Import', type: 'verbs', definition: 'Trazer mídias e materiais para dentro do projeto.', example: 'Import the drone footage and audio files first.', shortcut: 'Ctrl/Cmd + I' },
+            { term: 'To Export', type: 'verbs', definition: 'Gerar o arquivo consolidado de vídeo final do projeto.', example: 'Export in H.264 format optimized for YouTube upload.', shortcut: 'Ctrl/Cmd + M' },
+            { term: 'To Render', type: 'verbs', definition: 'Processar efeitos pesados facilitando playback limpo.', example: 'The timeline is red. We need to render before showing.', shortcut: 'Enter / Return' },
+            { term: 'To Sync', type: 'verbs', definition: 'Sincronizar trilha de áudio externo com vídeo da câmera.', example: 'Sync the zoom recorder audio tracks using waveform matching.', shortcut: 'Right Click -> Synchronize' },
+            { term: 'To Color Grade', type: 'verbs', definition: 'Processo estético-artístico de estilização de cores.', example: 'After correcting, let\'s color grade for a cinematic look.', shortcut: 'Lumetri / Resolve Color wheel' },
+            { term: 'To Nest / Compound', type: 'verbs', definition: 'Agrupar vários clipes dentro de uma sequência única compactada.', example: 'Nest these three clips to apply the zoom transition easily.', shortcut: 'Right Click -> Nest' },
+            { term: 'To Solo', type: 'verbs', definition: 'Deixar apenas uma trilha de áudio tocando e silenciar outras.', example: 'Solo the speaker microphone track to check the noise.', shortcut: 'S button on track header' },
+            
+            // NOUNS
+            { term: 'Footage / Rushes', type: 'nouns', definition: 'O material bruto capturado pelas câmeras antes de editar.', example: 'We received 4 hours of raw 4K footage today.', shortcut: 'Source folder assets' },
+            { term: 'Clip', type: 'nouns', definition: 'Um arquivo individual recortado de áudio ou vídeo.', example: 'Drag the transition and drop it between the two clips.', shortcut: 'Individual item' },
+            { term: 'Timeline', type: 'nouns', definition: 'Painel principal que representa cronologicamente seu projeto.', example: 'Arranging the sequence storyboard on our main timeline.', shortcut: 'Sequence panel' },
+            { term: 'Playhead', type: 'nouns', definition: 'Indicador em formato de agulha que mostra o ponto de reprodução.', example: 'Move the playhead to the very beginning of the timeline.', shortcut: 'Blue/Red slider indicator' },
+            { term: 'Bin', type: 'nouns', definition: 'Pastas de organização internas do seu software de edição.', example: 'Keep organized: put all SFX inside the "Audio" bin.', shortcut: 'Folder organizational layout' },
+            { term: 'Track / Layer', type: 'nouns', definition: 'Caminhos horizontais onde mídias são empilhadas.', example: 'Place the text graphics layer on Video Track 2.', shortcut: 'V1, V2, A1, A2 channels' },
+            { term: 'Frame', type: 'nouns', definition: 'Um único quadro, a menor fração estática de tempo em vídeo.', example: 'Move forward frame-by-frame using the arrow keys.', shortcut: 'Left/Right arrows' },
+            { term: 'Frame Rate (FPS)', type: 'nouns', definition: 'Quantidade de quadros por segundo reproduzidos.', example: 'We shot at 60 FPS to create a smooth slow-motion effect.', shortcut: 'Hz project properties' },
+            { term: 'Aspect Ratio', type: 'nouns', definition: 'Relação de proporção física de largura e altura de tela.', example: 'Reels require a 9:16 vertical aspect ratio screen build.', shortcut: 'Resolution settings scale' },
+            { term: 'Lower Third', type: 'nouns', definition: 'Fórmula de crédito (título e nome) no terço inferior da tela.', example: 'Make sure the lower third of the interviewee has zero typos.', shortcut: 'Graphics Template' },
+            { term: 'B-Roll', type: 'nouns', definition: 'Cenas de cobertura utilizadas para ilustrar a narração principal.', example: 'Overlay some B-roll of the office over the voiceover.', shortcut: 'Support coverage shots' },
+            { term: 'Talking Head', type: 'nouns', definition: 'Vídeo focado no busto/rosto do apresentador falando livre.', example: 'Cut back to the talking head whenever he lists statistics.', shortcut: 'A-Roll focus interview' },
+            { term: 'Voiceover (VO)', type: 'nouns', definition: 'Narração de voz gravada sem que o falante apareça na cena.', example: 'The corporate video starts with an emotional voiceover track.', shortcut: 'Off-screen narrator' },
+            { term: 'Sound Effects (SFX)', type: 'nouns', definition: 'Efeitos sonoros variados para imersão auditiva.', example: 'Add a swoosh sound effect to make the slide transition punchy.', shortcut: 'Audio elements library' },
+            { term: 'A-Roll', type: 'nouns', definition: 'Material falado principal de entrevista ou roteiro do apresentador.', example: 'Clean the gaps from the A-roll before selecting B-roll.', shortcut: 'A-Roll narrative core' },
+
+            // EXPRESSIONS
+            { term: 'Rough Cut', type: 'expressions', definition: 'A versão inicial crua da narrativa estrutural sem polimentos.', example: 'Send the rough cut to client to get early structural review.', shortcut: 'First edit export' },
+            { term: 'Fine Cut', type: 'expressions', definition: 'A edição quase fechada, polida em ritmo e timing de áudio/vídeo.', example: 'The fine cut is ready, we just need the sound design touch.', shortcut: 'Refined production pass' },
+            { term: 'Picture Lock', type: 'expressions', definition: 'Ponto no qual a sequência de tempo está fechada e imutável.', example: 'We reached picture lock. We can start color grading.', shortcut: 'Post-production handshake' },
+            { term: 'Selects', type: 'expressions', definition: 'O compilado dos melhores takes úteis de uma filmagem.', example: 'Make a selects sequence to easily pick our highlights.', shortcut: 'Best-of assembly timeline' },
+            { term: 'Stringout', type: 'expressions', definition: 'Jogar mídias selecionadas alinhadas uma atrás da outra na timeline.', example: 'Review the actor\'s takes inside this stringout timeline.', shortcut: 'Quick preview reel' },
+            { term: 'Talking to the camera', type: 'expressions', definition: 'Quando o ator ou apresentador encara a lente dialogando.', example: 'Direct address of talking to the camera engages the viewers.', shortcut: 'Fourth-wall break' },
+
+            // TECHNIQUES
+            { term: 'Hard Cut', type: 'techniques', definition: 'Corte limpo e seco comum. Mudança instantânea entre tomadas.', example: 'Use a hard cut here; transitions are too distracting.', shortcut: 'Standard splice cut' },
+            { term: 'Jump Cut', type: 'techniques', definition: 'Corte no tempo usando o mesmo ângulo. Dá sensação de salto.', example: 'Jump cuts are extremely popular to dynamic vlog edit pacing.', shortcut: 'Fast temporal jumps' },
+            { term: 'Match Cut', type: 'techniques', definition: 'Corte combinando movimentos ou formas geométricas similares.', example: 'The spin of a coin matching into a spinning wheel match cut.', shortcut: 'Visual fluid symmetry' },
+            { term: 'Smash Cut', type: 'techniques', definition: 'Mudança drástica de clipe silencioso para barulhento ou vice-versa.', example: 'A smash cut from the quiet dark forest directly into the party.', shortcut: 'Impact juxtaposition' },
+            { term: 'Montage', type: 'techniques', definition: 'Sequência veloz de cortes resumindo grandes evoluções de tempo.', example: 'The classic training montage makes the hero progress quickly.', shortcut: 'Temporal collage' },
+            { term: 'Cross-Cutting', type: 'techniques', definition: 'Cortar alternadamente cenas acontecendo ao mesmo tempo em salas distintas.', example: 'Cross-cutting builds incredible tension before the phone call.', shortcut: 'Parallel timelines' },
+            { term: 'J-Cut', type: 'techniques', definition: 'Áudio do clipe subsequente começa antes do vídeo aparecer.', example: 'A J-cut eases the viewer in with sound anticipation.', shortcut: 'Audio leads Video' },
+            { term: 'L-Cut', type: 'techniques', definition: 'Áudio do clipe anterior permanece rodando sob o próximo vídeo.', example: 'L-cuts are perfect for continuous flow during dialogue.', shortcut: 'Video leads Audio' },
+            { term: 'Parallel Editing', type: 'techniques', definition: 'Técnica de alternar duas ou mais cenas complementares paralelamente.', example: 'Parallel editing explains how two different characters wake up.', shortcut: 'Cross storytelling' }
+        ];
+
+        // --- STATE MANAGEMENT ---
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let flashcardIndex = 0;
+        let isFlashcardFlipped = false;
+        
+        // Filter variables for dictionary
+        const vocabGrid = document.getElementById('vocab-grid');
+        const emptyState = document.getElementById('empty-state');
+        const searchInput = document.getElementById('vocab-search');
+
+        // --- TIMELINE SIMULATOR FUNCTIONALITY ---
+        function setTimelineMode(mode) {
+            const v1 = document.getElementById('v-block-1');
+            const v2 = document.getElementById('v-block-2');
+            const a1 = document.getElementById('a-block-1');
+            const a2 = document.getElementById('a-block-2');
+            
+            const title = document.getElementById('sim-explanation-title');
+            const desc = document.getElementById('sim-explanation-body');
+            const tip = document.getElementById('sim-tip');
+            const playhead = document.getElementById('sim-playhead');
+            
+            const overlayTitle = document.getElementById('video-scene-name');
+            const overlayDesc = document.getElementById('video-scene-desc');
+            
+            // Reset active button styles
+            ['btn-normal', 'btn-jcut', 'btn-lcut', 'btn-ripple', 'btn-jump'].forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800";
+            });
+            
+            // Set current active button
+            document.getElementById(`btn-${mode}`).className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-violet-600 text-white border border-violet-500/30";
+
+            // Default resets before modes
+            v1.style.width = "50%";
+            v1.style.marginRight = "0";
+            v2.style.width = "50%";
+            v2.style.display = "flex";
+            a1.style.width = "50%";
+            a1.style.marginRight = "0";
+            a2.style.width = "50%";
+            a2.style.display = "flex";
+            playhead.style.left = "50%";
+            
+            if (mode === 'normal') {
+                title.innerText = "Corte Seco (Hard Cut)";
+                desc.innerText = "A transição padrão mais comum na edição. Ocorre quando mudamos instantaneamente do clipe anterior para o clipe seguinte, alterando vídeo e áudio juntos de forma síncrona.";
+                tip.innerText = "Ação simultânea e limpa de áudio e vídeo.";
+                overlayTitle.innerText = "SCENE A: Talking Head Interview";
+                overlayDesc.innerText = "Transição instantânea em 00:02:00";
+            } 
+            else if (mode === 'jcut') {
+                title.innerText = "J-Cut (Audio Lead)";
+                desc.innerText = "O áudio do próximo clipe (Cena B) começa a tocar por baixo do vídeo atual (Cena A). Isso ajuda a preparar o espectador suavemente para a mudança de cenário e ambiente.";
+                tip.innerText = "Formatado como um 'J' com áudio estendido para a esquerda.";
+                
+                // Adjust audio 2 to stretch left under video 1
+                a1.style.width = "38%";
+                a2.style.width = "62%";
+                
+                // Playhead positioned where audio B begins
+                playhead.style.left = "38%";
+                overlayTitle.innerText = "[Audio B] Sound Heard First...";
+                overlayDesc.innerText = "Vídeo A continua visível enquanto escutamos a Cena B.";
+            } 
+            else if (mode === 'lcut') {
+                title.innerText = "L-Cut (Video Lead)";
+                desc.innerText = "O vídeo avança para o próximo clipe (Cena B), mas o áudio do clipe anterior (Cena A) continua soando em segundo plano. É a técnica mais recomendada para reações de diálogo fluidas.";
+                tip.innerText = "Formatado como um 'L' com áudio estendido para a direita.";
+                
+                // Adjust video 1 to transition first while audio stays
+                a1.style.width = "62%";
+                a2.style.width = "38%";
+                
+                playhead.style.left = "50%";
+                overlayTitle.innerText = "SCENE B: B-Roll Visual Overlay";
+                overlayDesc.innerText = "Voz da Cena A ainda é ouvida por baixo da imagem B.";
+            } 
+            else if (mode === 'ripple') {
+                title.innerText = "Ripple Delete (Exclusão em Ondulação)";
+                desc.innerText = "Quando deletamos um trecho do vídeo, em vez de sobrar um buraco preto (gap), o software puxa os clipes restantes 'em onda' para preencher perfeitamente a lacuna vazia.";
+                tip.innerText = "Elimina lacunas e furos pretos instantaneamente.";
+                
+                v1.style.width = "35%";
+                v2.style.width = "65%";
+                a1.style.width = "35%";
+                a2.style.width = "65%";
+                
+                playhead.style.left = "35%";
+                overlayTitle.innerText = "Space Gap Closed!";
+                overlayDesc.innerText = "Sem lacunas pretas (black frames) no meio.";
+            } 
+            else if (mode === 'jump') {
+                title.innerText = "Jump Cut (Salto Temporal)";
+                desc.innerText = "Um corte realizado no mesmo plano de enquadramento da câmera para demonstrar passagem dinâmica de tempo ou progresso de raciocínio. Muito utilizado em Vlogs.";
+                tip.innerText = "Pula milissegundos gaguejados para dinâmica moderna.";
+                
+                v1.style.width = "30%";
+                v2.style.width = "70%";
+                a1.style.width = "30%";
+                a2.style.width = "70%";
+                
+                playhead.style.left = "30%";
+                overlayTitle.innerText = "SCENE A (Part II) Jump Cut";
+                overlayDesc.innerText = "O apresentador salta sutilmente de posição.";
+            }
+        }
+
+        // --- VOCABULARY GENERATION ENGINE ---
+        function renderVocabulary() {
+            vocabGrid.innerHTML = '';
+            let count = 0;
+            
+            vocabData.forEach(item => {
+                const matchesSearch = item.term.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.definition.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesCategory = currentCategory === 'all' || item.type === currentCategory;
+                
+                if (matchesSearch && matchesCategory) {
+                    count++;
+                    const card = document.createElement('div');
+                    card.className = "bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700/80 rounded-xl p-5 transition-all duration-300 shadow flex flex-col justify-between group";
+                    
+                    // Colors for types
+                    let typeBadgeClass = "bg-violet-500/10 text-violet-400 border border-violet-500/20";
+                    if (item.type === 'nouns') typeBadgeClass = "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20";
+                    if (item.type === 'expressions') typeBadgeClass = "bg-amber-500/10 text-amber-400 border border-amber-500/20";
+                    if (item.type === 'techniques') typeBadgeClass = "bg-rose-500/10 text-rose-400 border border-rose-500/20";
+
+                    card.innerHTML = `
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${typeBadgeClass}">
+                                    ${item.type === 'verbs' ? 'VERB' : item.type === 'nouns' ? 'NOUN' : item.type === 'expressions' ? 'EXPR' : 'TECHNIQUE'}
+                                </span>
+                                <span class="text-[10px] text-zinc-600 font-medium tracking-wide font-mono">${item.shortcut ? item.shortcut : ''}</span>
+                            </div>
+                            <h4 class="text-base font-bold text-white tracking-tight mono group-hover:text-violet-300 transition-colors">${item.term}</h4>
+                            <p class="text-xs text-zinc-400 leading-relaxed">${item.definition}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-950/80">
+                            <span class="text-[10px] text-zinc-500 block font-semibold uppercase tracking-wider mb-1">Examplo prático:</span>
+                            <p class="text-xs text-zinc-300 italic">"${item.example}"</p>
+                        </div>
+                    `;
+                    vocabGrid.appendChild(card);
+                }
+            });
+
+            // Update Tab Count Texts
+            document.getElementById('tab-all').innerText = `Todos (${vocabData.length})`;
+            
+            if (count === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        function changeCategory(cat) {
+            playSFX('click');
+            currentCategory = cat;
+            
+            // Toggle active tabs
+            ['all', 'verbs', 'nouns', 'expressions', 'techniques'].forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if (tab === cat) {
+                    btn.className = "flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition bg-violet-600 text-white";
+                } else {
+                    btn.className = "flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white";
+                }
+            });
+            
+            renderVocabulary();
+        }
+
+        function filterVocabulary() {
+            searchQuery = searchInput.value;
+            renderVocabulary();
+        }
+
+        // --- FLASHCARDS SYSTEM ---
+        const studyData = [
+            { pt: "Cortar / Dividir clipes", en: "To Cut / To Split", category: "VERB", hint: "Dividir um clipe longo em duas partes utilizando a lâmina." },
+            { pt: "Aparar / Ajustar bordas", en: "To Trim", category: "VERB", hint: "Mover as pontas de um clipe para refinar o ponto exato de início ou de fim." },
+            { pt: "O material bruto gravado", en: "Footage / Rushes", category: "NOUN", hint: "Os arquivos de vídeo intactos, do jeito que vieram do cartão de memória da câmera." },
+            { pt: "Pastas organizadoras de mídias", en: "Bin", category: "NOUN", hint: "Compartimentos ou pastas onde organizamos arquivos de vídeo, som e fotos." },
+            { pt: "Primeira versão (Corte Bruto)", en: "Rough Cut", category: "EXPRESSION", hint: "A primeira versão montada sem música de fundo, design de som ou correção de cor." },
+            { pt: "Exclusão em Ondulação", en: "To Ripple Delete", category: "VERB", hint: "Deletar um clipe e fechar o espaço automaticamente para eliminar vazios." },
+            { pt: "Corte em L (Áudio se arrasta)", en: "L-Cut", category: "TECHNIQUE", hint: "O corte do vídeo avança, mas o áudio da cena anterior continua tocando sob a nova imagem." },
+            { pt: "Corte em J (Áudio antecipado)", en: "J-Cut", category: "TECHNIQUE", hint: "O áudio do clipe B começa um pouco antes de sua imagem aparecer, antecipando a cena." },
+            { pt: "Fração mínima (Quadrícula de Segundo)", en: "Frame", category: "NOUN", hint: "Uma única imagem estática. O vídeo roda a 24 ou 30 desses por segundo." },
+            { pt: "Aprovação final de cortes", en: "Picture Lock", category: "EXPRESSION", hint: "Momento chave onde a montagem de tempo do filme está aprovada de vez e ninguém mexe." }
+        ];
+
+        function updateFlashcard() {
+            const currentItem = studyData[flashcardIndex];
+            document.getElementById('fc-portuguese').innerText = currentItem.pt;
+            document.getElementById('fc-english').innerText = currentItem.en;
+            document.getElementById('fc-hint').innerText = `"${currentItem.hint}"`;
+            document.getElementById('fc-category-badge').innerText = currentItem.category;
+            document.getElementById('fc-progress').innerText = `${flashcardIndex + 1} / ${studyData.length}`;
+            
+            // Ensure card returns to front representation
+            const inner = document.getElementById('flashcard-inner');
+            inner.style.transform = "rotateY(0deg)";
+            isFlashcardFlipped = false;
+        }
+
+        function flipCard() {
+            playSFX('click');
+            const inner = document.getElementById('flashcard-inner');
+            if (isFlashcardFlipped) {
+                inner.style.transform = "rotateY(0deg)";
+                isFlashcardFlipped = false;
+            } else {
+                inner.style.transform = "rotateY(180deg)";
+                isFlashcardFlipped = true;
+            }
+        }
+
+        function nextFlashcard() {
+            flashcardIndex = (flashcardIndex + 1) % studyData.length;
+            updateFlashcard();
+        }
+
+        function prevFlashcard() {
+            flashcardIndex = (flashcardIndex - 1 + studyData.length) % studyData.length;
+            updateFlashcard();
+        }
+
+        // --- QUIZ GAME ENGINE ---
+        const quizQuestions = [
+            {
+                question: "Se você quer remover um pedaço de clipe e não quer ter que arrastar manualmente todas as cenas seguintes para tapar o 'buraco' preto, você deve usar:",
+                options: ["To Split", "To Ripple Delete", "To Crop", "To Render"],
+                answer: 1,
+                tip: "Dica: É um tipo de exclusão inteligente que move os clipes seguintes em onda!"
+            },
+            {
+                question: "Ao ouvir o som da próxima cena começar a tocar 2 segundos antes do apresentador de fato aparecer na tela, você está experienciando qual técnica?",
+                options: ["L-Cut", "Jump Cut", "J-Cut", "Match Cut"],
+                answer: 2,
+                tip: "Dica: Pense no formato da letra onde a perna de áudio à esquerda se estende primeiro!"
+            },
+            {
+                question: "O cliente mandou um e-mail dizendo que o vídeo alcançou o status de 'Picture Lock'. O que isso significa para você, editor?",
+                options: [
+                    "O projeto está corrompido e travado.", 
+                    "O vídeo foi renderizado e exportado com senha.", 
+                    "A montagem e o tempo de todos os cortes estão aprovados e finais.", 
+                    "O editor está bloqueado de usar transições dinâmicas."
+                ],
+                answer: 2,
+                tip: "Dica: Trancamento de imagem permite iniciar as etapas de cor e mixagem de som."
+            },
+            {
+                question: "Qual o nome correto dado ao material bruto e original filmado diretamente pela câmera antes de começar o trabalho de edição?",
+                options: ["A-Roll", "Footage / Rushes", "Lower Third", "Sound Effects"],
+                answer: 1,
+                tip: "Dica: Os americanos também usavam o termo 'Rushes' para se referir ao material revelado diariamente."
+            },
+            {
+                question: "O termo 'To Trim' significa:",
+                options: [
+                    "Dividir um take exatamente ao meio.", 
+                    "Sincronizar áudio gravado em aparelhos externos.", 
+                    "Aparar e ajustar o início ou fim de um clipe para refiná-lo.", 
+                    "Mudar a taxa de quadros de 60fps para 24fps."
+                ],
+                answer: 2,
+                tip: "Dica: Trata-se do micro-ajuste feito nas bordas das mídias na timeline."
+            }
+        ];
+
+        let quizIndex = 0;
+        let quizScore = 0;
+        let selectedOptionIndex = null;
+
+        function startQuiz() {
+            playSFX('success');
+            document.getElementById('quiz-start-view').classList.add('hidden');
+            document.getElementById('quiz-result-view').classList.add('hidden');
+            document.getElementById('quiz-play-view').classList.remove('hidden');
+            
+            quizIndex = 0;
+            quizScore = 0;
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            const currentQ = quizQuestions[quizIndex];
+            selectedOptionIndex = null;
+            
+            // Progress tracker updates
+            document.getElementById('quiz-question-index').innerText = `PERGUNTA ${quizIndex + 1}/${quizQuestions.length}`;
+            document.getElementById('quiz-score').innerText = `Score: ${String(quizScore * 100).padStart(4, '0')}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((quizIndex + 1) / quizQuestions.length) * 100}%`;
+            
+            // Text values updates
+            document.getElementById('quiz-question-text').innerText = currentQ.question;
+            document.getElementById('quiz-feedback-tip').innerText = currentQ.tip;
+            document.getElementById('quiz-feedback-tip').className = "text-xs text-zinc-500 font-medium";
+
+            // Next button resets
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.className = "px-4 py-2 bg-zinc-800 text-zinc-500 rounded-lg text-xs font-bold pointer-events-none transition";
+            nextBtn.setAttribute('disabled', 'true');
+
+            // Render option buttons
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+            currentQ.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.setAttribute('onclick', `selectOption(${idx})`);
+                optBtn.id = `opt-btn-${idx}`;
+                optBtn.className = "w-full text-left px-5 py-4 bg-zinc-900 hover:bg-zinc-800/80 border border-zinc-800 text-sm font-medium rounded-xl text-zinc-200 transition-all focus:outline-none";
+                optBtn.innerText = opt;
+                container.appendChild(optBtn);
+            });
+        }
+
+        function selectOption(idx) {
+            if (selectedOptionIndex !== null) return; // Prevent double answer selection
+            selectedOptionIndex = idx;
+            
+            const currentQ = quizQuestions[quizIndex];
+            const nextBtn = document.getElementById('quiz-next-btn');
+            const feedbackTip = document.getElementById('quiz-feedback-tip');
+            
+            // Unlock next action button
+            nextBtn.className = "px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white rounded-lg text-xs font-bold cursor-pointer transition";
+            nextBtn.removeAttribute('disabled');
+            
+            // Loop buttons styling updates
+            for (let i = 0; i < currentQ.options.length; i++) {
+                const btn = document.getElementById(`opt-btn-${i}`);
+                btn.className = "w-full text-left px-5 py-4 text-sm font-medium rounded-xl transition-all focus:outline-none border " + 
+                                (i === currentQ.answer ? "bg-emerald-950/50 border-emerald-500 text-emerald-300" : "bg-zinc-950/20 border-zinc-900 text-zinc-600");
+            }
+
+            if (idx === currentQ.answer) {
+                playSFX('success');
+                quizScore++;
+                document.getElementById(`opt-btn-${idx}`).className = "w-full text-left px-5 py-4 bg-emerald-900/50 border-emerald-500 text-sm font-bold rounded-xl text-emerald-200 transition-all focus:outline-none border animate-pulse";
+                feedbackTip.innerText = "✓ Resposta Correta! Excelente!";
+                feedbackTip.className = "text-xs text-emerald-400 font-bold";
+            } else {
+                playSFX('error');
+                document.getElementById(`opt-btn-${idx}`).className = "w-full text-left px-5 py-4 bg-rose-950/50 border-rose-500 text-sm font-bold rounded-xl text-rose-300 transition-all focus:outline-none border";
+                feedbackTip.innerText = `✗ Errado! O termo correto é: ${currentQ.options[currentQ.answer]}`;
+                feedbackTip.className = "text-xs text-rose-400 font-bold";
+            }
+            
+            document.getElementById('quiz-score').innerText = `Score: ${String(quizScore * 100).padStart(4, '0')}`;
+        }
+
+        function nextQuestion() {
+            playSFX('click');
+            quizIndex++;
+            if (quizIndex < quizQuestions.length) {
+                showQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            document.getElementById('quiz-play-view').classList.add('hidden');
+            const resultView = document.getElementById('quiz-result-view');
+            resultView.classList.remove('hidden');
+            
+            document.getElementById('quiz-final-score').innerText = `${quizScore} / ${quizQuestions.length}`;
+            
+            const msg = document.getElementById('quiz-feedback-message');
+            if (quizScore === quizQuestions.length) {
+                msg.innerText = "Espetacular! Você gabaritou a edição. Está pronto para trabalhar na post da HBO!";
+                msg.className = "text-xs text-emerald-400 font-bold italic";
+            } else if (quizScore >= 3) {
+                msg.innerText = "Muito bom! Você possui excelente compreensão dos jargões mais importantes.";
+                msg.className = "text-xs text-indigo-400 font-medium italic";
+            } else {
+                msg.innerText = "Continue praticando! Use a tabela de termos para revisar os conceitos principais.";
+                msg.className = "text-xs text-zinc-500 font-medium italic";
+            }
+        }
+
+        function resetQuiz() {
+            playSFX('click');
+            document.getElementById('quiz-result-view').classList.add('hidden');
+            document.getElementById('quiz-start-view').classList.remove('hidden');
+        }
+
+        // --- WINDOW INITIALIZATION ---
+        window.onload = function() {
+            // Render first pass dictionary and flashcards
+            renderVocabulary();
+            updateFlashcard();
+            // Default Timeline simulator view
+            setTimelineMode('normal');
+        };
+    </script>
+</body>
+</html>

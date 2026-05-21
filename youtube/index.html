@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Creator's English Handbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar for analytics aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1010;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5c1f1f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8a2b2b;
+        }
+        .glassmorphism {
+            background: rgba(30, 15, 15, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 60, 60, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-[#0f0909] text-slate-100 min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        
+        <section class="text-center max-w-3xl mx-auto space-y-4 py-4">
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+                A Linguagem do YouTube Gringo em <span class="bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent">Inglês</span>
+            </h2>
+            <p class="text-zinc-400 text-base sm:text-lg">
+                De CTR a AVD, o inglês domina os bastidores da criação de conteúdo. Explore nosso guia interativo e turbine o vocabulário analítico e criativo dos seus alunos.
+            </p>
+        </section>
+
+        <section id="simulator" class="glassmorphism rounded-2xl p-6 border border-red-900/40 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-red-600/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-orange-600/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
+                <div>
+                    <div class="flex items-center gap-2 text-red-500 text-xs font-bold uppercase tracking-widest mb-1">
+                        <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                        Retention Lab
+                    </div>
+                    <h3 class="text-xl font-bold">Laboratório Gráfico de Retenção</h3>
+                    <p class="text-zinc-400 text-xs mt-0.5">Clique nos comportamentos do público para ver como eles impactam o gráfico de retenção do vídeo.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="playSFX('click'); setTimelineMode('hook')" id="btn-hook" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-800 text-white border border-zinc-700/80 hover:bg-zinc-700">The Hook</button>
+                    <button onclick="playSFX('click'); setTimelineMode('dip')" id="btn-dip" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">To Dip / Drop-off</button>
+                    <button onclick="playSFX('click'); setTimelineMode('spike')" id="btn-spike" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">To Spike</button>
+                    <button onclick="playSFX('click'); setTimelineMode('flat')" id="btn-flat" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800">Good Pacing (Flat)</button>
+                </div>
+            </div>
+
+            <div class="bg-[#0b0606] rounded-xl border border-red-950 p-4 shadow-inner space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-black aspect-video rounded-lg relative overflow-hidden flex items-center justify-center border border-zinc-900 group">
+                        <div id="video-canvas-1" class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-950 transition-all duration-500">
+                            <span class="text-xs tracking-widest text-zinc-500 uppercase font-bold absolute top-3 left-3 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span> AUDIENCE RETENTION
+                            </span>
+                            <div id="video-overlay" class="text-center px-4 w-full h-full flex flex-col justify-end pb-8 relative">
+                                <div class="absolute bottom-8 left-4 right-4 h-32 flex items-end opacity-60">
+                                    <div id="graph-path" class="w-full bg-gradient-to-t from-red-600/40 to-transparent border-t-2 border-red-500 transition-all duration-1000 ease-in-out" style="height: 100%; clip-path: polygon(0 10%, 10% 20%, 20% 25%, 30% 30%, 100% 90%, 100% 100%, 0 100%);"></div>
+                                </div>
+                                <p id="video-scene-name" class="text-lg font-bold tracking-wide transition-all duration-300 relative z-10 text-white shadow-black drop-shadow-md">The Hook (Primeiros 30s)</p>
+                                <p id="video-scene-desc" class="text-xs text-red-300 mt-1 relative z-10 font-bold">100% dos espectadores assistindo</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-zinc-950/70 p-5 rounded-lg border border-red-950 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm font-bold text-red-400 uppercase tracking-wider mb-2">Conceito Analítico Ilustrado</h4>
+                            <div id="sim-explanation-title" class="text-lg font-bold text-white">The Hook (O Gancho)</div>
+                            <p id="sim-explanation-body" class="text-sm text-zinc-400 mt-2 leading-relaxed">
+                                Os primeiros segundos vitais. É aqui que você deve satisfazer a intenção do clique do espectador. O objetivo é manter o gráfico mais alto e reto possível antes do inevitável declínio inicial.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-red-900/50 flex items-center justify-between text-xs text-zinc-500">
+                            <span>Impacto no AVD: <span class="px-1.5 py-0.5 bg-green-900/50 text-green-400 rounded text-[10px] font-bold mono">ALTO POSITIVO</span></span>
+                            <span class="italic text-red-400" id="sim-tip">Essencial para evitar o abandono (drop-off).</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dictionary" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h3 class="text-2xl font-bold tracking-tight">Analytics & Content Vocabulário</h3>
+                    <p class="text-zinc-400 text-sm">Navegue pelas métricas de painel e os principais jargões usados pelos criadores.</p>
+                </div>
+                
+                <div class="w-full md:w-80 relative">
+                    <input type="text" id="vocab-search" oninput="filterVocabulary()" placeholder="Pesquise (ex: retention, hook, click...)" 
+                           class="w-full bg-zinc-900 text-slate-100 placeholder-zinc-500 text-sm rounded-xl px-4 py-2.5 border border-zinc-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition">
+                    <svg class="w-4 h-4 text-zinc-500 absolute right-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 p-1 bg-zinc-900/50 border border-zinc-800 rounded-xl max-w-2xl">
+                <button onclick="changeCategory('all')" id="tab-all" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition bg-red-600 text-white">Todos (34)</button>
+                <button onclick="changeCategory('metrics')" id="tab-metrics" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Métricas (11)</button>
+                <button onclick="changeCategory('nouns')" id="tab-nouns" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Substantivos (8)</button>
+                <button onclick="changeCategory('verbs')" id="tab-verbs" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Verbos (9)</button>
+                <button onclick="changeCategory('expressions')" id="tab-expressions" class="flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">Expressões (6)</button>
+            </div>
+
+            <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                </div>
+            
+            <div id="empty-state" class="hidden text-center py-12 bg-zinc-900/20 rounded-xl border border-dashed border-zinc-800">
+                <svg class="w-12 h-12 text-zinc-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p class="text-zinc-500 font-medium">Nenhum termo encontrado para sua busca.</p>
+            </div>
+        </section>
+
+        <section id="flashcards" class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6 border-t border-zinc-900">
+            <div class="lg:col-span-1 space-y-4">
+                <div class="flex items-center gap-2 text-orange-400 text-xs font-bold uppercase tracking-widest">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"/></svg>
+                    Study Station
+                </div>
+                <h3 class="text-2xl font-bold tracking-tight">Active Recall (Flashcards)</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Estimule a memorização rápida desafiando os alunos. Clique para virar o card e revelar o termo em inglês e as definições de mercado.
+                </p>
+                <div class="p-4 bg-zinc-950 rounded-xl border border-zinc-900 text-xs space-y-2 text-zinc-400">
+                    <span class="font-bold text-zinc-300">💡 Como usar na aula:</span>
+                    <p>Divida a turma. Diga a definição do comportamento do público e veja quem acerta a métrica ou o jargão do YouTube!</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 flex flex-col items-center justify-center gap-6">
+                <div onclick="flipCard()" class="w-full max-w-md aspect-[1.6/1] cursor-pointer group [perspective:1000px]">
+                    <div id="flashcard-inner" class="relative w-full h-full text-center transition-transform duration-500 transform-style-3d [transform-style:preserve-3d]">
+                        <div class="absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between [backface-visibility:hidden] bg-gradient-to-br from-zinc-900 to-[#170a0a] border border-red-900/30 shadow-xl">
+                            <span class="text-[10px] text-red-400 font-bold tracking-widest uppercase">CONCEITO EM PORTUGUÊS</span>
+                            <div class="my-auto space-y-3">
+                                <h4 id="fc-portuguese" class="text-2xl font-extrabold text-white px-2">Taxa de Clique</h4>
+                                <p id="fc-hint" class="text-xs text-zinc-500 italic">"A porcentagem de pessoas que viram a sua capa/título e de fato clicaram no vídeo."</p>
+                            </div>
+                            <span class="text-xs text-zinc-500 font-medium">Clique para revelar o termo ↺</span>
+                        </div>
+                        
+                        <div class="absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between [backface-visibility:hidden] bg-gradient-to-br from-red-950 to-[#290c0c] border border-red-800 shadow-xl [transform:rotateY(180deg)]">
+                            <span class="text-[10px] text-orange-400 font-bold tracking-widest uppercase">TERM IN ENGLISH</span>
+                            <div class="my-auto space-y-2">
+                                <h4 id="fc-english" class="text-3xl font-black text-white mono">CTR</h4>
+                                <span class="inline-flex px-2.5 py-1 rounded bg-white/10 text-xs font-semibold uppercase text-red-200" id="fc-category-badge">METRIC</span>
+                            </div>
+                            <span class="text-xs text-red-300 font-medium">Clique para ver o conceito novamente ↺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button onclick="playSFX('click'); prevFlashcard()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl transition border border-zinc-800 shadow">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <span id="fc-progress" class="text-sm font-bold mono text-zinc-400 bg-zinc-950 px-4 py-1.5 rounded-lg border border-zinc-900">1 / 10</span>
+                    <button onclick="playSFX('click'); nextFlashcard()" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded-xl transition border border-zinc-800 shadow">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="glassmorphism rounded-2xl p-6 sm:p-8 border border-zinc-800 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-60 h-60 bg-red-600/5 rounded-full filter blur-3xl pointer-events-none"></div>
+            
+            <div id="quiz-start-view" class="text-center py-8 space-y-6 max-w-xl mx-auto relative z-10">
+                <div class="bg-red-500/10 text-red-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto border border-red-500/20 shadow-lg shadow-red-500/5">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-extrabold tracking-tight text-white">Analytics Expert Quiz</h3>
+                    <p class="text-zinc-400 text-sm">
+                        Teste seus conhecimentos ou jogue em tempo real com a sala. São 5 perguntas focadas em crescimento e retenção no YouTube.
+                    </p>
+                </div>
+                <button onclick="startQuiz()" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl text-sm font-bold text-white shadow-lg shadow-red-500/20 transition-all transform active:scale-95">
+                    Iniciar Quiz
+                </button>
+            </div>
+
+            <div id="quiz-play-view" class="hidden space-y-6 relative z-10">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2.5 py-1 bg-zinc-900 rounded-lg text-xs font-bold text-zinc-400 border border-zinc-800" id="quiz-question-index">PERGUNTA 1/5</span>
+                        <span id="quiz-score" class="text-xs text-red-500 font-extrabold uppercase">Score: 0000</span>
+                    </div>
+                    <div class="w-24 bg-zinc-950 h-2 rounded-full overflow-hidden border border-zinc-900">
+                        <div id="quiz-progress-bar" class="bg-red-600 h-full transition-all duration-300" style="width: 20%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 id="quiz-question-text" class="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug">
+                        Question text here?
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="quiz-options-container">
+                        </div>
+                </div>
+
+                <div class="pt-4 border-t border-zinc-900 flex justify-between items-center">
+                    <div class="text-xs text-zinc-500 font-medium" id="quiz-feedback-tip">Dica: preste atenção na sigla.</div>
+                    <button id="quiz-next-btn" onclick="nextQuestion()" disabled class="px-4 py-2 bg-zinc-800 text-zinc-500 rounded-lg text-xs font-bold pointer-events-none transition">
+                        Próxima Pergunta
+                    </button>
+                </div>
+            </div>
+
+            <div id="quiz-result-view" class="hidden text-center py-8 space-y-6 max-w-xl mx-auto relative z-10">
+                <div class="w-20 h-20 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 flex items-center justify-center mx-auto shadow-lg shadow-green-500/5">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-black text-white">Quiz Concluído!</h3>
+                    <p class="text-zinc-400 text-sm">Seu desempenho em Analytics:</p>
+                    <div class="text-4xl font-black text-red-500 mono" id="quiz-final-score">4 / 5</div>
+                    <p id="quiz-feedback-message" class="text-xs text-zinc-500 italic font-medium">Parabéns! Você já domina o painel do YouTube.</p>
+                </div>
+                <button onclick="resetQuiz()" class="px-5 py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-xl text-xs font-bold hover:bg-zinc-800 transition">
+                    Jogar Novamente
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSFX(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } else if (type === 'success') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.25);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            }
+        }
+
+        // --- VOCABULARY DATASET ---
+        const vocabData = [
+            // METRICS (Mapped to custom type for this lesson)
+            { term: 'AVD (Average View Duration)', type: 'metrics', definition: 'Duração média de visualização. É o tempo real (em minutos/segundos) que as pessoas passam assistindo ao vídeo.', example: 'To rank higher, we need to push our AVD past 4 minutes.', shortcut: 'Tempo Real' },
+            { term: 'Audience Retention', type: 'metrics', definition: 'Retenção de público. A porcentagem média do vídeo que os espectadores assistiram antes de sair.', example: 'Our audience retention dropped to 30% at the middle.', shortcut: 'Porcentagem' },
+            { term: 'CTR (Click-Through Rate)', type: 'metrics', definition: 'Taxa de clique. Porcentagem de pessoas que viram a sua thumbnail e clicaram.', example: 'A 10% CTR is considered very strong for a new upload.', shortcut: 'Thumb + Title' },
+            { term: 'Impressions', type: 'metrics', definition: 'Impressões. Quantas vezes o YouTube mostrou a sua thumbnail para alguém em feeds.', example: 'The algorithm gave us 50,000 impressions today.', shortcut: 'Alcance Visual' },
+            { term: 'RPM (Revenue Per Mille)', type: 'metrics', definition: 'Receita por mil visualizações. Quanto o criador de fato ganha a cada 1.000 views, após o corte do YouTube.', example: 'My RPM went up during the holiday season.', shortcut: 'Lucro Real' },
+            { term: 'CPM (Cost Per Mille)', type: 'metrics', definition: 'Custo por mil visualizações. Quanto os anunciantes estão pagando ao YouTube.', example: 'Finance channels usually have a huge CPM.', shortcut: 'Custo Anunciante' },
+            { term: 'Watch Time', type: 'metrics', definition: 'Tempo de exibição. O total acumulado de horas que o público passou assistindo.', example: 'You need 4,000 hours of watch time to monetize.', shortcut: 'Horas Totais' },
+            { term: 'Unique Viewers', type: 'metrics', definition: 'O número real de pessoas diferentes que assistiram aos seus vídeos em um período.', example: 'We reached 100k unique viewers this month.', shortcut: 'Espectadores' },
+            { term: 'Returning vs. New Viewers', type: 'metrics', definition: 'A métrica que compara quem já conhecia o canal contra novos públicos descobertos.', example: 'Our returning viewers line is very loyal.', shortcut: 'Fidelidade' },
+            { term: 'Traffic Sources', type: 'metrics', definition: 'Fontes de tráfego. Indica de onde vêm os views (Busca, Feed, Recomendados).', example: 'Most of our views come from the Suggested traffic source.', shortcut: 'Origem' },
+
+            // NOUNS (Ecosystem concepts)
+            { term: 'Thumbnail (Thumb)', type: 'nouns', definition: 'A imagem de capa do vídeo que aparece na plataforma.', example: 'Make the thumbnail brighter so it pops on dark mode.', shortcut: 'Arte/Design' },
+            { term: 'Title / Title Bait', type: 'nouns', definition: 'O título. "Bait" é quando é feito para gerar curiosidade extrema.', example: 'Don\'t use title bait if the video doesn\'t deliver.', shortcut: 'Headline' },
+            { term: 'The Hook', type: 'nouns', definition: 'O gancho. Os primeiros segundos desenhados para prender a pessoa no vídeo.', example: 'Your hook was weak, that\'s why they left at 0:10.', shortcut: 'Intro' },
+            { term: 'Outro / End Screen', type: 'nouns', definition: 'Tela final do vídeo onde ficam recomendações e botões.', example: 'Keep the outro under 15 seconds to not ruin retention.', shortcut: 'Final' },
+            { term: 'CTA (Call to Action)', type: 'nouns', definition: 'Chamada para ação. Quando você pede like, inscrição ou comentário.', example: 'Place the CTA in the middle of the video, not at the end.', shortcut: 'Engajamento' },
+            { term: 'Niche', type: 'nouns', definition: 'O assunto específico ou categoria focada do seu canal.', example: 'The gaming niche is highly saturated right now.', shortcut: 'Categoria' },
+            { term: 'Evergreen Content', type: 'nouns', definition: 'Conteúdo atemporal que continua ganhando views meses/anos depois.', example: 'Tutorials are the best type of evergreen content.', shortcut: 'Atemporal' },
+            { term: 'A/B Testing', type: 'nouns', definition: 'A prática de testar duas opções de capa/título para ver qual performa melhor.', example: 'Use YouTube\'s new tool for A/B testing your thumbs.', shortcut: 'Teste' },
+
+            // VERBS (Action behaviors)
+            { term: 'To Hook (someone)', type: 'verbs', definition: 'Prender/fisgar a atenção do público velozmente.', example: 'You need to hook the audience before they scroll away.', shortcut: 'Capturar' },
+            { term: 'To Spike', type: 'verbs', definition: 'Dar um pico no gráfico. Ocorre quando espectadores pausam ou voltam o vídeo.', example: 'Retention tends to spike when you show text on screen.', shortcut: 'Pico Gráfico' },
+            { term: 'To Dip / To Drop off', type: 'verbs', definition: 'Cair vertiginosamente ou abandonar. Quando muitos saem do vídeo.', example: 'The graph dipped massively when the sponsor read started.', shortcut: 'Abandono' },
+            { term: 'To Tank', type: 'verbs', definition: 'Ir muito mal, fracassar feio em métricas.', example: 'My new video is completely tanking right now.', shortcut: 'Flopar' },
+            { term: 'To Binge-watch', type: 'verbs', definition: 'Maratonar. Assistir a vários vídeos de um canal em sequência.', example: 'She binge-watched my entire documentary series.', shortcut: 'Sessão Longa' },
+            { term: 'To Optimize', type: 'verbs', definition: 'Melhorar SEO, ajustar meta-dados para agradar o algoritmo.', example: 'Optimize your descriptions with keywords.', shortcut: 'SEO' },
+            { term: 'To Drive (traffic)', type: 'verbs', definition: 'Conduzir ou gerar resultados (views, acessos).', example: 'This collaboration is driving a lot of new subscribers.', shortcut: 'Gerar' },
+            { term: 'To Pivot', type: 'verbs', definition: 'Mudar a direção, nicho ou estilo radicalmente do canal.', example: 'He decided to pivot from tech reviews to daily vlogs.', shortcut: 'Pivotar' },
+            { term: 'To Monetize', type: 'verbs', definition: 'Ativar os anúncios e começar a ganhar dinheiro.', example: 'It took him a year to finally monetize the channel.', shortcut: 'Lucrar' },
+
+            // EXPRESSIONS
+            { term: 'The algorithm picked it up', type: 'expressions', definition: 'Quando o YouTube começa a recomendar ativamente seu vídeo para multidões.', example: 'It was dead for months, and suddenly the algorithm picked it up.', shortcut: 'Recomendação' },
+            { term: 'Viewer fatigue', type: 'expressions', definition: 'Fadiga do espectador. Quando enjoam de um formato ou criador.', example: 'Due to viewer fatigue, challenge videos are dying out.', shortcut: 'Desgaste' },
+            { term: 'Click-y', type: 'expressions', definition: 'Uma capa ou título altamente atrativo, quase impossível de não clicar.', example: 'That thumbnail is incredibly click-y, brilliant job.', shortcut: 'Magnético' },
+            { term: 'Satisfying viewer intent', type: 'expressions', definition: 'Entregar o que a thumbnail e o título prometeram, sem clickbait.', example: 'High AVD happens when you are satisfying the viewer intent.', shortcut: 'Cumprir Promessa' },
+            { term: 'Shadowbanned', type: 'expressions', definition: 'Quando o YouTube oculta secretamente os vídeos do criador por alguma violação.', example: 'I suspect my channel is shadowbanned, views dropped 90%.', shortcut: 'Punição Oculta' },
+            { term: 'Dead subscriber', type: 'expressions', definition: 'Inscrito fantasma. Segue o canal mas nunca clica/assiste nada novo.', example: 'A huge channel with terrible views is full of dead subscribers.', shortcut: 'Conta Inativa' }
+        ];
+
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let flashcardIndex = 0;
+        let isFlashcardFlipped = false;
+        
+        const vocabGrid = document.getElementById('vocab-grid');
+        const emptyState = document.getElementById('empty-state');
+        const searchInput = document.getElementById('vocab-search');
+
+        // --- RETENTION SIMULATOR FUNCTIONALITY ---
+        function setTimelineMode(mode) {
+            const path = document.getElementById('graph-path');
+            const title = document.getElementById('sim-explanation-title');
+            const desc = document.getElementById('sim-explanation-body');
+            const tip = document.getElementById('sim-tip');
+            const overlayTitle = document.getElementById('video-scene-name');
+            const overlayDesc = document.getElementById('video-scene-desc');
+            
+            // Reset active button styles
+            ['btn-hook', 'btn-dip', 'btn-spike', 'btn-flat'].forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800";
+            });
+            document.getElementById(`btn-${mode}`).className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-red-600 text-white border border-red-500/30";
+
+            if (mode === 'hook') {
+                path.style.clipPath = "polygon(0 0%, 15% 10%, 25% 15%, 100% 100%, 0 100%)";
+                title.innerText = "The Hook (O Gancho)";
+                desc.innerText = "Os primeiros segundos vitais. É aqui que você deve satisfazer a intenção do clique do espectador. O objetivo é manter o gráfico mais alto e reto possível antes do inevitável declínio inicial.";
+                tip.innerText = "Essencial para evitar o abandono rápido.";
+                overlayTitle.innerText = "Intro: The Hook (0:00 - 0:30)";
+                overlayDesc.innerText = "Curva alta: maioria do público presente.";
+            } 
+            else if (mode === 'dip') {
+                path.style.clipPath = "polygon(0 20%, 40% 30%, 50% 80%, 100% 90%, 100% 100%, 0 100%)";
+                title.innerText = "To Dip / Drop-off (A Queda)";
+                desc.innerText = "Um 'Dip' ocorre quando os espectadores perdem o interesse subitamente e abandonam o vídeo. Geralmente acontece durante patrocínios longos ou quando a edição fica entediante.";
+                tip.innerText = "Destrói sua métrica de AVD.";
+                overlayTitle.innerText = "Boring Segment: Drop-off";
+                overlayDesc.innerText = "Gráfico despenca drasticamente.";
+            } 
+            else if (mode === 'spike') {
+                path.style.clipPath = "polygon(0 40%, 30% 45%, 45% 10%, 60% 45%, 100% 50%, 100% 100%, 0 100%)";
+                title.innerText = "To Spike (O Pico)";
+                desc.innerText = "Acontece quando há mais espectadores assistindo àquela parte específica do que nas partes anteriores. Significa que as pessoas estão retrocedendo para ver algo de novo ou compartilhando aquele trecho.";
+                tip.innerText = "Forte sinalizador positivo para o algoritmo.";
+                overlayTitle.innerText = "Replay Value: The Spike";
+                overlayDesc.innerText = "Pessoas voltando o vídeo para re-assistir.";
+            } 
+            else if (mode === 'flat') {
+                path.style.clipPath = "polygon(0 30%, 20% 32%, 50% 34%, 80% 35%, 100% 38%, 100% 100%, 0 100%)";
+                title.innerText = "Flatline (Boa Retenção Contínua)";
+                desc.innerText = "Após a queda normal do começo (Hook), um gráfico ideal forma uma linha quase reta ('flat'). Significa que você tem um ótimo 'Pacing' e a audiência está engajada organicamente no conteúdo central.";
+                tip.innerText = "Sinal de excelente storytelling e edição.";
+                overlayTitle.innerText = "Core Content: Flat Retention";
+                overlayDesc.innerText = "Queda lenta e gradual natural.";
+            }
+        }
+
+        // --- VOCABULARY GENERATION ENGINE ---
+        function renderVocabulary() {
+            vocabGrid.innerHTML = '';
+            let count = 0;
+            
+            vocabData.forEach(item => {
+                const matchesSearch = item.term.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.definition.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesCategory = currentCategory === 'all' || item.type === currentCategory;
+                
+                if (matchesSearch && matchesCategory) {
+                    count++;
+                    const card = document.createElement('div');
+                    card.className = "bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700/80 rounded-xl p-5 transition-all duration-300 shadow flex flex-col justify-between group";
+                    
+                    let typeBadgeClass = "bg-orange-500/10 text-orange-400 border border-orange-500/20";
+                    if (item.type === 'metrics') typeBadgeClass = "bg-red-500/10 text-red-400 border border-red-500/20";
+                    if (item.type === 'verbs') typeBadgeClass = "bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                    if (item.type === 'nouns') typeBadgeClass = "bg-zinc-500/10 text-zinc-400 border border-zinc-500/20";
+
+                    card.innerHTML = `
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${typeBadgeClass}">
+                                    ${item.type.toUpperCase()}
+                                </span>
+                                <span class="text-[10px] text-zinc-600 font-medium tracking-wide font-mono">${item.shortcut ? item.shortcut : ''}</span>
+                            </div>
+                            <h4 class="text-base font-bold text-white tracking-tight mono group-hover:text-red-400 transition-colors">${item.term}</h4>
+                            <p class="text-xs text-zinc-400 leading-relaxed">${item.definition}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-950/80">
+                            <span class="text-[10px] text-zinc-500 block font-semibold uppercase tracking-wider mb-1">Aplicação Prática:</span>
+                            <p class="text-xs text-zinc-300 italic">"${item.example}"</p>
+                        </div>
+                    `;
+                    vocabGrid.appendChild(card);
+                }
+            });
+
+            document.getElementById('tab-all').innerText = `Todos (${vocabData.length})`;
+            if (count === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        function changeCategory(cat) {
+            playSFX('click');
+            currentCategory = cat;
+            
+            ['all', 'metrics', 'nouns', 'verbs', 'expressions'].forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if (tab === cat) {
+                    btn.className = "flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition bg-red-600 text-white";
+                } else {
+                    btn.className = "flex-grow sm:flex-grow-0 px-4 py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white";
+                }
+            });
+            renderVocabulary();
+        }
+
+        function filterVocabulary() {
+            searchQuery = searchInput.value;
+            renderVocabulary();
+        }
+
+        // --- FLASHCARDS SYSTEM ---
+        const studyData = [
+            { pt: "Taxa de Clique", en: "CTR (Click-Through Rate)", category: "METRIC", hint: "A porcentagem de pessoas que viram a sua capa/título e clicaram." },
+            { pt: "Duração Média de Visualização", en: "AVD (Average View Duration)", category: "METRIC", hint: "O tempo real cronometrado que as pessoas assistem ao seu vídeo em média." },
+            { pt: "Fisgar a Atenção", en: "To Hook", category: "VERB", hint: "Prender a atenção do público nos segundos iniciais cruciais." },
+            { pt: "Maratonar o Canal", en: "To Binge-watch", category: "VERB", hint: "Quando um espectador assiste dezenas de vídeos seus na mesma sessão." },
+            { pt: "Flopar / Fracassar", en: "To Tank", category: "VERB", hint: "Quando um vídeo novo perfoma muito abaixo da média normal do canal." },
+            { pt: "Receita por Mil Visualizações", en: "RPM (Revenue Per Mille)", category: "METRIC", hint: "Quanto dinheiro o criador bota no bolso a cada 1.000 visualizações." },
+            { pt: "Chamada para Ação", en: "CTA (Call to Action)", category: "NOUN", hint: "A hora de pedir para dar like, se inscrever ou clicar no link da bio." },
+            { pt: "Conteúdo Atemporal", en: "Evergreen Content", category: "NOUN", hint: "Vídeos sobre assuntos que não 'morrem', ganhando views passivos por anos." },
+            { pt: "Queda de Retenção", en: "Drop-off / Dip", category: "VERB", hint: "Quando grande parte do público desiste do vídeo em um ponto específico." },
+            { pt: "Inscrito Fantasma", en: "Dead Subscriber", category: "EXPRESSION", hint: "Alguém que é inscrito há anos mas nunca mais clicou nos seus vídeos." }
+        ];
+
+        function updateFlashcard() {
+            const currentItem = studyData[flashcardIndex];
+            document.getElementById('fc-portuguese').innerText = currentItem.pt;
+            document.getElementById('fc-english').innerText = currentItem.en;
+            document.getElementById('fc-hint').innerText = `"${currentItem.hint}"`;
+            document.getElementById('fc-category-badge').innerText = currentItem.category;
+            document.getElementById('fc-progress').innerText = `${flashcardIndex + 1} / ${studyData.length}`;
+            
+            const inner = document.getElementById('flashcard-inner');
+            inner.style.transform = "rotateY(0deg)";
+            isFlashcardFlipped = false;
+        }
+
+        function flipCard() {
+            playSFX('click');
+            const inner = document.getElementById('flashcard-inner');
+            if (isFlashcardFlipped) {
+                inner.style.transform = "rotateY(0deg)";
+                isFlashcardFlipped = false;
+            } else {
+                inner.style.transform = "rotateY(180deg)";
+                isFlashcardFlipped = true;
+            }
+        }
+
+        function nextFlashcard() {
+            flashcardIndex = (flashcardIndex + 1) % studyData.length;
+            updateFlashcard();
+        }
+
+        function prevFlashcard() {
+            flashcardIndex = (flashcardIndex - 1 + studyData.length) % studyData.length;
+            updateFlashcard();
+        }
+
+        // --- QUIZ GAME ENGINE ---
+        const quizQuestions = [
+            {
+                question: "Se você tem uma thumbnail maravilhosa e todo mundo quer entrar no seu vídeo, que métrica no seu painel vai disparar para cima?",
+                options: ["Audience Retention", "CTR (Click-Through Rate)", "RPM", "Watch Time"],
+                answer: 1,
+                tip: "Dica: Tem a ver com o clique inicial!"
+            },
+            {
+                question: "Um 'Evergreen Content' é considerado extremamente valioso para YouTubers porque:",
+                options: [
+                    "Sempre atrai anunciantes focados em jardinagem ecológica.", 
+                    "O algoritmo dá prioridade a vídeos que tratam de meio ambiente.", 
+                    "É um vídeo que não 'caduca' com o tempo, rendendo acessos constantes por anos.", 
+                    "É um vídeo que viraliza absurdamente rápido em apenas 24 horas."
+                ],
+                answer: 2,
+                tip: "Dica: 'Evergreen' significa Sempre-Verde, algo que nunca morre no outono das tendências."
+            },
+            {
+                question: "Quando você percebe no gráfico que ocorreu um enorme 'Drop-off' aos 2 minutos de vídeo, o que provavelmente aconteceu?",
+                options: [
+                    "A audiência perdeu o interesse ou você enrolou demais, e as pessoas fecharam o vídeo.", 
+                    "O YouTube retirou os anúncios daquela área do vídeo.", 
+                    "Um pico massivo de pessoas re-assistindo a mesma parte ocorreu ali.", 
+                    "Sua métrica de CTR falhou."
+                ],
+                answer: 0,
+                tip: "Dica: 'To drop' significa derrubar, largar, cair."
+            },
+            {
+                question: "No contexto financeiro de monetização, qual a diferença básica entre RPM e CPM?",
+                options: [
+                    "RPM é retenção pura; CPM é monetização temporária.",
+                    "CPM é quanto o anunciante paga; RPM é quanto o criador de fato recebe a cada 1.000 views.",
+                    "RPM aplica-se a vídeos curtos (Shorts); CPM apenas a vídeos longos.",
+                    "Não há diferença, são apenas siglas britânicas e americanas."
+                ],
+                answer: 1,
+                tip: "Dica: 'R'eveue (sua receita) vs 'C'ost (custo para o patrocinador)."
+            },
+            {
+                question: "Se o seu amigo gringo diz: 'Man, my latest vlog totally TANKED...', ele está feliz ou triste?",
+                options: [
+                    "Triste. Significa que o vídeo teve o desempenho muito abaixo do normal (flopou).", 
+                    "Feliz. O vídeo foi blindado pelo algoritmo como um tanque de guerra.", 
+                    "Triste. Significa que o YouTube deu 'strike' nele.", 
+                    "Feliz. A retenção dele bateu recordes absolutos."
+                ],
+                answer: 0,
+                tip: "Dica: Na gíria da internet, 'to tank' é o mesmo que afundar feio."
+            }
+        ];
+
+        let quizIndex = 0;
+        let quizScore = 0;
+        let selectedOptionIndex = null;
+
+        function startQuiz() {
+            playSFX('success');
+            document.getElementById('quiz-start-view').classList.add('hidden');
+            document.getElementById('quiz-result-view').classList.add('hidden');
+            document.getElementById('quiz-play-view').classList.remove('hidden');
+            
+            quizIndex = 0;
+            quizScore = 0;
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            const currentQ = quizQuestions[quizIndex];
+            selectedOptionIndex = null;
+            
+            document.getElementById('quiz-question-index').innerText = `PERGUNTA ${quizIndex + 1}/${quizQuestions.length}`;
+            document.getElementById('quiz-score').innerText = `Score: ${String(quizScore * 100).padStart(4, '0')}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((quizIndex + 1) / quizQuestions.length) * 100}%`;
+            
+            document.getElementById('quiz-question-text').innerText = currentQ.question;
+            document.getElementById('quiz-feedback-tip').innerText = currentQ.tip;
+            document.getElementById('quiz-feedback-tip').className = "text-xs text-zinc-500 font-medium";
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.className = "px-4 py-2 bg-zinc-800 text-zinc-500 rounded-lg text-xs font-bold pointer-events-none transition";
+            nextBtn.setAttribute('disabled', 'true');
+
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+            currentQ.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.setAttribute('onclick', `selectOption(${idx})`);
+                optBtn.id = `opt-btn-${idx}`;
+                optBtn.className = "w-full text-left px-5 py-4 bg-zinc-900 hover:bg-zinc-800/80 border border-zinc-800 text-sm font-medium rounded-xl text-zinc-200 transition-all focus:outline-none";
+                optBtn.innerText = opt;
+                container.appendChild(optBtn);
+            });
+        }
+
+        function selectOption(idx) {
+            if (selectedOptionIndex !== null) return; 
+            selectedOptionIndex = idx;
+            
+            const currentQ = quizQuestions[quizIndex];
+            const nextBtn = document.getElementById('quiz-next-btn');
+            const feedbackTip = document.getElementById('quiz-feedback-tip');
+            
+            nextBtn.className = "px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg text-xs font-bold cursor-pointer transition";
+            nextBtn.removeAttribute('disabled');
+            
+            for (let i = 0; i < currentQ.options.length; i++) {
+                const btn = document.getElementById(`opt-btn-${i}`);
+                btn.className = "w-full text-left px-5 py-4 text-sm font-medium rounded-xl transition-all focus:outline-none border " + 
+                                (i === currentQ.answer ? "bg-green-950/50 border-green-500 text-green-300" : "bg-zinc-950/20 border-zinc-900 text-zinc-600");
+            }
+
+            if (idx === currentQ.answer) {
+                playSFX('success');
+                quizScore++;
+                document.getElementById(`opt-btn-${idx}`).className = "w-full text-left px-5 py-4 bg-green-900/50 border-green-500 text-sm font-bold rounded-xl text-green-200 transition-all focus:outline-none border animate-pulse";
+                feedbackTip.innerText = "✓ Resposta Correta! Ótima análise.";
+                feedbackTip.className = "text-xs text-green-400 font-bold";
+            } else {
+                playSFX('error');
+                document.getElementById(`opt-btn-${idx}`).className = "w-full text-left px-5 py-4 bg-orange-950/50 border-orange-500 text-sm font-bold rounded-xl text-orange-300 transition-all focus:outline-none border";
+                feedbackTip.innerText = `✗ Errado! A opção correta era: ${currentQ.options[currentQ.answer]}`;
+                feedbackTip.className = "text-xs text-orange-400 font-bold";
+            }
+            
+            document.getElementById('quiz-score').innerText = `Score: ${String(quizScore * 100).padStart(4, '0')}`;
+        }
+
+        function nextQuestion() {
+            playSFX('click');
+            quizIndex++;
+            if (quizIndex < quizQuestions.length) {
+                showQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            document.getElementById('quiz-play-view').classList.add('hidden');
+            const resultView = document.getElementById('quiz-result-view');
+            resultView.classList.remove('hidden');
+            
+            document.getElementById('quiz-final-score').innerText = `${quizScore} / ${quizQuestions.length}`;
+            
+            const msg = document.getElementById('quiz-feedback-message');
+            if (quizScore === quizQuestions.length) {
+                msg.innerText = "Especialista! O seu CTR vai estar estourando hoje.";
+                msg.className = "text-xs text-green-400 font-bold italic";
+            } else if (quizScore >= 3) {
+                msg.innerText = "Muito bom! Você compreende o Studio perfeitamente.";
+                msg.className = "text-xs text-red-400 font-medium italic";
+            } else {
+                msg.innerText = "Seu vídeo tankou, mas continue revisando o Handbook e tente de novo!";
+                msg.className = "text-xs text-zinc-500 font-medium italic";
+            }
+        }
+
+        function resetQuiz() {
+            playSFX('click');
+            document.getElementById('quiz-result-view').classList.add('hidden');
+            document.getElementById('quiz-start-view').classList.remove('hidden');
+        }
+
+        // --- WINDOW INITIALIZATION ---
+        window.onload = function() {
+            renderVocabulary();
+            updateFlashcard();
+            setTimelineMode('hook');
+        };
+    </script>
+</body>
+</html>

@@ -3,462 +3,653 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inglês em 12 Aulas</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <title>Remote Editors Bootcamp</title>
+    <link class="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            /* Light Theme (Default) */
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border-color: #e5e7eb;
-            --primary: #3b82f6;
-            --card-hover-shadow: rgba(0, 0, 0, 0.1);
-            --header-title: #111827;
-        }
+    :root {
+        /* Light Theme (Premium Clean) */
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+        --card-hover-bg: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --card-hover-shadow: rgba(15, 23, 42, 0.04);
+        --header-title: #0f172a;
+        --accent-bg: #f1f5f9;
+        --glow-opacity: 0.12;
+        
+        /* Gradient Presets */
+        --gradient-daily: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        --gradient-mensagens: linear-gradient(135deg, #0d9488 0%, #115e59 100%);
+        --gradient-youtube: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        --gradient-edicao: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    }
 
-        /* Dark Theme Variables */
-        [data-theme="dark"] {
-            --bg-color: #111827;
-            --card-bg: #1f2937;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --border-color: #374151;
-            --primary: #60a5fa;
-            --card-hover-shadow: rgba(0, 0, 0, 0.5);
-            --header-title: #f3f4f6;
-        }
+    /* Dark Theme (Premium Cyber/Slate) */
+    [data-theme="dark"] {
+        --bg-color: #0b0f19;
+        --card-bg: #131a26;
+        --card-hover-bg: #1a2335;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border-color: #1e293b;
+        --primary: #3b82f6;
+        --primary-hover: #60a5fa;
+        --card-hover-shadow: rgba(0, 0, 0, 0.3);
+        --header-title: #f8fafc;
+        --accent-bg: #1e293b;
+        --glow-opacity: 0.25;
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-        }
+        --gradient-daily: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        --gradient-mensagens: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        --gradient-youtube: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+        --gradient-edicao: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.5;
-            padding: 20px;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.4;
+        padding: 40px 40px; /* Aumentado o espaçamento interno do body nas laterais */
+        overflow-x: hidden;
+    }
 
-        .theme-toggle:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
+    /* Ambient Background Glow */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 1600px; /* Expandido para acompanhar o layout */
+        height: 250px;
+        background: radial-gradient(circle 100px at 50% 60px, rgba(59, 130, 246, 0.05), transparent 80%);
+        pointer-events: none;
+        z-index: 0;
+    }
 
-        header {
-            max-width: 1200px;
-            margin: 0 auto 40px auto;
-            text-align: center;
-            padding-top: 20px; /* Added space for the fixed button if needed */
-        }
+    .wrapper {
+        max-width: 100%; /* Permite que ele se adapte ao monitor */
+        width: 1600px;    /* Nova largura máxima ideal para telas ultra-wide/grandes */
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
 
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--header-title);
-        }
+    /* Theme Toggle Button */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-main);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+        z-index: 1000;
+    }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 24px; /* Added margin for the new button */
-        }
+    .theme-toggle:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: scale(1.05);
+    }
 
-        /* --- NEW PREMIUM BUTTON STYLE --- */
-        .premium-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffffff;
-            /* Premium SaaS Electric Blue Gradient */
-            background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-            border-radius: 9999px; /* Pill shape */
-            text-decoration: none;
-            cursor: pointer;
-            
-            /* Sophisticated Shadow/Glow */
-            box-shadow: 
-                0 4px 6px -1px rgba(37, 99, 235, 0.3), 
-                0 10px 15px -3px rgba(37, 99, 235, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2); /* Inner lighting */
-            
-            border: 1px solid rgba(37, 99, 235, 0.5);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: -0.01em;
-        }
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 8px;
+    }
 
-        .premium-cta:hover {
-            transform: translateY(-2px);
-            /* Intensify Glow on Hover */
-            box-shadow: 
-                0 10px 20px -5px rgba(37, 99, 235, 0.5), 
-                0 20px 25px -5px rgba(37, 99, 235, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-        }
+    header h1 {
+        font-size: 2.4rem; /* Um pouco maior para equilibrar com a tela ampla */
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin-bottom: 16px;
+        color: var(--header-title);
+    }
 
-        .premium-cta:active {
-            transform: translateY(0);
-        }
-        /* ------------------------------- */
+    header h1 .accent-blue {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: #3b82f6;
+    }
 
-        .lesson-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    /* --- GLOWING PREMIUM CTA --- */
+    .premium-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 24px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #ffffff;
+        background: var(--gradient-daily);
+        border-radius: 9999px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: -0.01em;
+        box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.25);
+    }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-        }
+    @keyframes pulse-glow {
+        0% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.3), 0 4px 12px -2px rgba(37, 99, 235, 0.2); }
+        50% { box-shadow: 0 0 18px rgba(37, 99, 235, 0.65), 0 4px 12px -2px rgba(37, 99, 235, 0.2); }
+        100% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.3), 0 4px 12px -2px rgba(37, 99, 235, 0.2); }
+    }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px var(--card-hover-shadow);
-        }
+    .premium-cta:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.08);
+        animation: pulse-glow 1.5s infinite alternate;
+    }
 
-        /* Card Top Borders */
-        .card.day-1 { border-top: 5px solid #a855f7; }
-        .card.day-2 { border-top: 5px solid #0ea5e9; }
-        .card.day-3 { border-top: 5px solid #10b981; }
-        .card.day-4 { border-top: 5px solid #f59e0b; }
-        .card.day-5 { border-top: 5px solid #8b5cf6; }
-        .card.day-6 { border-top: 5px solid #ef4444; }
-        .card.day-7 { border-top: 5px solid #0d9488; }
-        .card.day-8 { border-top: 5px solid #3b82f6; }
-        .card.day-9 { border-top: 5px solid #d946ef; }
-        .card.day-10 { border-top: 5px solid #f97316; }
-        .card.day-11 { border-top: 5px solid #0891b2; }
-        .card.day-12 { border-top: 5px solid #334155; }
+    /* --- SECTION HEADER --- */
+    .section-header {
+        margin-bottom: 16px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+    }
 
-        .card-content {
-            padding: 24px;
-            flex-grow: 1;
-        }
+    .section-header h2 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
 
-        .badge {
-            display: inline-block;
-            background: var(--bg-color); /* Adaptive background */
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 999px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            letter-spacing: 0.05em;
-            border: 1px solid var(--border-color);
-        }
+    /* --- GRID AJUSTADA PARA MAIS COLUNAS EM TELAS GRANDES --- */
+    .lesson-grid {
+        display: grid;
+        /* Aumentado o minmax para 320px para os cards ficarem largos como no seu print */
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px; /* Espaço ligeiramente maior entre os cards */
+        margin-bottom: 40px;
+    }
 
-        .card h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-main);
-        }
+    .card {
+        background: var(--card-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    background-color 0.2s ease;
+        position: relative;
+    }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            min-height: 40px;
-        }
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 16px -4px var(--card-hover-shadow);
+        background: var(--card-hover-bg);
+    }
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
+    .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        opacity: 0.85;
+    }
 
-        .tag {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #9ca3af;
-        }
+    /* Cores dos cards mantidas... */
+    .card.day-1::before { background: #8b5cf6; }
+    .card.day-2::before { background: #0ea5e9; }
+    .card.day-3::before { background: #10b981; }
+    .card.day-4::before { background: #f59e0b; }
+    .card.day-5::before { background: #6366f1; }
+    .card.day-6::before { background: #ef4444; }
+    .card.day-7::before { background: #0d9488; }
+    .card.day-8::before { background: #3b82f6; }
+    .card.day-9::before { background: #ec4899; }
+    .card.day-10::before { background: #f97316; }
+    .card.day-11::before { background: #06b6d4; }
+    .card.day-12::before { background: #475569; }
 
-        .card-footer {
-            border-top: 1px solid var(--border-color);
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+    /* LEVEMENTE MAIS ALTO VERTICALMENTE (Padding aumentado de 12px/10px para 20px/16px) */
+    .card-content {
+        padding: 20px 18px 16px 18px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-        .card-footer svg {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.2s ease;
-        }
+    .card-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px; /* Mais espaço abaixo do título interno */
+        gap: 8px;
+    }
 
-        .card:hover .card-footer svg {
-            transform: translateX(4px);
-            color: var(--primary);
-        }
+    .badge {
+        display: inline-flex;
+        background: var(--accent-bg);
+        color: var(--text-muted);
+        font-size: 0.62rem;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border: 1px solid var(--border-color);
+    }
 
-        @media (max-width: 640px) {
-            header h1 { font-size: 1.75rem; }
-            body { padding: 15px; }
-            .theme-toggle { top: 15px; right: 15px; }
-        }
-    </style>
+    .card h2 {
+        font-size: 1.1rem; /* Fonte levemente maior para acompanhar o card maior */
+        font-weight: 700;
+        color: var(--text-main);
+        letter-spacing: -0.01em;
+    }
+
+    .card p {
+        color: var(--text-muted);
+        font-size: 0.88rem; /* Aumento sutil na legibilidade */
+        line-height: 1.35;
+    }
+
+    .card-footer {
+        border-top: 1px solid var(--border-color);
+        padding: 12px 18px; /* Mais altura na barra inferior do card */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 0.78rem;
+        background: rgba(0, 0, 0, 0.005);
+    }
+
+    .card-footer svg {
+        width: 12px;
+        height: 12px;
+        stroke: var(--text-muted);
+        transition: transform 0.2s ease, stroke 0.2s ease;
+    }
+
+    .card:hover .card-footer { color: var(--primary); }
+    .card:hover .card-footer svg { transform: translateX(3px); stroke: var(--primary); }
+
+    /* --- SPECIAL MATERIALS SECTION --- */
+    .special-section {
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+    .special-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .special-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px; /* Aumentado a altura interna dos botões de baixo */
+        border-radius: 8px;
+        text-decoration: none;
+        color: #ffffff;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .special-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.2) 100%);
+        pointer-events: none;
+    }
+
+    .special-btn.mensagens { background: var(--gradient-mensagens); box-shadow: 0 4px 12 rgba(13, 148, 136, var(--glow-opacity)); }
+    .special-btn.youtube { background: var(--gradient-youtube); box-shadow: 0 4px 12px rgba(220, 38, 38, var(--glow-opacity)); }
+    .special-btn.edicao { background: var(--gradient-edicao); box-shadow: 0 4px 12px rgba(124, 58, 237, var(--glow-opacity)); }
+
+    .special-btn-icon {
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        flex-shrink: 0;
+    }
+
+    .special-btn-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: #ffffff;
+        stroke-width: 2.5px;
+    }
+
+    .special-btn-content h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+    }
+
+    .special-btn::after {
+        content: "";
+        position: absolute;
+        right: 16px;
+        width: 6px;
+        height: 6px;
+        border-top: 2px solid #ffffff;
+        border-right: 2px solid #ffffff;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+
+    .special-btn:hover {
+        transform: translateY(-2px) scale(1.01);
+        filter: brightness(1.06);
+    }
+
+    .special-btn:hover::after {
+        opacity: 0.8;
+        transform: rotate(45deg) translate(1px, -1px);
+    }
+
+    /* --- RESPONSIVE ADJUSTMENTS (Mantém a compatibilidade mobile) --- */
+    @media (max-width: 1024px) {
+        body { padding: 24px 20px; }
+        .lesson-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+    }
+
+    @media (max-width: 768px) {
+        .special-grid { grid-template-columns: 1fr; gap: 10px; }
+        .special-btn { padding: 14px; }
+    }
+
+    @media (max-width: 640px) {
+        header h1 { font-size: 1.7rem; }
+        body { padding: 16px 12px; }
+        .theme-toggle { top: 12px; right: 12px; }
+        .lesson-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+        .card-content { padding: 12px 14px; }
+    }
+</style>
 </head>
 <body>
 
     <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
-        <svg id="sun-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg id="sun-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </button>
 
-    <header>
-        <h1>Inglês em 12 Aulas</h1>
-        <p>Explore 12 lições fundamentais criadas para levar você do básico ao avançado.</p>
-        
-        <a onclick="window.location.href='../daily/';" class="premium-cta">
-            Daily Challenge
-        </a>
-    </header>
+    <div class="wrapper">
+        <header>
+            <h1>Remote Editors <span class="accent-blue">Bootcamp</span></h1>
+            <a onclick="window.location.href='../daily/';" class="premium-cta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.886H3.886L8.79 12.518 6.878 18.4l4.91-3.623 4.91 3.623-1.912-5.882 4.904-3.632h-6.202L12 3z"/></svg>
+                Daily Challenge
+            </a>
+        </header>
 
-    <div class="lesson-grid">
-        <div onclick="window.location.href='1/';" class="card day-1">
-            <div class="card-content">
-                <span class="badge">Day 01</span>
-                <h2>Day 01</h2>
-                <p>Pronouns, To Be, Basic Questions</p>
-                <div class="tags">
-                    <span class="tag">#BASICS</span>
-                    <span class="tag">#TO BE</span>
+        <!-- --- SEÇÃO DE AULAS PADRÃO --- -->
+        <section>
+            <div class="section-header">
+                <h2>Programa de Estudo Base</h2>
+            </div>
+            
+            <div class="lesson-grid">
+                
+                <div onclick="window.location.href='1/';" class="card day-1">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 01</h2>
+                            <span class="badge">Day 01</span>
+                        </div>
+                        <p>Pronouns, To Be, Basic Questions</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='2/';" class="card day-2">
-            <div class="card-content">
-                <span class="badge">Day 02</span>
-                <h2>Day 02</h2>
-                <p>When, Why, Adjectives</p>
-                <div class="tags">
-                    <span class="tag">#WH-QUESTIONS</span>
-                    <span class="tag">#VOCABULARY</span>
+                <div onclick="window.location.href='2/';" class="card day-2">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 02</h2>
+                            <span class="badge">Day 02</span>
+                        </div>
+                        <p>When, Why, Adjectives</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='3/';" class="card day-3">
-            <div class="card-content">
-                <span class="badge">Day 03</span>
-                <h2>Day 03</h2>
-                <p>There is / There are</p>
-                <div class="tags">
-                    <span class="tag">#EXISTENCE</span>
-                    <span class="tag">#GRAMMAR</span>
+                <div onclick="window.location.href='3/';" class="card day-3">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 03</h2>
+                            <span class="badge">Day 03</span>
+                        </div>
+                        <p>There is / There are</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='4/';" class="card day-4">
-            <div class="card-content">
-                <span class="badge">Day 04</span>
-                <h2>Day 04</h2>
-                <p>Simple Present</p>
-                <div class="tags">
-                    <span class="tag">#HABITS</span>
-                    <span class="tag">#ROUTINES</span>
+                <div onclick="window.location.href='4/';" class="card day-4">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 04</h2>
+                            <span class="badge">Day 04</span>
+                        </div>
+                        <p>Simple Present</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='5/';" class="card day-5">
-            <div class="card-content">
-                <span class="badge">Day 05</span>
-                <h2>Day 05</h2>
-                <p>Present Continuous</p>
-                <div class="tags">
-                    <span class="tag">#NOW</span>
-                    <span class="tag">#ACTIONS</span>
+                <div onclick="window.location.href='5/';" class="card day-5">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 05</h2>
+                            <span class="badge">Day 05</span>
+                        </div>
+                        <p>Present Continuous</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='6/';" class="card day-6">
-            <div class="card-content">
-                <span class="badge">Day 06</span>
-                <h2>Day 06</h2>
-                <p>Requests & Offers</p>
-                <div class="tags">
-                    <span class="tag">#MODALS</span>
-                    <span class="tag">#POLITENESS</span>
+                <div onclick="window.location.href='6/';" class="card day-6">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 06</h2>
+                            <span class="badge">Day 06</span>
+                        </div>
+                        <p>Requests & Offers</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='7/';" class="card day-7">
-            <div class="card-content">
-                <span class="badge">Day 07</span>
-                <h2>Day 07</h2>
-                <p>Simple Future (Will)</p>
-                <div class="tags">
-                    <span class="tag">#FUTURE</span>
-                    <span class="tag">#PREDICTIONS</span>
+                <div onclick="window.location.href='7/';" class="card day-7">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 07</h2>
+                            <span class="badge">Day 07</span>
+                        </div>
+                        <p>Simple Future (Will)</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='8/';" class="card day-8">
-            <div class="card-content">
-                <span class="badge">Day 08</span>
-                <h2>Day 08</h2>
-                <p>Future (Going to) & Quantifiers</p>
-                <div class="tags">
-                    <span class="tag">#FUTURE</span>
-                    <span class="tag">#COUNTABLE</span>
+                <div onclick="window.location.href='8/';" class="card day-8">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 08</h2>
+                            <span class="badge">Day 08</span>
+                        </div>
+                        <p>Going to & Quantifiers</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='9/';" class="card day-9">
-            <div class="card-content">
-                <span class="badge">Day 09</span>
-                <h2>Day 09</h2>
-                <p>Simple Past</p>
-                <div class="tags">
-                    <span class="tag">#PAST</span>
-                    <span class="tag">#HISTORY</span>
+                <div onclick="window.location.href='9/';" class="card day-9">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 09</h2>
+                            <span class="badge">Day 09</span>
+                        </div>
+                        <p>Simple Past</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='10/';" class="card day-10">
-            <div class="card-content">
-                <span class="badge">Day 10</span>
-                <h2>Day 10</h2>
-                <p>Comparatives & Superlatives</p>
-                <div class="tags">
-                    <span class="tag">#ADJECTIVES</span>
-                    <span class="tag">#COMPARISON</span>
+                <div onclick="window.location.href='10/';" class="card day-10">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 10</h2>
+                            <span class="badge">Day 10</span>
+                        </div>
+                        <p>Comparatives & Superlatives</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='11/';" class="card day-11">
-            <div class="card-content">
-                <span class="badge">Present Perf</span>
-                <h2>Present Perfect</h2>
-                <p>Have/Has + Participle</p>
-                <div class="tags">
-                    <span class="tag">#ADVANCED</span>
-                    <span class="tag">#TENSES</span>
+                <div onclick="window.location.href='11/';" class="card day-11">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 11</h2>
+                            <span class="badge">Present Perf</span>
+                        </div>
+                        <p>Present Perfect (Have/Has)</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
-        <div onclick="window.location.href='12/';" class="card day-12">
-            <div class="card-content">
-                <span class="badge">Past Perf</span>
-                <h2>Past Perfect</h2>
-                <p>Had + Participle</p>
-                <div class="tags">
-                    <span class="tag">#ADVANCED</span>
-                    <span class="tag">#TENSES</span>
+                <div onclick="window.location.href='12/';" class="card day-12">
+                    <div class="card-content">
+                        <div class="card-header-row">
+                            <h2>Day 12</h2>
+                            <span class="badge">Past Perf</span>
+                        </div>
+                        <p>Past Perfect (Had)</p>
+                    </div>
+                    <div class="card-footer">
+                        Start Lesson
+                        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                Start Lesson
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
-            </div>
-        </div>
 
+            </div>
+        </section>
+
+        <!-- --- SEÇÃO MATERIAIS DESTAQUES PARA EDITORES DE VÍDEO --- -->
+        <section class="special-section">
+            <div class="section-header">
+                <h2>Materiais para Editores de Vídeo</h2>
+            </div>
+            
+            <div class="special-grid">
+                
+                <a href="../mensagens/" class="special-btn mensagens">
+                    <div class="special-btn-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <div class="special-btn-content">
+                        <h3>Chat com Clientes</h3>
+                    </div>
+                </a>
+
+                <a href="../youtube/" class="special-btn youtube">
+                    <div class="special-btn-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    </div>
+                    <div class="special-btn-content">
+                        <h3>Vocabulário do YouTube</h3>
+                    </div>
+                </a>
+
+                <a href="../edicao/" class="special-btn edicao">
+                    <div class="special-btn-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+                    </div>
+                    <div class="special-btn-content">
+                        <h3>Vocabulário de Edição</h3>
+                    </div>
+                </a>
+
+            </div>
+        </section>
     </div>
 
     <script>
@@ -472,6 +663,10 @@
         if (savedTheme) {
             htmlElement.setAttribute('data-theme', savedTheme);
             updateIcons(savedTheme);
+        } else {
+            // Default to dark theme if not set
+            htmlElement.setAttribute('data-theme', 'dark');
+            updateIcons('dark');
         }
 
         toggleBtn.addEventListener('click', () => {

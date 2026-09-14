@@ -396,6 +396,28 @@
             .timeline-container { flex-direction: column; }
             .arrow { transform: rotate(90deg); }
         }
+
+        .answer-hint {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.4rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .answer-hint.is-correct { background: rgba(16, 185, 129, 0.18); color: var(--accent); }
+        .answer-hint.is-wrong { background: rgba(16, 185, 129, 0.16); color: var(--accent); }
+        .revealed-correct {
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.55) !important;
+        }
+        .revealed-correct::after {
+            content: " ✓";
+            font-weight: 800;
+        }
+
     </style>
 </head>
 <body>
@@ -674,9 +696,34 @@
     // -------------------
     // EXERCISE LOGIC
     // -------------------
+
+    function expectedLabel(raw) {
+        return String(raw).split('|').map(s => s.trim()).filter(Boolean).join(' / ');
+    }
+
+    function showAnswerHint(el, ok, expected) {
+        const hint = document.createElement('span');
+        hint.className = 'answer-hint ' + (ok ? 'is-correct' : 'is-wrong');
+        hint.textContent = ok ? '✓' : ('correto: ' + expected);
+        el.insertAdjacentElement('afterend', hint);
+    }
+
+    function revealCorrectControl(el) {
+        if (!el) return;
+        const target = el.closest('label')
+            || (el.nextElementSibling && el.nextElementSibling.classList.contains('radio-label-box') ? el.nextElementSibling : null)
+            || el.closest('.radio-card')
+            || el.closest('.radio-label')
+            || el.closest('.radio-option')
+            || el.parentElement;
+        if (target) target.classList.add('revealed-correct');
+    }
+
     function checkAnswers() {
         let score = 0;
         let total = 0;
+        document.querySelectorAll('.answer-hint').forEach(el => el.remove());
+        document.querySelectorAll('.revealed-correct').forEach(el => el.classList.remove('revealed-correct'));
 
         // Reset Styles for Inputs
         document.querySelectorAll('input[type="text"]').forEach(el => {
@@ -702,6 +749,7 @@
             } else {
                 el.classList.add('wrong-answer');
             }
+            showAnswerHint(el, el.classList.contains('correct-answer'), expectedLabel(el.dataset.correct));
         });
 
         // 2. Check Radios (Questions 4, 5)
@@ -715,19 +763,15 @@
             const allLabels = document.querySelectorAll(`input[name="${name}"]`);
             
             if (selected) {
-                // Check if correct
                 if (selected.value === "correct") {
                     score++;
                     selected.parentElement.classList.add('correct-radio');
                 } else {
                     selected.parentElement.classList.add('wrong-radio');
-                    // Optional: Highlight the correct one even if they missed it
-                    // allLabels.forEach(radio => {
-                    //    if(radio.value === 'correct') radio.parentElement.classList.add('correct-radio');
-                    // });
                 }
-            } else {
-                // If nothing selected, maybe mark the group area? (Optional)
+            }
+            if (!selected || selected.value !== "correct") {
+                revealCorrectControl(document.querySelector(`input[name="${name}"][value="correct"]`));
             }
         });
 

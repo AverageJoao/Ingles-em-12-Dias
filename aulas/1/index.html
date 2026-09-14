@@ -381,6 +381,28 @@
             .radio-inline-group { width: 100%; margin-bottom: 5px; }
             .question-row span:first-child { font-weight: bold; margin-right: 5px;}
         }
+
+        .answer-hint {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.4rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .answer-hint.is-correct { background: rgba(16, 185, 129, 0.18); color: var(--accent); }
+        .answer-hint.is-wrong { background: rgba(16, 185, 129, 0.16); color: var(--accent); }
+        .revealed-correct {
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.55) !important;
+        }
+        .revealed-correct::after {
+            content: " ✓";
+            font-weight: 800;
+        }
+
     </style>
 </head>
 <body>
@@ -717,17 +739,37 @@
     // -------------------
     // EXERCISE LOGIC
     // -------------------
+    function expectedLabel(raw) {
+        return String(raw).split('|').map(s => s.trim()).filter(Boolean).join(' / ');
+    }
+
+    function matchesAnswer(userVal, raw) {
+        return String(raw).toLowerCase().split('|').map(s => s.trim()).includes(userVal.trim().toLowerCase());
+    }
+
+    function clearReviewMarks() {
+        document.querySelectorAll('.correct-answer, .wrong-answer, .correct-label, .wrong-label, .revealed-correct').forEach(el => {
+            el.classList.remove('correct-answer', 'wrong-answer', 'correct-label', 'wrong-label', 'revealed-correct');
+        });
+        document.querySelectorAll('.answer-hint').forEach(el => el.remove());
+    }
+
+    function showHint(el, ok, expected) {
+        const hint = document.createElement('span');
+        hint.className = 'answer-hint ' + (ok ? 'is-correct' : 'is-wrong');
+        hint.textContent = ok ? '✓' : ('correto: ' + expected);
+        el.insertAdjacentElement('afterend', hint);
+    }
+
+    function markCorrectRadio(input) {
+        if (input) input.parentElement.classList.add('revealed-correct');
+    }
+
     function checkAnswers() {
         let score = 0;
         let total = 0;
+        clearReviewMarks();
 
-        // 1. Reset Styles
-        // Remove class based validation
-        document.querySelectorAll('.correct-answer, .wrong-answer, .correct-label, .wrong-label').forEach(el => {
-            el.classList.remove('correct-answer', 'wrong-answer', 'correct-label', 'wrong-label');
-        });
-
-        // 2. Check Radios (Ex 1)
         const ex1Config = [
             {name: 'ex1_1', ans: 'what'},
             {name: 'ex1_2', ans: 'who'},
@@ -736,65 +778,48 @@
             {name: 'ex1_5', ans: 'who'},
             {name: 'ex1_6', ans: 'where'}
         ];
-        
+
         ex1Config.forEach(item => {
             total++;
             const selected = document.querySelector(`input[name="${item.name}"]:checked`);
-            
-            if(selected && selected.value === item.ans) {
-                // Apply success class to parent LABEL
+            const correct = document.querySelector(`input[name="${item.name}"][value="${item.ans}"]`);
+            if (selected && selected.value === item.ans) {
                 selected.parentElement.classList.add('correct-label');
                 score++;
-            } else if (selected) {
-                // Apply error class to parent LABEL
-                selected.parentElement.classList.add('wrong-label');
+            } else {
+                if (selected) selected.parentElement.classList.add('wrong-label');
+                markCorrectRadio(correct);
             }
         });
 
-        // 3. Check Fill-ins (Ex 2, 3, 4)
         document.querySelectorAll('.fill-in').forEach(el => {
             total++;
-            const userVal = el.value.trim().toLowerCase();
-            const correctVals = el.dataset.correct.toLowerCase().split('|'); 
-            
-            if(correctVals.includes(userVal)) {
-                el.classList.add('correct-answer');
+            const expected = expectedLabel(el.dataset.correct);
+            const ok = matchesAnswer(el.value, el.dataset.correct);
+            el.classList.add(ok ? 'correct-answer' : 'wrong-answer');
+            if (ok) score++;
+            showHint(el, ok, expected);
+        });
+
+        [['ex6_1'], ['ex6_2']].forEach(([name]) => {
+            total++;
+            const selected = document.querySelector(`input[name="${name}"]:checked`);
+            const correct = document.querySelector(`input[name="${name}"].radio-correct`);
+            if (selected && selected.classList.contains('radio-correct')) {
+                selected.parentElement.classList.add('correct-label');
                 score++;
             } else {
-                el.classList.add('wrong-answer');
+                if (selected) selected.parentElement.classList.add('wrong-label');
+                markCorrectRadio(correct);
             }
         });
 
-        // 4. Check Radios (Ex 5)
-        // Group 1
-        total++;
-        const r1 = document.querySelector('input[name="ex6_1"]:checked');
-        if(r1 && r1.classList.contains('radio-correct')) {
-            r1.parentElement.classList.add('correct-label');
-            score++;
-        } else if (r1) {
-            r1.parentElement.classList.add('wrong-label');
-        }
-
-        // Group 2
-        total++;
-        const r2 = document.querySelector('input[name="ex6_2"]:checked');
-        if(r2 && r2.classList.contains('radio-correct')) {
-            r2.parentElement.classList.add('correct-label');
-            score++;
-        } else if (r2) {
-            r2.parentElement.classList.add('wrong-label');
-        }
-
-        // Feedback
         const feedback = document.getElementById('feedback');
         const percentage = Math.round((score / total) * 100);
-        
         let msg = `You got ${score} out of ${total} correct (${percentage}%)! `;
-        if(percentage === 100) msg += "🎉 Perfect!";
-        else if(percentage > 70) msg += "👏 Great job!";
+        if (percentage === 100) msg += "🎉 Perfect!";
+        else if (percentage > 70) msg += "👏 Great job!";
         else msg += "💪 Keep practicing!";
-
         feedback.textContent = msg;
         feedback.style.color = percentage > 70 ? 'var(--accent)' : 'var(--danger)';
     }
